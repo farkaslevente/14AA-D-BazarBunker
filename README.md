@@ -3,4 +3,3 @@
 - Markó Bence
 - Farkas Levente
 - Parraghy Dániel
-- 
