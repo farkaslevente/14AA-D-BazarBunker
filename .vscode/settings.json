@@ -6,5 +6,5 @@
     "git.confirmSync": false,
     "files.autoSave": "afterDelay",
     "editor.minimap.enabled": false,
-    "editor.mouseWheelZoom": true,
+    "editor.mouseWheelZoom": true
 }
