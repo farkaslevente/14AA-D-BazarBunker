@@ -45,6 +45,7 @@
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"/>
 
+        
         <!--types of schoolarships-->
         <!--For Primary school students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="2" Grid.ColumnSpan="7">
