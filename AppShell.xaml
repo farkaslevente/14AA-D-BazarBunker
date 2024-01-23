@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MobilApp_Szakdolgozat.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MobilApp_Szakdolgozat"
+    xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM-->
+    <TabBar >
+        <Tab Icon="probaprofilepic.png">
+            <ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        </Tab>
+        <Tab Title="Home">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="&#128269;">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+
+        </Tab>
+    </TabBar>
+
+</Shell>

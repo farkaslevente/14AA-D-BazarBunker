@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobilApp_Szakdolgozat.MainPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
+             xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
+             Title=""
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        
+        <Style x:Key="FontProperties" TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="End" />
+            <Setter Property="TextColor" Value="Orange"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="ImageButton">
+            <Setter Property="CornerRadius" Value="9"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="Aspect" Value="AspectFill"/>
+            
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="probaprofilepic.png"/>
+        <ToolbarItem Text="Keresés" IconImageSource="search.png"/>
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="102*,12*,70*,7*,70*,7*,70*,22*,160*,22*,160*,26*"
+          ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
+        <toolkit:MediaElement x:Name="mediaElement"
+                      ShouldAutoPlay="True"                      
+                      Source="embed://hatter.mp4"
+                      Grid.RowSpan="12"
+                      Grid.ColumnSpan="7"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      Aspect="AspectFill"
+                      ShouldLoopPlayback="True"
+                      ShouldShowPlaybackControls="False"/>
+        <Image Source="logo.png" 
+               Grid.RowSpan="2" 
+               Grid.ColumnSpan="7"                 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"/>
+
+        <!--types of schoolarships-->
+        <!--For Primary school students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="2" Grid.ColumnSpan="7">
+            <StackLayout Orientation="Vertical" Grid.Column="1">
+                <Label Text="Általános Iskola" Style="{x:StaticResource FontProperties}"/>
+                <ImageButton Source="primarysch.jpg" 
+                         VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand" 
+                         Aspect="AspectFill"                                   
+                         CornerRadius="9"/>
+            </StackLayout>
+        </Grid>
+        
+        <!--For middle school attending students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
+            <StackLayout Orientation="Vertical" Grid.Column="1">
+                <Label Text="Középiskola" Style="{x:StaticResource FontProperties}"/>
+                <ImageButton Source="middlesch.jpg" 
+                         VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand" 
+                         Aspect="AspectFill"                          
+                         CornerRadius="9"/>
+                
+            </StackLayout>
+        </Grid>
+        
+        <!--For University attending students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="6" Grid.ColumnSpan="7">
+            <StackLayout Orientation="Vertical" Grid.Column="1">
+                <Label Text="Egyetemi hallgató" Style="{x:StaticResource FontProperties}"/>
+                <ImageButton Source="uni.png" 
+                             VerticalOptions="FillAndExpand" 
+                             HorizontalOptions="FillAndExpand" 
+                             Aspect="AspectFill"                                                      
+                             CornerRadius="9"/>
+            </StackLayout>
+        </Grid>
+        
+        <!-- Item Categories-->
+        <ImageButton Grid.Row="8" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="8" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="8" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton Grid.Row="10" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="10" Grid.Column="3" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="10" Grid.Column="5" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        
+    </Grid>
+
+</ContentPage>
