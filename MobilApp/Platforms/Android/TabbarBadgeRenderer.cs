@@ -38,7 +38,7 @@ namespace MobilApp_Szakdolgozat.Platforms.Android
             
             if (badgeDrawable is null)
             {            
-                const int messageTBItemIndex = 1;
+                const int messageTBItemIndex = 2;
                 badgeDrawable = bottomView.GetOrCreateBadge(messageTBItemIndex);
                 UpdateBadge(0);
                 BadgeCounterService.CountChanged += OnCountChnaged;

@@ -7,7 +7,7 @@
 
         <!--Circular Profile Picture ⬇ -->
         <Grid>
-            <Image Source="https://wallpapers.com/images/hd/cool-profile-picture-87h46gcobjl5e4xu.jpg" MaximumHeightRequest="180" />
+            <Image Source="demoprofilepic.png" MaximumHeightRequest="180" />
             <Rectangle RadiusX="300" StrokeThickness="40" RadiusY="300" Stroke="White" HeightRequest="250" WidthRequest="250"/>
         </Grid>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">

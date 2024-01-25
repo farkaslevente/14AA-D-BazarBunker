@@ -7,13 +7,14 @@
     xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM-->
+    <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM
+        Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <TabBar x:Name="Main_TabBar">
         <ShellContent
                 Title="Profile"
                 Icon="profile.svg"
                 ContentTemplate="{DataTemplate views:ProfilePage}"
-                Route="MainPage" />
+                Route="profileDetails" />
 
         <ShellContent            
                 Title="Search" 
@@ -26,7 +27,7 @@
                 Title="Messages"   
                 Icon="messages.svg"
                 ContentTemplate="{DataTemplate views:Messages}"
-                Route="MainPage" />
+                Route="messages" />
     </TabBar>
 
 </Shell>

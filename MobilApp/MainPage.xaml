@@ -9,6 +9,18 @@
 
         <!--SVG catalouge:
         https://www.svgrepo.com/-->
+    <!--
+    Video playback if needed:
+    <toolkit:MediaElement x:Name="mediaElement"
+              ShouldAutoPlay="True"                      
+              Source="embed://hatter.mp4"
+              Grid.RowSpan="12"
+              Grid.ColumnSpan="7"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              Aspect="AspectFill"
+              ShouldLoopPlayback="True"
+              ShouldShowPlaybackControls="False"/>-->
     <ContentPage.Resources>
         
         <Style x:Key="FontProperties" TargetType="Label">
@@ -23,36 +35,35 @@
             <Setter Property="HorizontalOptions" Value="Fill"/>
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="Aspect" Value="AspectFill"/>
-            
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="probaprofilepic.png"/>
         <ToolbarItem Text="Keresés" IconImageSource="search.png"/>
     </ContentPage.ToolbarItems>
-    <Grid RowDefinitions="102*,12*,70*,7*,70*,7*,70*,22*,160*,22*,160*,26*"
+    <Grid RowDefinitions="102*,2*,20*,2*,70*,7*,70*,7*,70*,22*,140*,12*,140*,26*"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
-        <!--<toolkit:MediaElement x:Name="mediaElement"
-                      ShouldAutoPlay="True"                      
-                      Source="embed://hatter.mp4"
-                      Grid.RowSpan="12"
-                      Grid.ColumnSpan="7"
-                      VerticalOptions="FillAndExpand"
-                      HorizontalOptions="FillAndExpand"
-                      Aspect="AspectFill"
-                      ShouldLoopPlayback="True"
-                      ShouldShowPlaybackControls="False"/>-->
+        
         <Image Source="logo.png" 
                Grid.RowSpan="2" 
                Grid.ColumnSpan="7"                 
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"
                Margin="0,10,0,0"/>
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="2" Grid.ColumnSpan="7">
+            <Button x:Name="SearchBTN"
+                    Clicked="SearchBTN_Clicked"
+                    BackgroundColor="#999999"                     
+                    Grid.Column="1"  
+                    Margin="0,-20,0,0" 
+                    Text="Keresés"
+                    FontSize="18"
+                    FontAttributes="Bold"/>
 
-        
+        </Grid>
         <!--types of schoolarships-->
         <!--For Primary school students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="2" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Általános Iskola" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="primarysch.jpg" 
@@ -64,7 +75,7 @@
         </Grid>
         
         <!--For middle school attending students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="6" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Középiskola" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="middlesch.jpg" 
@@ -77,7 +88,7 @@
         </Grid>
         
         <!--For University attending students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="6" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="8" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Egyetemi hallgató" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="uni.png" 
@@ -89,13 +100,13 @@
         </Grid>
         
         <!-- Item Categories-->
-        <ImageButton Grid.Row="8" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="8" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="8" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
-
         <ImageButton Grid.Row="10" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="10" Grid.Column="3" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="10" Grid.Column="5" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="10" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="10" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton Grid.Row="12" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="12" Grid.Column="3" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="12" Grid.Column="5" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
         
     </Grid>
 

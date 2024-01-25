@@ -1,4 +1,4 @@
-﻿
+﻿using MobilApp_Szakdolgozat.Views;
 namespace MobilApp_Szakdolgozat
 {
     public partial class AppShell : Shell
@@ -7,6 +7,12 @@ namespace MobilApp_Szakdolgozat
         {
             InitializeComponent();
             Init();
+            Routing.RegisterRoute("login", typeof(LoginPage));
+            Routing.RegisterRoute("messages", typeof(Messages));
+            Routing.RegisterRoute("adDetails", typeof(AdsPage));
+            Routing.RegisterRoute("searchDetails", typeof(SearchPage));
+            Routing.RegisterRoute("profileDetails", typeof(ProfilePage));
+            Routing.RegisterRoute("register", typeof(RegisterPage));
         }
 
         private void Init()
