@@ -10,7 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+//Useful Links:
+//    https://support.syncfusion.com/kb/article/14465/how-to-set-badge-in-net-maui-tabview-header
+//    https://www.youtube.com/watch?v=XSg_Fa4ThRM&t=426s
 
 namespace MobilApp_Szakdolgozat.Platforms.Android
 {
@@ -57,7 +59,8 @@ namespace MobilApp_Szakdolgozat.Platforms.Android
                 }
                 else
                 {
-                    badgeDrawable.Number = 10;
+                    badgeDrawable.SetVisible(true);
+                    badgeDrawable.Number = count;
                     badgeDrawable.BackgroundColor = Colors.Red.ToPlatform();
                     badgeDrawable.BadgeTextColor = Colors.White.ToPlatform();
                 }
