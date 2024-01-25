@@ -8,39 +8,25 @@
     Shell.FlyoutBehavior="Disabled">
 
     <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM-->
-    <TabBar >
-        <Tab Icon="profile.svg">
-            <ShellContent
+    <TabBar x:Name="Main_TabBar">
+        <ShellContent
                 Title="Profile"
-                
-                ContentTemplate="{DataTemplate local:MainPage}"
+                Icon="profile.svg"
+                ContentTemplate="{DataTemplate views:ProfilePage}"
                 Route="MainPage" />
-        </Tab>
-        
-        <Tab Title="Home">
-            <ShellContent
-                Title="Home"                
-                ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
-        </Tab>
-        
-        <Tab Title="Search"
-             Icon="search.svg">
-            <ShellContent
-                Title="Search"
-                
-                ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
-        </Tab>
 
-        <Tab Title="Messages"
-             Icon="messages.svg">
-            <ShellContent
-        Title="Messages"
-        
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-        </Tab>
+        <ShellContent            
+                Title="Search" 
+                x:Name="MainSearch"
+                Icon="search.svg"         
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+
+        <ShellContent
+                Title="Messages"   
+                Icon="messages.svg"
+                ContentTemplate="{DataTemplate views:Messages}"
+                Route="MainPage" />
     </TabBar>
 
 </Shell>

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using MobilApp_Szakdolgozat.Platforms.Android;
 
 namespace MobilApp_Szakdolgozat
 {
@@ -15,6 +16,12 @@ namespace MobilApp_Szakdolgozat
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                })
+                .ConfigureMauiHandlers(h =>
+                {
+#if ANDROID
+                    h.AddHandler<Shell, TabbarBadgeRenderer>();
+#endif
                 });
 
 #if DEBUG
