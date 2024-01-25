@@ -2,11 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobilApp_Szakdolgozat.Views.ProfilePage"
-             Title="ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="">
+    <VerticalStackLayout Margin="0,-10,0,0">
+
+        <!--Circular Profile Picture ⬇ -->
+        <Grid>
+            <Image Source="https://wallpapers.com/images/hd/cool-profile-picture-87h46gcobjl5e4xu.jpg" MaximumHeightRequest="180" />
+            <Rectangle RadiusX="300" StrokeThickness="40" RadiusY="300" Stroke="White" HeightRequest="250" WidthRequest="250"/>
+        </Grid>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            
+            
+            <Image Source="add" MaximumHeightRequest="50" Margin="-40,0,0,0" VerticalOptions="End"/>
+            
+        </StackLayout>
+        
+        
+        
     </VerticalStackLayout>
 </ContentPage>
