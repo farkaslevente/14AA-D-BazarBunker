@@ -35,9 +35,6 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiIcon Include="Resources\Splash\splash.svg" Color="#fa8202" BaseSize="256,256">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiIcon>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -84,6 +81,9 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\uni.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\vectorlogo.svg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 
@@ -110,6 +110,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
@@ -123,10 +124,9 @@
 	  <MauiImage Include="Resources\Raw\hatter.mp4">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
-	  <MauiSplashScreen Include="Resources\Splash\splash.svg" />
-	  <MauiIcon Include="Resources\Splash\vectorlogo.svg">
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#fa8202" BaseSize="512,512">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiIcon>
+	  </MauiSplashScreen>
 	</ItemGroup>
 
 	<ItemGroup>
