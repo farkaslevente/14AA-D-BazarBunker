@@ -62,7 +62,7 @@
         <!--For middle school attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
-                <Label Text="Középiskolaaaa" Style="{x:StaticResource FontProperties}"/>
+                <Label Text="Középiskolaaaaa" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="middlesch.jpg" 
                          VerticalOptions="FillAndExpand" 
                          HorizontalOptions="FillAndExpand" 
