@@ -9,25 +9,37 @@
 
     <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM-->
     <TabBar >
-        <Tab Icon="probaprofilepic.png">
+        <Tab Icon="profile.svg">
             <ShellContent
-        Title="Profile"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+                Title="Profile"
+                
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
         </Tab>
+        
         <Tab Title="Home">
             <ShellContent
-                Title="Home"
+                Title="Home"                
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
         </Tab>
-        <Tab Title="&#128269;">
+        
+        <Tab Title="Search"
+             Icon="search.svg">
             <ShellContent
-                Title="Home"
+                Title="Search"
+                
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
+        </Tab>
 
+        <Tab Title="Messages"
+             Icon="messages.svg">
+            <ShellContent
+        Title="Messages"
+        
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
         </Tab>
     </TabBar>
 

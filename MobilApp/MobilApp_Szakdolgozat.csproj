@@ -38,16 +38,19 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\add.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\messages.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Update="Resources\Images\middlesch.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\primarysch.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\probaprofilepic.png">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiImage>
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208">
+		<MauiImage Update="Resources\Images\demoprofilepic.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\hatter.jpg">
@@ -59,7 +62,10 @@
 		<MauiImage Update="Resources\Images\images.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\search.png">
+		<MauiImage Update="Resources\Images\profile.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\search.svg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\taska.jpg">
@@ -74,17 +80,11 @@
 		<MauiImage Update="Resources\Images\search.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\teszt.jpg">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiImage>
 		<MauiImage Update="Resources\Images\iroszerek.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\uni.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</MauiImage>
-		<MauiImage Update="Resources\Images\vectorlogo.svg">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 
 		<!-- Custom Fonts -->
@@ -95,6 +95,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\Demoprofilepic.png" />
 	  <None Remove="Resources\Images\hatter.jpg" />
 	  <None Remove="Resources\Images\hatter.mp4" />
 	  <None Remove="Resources\Images\images.jpg" />
@@ -102,10 +103,8 @@
 	  <None Remove="Resources\Images\iroszerek.png" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\olvasmanyok.png" />
-	  <None Remove="Resources\Images\probaProfilePic.png" />
 	  <None Remove="Resources\Images\search.jpg" />
 	  <None Remove="Resources\Images\taska.jpg" />
-	  <None Remove="Resources\Images\teszt.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

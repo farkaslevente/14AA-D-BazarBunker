@@ -6,6 +6,9 @@
              xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
              Title=""
              Shell.NavBarIsVisible="False">
+
+        <!--SVG catalouge:
+        https://www.svgrepo.com/-->
     <ContentPage.Resources>
         
         <Style x:Key="FontProperties" TargetType="Label">
@@ -62,7 +65,7 @@
         <!--For middle school attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
-                <Label Text="Középiskolaaaaa" Style="{x:StaticResource FontProperties}"/>
+                <Label Text="Középiskola" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="middlesch.jpg" 
                          VerticalOptions="FillAndExpand" 
                          HorizontalOptions="FillAndExpand" 
