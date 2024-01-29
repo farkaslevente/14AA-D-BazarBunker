@@ -14,8 +14,6 @@
     <toolkit:MediaElement x:Name="mediaElement"
               ShouldAutoPlay="True"                      
               Source="embed://hatter.mp4"
-              Grid.RowSpan="12"
-              Grid.ColumnSpan="7"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
               Aspect="AspectFill"
