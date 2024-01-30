@@ -26,8 +26,8 @@
         <ShellContent
                 Title="Messages"   
                 Icon="messages.svg"
-                ContentTemplate="{DataTemplate views:Messages}"
-                Route="messages" />
+                ContentTemplate="{DataTemplate views:SellerMessagesPage}"
+                Route="sellerMessages" />
     </TabBar>
 
 </Shell>

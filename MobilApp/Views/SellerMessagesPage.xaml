@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobilApp_Szakdolgozat.Views.SellerMessagesPage"
+             Title="SellerMessagesPage">
+    <VerticalStackLayout>
+        <CollectionView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Grid>
+                            <Image Source="demoprofilepic.png" MaximumHeightRequest="80" />
+                            <Rectangle RadiusX="300" StrokeThickness="20" RadiusY="300" Stroke="White" HeightRequest="110" WidthRequest="110"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
