@@ -23,4 +23,9 @@ public partial class ProfilePage : ContentPage
         NameSaveBTN.IsVisible = false;
         NameLB.Text = NameEntry.Text;
     }
+
+    private async void ProfilePicChangeBTN_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ppCatalog");
+    }
 }

@@ -1,9 +1,9 @@
 namespace MobilApp_Szakdolgozat.Views;
 using MobilApp_Szakdolgozat.Services;
 
-public partial class Messages : ContentPage, IDisposable
+public partial class MessagesPage : ContentPage, IDisposable
 {
-	public Messages()
+	public MessagesPage()
 	{
 		InitializeComponent();
         BadgeCounterService.CountChanged += OnCountChanged;
