@@ -6,18 +6,78 @@
     <VerticalStackLayout Margin="0,-10,0,0">
 
         <!--Circular Profile Picture ⬇ -->
-        <Grid>
-            <Image Source="demoprofilepic.png" MaximumHeightRequest="180" />
-            <Rectangle RadiusX="300" StrokeThickness="40" RadiusY="300" Stroke="White" HeightRequest="250" WidthRequest="250"/>
+        <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*">
+            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                <Grid>
+                    <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg" 
+                           MaximumHeightRequest="180" 
+                           MaximumWidthRequest="180" 
+                           Aspect="AspectFill"/>
+
+                    <Rectangle RadiusX="300" 
+                               StrokeThickness="40" 
+                               RadiusY="300" 
+                               Stroke="White" 
+                               HeightRequest="260" 
+                               WidthRequest="260"/>
+                </Grid>
+
+                <ImageButton x:Name="ProfilePicChangeBTN" 
+                             Source="add.svg" 
+                             MaximumHeightRequest="50" 
+                             Margin="-70,0,0,30" 
+                             VerticalOptions="End"/>
+
+            </StackLayout>
+            <Label Grid.Row="1" Text="Teszt Elek" Grid.Column="1" 
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"
+                   Margin="0,-30,0,10"/>
+
+            
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Rectangle BackgroundColor="LightGray" 
+                           RadiusX="10" 
+                           RadiusY="10" 
+                           Stroke="black" 
+                           Margin="30,0,30,0"/>
+                
+                <Entry Placeholder="Teszt Elek" 
+                       PlaceholderColor="Black" 
+                       Margin="30,0,30,0"/>
+            </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="1" ColumnDefinitions="62*,23*,86*,23*,90*">
+            
+            <Grid Grid.Column="0">
+                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
+                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+            </Grid>
+
+                <Grid Grid.Column="2">
+                    <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
+                    <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+                </Grid>
+
+                <Grid Grid.Column="4">
+                    <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
+                    <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="6" Grid.Column="1">
+                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
+                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+            </Grid>
+            <Grid Grid.Row="8" Grid.Column="1">
+                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
+                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+            </Grid>
+
+
         </Grid>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            
-            
-            <Image Source="add" MaximumHeightRequest="50" Margin="-40,0,0,0" VerticalOptions="End"/>
-            
-        </StackLayout>
-        
-        
-        
+
+
+
     </VerticalStackLayout>
 </ContentPage>

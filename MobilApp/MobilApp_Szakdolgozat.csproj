@@ -115,7 +115,6 @@
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -129,6 +128,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\AdsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ConversationsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
