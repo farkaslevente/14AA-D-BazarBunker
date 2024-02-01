@@ -1,16 +1,14 @@
-import { config } from "dotenv";
+import { config } from "dotenv"
 import mysql from "mysql"
 
-config();
+config()
 
-//DB_user = "bazarbunker"
-//DB_pwd = "BBk20231208"
-//DB_host = "bgs.jedlik.eu"
-//DB_name = "bazarbunker"
-const _user = "bazarbunker"
-const _host = "bgs.jedlik.eu"
-const _pwd = "BBk20231208"
-const _name = "bazarbunker"
+
+
+const _user = process.env.DB_user
+const _host = process.env.DB_host
+const _pwd = process.env.DB_pwd
+const _name = process.env.DB_name
 
 const con = mysql.createConnection({
     host: _host,
