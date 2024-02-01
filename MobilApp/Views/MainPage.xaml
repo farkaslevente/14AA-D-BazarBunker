@@ -1,28 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobilApp_Szakdolgozat.MainPage"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
-             xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
+             x:Class="MobilApp_Szakdolgozat.Views.MainPage"
              Title=""
              Shell.NavBarIsVisible="False">
 
-        <!--SVG catalouge:
+    <!--SVG catalouge:
         https://www.svgrepo.com/-->
     <!--
     Video playback if needed:
     <toolkit:MediaElement x:Name="mediaElement"
               ShouldAutoPlay="True"                      
               Source="embed://hatter.mp4"
-              Grid.RowSpan="12"
-              Grid.ColumnSpan="7"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
               Aspect="AspectFill"
               ShouldLoopPlayback="True"
               ShouldShowPlaybackControls="False"/>-->
     <ContentPage.Resources>
-        
+
         <Style x:Key="FontProperties" TargetType="Label">
             <Setter Property="FontSize" Value="Small"/>
             <Setter Property="FontAttributes" Value="Bold"/>
@@ -43,7 +39,7 @@
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="102*,2*,20*,2*,70*,7*,70*,7*,70*,22*,140*,12*,140*,26*"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
-        
+
         <Image Source="logo.png" 
                Grid.RowSpan="2" 
                Grid.ColumnSpan="7"                 
@@ -73,7 +69,7 @@
                          CornerRadius="9"/>
             </StackLayout>
         </Grid>
-        
+
         <!--For middle school attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="6" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
@@ -83,10 +79,10 @@
                          HorizontalOptions="FillAndExpand" 
                          Aspect="AspectFill"                          
                          CornerRadius="9"/>
-                
+
             </StackLayout>
         </Grid>
-        
+
         <!--For University attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="8" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
@@ -98,7 +94,7 @@
                              CornerRadius="9"/>
             </StackLayout>
         </Grid>
-        
+
         <!-- Item Categories-->
         <ImageButton Grid.Row="10" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
         <ImageButton Grid.Row="10" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
@@ -107,7 +103,6 @@
         <ImageButton Grid.Row="12" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
         <ImageButton Grid.Row="12" Grid.Column="3" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
         <ImageButton Grid.Row="12" Grid.Column="5" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        
-    </Grid>
 
+    </Grid>
 </ContentPage>

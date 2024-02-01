@@ -20,13 +20,13 @@
                 Title="Search" 
                 x:Name="MainSearch"
                 Icon="search.svg"         
-                ContentTemplate="{DataTemplate local:MainPage}"
+                ContentTemplate="{DataTemplate views:MainPage}"
                 Route="MainPage" />
 
         <ShellContent
                 Title="Messages"   
                 Icon="messages.svg"
-                ContentTemplate="{DataTemplate views:Messages}"
+                ContentTemplate="{DataTemplate views:MessagesPage}"
                 Route="messages" />
     </TabBar>
 
