@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobilApp_Szakdolgozat.Views.Messages"
+             Title="Messages">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            x:Name="proba"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Text="Increase Badge Count"
+            Clicked="IncreaseBadgeCountClicked"/>
+        <Button
+            Text="Decrease Badge Count"
+            Clicked="DecreaseBadgeCountClicked"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

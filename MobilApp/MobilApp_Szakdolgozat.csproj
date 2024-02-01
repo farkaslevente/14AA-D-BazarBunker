@@ -35,22 +35,22 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiIcon Include="Resources\Splash\splash.svg" Color="#fa8202" BaseSize="256,256">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiIcon>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\add.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\messages.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Update="Resources\Images\middlesch.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\primarysch.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\probaprofilepic.png">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiImage>
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208">
+		<MauiImage Update="Resources\Images\demoprofilepic.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\hatter.jpg">
@@ -62,7 +62,10 @@
 		<MauiImage Update="Resources\Images\images.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\search.png">
+		<MauiImage Update="Resources\Images\profile.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\search.svg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\taska.jpg">
@@ -77,14 +80,11 @@
 		<MauiImage Update="Resources\Images\search.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
-		<MauiImage Update="Resources\Images\teszt.jpg">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</MauiImage>
 		<MauiImage Update="Resources\Images\iroszerek.png">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
 		<MauiImage Update="Resources\Images\uni.png">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</MauiImage>
 
 		<!-- Custom Fonts -->
@@ -95,6 +95,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\Demoprofilepic.png" />
 	  <None Remove="Resources\Images\hatter.jpg" />
 	  <None Remove="Resources\Images\hatter.mp4" />
 	  <None Remove="Resources\Images\images.jpg" />
@@ -102,38 +103,46 @@
 	  <None Remove="Resources\Images\iroszerek.png" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\olvasmanyok.png" />
-	  <None Remove="Resources\Images\probaProfilePic.png" />
 	  <None Remove="Resources\Images\search.jpg" />
 	  <None Remove="Resources\Images\taska.jpg" />
-	  <None Remove="Resources\Images\teszt.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
 	  <Folder Include="ViewModels\" />
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Raw\hatter.mp4">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
-	  <MauiSplashScreen Include="Resources\Splash\splash.svg" />
-	  <MauiIcon Include="Resources\Splash\vectorlogo.svg">
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#fa8202" BaseSize="512,512">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiIcon>
+	  </MauiSplashScreen>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\AdsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ConversationsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Messages.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SearchPage.xaml">
