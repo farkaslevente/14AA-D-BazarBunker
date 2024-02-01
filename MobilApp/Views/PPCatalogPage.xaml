@@ -3,25 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobilApp_Szakdolgozat.Views.PPCatalogPage"
              Title="">
-    <CollectionView
+    <CollectionView x:Name="ppCW"
                     ItemsLayout="VerticalGrid,3">
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-                <x:String>Item 1</x:String>
-            </x:Array>
-        </CollectionView.ItemsSource>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <VerticalStackLayout BackgroundColor="Blue" Padding="5" Margin="5">
-                    <Label Text="{Binding .}" HorizontalOptions="Center"/>
+                <VerticalStackLayout BackgroundColor="Beige" Padding="5" Margin="5">
+                    <Label Text="{Binding ppList}" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100"/>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
