@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobilApp_Szakdolgozat.Views.ProfilePage"
              Title="">
+    <ContentPage.Resources>
+        <Style x:Key="GridStyle" TargetType="Grid">
+            <Setter Property="Padding" Value="0,10"/>
+        </Style>
+    </ContentPage.Resources>
     <VerticalStackLayout Margin="0,-10,0,0">
 
-        <!--Circular Profile Picture ⬇ -->
         <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*">
             <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
                 <Grid>
@@ -24,54 +28,43 @@
 
                 <ImageButton x:Name="ProfilePicChangeBTN" 
                              Source="add.svg" 
-                             MaximumHeightRequest="50" 
+                             MaximumHeightRequest="50"
+                             MaximumWidthRequest="50"
                              Margin="-70,0,0,30" 
                              VerticalOptions="End"/>
 
             </StackLayout>
-            <Label Grid.Row="1" Text="Teszt Elek" Grid.Column="1" 
+            <Label x:Name="NameLB" Grid.Row="1" Text="Teszt Elek" Grid.Column="1" 
                    HorizontalTextAlignment="Center"
                    FontSize="Large"
                    Margin="0,-30,0,10"/>
 
-            
-            <Grid Grid.Row="2" Grid.Column="1">
-                <Rectangle BackgroundColor="LightGray" 
-                           RadiusX="10" 
-                           RadiusY="10" 
-                           Stroke="black" 
-                           Margin="30,0,30,0"/>
-                
-                <Entry Placeholder="Teszt Elek" 
-                       PlaceholderColor="Black" 
-                       Margin="30,0,30,0"/>
-            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource GridStyle}" 
+                  RowDefinitions="*,*" MaximumHeightRequest="100">
+                <Border Stroke="White"
+                        StrokeThickness="2">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="45,45,45,45" />
+                    </Border.StrokeShape>
+                    
+                         <Entry x:Name="NameEntry"
+                                Placeholder="Teszt Elek" 
+                                PlaceholderColor="Black"                                                       
+                                Margin="30,0,30,0"/>
+                </Border>
 
-        <Grid Grid.Row="4" Grid.Column="1" ColumnDefinitions="62*,23*,86*,23*,90*">
-            
-            <Grid Grid.Column="0">
-                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
-                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
-            </Grid>
+                <Button x:Name="NameChangeBTN"
+                        Text="Név megváltoztatása"
+                        MaximumHeightRequest="40"
+                        Margin="30,0"
+                        Clicked="NameChangeBTN_Clicked"/>
 
-                <Grid Grid.Column="2">
-                    <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
-                    <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
-                </Grid>
-
-                <Grid Grid.Column="4">
-                    <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
-                    <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
-                </Grid>
-
-            </Grid>
-            <Grid Grid.Row="6" Grid.Column="1">
-                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
-                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
-            </Grid>
-            <Grid Grid.Row="8" Grid.Column="1">
-                <Rectangle BackgroundColor="LightGray" RadiusX="10" RadiusY="10" Stroke="black" Margin="30,0,30,0"/>
-                <Entry Placeholder="Teszt Elek" PlaceholderColor="Black" Margin="30,0,30,0"/>
+                <Button Grid.Row="1"
+                        x:Name="NameSaveBTN"
+                        Text="Változtatás mentése"
+                        MaximumHeightRequest="40"
+                        Margin="30,0"
+                        Clicked="NameSaveBTN_Clicked"/>
             </Grid>
 
 
