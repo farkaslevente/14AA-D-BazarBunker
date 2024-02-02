@@ -10,7 +10,7 @@
                         type="text" 
                         class="form-control" 
                         :class="{'is-invalid' : error.title}"
-                        v-model="newBlog.title">
+                        v-model="newAd.title">
                     <div class="invalid-feedback" id="titleFeedback">
                         Kötelező kitöleni!
                     </div>    
@@ -22,7 +22,7 @@
                         class="form-control" 
                         :class="{'is-invalid' : error.description}"
                         rows="6" 
-                        v-model="newBlog.description"></textarea>
+                        v-model="newAd.description"></textarea>
                     <div class="invalid-feedback" id="descriptionFeedback">
                         Kötelező kitöleni!
                     </div>  
@@ -37,14 +37,14 @@
 
 <script setup>
 import { ref } from 'vue';
-import blogservice from '../../services/adservices.js';
+import adservice from '../../services/adservices.js';
 import { useUserStore } from '../../stores/userstore';
 import { useRouter } from 'vue-router';
 
 const { user } = useUserStore();
 const router = useRouter();
 
-const newBlog = ref({
+const newAd = ref({
     title: '',
     description: ''
 });
@@ -58,8 +58,8 @@ function onSave() {
     // console.log(newBlog.value);
     if (formValidate()) return;
     // mentés
-    blogservice.insertBlog(newBlog.value,user.token)
-        .then(()=>{ router.push('/blogok') });
+    adservice.insertAd(newAd.value,user.token)
+        .then(()=>{ router.push('/hirdetesek') });
 
 }
 
@@ -67,10 +67,10 @@ function formValidate(){
     error.value.title = false;
     error.value.description = false;
 
-    if (!newBlog.value.title){
+    if (!newAd.value.title){
         error.value.title = true;
     }
-    if (!newBlog.value.description){
+    if (!newAd.value.description){
         error.value.description = true;
     }
 

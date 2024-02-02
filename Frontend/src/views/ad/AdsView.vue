@@ -2,15 +2,15 @@
     <div class="container">
         <h1 class="display-5 mt-5">Hirdetések</h1>
         <div class="row">
-            <div class="col-12" v-for="blog in blogs">
+            <div class="col-12" v-for="ad in ads">
                 <!-- <h3>{{ blog.title }}</h3>
                 <p><strong>Dátum:</strong> {{ blog.updated_at }}, <strong>Szerző: </strong>{{ blog.user_name  }} </p>
                 <p>{{ blog.description }}</p> -->
-                <div v-if="blog.user_id == user.id || user.role == 1">
-                    <AdminBlog :blog="blog"/>
+                <div v-if="ad.user_id == user.id || ad.role == 1">
+                    <AdminBlog :ad="ad"/>
                 </div>
                 <div v-else>
-                    <ShowBlog :blog="blog"/>
+                    <ShowBlog :ad="ad"/>
                 </div>
                 <hr>
             </div>
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import blogservices from '../../services/adservices';
+import adservices from '../../services/adservices';
 import ShowAd from '../../components/blog/ShowAd.vue';
 import AdminAd from '../../components/blog/AdminAd.vue';
 import { useUserStore } from '../../stores/userstore';
@@ -30,7 +30,7 @@ const { user } = storeToRefs( useUserStore() );
 
 const blogs = ref();
 
-adservices.getAllBlog()
+adservices.getAllAd()
     .then(resp => {
         // console.log(resp.data);
         blogs.value = resp.data;

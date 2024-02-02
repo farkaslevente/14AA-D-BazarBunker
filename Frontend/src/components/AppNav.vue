@@ -44,13 +44,13 @@ const menuItems = computed(() => {
       isLoggedIn: true
     },
     {
-      title: 'Blogok',
-      to: '/blogok',
+      title: 'Hirdetések',
+      to: '/hirdetesek',
       isLoggedIn: true
     },
     {
-      title: 'Új blog',
-      to: '/ujblog',
+      title: 'Új hirdetés',
+      to: '/ujhirdetes',
       isLoggedIn: status.value.loggedIn
     },
     {

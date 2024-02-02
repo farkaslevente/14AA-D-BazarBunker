@@ -1,8 +1,8 @@
 import Axios from './dataservice.js';
 
 export default {
-    getAllBlog() {
-        return Axios.get('/blog')
+    getAllAd() {
+        return Axios.get('/ad')
             .then(resp => {
                 return resp.data;
             })
@@ -11,8 +11,8 @@ export default {
             })
     },
 
-    insertBlog(data,token){
-        return Axios.post('/blog',data,{headers: {"Authorization": "Bearer " + token}})
+    insertAd(data,token){
+        return Axios.post('/ad',data,{headers: {"Authorization": "Bearer " + token}})
             .then(resp =>{
                 return resp.data;
             })

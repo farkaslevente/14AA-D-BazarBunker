@@ -1,11 +1,11 @@
 <template>
-    <h3>{{ blog.title }}</h3>
-    <p><strong>Dátum:</strong> {{ blog.updated_at }}, <strong>Szerző: </strong>{{ blog.user_name }} </p>
-    <p>{{ blog.description }}</p>
+    <h3>{{ ad.title }}</h3>
+    <p><strong>Dátum:</strong> {{ ad.updated_at }}, <strong>Szerző: </strong>{{ blog.user_name }} </p>
+    <p>{{ ad.description }}</p>
 </template>
 
 <script setup>
-const props = defineProps(['blog']);
+const props = defineProps(['ad']);
 </script>
 
 <style lang="scss" scoped></style>
