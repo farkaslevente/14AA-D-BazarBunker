@@ -1,0 +1,26 @@
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css");
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+
+
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+.header-bg{
+    background: url('../img/header.png');
+    height: 15vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.header-title{
+    font-size: 8vw;
+    font-weight: bold;
+    color: red;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px;
+}
+.error-message{
+    color: red;
+}
