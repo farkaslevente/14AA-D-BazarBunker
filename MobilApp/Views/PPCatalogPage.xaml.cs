@@ -3,7 +3,7 @@ namespace MobilApp_Szakdolgozat.Views;
 
 public partial class PPCatalogPage : ContentPage
 {
-	public static List<string> ppList;
+	public static List<string> ppList { get; set; }
 	public PPCatalogPage()
 	{
 		InitializeComponent();
