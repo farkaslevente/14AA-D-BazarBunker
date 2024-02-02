@@ -21,19 +21,17 @@
 <script setup>
 import { ref } from 'vue';
 import adservices from '../../services/adservices';
-import ShowAd from '../../components/blog/ShowAd.vue';
-import AdminAd from '../../components/blog/AdminAd.vue';
 import { useUserStore } from '../../stores/userstore';
 import {storeToRefs} from 'pinia';
 
 const { user } = storeToRefs( useUserStore() );
 
-const blogs = ref();
+const ads = ref();
 
 adservices.getAllAd()
     .then(resp => {
         // console.log(resp.data);
-        blogs.value = resp.data;
+        ads.value = resp.data;
     })
     
 

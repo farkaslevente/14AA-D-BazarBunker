@@ -8,7 +8,7 @@
 @import 'bootstrap/scss/bootstrap.scss';
 
 .header-bg{
-    background: url('../img/header.png');
+    background: url('../img/vectorlogo.svg');
     height: 15vw;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,10 +17,20 @@
 .header-title{
     font-size: 8vw;
     font-weight: bold;
-    color: red;
-    -webkit-text-fill-color: transparent;
+    color: #3468C0;
+    // -webkit-text-fill-color: transparent;
+    // -webkit-text-stroke: 2px;
     -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: black;
 }
 .error-message{
     color: red;
+}
+
+.bg-navfoot-bazarbunker {
+    background-color: #FFDD95;
+}
+
+.bg-bazarbunker {
+    background-color: #86A7FC;
 }

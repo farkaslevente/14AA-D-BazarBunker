@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-success-subtle">
+  <nav class="navbar navbar-expand-lg bg-navfoot-bazarbunker">
     <div class="container">
       <span class="navbar-brand">BAZARBUNKER</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
