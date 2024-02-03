@@ -21,7 +21,7 @@
                     <Rectangle RadiusX="300" 
                                StrokeThickness="40" 
                                RadiusY="300" 
-                               Stroke="Black" 
+                               Stroke="White" 
                                HeightRequest="260" 
                                WidthRequest="260"/>
                 </Grid>
@@ -67,7 +67,8 @@
                         Margin="30,0"
                         Clicked="NameSaveBTN_Clicked"/>
             </Grid>
-
+            <CollectionView Grid.Column="1" Grid.Row="4" Grid.RowSpan="5">
+            </CollectionView>
 
         </Grid>
 

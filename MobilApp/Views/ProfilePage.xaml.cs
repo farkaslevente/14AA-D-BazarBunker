@@ -2,6 +2,7 @@ namespace MobilApp_Szakdolgozat.Views;
 
 public partial class ProfilePage : ContentPage
 {
+    bool Saved = false;
 	public ProfilePage()
 	{
 		InitializeComponent();
@@ -14,17 +15,22 @@ public partial class ProfilePage : ContentPage
     {
 		NameChangeBTN.IsVisible = false;
         NameSaveBTN.IsVisible = true;
-        NameEntry.Text = " ";
+        NameEntry.Text = "";
+        NameEntry.Placeholder = "Teszt Elek";
+        NameEntry.PlaceholderColor = Colors.Gray;
+        Saved = false;
     }
 
     private void NameSaveBTN_Clicked(object sender, EventArgs e)
     {
         
-        if (NameEntry.Text != "")
+        if (NameEntry.Text != "" && Saved == false)
         {
             NameLB.Text = NameEntry.Text;
             NameChangeBTN.IsVisible = true;
             NameSaveBTN.IsVisible = false;
+            Saved = true;
+
         }
         else
         {
