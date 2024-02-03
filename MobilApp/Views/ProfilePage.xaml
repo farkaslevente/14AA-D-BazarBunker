@@ -21,7 +21,7 @@
                     <Rectangle RadiusX="300" 
                                StrokeThickness="40" 
                                RadiusY="300" 
-                               Stroke="White" 
+                               Stroke="Black" 
                                HeightRequest="260" 
                                WidthRequest="260"/>
                 </Grid>
@@ -50,7 +50,7 @@
                     
                          <Entry x:Name="NameEntry"
                                 Placeholder="Teszt Elek" 
-                                PlaceholderColor="Black"                                                       
+                                PlaceholderColor="Gray"                                                       
                                 Margin="30,0,30,0"/>
                 </Border>
 
