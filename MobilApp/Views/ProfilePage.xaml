@@ -34,6 +34,15 @@
                              VerticalOptions="End"
                              Clicked="ProfilePicChangeBTN_Clicked"/>
 
+                <ImageButton x:Name="LoginBTN" 
+                                Source="add.svg" 
+                             BackgroundColor="Red"
+                                MaximumHeightRequest="50"
+                                MaximumWidthRequest="50"
+                                Margin="-70,0,0,30" 
+                                VerticalOptions="End"
+                                Clicked="LoginBTN_Clicked"/>
+
             </StackLayout>
             <Label x:Name="NameLB" Grid.Row="1" Text="Teszt Elek" Grid.Column="1" 
                    HorizontalTextAlignment="Center"

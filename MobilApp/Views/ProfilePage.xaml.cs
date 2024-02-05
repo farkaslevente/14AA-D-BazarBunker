@@ -45,4 +45,9 @@ public partial class ProfilePage : ContentPage
     {
         await Shell.Current.GoToAsync("ppCatalog");
     }
+
+    private async void LoginBTN_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("login");
+    }
 }
