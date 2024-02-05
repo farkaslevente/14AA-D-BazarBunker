@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegistrationView from '../views/user/RegistrationView.vue'
 import LoginView from '../views/user/LoginView.vue'
+import ProfilePageView from '../views/user/ProfilePageView.vue'
 import AdsView from '../views/ad/AdsView.vue'
 import NewAdView from '../views/ad/NewAdView.vue'
 import { useUserStore } from '../stores/userstore'
@@ -15,14 +16,13 @@ const router = createRouter({
     { path: '/bejelentkezes', component: LoginView},
     { path: '/hirdetesek', component: AdsView},
     { path: '/ujhirdetes', component: NewAdView},
-    
-   
+    { path: '/profil', component: ProfilePageView}
   ]
 })
 
 router.beforeEach((to,from,next) =>{
   const {status} = storeToRefs(useUserStore());
-  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek'];
+  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek','/profil'];
   const autRequired = !publicPages.includes(to.path);
   if (autRequired && !status.value.loggedIn){
     return next('/bejelentkezes')
