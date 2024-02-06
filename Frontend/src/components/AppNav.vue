@@ -63,6 +63,11 @@ const menuItems = computed(() => {
       to: '/regisztracio',
       isLoggedIn: !status.value.loggedIn
     },
+    {
+      title: 'Profil',
+      to: '/profil',
+      isLoggedIn: !status.value.loggedIn
+    },
   ]
 });
 
