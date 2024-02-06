@@ -1,11 +1,11 @@
-import mysql from "mysql2/promise";
-import config from "../database/dbConfig.js"
+const conf  = require("../database/dbConfig.js");
+const { createConnection } = require("mysql2/promise");
 
 async function query(sql, params) {
-    const con = await mysql.createConnection(config.db);
-    const [results,] = await con.execute(sql, params);
+    const con = await createConnection(conf.db);
+    const [results] = await con.execute(sql, params);
 
     return results;
 }
 
-export default query;
+module.exports = query

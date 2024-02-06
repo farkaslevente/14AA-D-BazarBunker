@@ -1,11 +1,25 @@
-import query from "./db.js"
+const query = require('./db')
 
-async function getAllUsers() {
-    const rows = await query(
+
+const dbFunctions = {
+    getAllUsers: async function (res) {
+        res = await query(
         `SELECT id, nev, email, hely, pPic, jelszo
         FROM felhasznalok`
+        );
+        return res;
+    },
+
+    getAllItems: async function () {
+    const rows = await query(
+        `SELECT id, nev, email, hely, pPic, jelszo
+        FROM termekek`
     );
     return rows;
-};
+    }
+}
 
-export default getAllUsers
+module.exports = {
+    dbFunctions
+}
+    

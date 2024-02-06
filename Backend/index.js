@@ -1,14 +1,12 @@
-import express from "express";
-import path from "path";
-import morgan from "morgan";
-import { fileURLToPath } from "url";
-import router from "./src/routes/indexRouter.js";
+const { path } = require("path");
+const  express  = require("express");
+const  morgan  = require("morgan");
+const { fileURLToPath } = require("url");
+const { router } = require('./src/routes/indexRouter')
 
 const PORT = process.env.PORT || 9000;
-const HOST = process.env.HOST || "http://localhost";
+const HOST = process.env.HOST || "10.0.22.14";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express()
 app.use(express.static("src/views"))
@@ -27,8 +25,7 @@ app.use((err, _req, res, _next) => {
   return;  
 });
 
-app.set("views", path.join(__dirname, "src/views"));
 app.set('view engine', 'html');
 
 app.use(router);
-export default app;
+module.exports = app;
