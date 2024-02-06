@@ -39,7 +39,7 @@
                              BackgroundColor="Red"
                                 MaximumHeightRequest="50"
                                 MaximumWidthRequest="50"
-                                Margin="-70,0,0,30" 
+                                Margin="0,0,0,30" 
                                 VerticalOptions="End"
                                 Clicked="LoginBTN_Clicked"/>
 
