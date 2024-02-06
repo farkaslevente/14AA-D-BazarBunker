@@ -29,6 +29,11 @@
                 Icon="messages.svg"
                 ContentTemplate="{DataTemplate views:MessagesPage}"
                 Route="messages" />
+        <ShellContent
+         Title="Test" 
+         Icon="test.svg"
+         ContentTemplate="{DataTemplate views:NewPage1}"
+         Route="test" />
     </TabBar>
 
 </Shell>

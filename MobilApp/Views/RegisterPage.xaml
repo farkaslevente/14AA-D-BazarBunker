@@ -5,7 +5,7 @@
              Title="RegisterPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Register test"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
