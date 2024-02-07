@@ -73,6 +73,11 @@ const menuItems = computed(() => {
       to: '/chat',
       isLoggedIn: !status.value.loggedIn
     },
+    {
+      title: 'Hirdetes',
+      to: '/hirdetes',
+      isLoggedIn: !status.value.loggedIn
+    },
   ]
 });
 
