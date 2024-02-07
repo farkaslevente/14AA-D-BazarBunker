@@ -16,23 +16,17 @@
                          HorizontalOptions="Center"
                          Margin="0,10,0,0">
                 <Grid>
-                    
-                    <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg" 
-                           MaximumHeightRequest="140" 
-                           MaximumWidthRequest="138"
-                           
-                           Aspect="AspectFill"/>
+                    <Border WidthRequest="200"
+                            HeightRequest="200"
+                            StrokeShape="RoundRectangle 100">
 
-                    <Rectangle RadiusX="300" 
-                               StrokeThickness="30" 
-                               RadiusY="300" 
-                               Stroke="White" 
-                               HeightRequest="200" 
-                               WidthRequest="200"/>
+                        <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"                                                       
+                                 Aspect="AspectFill"/>
+                    </Border>
                 </Grid>
 
                 <ImageButton x:Name="ProfilePicChangeBTN" 
-                             Source="add.svg" 
+                             Source="changepp.svg" 
                              MaximumHeightRequest="30"
                              MaximumWidthRequest="30"
                              Margin="-50,0,0,0" 
