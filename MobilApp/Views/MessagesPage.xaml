@@ -15,6 +15,8 @@
         <Button
             Text="Decrease Badge Count"
             Clicked="DecreaseBadgeCountClicked"/>
-        
+
+        <Button Text="Admin"
+                Clicked="AdminBTN_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

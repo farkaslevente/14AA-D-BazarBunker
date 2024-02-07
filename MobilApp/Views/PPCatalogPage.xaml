@@ -8,12 +8,13 @@
     https://www.youtube.com/watch?v=gf6abNRAhuY-->
     <CollectionView x:Name="ppCW"
                     ItemsLayout="VerticalGrid,3"                    
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    ItemsSource="{Binding}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout BackgroundColor="Beige" Padding="5" Margin="5">
                     <!--<Button ImageSource="{}"/>-->
-                    <Label Text="{Binding Url}" 
+                    <Label Text="{Binding ppList}" 
                            HorizontalOptions="Center" 
                            HeightRequest="100" 
                            WidthRequest="100" 

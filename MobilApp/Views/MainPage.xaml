@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobilApp_Szakdolgozat.Views.MainPage"
+             xmlns:tool="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="MobilApp_Szakdolgozat.Views.MainPage"            
              Title=""
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             >
 
     <!--SVG catalouge:
         https://www.svgrepo.com/-->
@@ -17,6 +19,9 @@
               Aspect="AspectFill"
               ShouldLoopPlayback="True"
               ShouldShowPlaybackControls="False"/>-->
+    <ContentPage.Behaviors>
+        <tool:StatusBarBehavior StatusBarColor="#045dd1"/>
+    </ContentPage.Behaviors>
     <ContentPage.Resources>
 
         <Style x:Key="FontProperties" TargetType="Label">
@@ -32,34 +37,46 @@
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="Aspect" Value="AspectFill"/>
         </Style>
+        <!--<Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property=""
+        </Style>-->
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="probaprofilepic.png"/>
         <ToolbarItem Text="Keresés" IconImageSource="search.png"/>
     </ContentPage.ToolbarItems>
-    <Grid RowDefinitions="102*,2*,20*,2*,70*,7*,70*,7*,70*,22*,140*,12*,140*,26*"
+    <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
-
-        <Image Source="logo.png" 
-               Grid.RowSpan="2" 
-               Grid.ColumnSpan="7"                 
-               HorizontalOptions="CenterAndExpand"
-               VerticalOptions="CenterAndExpand"
-               Margin="0,10,0,0"/>
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="2" Grid.ColumnSpan="7">
-            <Button x:Name="SearchBTN"
+       
+        <Grid Grid.RowSpan="2" 
+              Grid.ColumnSpan="7"
+              RowDefinitions="*,9*,*"
+              ColumnDefinitions="2*,10*,4*,2*"
+              Margin="0,0,0,10"
+              BackgroundColor="#045dd1">
+            <Image Source="logo.png" 
+                   Grid.RowSpan="2" 
+                   Grid.ColumnSpan="3"                                    
+                   HorizontalOptions="CenterAndExpand"                   
+                   VerticalOptions="CenterAndExpand"                  
+                   HeightRequest="150"
+                   Margin="0,40,0,0"/>
+            <ImageButton x:Name="SearchBTN"
                     Clicked="SearchBTN_Clicked"
-                    BackgroundColor="#999999"                     
-                    Grid.Column="1"  
-                    Margin="0,-20,0,0" 
-                    Text="Keresés"
-                    FontSize="18"
-                    FontAttributes="Bold"/>
+                    BackgroundColor="#FF642F"                     
+                    VerticalOptions="Center"
+                    Grid.Row="2" 
+                    Grid.Column="2" 
+                    CornerRadius="20"
+                    MaximumHeightRequest="70"
+                    MaximumWidthRequest="70"                    
+                    Margin="0,0,0,0"     
+                    Source="search.svg"/>
 
         </Grid>
         <!--types of schoolarships-->
         <!--For Primary school students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="4" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="5" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Általános Iskola" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="primarysch.jpg" 
@@ -71,7 +88,7 @@
         </Grid>
 
         <!--For middle school attending students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="6" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="7" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Középiskola" Style="{x:StaticResource FontProperties}"/>
                 <ImageButton Source="middlesch.jpg" 
@@ -84,10 +101,10 @@
         </Grid>
 
         <!--For University attending students-->
-        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="8" Grid.ColumnSpan="7">
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="9" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Egyetemi hallgató" Style="{x:StaticResource FontProperties}"/>
-                <ImageButton Source="uni.png" 
+                <ImageButton Source="uniproba.png" 
                              VerticalOptions="FillAndExpand" 
                              HorizontalOptions="FillAndExpand" 
                              Aspect="AspectFill"                                                      
@@ -96,13 +113,9 @@
         </Grid>
 
         <!-- Item Categories-->
-        <ImageButton Grid.Row="10" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="10" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="10" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
-
-        <ImageButton Grid.Row="12" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="12" Grid.Column="3" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="12" Grid.Column="5" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="11" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="11" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton Grid.Row="11" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
 
     </Grid>
 </ContentPage>

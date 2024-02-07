@@ -30,7 +30,8 @@
                 ContentTemplate="{DataTemplate views:MessagesPage}"
                 Route="messages" />
         <ShellContent
-         Title="Test" 
+         Title="Test"
+            x:Name="testTab"
          Icon="test.svg"
          ContentTemplate="{DataTemplate views:NewPage1}"
          Route="test" />
