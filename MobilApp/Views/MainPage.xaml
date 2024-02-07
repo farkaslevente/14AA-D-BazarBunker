@@ -47,7 +47,8 @@
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
-       
+
+        <Rectangle Grid.ColumnSpan="7" BackgroundColor="Gray"/>
         <Grid Grid.RowSpan="2" 
               Grid.ColumnSpan="7"
               RowDefinitions="*,9*,*"
@@ -60,7 +61,7 @@
                    HorizontalOptions="CenterAndExpand"                   
                    VerticalOptions="CenterAndExpand"                  
                    HeightRequest="150"
-                   Margin="0,40,0,0"/>
+                   Margin="0,70,0,0"/>
             <ImageButton x:Name="SearchBTN"
                     Clicked="SearchBTN_Clicked"
                     BackgroundColor="#FF642F"                     
@@ -104,7 +105,7 @@
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="9" Grid.ColumnSpan="7">
             <StackLayout Orientation="Vertical" Grid.Column="1">
                 <Label Text="Egyetemi hallgató" Style="{x:StaticResource FontProperties}"/>
-                <ImageButton Source="uniproba.png" 
+                <ImageButton Source="uni.png" 
                              VerticalOptions="FillAndExpand" 
                              HorizontalOptions="FillAndExpand" 
                              Aspect="AspectFill"                                                      
