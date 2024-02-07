@@ -5,6 +5,7 @@ import LoginView from '../views/user/LoginView.vue'
 import ProfilePageView from '../views/user/ProfilePageView.vue'
 import AdsView from '../views/ad/AdsView.vue'
 import NewAdView from '../views/ad/NewAdView.vue'
+import ChatView from '../views/ad/ChatView.vue'
 import { useUserStore } from '../stores/userstore'
 import { storeToRefs } from 'pinia'
 
@@ -16,13 +17,15 @@ const router = createRouter({
     { path: '/bejelentkezes', component: LoginView},
     { path: '/hirdetesek', component: AdsView},
     { path: '/ujhirdetes', component: NewAdView},
-    { path: '/profil', component: ProfilePageView}
+    { path: '/profil', component: ProfilePageView},
+    { path: '/chat', component: ChatView}
+
   ]
 })
 
 router.beforeEach((to,from,next) =>{
   const {status} = storeToRefs(useUserStore());
-  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek','/profil'];
+  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek','/profil','/chat'];
   const autRequired = !publicPages.includes(to.path);
   if (autRequired && !status.value.loggedIn){
     return next('/bejelentkezes')

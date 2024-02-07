@@ -68,6 +68,11 @@ const menuItems = computed(() => {
       to: '/profil',
       isLoggedIn: !status.value.loggedIn
     },
+    {
+      title: 'Chat',
+      to: '/chat',
+      isLoggedIn: !status.value.loggedIn
+    },
   ]
 });
 
