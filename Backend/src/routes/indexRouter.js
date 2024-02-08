@@ -14,7 +14,7 @@ router.get("/", async function(_req, res, next) {
 
 router.get("/users", async function(_req, res, next) {
     try {
-        res.json(await dbFunctions.getAllUsers());
+        res.json(await dbFunctions.getUsers());
     } catch (err) {
         console.error("Error while getting users!", err.message);
         next(err);
@@ -23,7 +23,7 @@ router.get("/users", async function(_req, res, next) {
 
 router.get("/items", async function(_req, res, next) {
     try {
-        res.json(await dbFunctions.getAllItems());
+        res.json(await dbFunctions.getItems());
     } catch (err) {
         console.error("Error while getting items!", err.message);
         next(err);

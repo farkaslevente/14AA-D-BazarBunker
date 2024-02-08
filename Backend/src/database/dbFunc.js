@@ -2,7 +2,7 @@ const query = require('./db')
 
 
 const dbFunctions = {
-    getAllUsers: async function (res) {
+    getUsers: async function (res) {
         res = await query(
         `SELECT id, nev, email, hely, pPic, jelszo
         FROM felhasznalok`
@@ -10,7 +10,7 @@ const dbFunctions = {
         return res;
     },
 
-    getAllItems: async function (res) {
+    getItems: async function (res) {
     res = await query(
         `SELECT *
         FROM termekek`
