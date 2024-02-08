@@ -21,14 +21,14 @@ namespace MobilApp_Szakdolgozat.ViewModels
         { 
             pictures = new ObservableCollection<PictureCatalogModel>();
             getAllPictures();
-            detailsCommand = new Command(async () => {
-                if (selectedPicture == null) return;
-                await Shell.Current.GoToAsync("profileDetails",
-                    new Dictionary<string, object> { { "picture", selectedPicture } });
+            //detailsCommand = new Command(async () => {
+            //    if (selectedPicture == null) return;
+            //    await Shell.Current.GoToAsync("profileDetails",
+            //        new Dictionary<string, object> { { "picture", selectedPicture } });
 
-                selectedPicture = null;
-                OnPropertyChanged(nameof(selectedPicture));
-            });
+            //    selectedPicture = null;
+            //    OnPropertyChanged(nameof(selectedPicture));
+            //});
         }
 
         private async void getAllPictures()

@@ -20,26 +20,29 @@
                             HeightRequest="200"
                             StrokeShape="RoundRectangle 100">
 
-                        <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"                                                       
+                        <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"
                                  Aspect="AspectFill"/>
                     </Border>
                 </Grid>
+            </StackLayout>
 
-                <ImageButton x:Name="ProfilePicChangeBTN" 
-                             Source="changepp.svg" 
-                             MaximumHeightRequest="30"
-                             MaximumWidthRequest="30"
-                             Margin="-50,0,0,0" 
+            <ImageButton x:Name="ProfilePicChangeBTN" 
+                             Source="changepp.svg"                           
+                             Grid.Row="1" 
+                             Grid.Column="1"
+                             MaximumHeightRequest="35"
+                             MaximumWidthRequest="35"
+                             Margin="0,-50,-150,0" 
                              VerticalOptions="End"
                              Clicked="ProfilePicChangeBTN_Clicked"/>
 
-                
-
-            </StackLayout>
-            <Label x:Name="NameLB" Grid.Row="1" Text="Teszt Elek" Grid.Column="1" 
+            <Label x:Name="NameLB" 
+                   Grid.Row="1" 
+                   Grid.Column="1"
+                   Text="Teszt Elek"  
                    HorizontalTextAlignment="Center"
                    FontSize="Large"
-                   Margin="0,-30,0,10"/>
+                   Margin="0,0,0,0"/>
 
             <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource GridStyle}" 
                   RowDefinitions="*,*" MaximumHeightRequest="100">
