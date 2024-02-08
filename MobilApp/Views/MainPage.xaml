@@ -65,12 +65,13 @@
             <ImageButton x:Name="SearchBTN"
                     Clicked="SearchBTN_Clicked"
                     BackgroundColor="#FF642F"                     
-                    VerticalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
                     Grid.Row="2" 
                     Grid.Column="2" 
                     CornerRadius="20"
-                    MaximumHeightRequest="70"
-                    MaximumWidthRequest="70"                    
+                    HeightRequest="70"
+                    WidthRequest="70"                    
                     Margin="0,0,0,0"     
                     Source="search.svg"/>
 

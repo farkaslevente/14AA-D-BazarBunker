@@ -12,7 +12,7 @@ namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
-        static string url = "10.0.33.12:9000";
+        static string url = "http://10.0.22.14:9000";
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -31,7 +31,7 @@ namespace MobilApp_Szakdolgozat.Services
             using (var client = new HttpClient()) 
             { 
                 client.BaseAddress = new Uri(url);
-                var uri = "10.0.33.12:9000/pictures"; //Majd meg kell adni a végleges backend elérést
+                var uri = "/pictures"; //Majd meg kell adni a végleges backend elérést
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<PictureCatalogModel>>(result);

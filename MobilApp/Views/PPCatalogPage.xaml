@@ -19,11 +19,12 @@
                     SelectedItem="{Binding selectedPicture}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <VerticalStackLayout BackgroundColor="Beige" Padding="5" Margin="5">
+                <VerticalStackLayout BackgroundColor="White" Margin="5">
                     <!--<Button ImageSource="{}"/>-->
                     <Image Source="{Binding Url}"
                            HeightRequest="100" 
-                           WidthRequest="100"/>
+                           WidthRequest="100"
+                           Aspect="AspectFill"/>
                     <!--<Label Text="{Binding ppList}" 
                            HorizontalOptions="Center" 
                            HeightRequest="100" 
