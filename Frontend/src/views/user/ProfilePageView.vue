@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile mt-5 mb-5">
     <div class="profile-header">
       <h1>Profile</h1>
     </div>

@@ -26,7 +26,7 @@ const router = createRouter({
 
 router.beforeEach((to,from,next) =>{
   const {status} = storeToRefs(useUserStore());
-  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek','/profil','/chat','/hirdetes'];
+  const publicPages = ['/','/bejelentkezes','/regisztracio','/hirdetesek','/profil','/chat','/hirdetes','/ujhirdetes'];
   const autRequired = !publicPages.includes(to.path);
   if (autRequired && !status.value.loggedIn){
     return next('/bejelentkezes')

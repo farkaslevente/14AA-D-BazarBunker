@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <h1 class="display-5 mt-5">Új hirdetés</h1>
+    <div class="container border mt-5 mb-5">
+        <h1 class="display-5 mt-5 mb-5">Új hirdetés</h1>
         <div class="row">
             <div class="col-12 col-md-5">
                 <div class="mb-3">
@@ -10,6 +10,18 @@
                         type="text" 
                         class="form-control" 
                         :class="{'is-invalid' : error.title}"
+                        v-model="newAd.title">
+                    <div class="invalid-feedback" id="titleFeedback">
+                        Kötelező kitöleni!
+                    </div>    
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Település</label>
+                    <input 
+                        id="settlement"
+                        type="text" 
+                        class="form-control" 
+                        :class="{'is-invalid' : error.settlement}"
                         v-model="newAd.title">
                     <div class="invalid-feedback" id="titleFeedback">
                         Kötelező kitöleni!
@@ -28,7 +40,7 @@
                     </div>  
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary" @click="onSave">Elküld</button>
+                    <button class="btn btn-primary" @click="onSave">Meghirdet</button>
                 </div>
             </div>
         </div>
@@ -46,11 +58,13 @@ const router = useRouter();
 
 const newAd = ref({
     title: '',
+    settlement: '',
     description: ''
 });
 
 const error = ref({
     title: false,
+    settlement: false,
     description: false
 });
 
@@ -65,17 +79,30 @@ function onSave() {
 
 function formValidate(){
     error.value.title = false;
+    error.value.settlement = false;
     error.value.description = false;
+
 
     if (!newAd.value.title){
         error.value.title = true;
+    }
+    if (!newAd.value.settlement){
+        error.value.description = true;
     }
     if (!newAd.value.description){
         error.value.description = true;
     }
 
-    return error.value.title || error.value.description;
+    return error.value.title || error.value.description || error.value.settlement;
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.border {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+}
+</style>
