@@ -31,6 +31,12 @@
             <p>County: {{ ad.county }}</p>
             <p>Description: {{ ad.description }}</p>
           </div>
+          <div v-if="ad.user_id == user.id || ad.role == 1">
+                    <AdminBlog :ad="ad"/>
+                </div>
+                <div v-else>
+                    <ShowBlog :ad="ad"/>
+                </div>
         </div>
       </div>
     </div>
@@ -51,7 +57,7 @@
           // console.log(resp.data);
           ads.value = resp.data;
       });
-      
+
   export default {
     data() {
       return {
