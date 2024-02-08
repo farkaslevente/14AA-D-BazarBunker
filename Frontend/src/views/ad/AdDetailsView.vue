@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container border mt-5 mb-5">
     <div class="ad-details">
       <div class="ad-image-slider">
         <button class="slider-arrow left" @click="prevImage">&lt;</button>
@@ -106,5 +106,13 @@ export default {
 
 .ad-info button:hover {
   background-color: #0056b3;
+}
+
+.border {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
 }
 </style>
