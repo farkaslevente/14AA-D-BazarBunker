@@ -1,5 +1,6 @@
 
 using MobilApp_Szakdolgozat.Models;
+using MobilApp_Szakdolgozat.ViewModels;
 //using static Android.Graphics.ColorSpace;
 
 namespace MobilApp_Szakdolgozat.Views;
@@ -12,7 +13,8 @@ public partial class PPCatalogPage : ContentPage
     public PPCatalogPage()
 		{				
 		InitializeComponent();
-		Init();
+		
+		//Init();
 	}
 
     private void Init()

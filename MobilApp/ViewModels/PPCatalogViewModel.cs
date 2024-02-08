@@ -23,7 +23,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getAllPictures();
             detailsCommand = new Command(async () => {
                 if (selectedPicture == null) return;
-                await Shell.Current.GoToAsync("details",
+                await Shell.Current.GoToAsync("profileDetails",
                     new Dictionary<string, object> { { "picture", selectedPicture } });
 
                 selectedPicture = null;
