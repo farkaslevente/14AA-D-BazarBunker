@@ -1,18 +1,19 @@
-const { path } = require("path");
 const  express  = require("express");
 const  morgan  = require("morgan");
-const { fileURLToPath } = require("url");
 const { router } = require('./src/routes/indexRouter')
 
 const PORT = process.env.PORT || 9000;
-const HOST = process.env.HOST || "10.0.22.14";
+const HOST = process.env.HOST || "10.0.33.12";
 
 
 const app = express()
 app.use(express.static("src/views"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(morgan("tiny"))
+morgan.format(
+  'dev', '< :method :url > [:date[web]]' + ' Status: :status < :response-time ms >  -> Incoming: :req[header], Total time: :total-time[3]'
+);
+app.use(morgan('dev'))
 
 app.listen(PORT, () => {
   console.log(`Server listening @ ${HOST}:${PORT}`);

@@ -12,11 +12,19 @@ const dbFunctions = {
 
     getAllItems: async function () {
     const rows = await query(
-        `SELECT id, nev, email, hely, pPic, jelszo
+        `SELECT *
         FROM termekek`
     );
     return rows;
-    }
+    },
+
+    getPictures: async function () {
+        const rows = await query(
+            `SELECT *
+            FROM kepek`
+        );
+        return rows;
+        }
 }
 
 module.exports = {

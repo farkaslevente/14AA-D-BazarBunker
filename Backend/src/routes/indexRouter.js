@@ -21,6 +21,24 @@ router.get("/users", async function(_req, res, next) {
     }
 });
 
+router.get("/items", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getAllItems());
+    } catch (err) {
+        console.error("Error while getting items!", err.message);
+        next(err);
+    }
+});
+
+router.get("/pictures", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getPictures());
+    } catch (err) {
+        console.error("Error while getting pictures!", err.message);
+        next(err);
+    }
+});
+
 module.exports = {
     router
 }
