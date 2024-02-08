@@ -1,7 +1,8 @@
 <!-- Filters.vue -->
 <template>
     <div>
-      <div class="filters-container">
+        <h1 class="display-3 m-2 text-center">Hirdetések</h1>
+      <div class="filters-container justify-content-center">
         <input type="text" v-model="searchQuery" placeholder="Search by title" class="search-input">
   
         <select v-model="selectedCounty" class="select-dropdown">
