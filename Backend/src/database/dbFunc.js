@@ -10,21 +10,42 @@ const dbFunctions = {
         return res;
     },
 
-    getAllItems: async function () {
-    const rows = await query(
+    getAllItems: async function (res) {
+    res = await query(
         `SELECT *
         FROM termekek`
     );
-    return rows;
+    return res;
     },
 
-    getPictures: async function () {
-        const rows = await query(
+    getPictures: async function (res) {
+        res = await query(
             `SELECT *
             FROM kepek`
         );
-        return rows;
-        }
+        return res;
+    },
+
+    getSettlements: async function (res) {
+        res = await query(
+            'SELECT * FROM telepulesek'
+        );
+        return res;
+    },
+    
+    getMessages: async function (res) {
+        res = await query(
+            'SELECT * FROM uzenetek'
+        );
+        return res;
+    },
+
+    getCountys: async function (res) {
+        res = await query(
+            'SELECT * FROM varmegyek'
+        );
+        return res;
+    },
 }
 
 module.exports = {

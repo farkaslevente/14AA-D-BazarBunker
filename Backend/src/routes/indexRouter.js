@@ -39,6 +39,33 @@ router.get("/pictures", async function(_req, res, next) {
     }
 });
 
+router.get("/settlements", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getSettlements());
+    } catch (err) {
+        console.error("Error while getting settlements!", err.message);
+        next(err);
+    }
+});
+
+router.get("/messages", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getMessages());
+    } catch (err) {
+        console.error("Error while getting messages!", err.message);
+        next(err);
+    }
+});
+
+router.get("/countys", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getCountys());
+    } catch (err) {
+        console.error("Error while getting countys!", err.message);
+        next(err);
+    }
+});
+
 module.exports = {
     router
 }
