@@ -37,6 +37,21 @@
   </template>
   
   <script>
+  import { ref } from 'vue';
+  import adservices from '../../services/adservices';
+  import { useUserStore } from '../../stores/userstore';
+  import {storeToRefs} from 'pinia';
+
+  const { user } = storeToRefs( useUserStore() );
+
+  const ads = ref();
+
+  adservices.getAllAd()
+      .then(resp => {
+          // console.log(resp.data);
+          ads.value = resp.data;
+      });
+      
   export default {
     data() {
       return {
