@@ -1,10 +1,10 @@
+const { json } = require('express');
 const query = require('./db')
-
 
 const dbFunctions = {
     getUsers: async function (res) {
         res = await query(
-        `SELECT id, nev, email, hely, pPic, jelszo
+        `SELECT *
         FROM felhasznalok`
         );
         return res;
