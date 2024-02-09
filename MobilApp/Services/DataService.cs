@@ -12,7 +12,7 @@ namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
-        static string url = "http://10.0.22.14:9000";
+        static string url = "http://10.0.13.1:9000";
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
