@@ -4,7 +4,7 @@
              x:Class="MobilApp_Szakdolgozat.Views.AdsPage"
              Title="AdsPage">
     <VerticalStackLayout>
-        <Label 
+        <Label x:Name="ProbaLB"
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />

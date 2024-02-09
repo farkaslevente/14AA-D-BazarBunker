@@ -9,7 +9,7 @@ namespace MobilApp_Szakdolgozat
             Init();
             Routing.RegisterRoute("login", typeof(LoginPage));
             Routing.RegisterRoute("messages", typeof(MessagesPage));
-            Routing.RegisterRoute("adDetails", typeof(AdsPage));
+            Routing.RegisterRoute("advertisments", typeof(AdsPage));
             Routing.RegisterRoute("searchDetails", typeof(SearchPage));
             Routing.RegisterRoute("profileDetails", typeof(ProfilePage));
             Routing.RegisterRoute("register", typeof(RegisterPage));

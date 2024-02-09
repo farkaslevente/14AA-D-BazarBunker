@@ -29,7 +29,7 @@
             <Setter Property="HorizontalTextAlignment" Value="Start" />
             <Setter Property="VerticalOptions" Value="End" />
             <Setter Property="TextColor" Value="Black"/>
-            <Setter Property="Margin" Value="15,0,0,0"/>
+            <Setter Property="Margin" Value="15,0,0,10"/>
             <Setter Property="Grid.Column" Value="1"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="ImageButton">
@@ -37,6 +37,14 @@
             <Setter Property="HorizontalOptions" Value="Fill"/>
             <Setter Property="VerticalOptions" Value="Fill"/>
             <Setter Property="Aspect" Value="AspectFill"/>
+        </Style>
+        <Style x:Key="CategoryIMGStyle" TargetType="Image">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="MaximumHeightRequest" Value="80"/>
+            <Setter Property="Margin" Value="0,10,0,-10"/>
+            <Setter Property="Aspect" Value="AspectFill" />
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
@@ -77,40 +85,77 @@
         <!--types of schoolarships-->
         <!--For Primary school students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="5" Grid.ColumnSpan="7">
-            <Rectangle BackgroundColor="Red" Grid.ColumnSpan="3"/>
-            <Button Grid.Column="1" BackgroundColor="GreenYellow" Grid.Row="1" Margin="0,20,0,0"/>
-            <Label Text="Általános Iskola" Style="{x:StaticResource FontProperties}"/>
-        </Grid>
+                <Button x:Name="BTNPrimarySch"
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        BackgroundColor="GreenYellow"
+                        Margin="0,20,0,0"
+                        Clicked="BTNPrimarySch_Clicked"/>
+                 <Label Text="Általános iskolai tanuló" 
+                        Style="{x:StaticResource FontProperties}"/>
+                 <Image Source="primarysch.svg"
+                        Style="{x:StaticResource CategoryIMGStyle}"/>
+ </Grid>
 
         <!--For middle school attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="7" Grid.ColumnSpan="7">
-            <StackLayout Orientation="Vertical" Grid.Column="1">
-                <Label Text="Középiskola" Style="{x:StaticResource FontProperties}"/>
-                <ImageButton Source="middlesch.jpg" 
-                         VerticalOptions="FillAndExpand" 
-                         HorizontalOptions="FillAndExpand" 
-                         Aspect="AspectFill"                          
-                         CornerRadius="9"/>
-
-            </StackLayout>
+            <Button x:Name="BTNMiddleSch"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    BackgroundColor="OrangeRed"
+                    Margin="0,20,0,0"
+                    Clicked="BTNMiddleSch_Clicked"/>
+            
+            <Label Text="Középiskolai tanuló" 
+                   Style="{x:StaticResource FontProperties}"/>
+            
+            <Image Source="middlesch.svg"
+                   Margin="0,10,10,-10"
+                   Style="{x:StaticResource CategoryIMGStyle}"/>
         </Grid>
 
         <!--For University attending students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="9" Grid.ColumnSpan="7">
-            <StackLayout Orientation="Vertical" Grid.Column="1">
-                <Label Text="Egyetemi hallgató" Style="{x:StaticResource FontProperties}"/>
-                <ImageButton Source="uni.png" 
-                             VerticalOptions="FillAndExpand" 
-                             HorizontalOptions="FillAndExpand" 
-                             Aspect="AspectFill"                                                      
-                             CornerRadius="9"/>
-            </StackLayout>
+            <Button x:Name="BTNUni"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    BackgroundColor="DeepSkyBlue"
+                    Margin="0,20,0,0"
+                    Clicked="BTNUni_Clicked"/>
+            <Label Text="Egyetemi hallgató" 
+                   Style="{x:StaticResource FontProperties}"/>
+            <Image Source="uni.svg"
+                   Margin="0,10,10,-10"
+                   Style="{x:StaticResource CategoryIMGStyle}"/>
         </Grid>
 
         <!-- Item Categories-->
-        <ImageButton Grid.Row="11" Grid.Column="1" Source="olvasmanyok.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="11" Grid.Column="3" Source="iroszerek.png" Style="{x:StaticResource ButtonStyle}"/>
-        <ImageButton Grid.Row="11" Grid.Column="5" Source="taska.png" Style="{x:StaticResource ButtonStyle}"/>
+        <ImageButton x:Name="BTNBooks"
+                     Grid.Row="11" 
+                     Grid.Column="1" 
+                     Source="books"
+                     Aspect="AspectFit"
+                     BackgroundColor="LightBlue"
+                     Clicked="BTNBooks_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton x:Name="BTNStationeries"
+                     Grid.Row="11" 
+                     Grid.Column="3" 
+                     Source="pencil.svg" 
+                     Aspect="AspectFit"
+                     BackgroundColor="Orange"
+                     Clicked="BTNStationeries_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton x:Name="BTNTools"
+                     Grid.Row="11" 
+                     Grid.Column="5" 
+                     Source="backpack.svg" 
+                     Aspect="AspectFit"
+                     BackgroundColor="HotPink"
+                     Clicked="BTNTools_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
 
     </Grid>
 </ContentPage>
