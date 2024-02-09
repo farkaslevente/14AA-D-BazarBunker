@@ -66,6 +66,22 @@ router.get("/countys", async function(_req, res, next) {
     }
 });
 
+router.post("/postUsers", async function(req, res) {
+    try {
+        res.status(200).json(await dbFunctions.postUsers(req.body));
+    } catch (err) {
+        console.error("Error posting!", err.message);
+    }
+});
+
+router.put("/users/update", async function(req, res) {
+    try {
+        res.json(await dbFunctions.putUsers(req.body));
+    } catch (err) {
+        console.error("Error updating!", err.message);
+    }
+})
+
 module.exports = {
     router
 }
