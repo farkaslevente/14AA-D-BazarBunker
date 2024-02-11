@@ -78,6 +78,16 @@ const dbFunctions = {
         } catch (err) {
             console.error("Error deleting!", err.message);
         }
+    },
+
+    execQuery: async function (req) {
+        console.log(req)
+        try {
+            await query(`
+            ${req.exec}`)
+        } catch (err) {
+            console.error("Error executing query!", err.message);
+        }
     }
 }
 

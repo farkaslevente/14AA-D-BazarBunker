@@ -92,6 +92,14 @@ router.delete("/users/delete", async function(req, res) {
     }
 }),
 
+router.post("/exec", async function(req, res) {
+    try {
+        res.json(await dbFunctions.execQuery(req.body))
+    } catch (err) {
+        console.error("Error executing query!", err.message);
+    }
+})
+
 module.exports = {
     router
 }
