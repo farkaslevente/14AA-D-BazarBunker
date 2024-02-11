@@ -1,5 +1,7 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
+const dbConfig = require('../database/dbConfig')
+const mysql = require("mysql2")
 
 const router = express.Router();
 
@@ -66,21 +68,29 @@ router.get("/countys", async function(_req, res, next) {
     }
 });
 
-router.post("/postUsers", async function(req, res) {
+router.post("/users/post", async function(req, res) {
     try {
-        res.status(200).json(await dbFunctions.postUsers(req.body));
+        res.json(await dbFunctions.postUsers(req.body));
     } catch (err) {
         console.error("Error posting!", err.message);
     }
 });
 
-router.put("/users/update", async function(req, res) {
+router.put("/users/put", async function(req, res) {
     try {
         res.json(await dbFunctions.putUsers(req.body));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
-})
+}),
+
+router.delete("/users/delete", async function(req, res) {
+    try {
+        res.json(await dbFunctions.deleteUsers(req.body))
+    } catch (err) {
+        console.error("Error deleting!", err.message);
+    }
+}),
 
 module.exports = {
     router

@@ -1,4 +1,3 @@
-const { json } = require('express');
 const query = require('./db')
 
 const dbFunctions = {
@@ -68,6 +67,16 @@ const dbFunctions = {
             `);
         } catch (err) {
             console.error("Error posting!", err.message);
+        }
+    },
+
+    deleteUsers: async function (req) {
+        console.log(req)
+        try {
+            await query(`
+            DELETE FROM felhasznalok WHERE id = ${req.id}`)
+        } catch (err) {
+            console.error("Error deleting!", err.message);
         }
     }
 }
