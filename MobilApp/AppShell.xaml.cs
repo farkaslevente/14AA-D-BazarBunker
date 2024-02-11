@@ -14,6 +14,7 @@ namespace MobilApp_Szakdolgozat
             Routing.RegisterRoute("profileDetails", typeof(ProfilePage));
             Routing.RegisterRoute("register", typeof(RegisterPage));
             Routing.RegisterRoute("ppCatalog", typeof(PPCatalogPage));
+            Routing.RegisterRoute("forgottenPwd", typeof(ForgottenPwdPage));
         }
 
         private void Init()

@@ -37,8 +37,13 @@
         </Frame>
 
         <Button Text="Login" Margin="0,10,0,15" Command="{Binding loginCommand}"/>
-
         <Label Text="{Binding errorMessage}" Style="{StaticResource errorMessage}"
            />
+        <Button x:Name="ForgotPwdBTN"
+                TextColor="Black"
+                Text="Elfelejtett jelszó?"                 
+                BackgroundColor="Transparent"
+                FontSize="Body"
+                Clicked="ForgotPwdBTN_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>
