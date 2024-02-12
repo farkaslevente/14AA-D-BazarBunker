@@ -103,7 +103,7 @@
                     Grid.Column="1" 
                     Grid.Row="1" 
                     BackgroundColor="OrangeRed"
-                    Margin="0,20,0,0"
+                    Margin="0,0,0,0"
                     Clicked="BTNMiddleSch_Clicked"/>
             
             <Label Text="Középiskolai tanuló" 
@@ -120,7 +120,7 @@
                     Grid.Column="1" 
                     Grid.Row="1" 
                     BackgroundColor="DeepSkyBlue"
-                    Margin="0,20,0,0"
+                    Margin="0,0,0,0"
                     Clicked="BTNUni_Clicked"/>
             <Label Text="Egyetemi hallgató" 
                    Style="{x:StaticResource FontProperties}"/>
