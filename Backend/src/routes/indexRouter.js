@@ -1,7 +1,8 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const dbConfig = require('../database/dbConfig')
-const mysql = require("mysql2")
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const verifyToken = require('../middlewares/jwtMiddleware')
 
 const router = express.Router();
 
@@ -98,7 +99,49 @@ router.post("/exec", async function(req, res) {
     } catch (err) {
         console.error("Error executing query!", err.message);
     }
-})
+}),
+
+router.post("/register", async function (req, res) {
+    try {
+        const {username, email, location, password} = req.body;
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        dbFunctions.execQuery(`
+        INSERT INTO felhasznalok (nev, email, hely, jelszo)
+        VALUES (${username}, ${email}, ${location}, ${hashedPassword})`)
+
+        res.status(201).json({message: "User registered successfully"})
+    } catch (err) {
+        console.error("Error while registering!", err.message)
+    }
+},)
+
+router.post("/login", async function (req, res) {
+    try {
+        const {email, password} = req.body;
+
+        const [rows] = await dbFunctions.execQuery(`
+        SELECT * FROM felhasznalok WHERE email = ${email}`)
+
+        if (rows.length === 0) {
+            return res.status(401).json({error: "Invalid email or password"})
+        }
+
+        const user = rows[0]
+        const isPasswordValid = await bcrypt.compare(password, user.jelszo)
+
+        if (!isPasswordValid) return res.status(401).json({error: "Invalid email or password"})
+
+        const token = jwt.sign({ userId: user.id}, 'your_secret_key', { expiresIn: '1h' })
+    } catch (err) {
+        console.error("Error during login", err.message)
+    }
+}),
+
+router.get('/protected-route', verifyToken, (req, res) => {
+    res.json({ message: 'This is a protected route' });
+});
 
 module.exports = {
     router
