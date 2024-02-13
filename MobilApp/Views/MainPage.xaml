@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tool="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="MobilApp_Szakdolgozat.Views.MainPage"            
+             Title=""
+             Shell.NavBarIsVisible="False"
+             >
+
+    <!--SVG catalouge:
+        https://www.svgrepo.com/-->
+    <!--
+    Video playback if needed:
+    <toolkit:MediaElement x:Name="mediaElement"
+              ShouldAutoPlay="True"                      
+              Source="embed://hatter.mp4"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              Aspect="AspectFill"
+              ShouldLoopPlayback="True"
+              ShouldShowPlaybackControls="False"/>-->
+    <ContentPage.Behaviors>
+        <tool:StatusBarBehavior StatusBarColor="#045dd1"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <Style x:Key="FontProperties" TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="Margin" Value="15,0,0,10"/>
+            <Setter Property="Grid.Column" Value="1"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="ImageButton">
+            <Setter Property="CornerRadius" Value="9"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="Aspect" Value="AspectFill"/>
+        </Style>
+        <Style x:Key="CategoryIMGStyle" TargetType="Image">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="MaximumHeightRequest" Value="80"/>
+            <Setter Property="Margin" Value="0,10,0,-10"/>
+            <Setter Property="Aspect" Value="AspectFill" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="probaprofilepic.png"/>
+        <ToolbarItem Text="Keresés" IconImageSource="search.png"/>
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*"
+          ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
+
+        <Rectangle Grid.ColumnSpan="7" BackgroundColor="Gray"/>
+        <Grid Grid.RowSpan="2" 
+              Grid.ColumnSpan="7"
+              RowDefinitions="*,9*,*"
+              ColumnDefinitions="2*,10*,4*,2*"
+              Margin="0,0,0,10"
+              BackgroundColor="#045dd1">
+            <Image Source="logo.png" 
+                   Grid.RowSpan="2" 
+                   Grid.ColumnSpan="3"                                    
+                   HorizontalOptions="CenterAndExpand"                   
+                   VerticalOptions="CenterAndExpand"                  
+                   HeightRequest="150"
+                   Margin="0,70,0,0"/>
+            <ImageButton x:Name="SearchBTN"
+                    Clicked="SearchBTN_Clicked"
+                    BackgroundColor="#FF642F"                     
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Grid.Row="3"                          
+                    Grid.Column="2" 
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    WidthRequest="50"                    
+                    Margin="0,90,0,0"     
+                    Source="search.svg"/>
+
+        </Grid>
+        <!--types of schoolarships-->
+        <!--For Primary school students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="5" Grid.ColumnSpan="7">
+                <Button x:Name="BTNPrimarySch"
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        BackgroundColor="GreenYellow"
+                        Margin="0,20,0,0"
+                        Clicked="BTNPrimarySch_Clicked"/>
+                 <Label Text="Általános iskolai tanuló" 
+                        Style="{x:StaticResource FontProperties}"/>
+                 <Image Source="primarysch.svg"
+                        Style="{x:StaticResource CategoryIMGStyle}"/>
+ </Grid>
+
+        <!--For middle school attending students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="7" Grid.ColumnSpan="7">
+            <Button x:Name="BTNMiddleSch"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    BackgroundColor="OrangeRed"
+                    Margin="0,0,0,0"
+                    Clicked="BTNMiddleSch_Clicked"/>
+            
+            <Label Text="Középiskolai tanuló" 
+                   Style="{x:StaticResource FontProperties}"/>
+            
+            <Image Source="middlesch.svg"
+                   Margin="0,10,10,-10"
+                   Style="{x:StaticResource CategoryIMGStyle}"/>
+        </Grid>
+
+        <!--For University attending students-->
+        <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="9" Grid.ColumnSpan="7">
+            <Button x:Name="BTNUni"
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    BackgroundColor="DeepSkyBlue"
+                    Margin="0,0,0,0"
+                    Clicked="BTNUni_Clicked"/>
+            <Label Text="Egyetemi hallgató" 
+                   Style="{x:StaticResource FontProperties}"/>
+            <Image Source="uni.svg"
+                   Margin="0,10,10,-10"
+                   Style="{x:StaticResource CategoryIMGStyle}"/>
+        </Grid>
+
+        <!-- Item Categories-->
+        <ImageButton x:Name="BTNBooks"
+                     Grid.Row="11" 
+                     Grid.Column="1" 
+                     Source="books"
+                     Aspect="AspectFit"
+                     BackgroundColor="LightBlue"
+                     Clicked="BTNBooks_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton x:Name="BTNStationeries"
+                     Grid.Row="11" 
+                     Grid.Column="3" 
+                     Source="pencil.svg" 
+                     Aspect="AspectFit"
+                     BackgroundColor="Orange"
+                     Clicked="BTNStationeries_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
+
+        <ImageButton x:Name="BTNTools"
+                     Grid.Row="11" 
+                     Grid.Column="5" 
+                     Source="backpack.svg" 
+                     Aspect="AspectFit"
+                     BackgroundColor="HotPink"
+                     Clicked="BTNTools_Clicked"
+                     Style="{x:StaticResource ButtonStyle}"/>
+
+    </Grid>
+</ContentPage>
