@@ -9,10 +9,10 @@ public partial class MainPage : ContentPage
         classification = "";
         
     }
-    private async void SearchBTN_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("searchDetails");
-    }
+    //private async void SearchBTN_Clicked(object sender, EventArgs e)
+    //{
+    //    await Shell.Current.GoToAsync("searchDetails");
+    //}
 
     private async void BTNUni_Clicked(object sender, EventArgs e)
     {
@@ -46,7 +46,12 @@ public partial class MainPage : ContentPage
 
     private async void BTNTools_Clicked(object sender, EventArgs e)
     {
-        classification = "tools";
+        classification = "tools";       
         await Shell.Current.GoToAsync("advertisments");
+    }
+
+    private async void BTNSearch_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("searchDetails");
     }
 }

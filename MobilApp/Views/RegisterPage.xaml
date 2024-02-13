@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.RegisterPage"
-             Title="RegisterPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Register test"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="errorMessage">
+            <Setter Property="TextColor" Value="Red"/>
+            <Setter Property="Margin" Value="10,20,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="10">
+        <Image Source="logo" HorizontalOptions="Center" MaximumHeightRequest="100"/>
+        <Label Text="Regisztrálás"
+           FontSize="30"
+           FontAttributes="Bold"           
+           HorizontalOptions="Center"/>
+
+        <Label Text="Felhasználónév:"/>
+        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
+            <Entry FontSize="18" Placeholder="Felhasználónév" Margin="5,0,5,0"
+                       Text="{Binding email}"/>
+        </Frame>
+        
+        <Label Text="E-mail cím:"/>
+        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
+            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
+           Text="{Binding email}"/>
+        </Frame>
+
+        <Label Text="Jelszó:"/>
+        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
+            <Entry FontSize="18" Placeholder="Jelszó" Margin="5,0,5,0"
+    IsPassword="True"
+           Text="{Binding password}"/>
+        </Frame>
+
+        <Label Text="Jelszó megerősítése:"/>
+        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
+            <Entry FontSize="18" Placeholder="" Margin="5,0,5,0"
+                   IsPassword="True"
+                   Text="{Binding password}"/>
+        </Frame>
+
+        <Button Text="Regisztrálás" Margin="0,10,0,15" Command="{Binding loginCommand}"/>
+        <Label Text="{Binding errorMessage}" Style="{StaticResource errorMessage}"
+       />
     </VerticalStackLayout>
 </ContentPage>
