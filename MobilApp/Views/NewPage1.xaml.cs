@@ -16,4 +16,19 @@ public partial class NewPage1 : ContentPage
     {
         await Shell.Current.GoToAsync("register");
     }
+
+    private async void BTNSearch_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("searchDetails");
+    }
+
+    private async void BTNAdsPage_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("advertisements");
+    }
+
+    private async void BTNForgotten_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("forgottenPwd");
+    }
 }

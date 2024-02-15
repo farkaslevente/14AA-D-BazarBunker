@@ -20,8 +20,9 @@
                             HeightRequest="200"
                             StrokeShape="RoundRectangle 100">
 
-                        <Image Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"
+                        <Image Source="https://drive.google.com/thumbnail?id=1CG6HJat7hwLk5J_alMFfxhKFDelpOmTA"
                                  Aspect="AspectFill"/>
+                        <!--//Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"-->
                     </Border>
                 </Grid>
             </StackLayout>

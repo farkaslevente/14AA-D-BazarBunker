@@ -19,6 +19,26 @@
                 Margin="10"
                 VerticalOptions="End"
                 Clicked="RegisterBTN_Clicked"/>
+        <Button x:Name="BTNAdsPage" 
+        Text="Ads Page"
+        BackgroundColor="Red" 
+        Margin="10"
+        VerticalOptions="End"
+        Clicked="BTNAdsPage_Clicked"/>
+        
+        <Button x:Name="BTNForgotten" 
+        Text="Forgotten Password Page"
+        BackgroundColor="Red" 
+        Margin="10"
+        VerticalOptions="End"
+        Clicked="BTNForgotten_Clicked"/>
+        
+        <Button x:Name="BTNSearch" 
+        Text="Search Page"
+        BackgroundColor="Red" 
+        Margin="10"
+        VerticalOptions="End"
+        Clicked="BTNSearch_Clicked"/>
 
     </VerticalStackLayout>
 </ContentPage>
