@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using FFImageLoading.Maui;
 using Microsoft.Extensions.Logging;
 using MobilApp_Szakdolgozat.Platforms.Android;
 
@@ -12,6 +13,7 @@ namespace MobilApp_Szakdolgozat
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseFFImageLoading()
                 .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {

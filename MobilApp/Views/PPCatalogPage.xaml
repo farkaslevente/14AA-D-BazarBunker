@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Maui;assembly=FFImageLoading.Compat.Svg.Maui"
              x:Class="MobilApp_Szakdolgozat.Views.PPCatalogPage"
              Title=""
              Shell.NavBarIsVisible="False">
@@ -20,16 +21,10 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout BackgroundColor="White" Margin="5">
-                    <!--<Button ImageSource="{}"/>-->
-                    <Image Source="{Binding Url}"
+                    <svg:SvgCachedImage Source="{Binding Url}"
                            HeightRequest="100" 
                            WidthRequest="100"
                            Aspect="AspectFill"/>
-                    <!--<Label Text="{Binding ppList}" 
-                           HorizontalOptions="Center" 
-                           HeightRequest="100" 
-                           WidthRequest="100" 
-                           TextColor="Black"/>-->
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
