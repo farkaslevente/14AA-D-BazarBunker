@@ -23,7 +23,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getAllPictures();
             detailsCommand = new Command(async () => {
                 if (selectedPicture == null) return;
-                await Shell.Current.GoToAsync("profileDetails");
+                await Shell.Current.GoToAsync("//profileDetails",
+                    new Dictionary<string, object> { { "source",selectedPicture } });
                 
                 OnPropertyChanged(nameof(selectedPicture));
             });

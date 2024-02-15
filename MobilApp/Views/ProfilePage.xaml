@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Maui;assembly=FFImageLoading.Compat.Svg.Maui"
              x:Class="MobilApp_Szakdolgozat.Views.ProfilePage"
              Title="">
     <ContentPage.Resources>
@@ -8,6 +10,9 @@
             <Setter Property="Padding" Value="0,10"/>
         </Style>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:ProfilePageViewModel/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout Margin="0,-10,0,0">
         
         <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*">
@@ -20,8 +25,8 @@
                             HeightRequest="200"
                             StrokeShape="RoundRectangle 100">
 
-                        <Image x:Name="IMGProfielPic"  
-                               Source="https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg"
+                        <svg:SvgCachedImage x:Name="IMGProfielPic"  
+                               Source="{Binding profile.ProfilePicture}"
                                Aspect="AspectFill"/>
                     </Border>
                 </Grid>
@@ -72,7 +77,14 @@
                         Margin="30,0"
                         Clicked="NameSaveBTN_Clicked"/>
             </Grid>
-            <CollectionView Grid.Column="1" Grid.Row="4" Grid.RowSpan="5">
+            <CollectionView Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" BackgroundColor="Red"
+                            HeightRequest="400"
+                            ItemsSource="{Binding profiles}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Nev}" TextColor="Black"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
 
         </Grid>

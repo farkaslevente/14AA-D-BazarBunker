@@ -3,6 +3,7 @@ namespace MobilApp_Szakdolgozat.Views;
 public partial class ProfilePage : ContentPage
 {
     bool Saved = false;
+    public string PPSource = "https://t3.ftcdn.net/jpg/05/63/82/34/360_F_563823429_QCyXquX6ro9EwgtOE2Ai4BJbCuMJdNpS.jpg";
 	public ProfilePage()
 	{
 		InitializeComponent();

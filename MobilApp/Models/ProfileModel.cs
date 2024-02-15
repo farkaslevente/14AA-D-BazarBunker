@@ -11,7 +11,7 @@ namespace MobilApp_Szakdolgozat.Models
         public int Id { get; set; }
         public int Nev { get; set; }
         public int Email { get; set; }
-        public int Location { get; set; }
+        public int Hely { get; set; }
         public int ProfilePicture { get; set; }
     }
 }

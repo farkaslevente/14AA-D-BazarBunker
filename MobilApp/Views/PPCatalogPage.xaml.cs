@@ -12,11 +12,12 @@ public partial class PPCatalogPage : ContentPage
     public PPCatalogPage()
 		{				
 		InitializeComponent();
-		SelectedSource();
+		//SelectedSource();
 	}
 
     private void SelectedSource()
     {
         source = ppCW.SelectedItem.ToString();        
+        profilePage.PPSource = source;
     }
 }
