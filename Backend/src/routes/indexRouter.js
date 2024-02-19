@@ -103,19 +103,21 @@ router.post("/exec", async function(req, res) {
 
 router.post("/register", async function (req, res) {
     try {
-        const {username, email, location, password} = req.body;
+        console.log(req.body)
+        const {nev, email, hely, jelszo} = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(jelszo, 10)
 
-        dbFunctions.execQuery(`
-        INSERT INTO felhasznalok (nev, email, hely, jelszo)
-        VALUES (${username}, ${email}, ${location}, ${hashedPassword})`)
-
-        res.status(201).json({message: "User registered successfully"})
+        dbFunctions.execQuery(
+            'INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES (null, ?, ?, ?, null, ?);',
+            [nev, email, hely, hashedPassword]
+        );
+        
     } catch (err) {
         console.error("Error while registering!", err.message)
     }
-},)
+    res.status(201).json({message: "User registered successfully"})
+}),
 
 router.post("/login", async function (req, res) {
     try {
