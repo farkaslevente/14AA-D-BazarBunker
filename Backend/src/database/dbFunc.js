@@ -1,4 +1,5 @@
 const query = require('./db')
+const bcrypt = require('bcryptjs')
 
 const dbFunctions = {
     getUsers: async function (res) {
@@ -87,6 +88,58 @@ const dbFunctions = {
             ${req.exec}`)
         } catch (err) {
             console.error("Error executing query!", err.message);
+        }
+    },
+
+    executeQuery: async function (req) {
+        try {
+            const result = await query(req);
+            console.log("Query executed successfully:", result);
+            return Array.from(result);
+        } catch (error) {
+            console.error("Error executing query:", error);
+            throw error;
+        }
+    },
+
+    register: async function (req, res) {
+        console.log("Incoming register:")
+        console.log(req)
+        try {
+
+        const {nev, email, hely, jelszo} = req;
+        const hashedPassword = await bcrypt.hash(jelszo, 10)
+
+        console.log(hashedPassword)
+        dbFunctions.executeQuery(
+            "INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES (null, ?, ?, ?, null, ?)",
+            [nev, email, hely, hashedPassword]
+        );
+        } catch (err) {
+            console.error("Error registering!", err.message);
+        }
+    },
+
+    login: async function (req, res) {
+        console.log("Incoming login:")
+        try {
+        const {email, password} = req.body;
+
+        const rows = await dbFunctions.executeQuery(
+        `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+
+        if (!rows || rows.length === 0) {
+            return res.status(401).json({error: "Invalid email or password"})
+        }
+
+        const user = rows[0]
+        const isPasswordValid = await bcrypt.compare(password, user.jelszo)
+
+        if (!isPasswordValid) return res.status(401).json({error: "Invalid email or password"})
+
+        return user;
+        } catch (err) {
+            console.error("Error logging in!", err.message);
         }
     }
 }

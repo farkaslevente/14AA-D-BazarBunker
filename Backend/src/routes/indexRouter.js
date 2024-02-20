@@ -1,8 +1,6 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const verifyToken = require('../middlewares/jwtMiddleware')
+const verifyToken = require('../middlewares/jwtMiddleware');
 
 const router = express.Router();
 
@@ -103,15 +101,7 @@ router.post("/exec", async function(req, res) {
 
 router.post("/register", async function (req, res) {
     try {
-        console.log(req.body)
-        const {nev, email, hely, jelszo} = req.body;
-
-        const hashedPassword = await bcrypt.hash(jelszo, 10)
-
-        dbFunctions.execQuery(
-            'INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES (null, ?, ?, ?, null, ?);',
-            [nev, email, hely, hashedPassword]
-        );
+        res.json(await dbFunctions.register(req.body))
         
     } catch (err) {
         console.error("Error while registering!", err.message)
@@ -121,21 +111,7 @@ router.post("/register", async function (req, res) {
 
 router.post("/login", async function (req, res) {
     try {
-        const {email, password} = req.body;
-
-        const [rows] = await dbFunctions.execQuery(`
-        SELECT * FROM felhasznalok WHERE email = ${email}`)
-
-        if (rows.length === 0) {
-            return res.status(401).json({error: "Invalid email or password"})
-        }
-
-        const user = rows[0]
-        const isPasswordValid = await bcrypt.compare(password, user.jelszo)
-
-        if (!isPasswordValid) return res.status(401).json({error: "Invalid email or password"})
-
-        const token = jwt.sign({ userId: user.id}, 'your_secret_key', { expiresIn: '1h' })
+        res.json(await dbFunctions.login(req))
     } catch (err) {
         console.error("Error during login", err.message)
     }
