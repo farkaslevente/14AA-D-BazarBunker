@@ -135,7 +135,7 @@ const dbFunctions = {
         const user = rows[0]
         const isPasswordValid = await bcrypt.compare(password, user.jelszo)
 
-        if (!isPasswordValid) return res.status(401).json({error: "Invalid email or password"})
+        if (!isPasswordValid) return "Invalid email or password"
 
         return user;
         } catch (err) {
