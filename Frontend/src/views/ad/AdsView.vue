@@ -45,8 +45,10 @@
   <script>
   import { ref } from 'vue';
   import adservices from '../../services/adservices';
-  import { useUserStore } from '../../stores/userstore';
+  import {useUserStore} from '../../stores/userstore';
   import {storeToRefs} from 'pinia';
+
+  const { user } = storeToRefs( useUserStore() );
 
   const ads = ref();
 
