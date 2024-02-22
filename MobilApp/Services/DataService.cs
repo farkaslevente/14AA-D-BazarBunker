@@ -12,7 +12,7 @@ namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
-        static string url = "http://10.0.22.5:9000";
+        static string url = "http://10.0.22.14:9000";
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -77,13 +77,12 @@ namespace MobilApp_Szakdolgozat.Services
             return errorRegister;
         }
 
-        public static async Task<string> login(string email, string password) 
+        public static async Task<string> login(string email, string jelszo) 
         {
-            string jsonData = JsonConvert.SerializeObject(new { email = email, password = password });
+            string jsonData = JsonConvert.SerializeObject(new { email = email, jelszo = jelszo });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.PostAsync(url + "/login", content); //Majd meg kell adni a végleges backend elérést
-
+            HttpResponseMessage response = await client.PostAsync(url + "/login", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)

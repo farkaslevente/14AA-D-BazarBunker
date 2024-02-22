@@ -26,7 +26,7 @@
                             StrokeShape="RoundRectangle 100">
 
                         <svg:SvgCachedImage x:Name="IMGProfielPic"  
-                               Source="{Binding profile.ProfilePicture}"
+                               Source="{Binding profile.pPic}"
                                Aspect="AspectFill"/>
                     </Border>
                 </Grid>
@@ -45,7 +45,7 @@
             <Label x:Name="NameLB" 
                    Grid.Row="1" 
                    Grid.Column="1"
-                   Text="Teszt Elek"  
+                   Text="{Binding profile.Nev}"  
                    HorizontalTextAlignment="Center"
                    FontSize="Large"
                    Margin="0,0,0,0"/>

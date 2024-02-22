@@ -9,9 +9,9 @@ namespace MobilApp_Szakdolgozat.Models
     public class ProfileModel
     {
         public int Id { get; set; }
-        public int Nev { get; set; }
-        public int Email { get; set; }
-        public int Hely { get; set; }
-        public int ProfilePicture { get; set; }
+        public string? Nev { get; set; }
+        public string? Email { get; set; }
+        public string? Hely { get; set; }
+        public string? pPic { get; set; }        
     }
 }

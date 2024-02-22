@@ -21,11 +21,7 @@ public partial class MessagesPage : ContentPage, IDisposable
     private void DecreaseBadgeCountClicked(object sender, EventArgs e)
     {
         BadgeCounterService.SetCount(BadgeCounterService.Count - 1);
-    }
-    private void AdminBTN_Clicked(object sender, EventArgs e)
-    {        
-        
-    }
+    }    
 
     public void Dispose()
     {

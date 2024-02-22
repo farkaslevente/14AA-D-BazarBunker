@@ -11,7 +11,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
     public class LoginViewModel : BindableObject
     {
         public string email { get; set; }
-        public string password { get; set; }
+        public string jelszo { get; set; }
 
         private string _errorMessage;
 
@@ -27,10 +27,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public LoginViewModel()
         {
             loginCommand = new Command(async () => {
-                errorMessage = await DataService.login(email, password);
+                errorMessage = await DataService.login(email, jelszo);
                 if (errorMessage == null)
                 {
-                    await Shell.Current.GoToAsync("//books");
+                    await Shell.Current.GoToAsync("//profileDetails");
                 }
             });
         }

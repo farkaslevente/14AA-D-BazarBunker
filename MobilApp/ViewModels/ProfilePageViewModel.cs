@@ -10,24 +10,29 @@ using MobilApp_Szakdolgozat.Services;
 
 namespace MobilApp_Szakdolgozat.ViewModels
 {
-    public class ProfilePageViewModel: BindableObject, IQueryAttributable
+    public class ProfilePageViewModel: BindableObject
+    //IQueryAttributable
     {
         public ObservableCollection<ProfileModel> profiles { get; set; }
         public ProfileModel profile { get; set; }
 
         public ProfilePageViewModel()
         {
-
+            a();
         }
         public ICommand openUrlCommand =>
             new Command<string>(async (url) => await Launcher.OpenAsync(url));
 
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        private async void a() 
         {
-            profile = query["source"] as ProfileModel;
-            OnPropertyChanged(nameof(profile));
+            await getAllProfiles();
         }
-        private async void getAllProfiles()
+        //public void ApplyQueryAttributes(IDictionary<string, object> query)
+        //{
+        //    profile = query["source"] as ProfileModel;
+        //    OnPropertyChanged(nameof(profile));
+        //}
+        private async Task getAllProfiles()
         {
             IEnumerable<ProfileModel> list = await DataService.getAllProfiles();
             list.ToList().ForEach(p => profiles.Add(p));
