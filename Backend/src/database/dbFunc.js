@@ -102,10 +102,11 @@ const dbFunctions = {
         }
     },
 
-    executeQueryRegister: async function (req) {
+    executeQueryRegister: async function (req, res) {
         try {
             await query(req);
             console.log("Query executed successfully");
+            return res.status(200).json({"message": "Register was successful"})
         } catch (error) {
             console.error("Error executing query:", error);
             throw error;
@@ -119,10 +120,10 @@ const dbFunctions = {
         const {nev, email, hely, jelszo} = req.body;
         const hashedPassword = await bcrypt.hash(jelszo, 10)
 
-        dbFunctions.executeQuery(
+        dbFunctions.executeQueryRegister(
             `INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES (null, '${nev}', '${email}', '${hely}', null, '${hashedPassword}')`
         );
-        return res.status(200).json({"message": "Register was successful"})
+        return res
         } catch (err) {
             console.error("Error registering!", err.message);
         }
@@ -140,13 +141,20 @@ const dbFunctions = {
             return res.status(401).json({error: "Invalid email or password"})
         }
 
+        let isPasswordValid = false
         const user = rows[0]
-        const isPasswordValid = await bcrypt.compare(password, user.jelszo)
+        if (password) { 
+            isPasswordValid = await bcrypt.compare(password, user.jelszo)
+            if (!isPasswordValid) return res.status(401).json({"message": "Invalid email or password"})
+            else {
 
-        if (!isPasswordValid) return res.status(401).json({"message": "Invalid email or password"})
-        else {
-            return res.status(200).json({"message": "Login was successful"})
+                return user; 
+            }
         }
+        else {
+            return res.status(400).json({"message": "Bad request"})
+        }
+        
         } catch (err) {
             console.error("Error logging in!", err.message);
         }
