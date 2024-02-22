@@ -101,7 +101,7 @@ router.post("/exec", async function(req, res) {
 
 router.post("/register", async function (req, res) {
     try {
-        res.json(await dbFunctions.register(req.body))
+        res.json(await dbFunctions.register(req, res))
         
     } catch (err) {
         console.error("Error while registering!", err.message)
@@ -111,15 +111,13 @@ router.post("/register", async function (req, res) {
 
 router.post("/login", async function (req, res) {
     try {
-        res.json(await dbFunctions.login(req))
+        res.json(await dbFunctions.login(req, res))
     } catch (err) {
         console.error("Error during login", err.message)
     }
 }),
 
-router.get('/protected-route', verifyToken, (req, res) => {
-    res.json({ message: 'This is a protected route' });
-});
+
 
 module.exports = {
     router
