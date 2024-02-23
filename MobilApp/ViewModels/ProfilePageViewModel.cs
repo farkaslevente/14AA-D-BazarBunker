@@ -17,16 +17,16 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ProfileModel profile { get; set; }
 
         public ProfilePageViewModel()
-        {
-            a();
+        {           
         }
+        private void GetProfileData()
+        {
+            throw new NotImplementedException();
+        }
+
         public ICommand openUrlCommand =>
             new Command<string>(async (url) => await Launcher.OpenAsync(url));
-
-        private async void a() 
-        {
-            await getAllProfiles();
-        }
+       
         //public void ApplyQueryAttributes(IDictionary<string, object> query)
         //{
         //    profile = query["source"] as ProfileModel;

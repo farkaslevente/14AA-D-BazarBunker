@@ -13,5 +13,6 @@ namespace MobilApp_Szakdolgozat.Models
         public string? Email { get; set; }
         public string? Hely { get; set; }
         public string? pPic { get; set; }        
+        private string? jelszo { get; set;}
     }
 }

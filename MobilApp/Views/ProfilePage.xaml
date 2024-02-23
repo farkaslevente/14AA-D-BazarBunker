@@ -26,7 +26,7 @@
                             StrokeShape="RoundRectangle 100">
 
                         <svg:SvgCachedImage x:Name="IMGProfielPic"  
-                               Source="{Binding profile.pPic}"
+                               Source="https://www.svgrepo.com/show/420364/avatar-male-man.svg"
                                Aspect="AspectFill"/>
                     </Border>
                 </Grid>
@@ -77,7 +77,7 @@
                         Margin="30,0"
                         Clicked="NameSaveBTN_Clicked"/>
             </Grid>
-            <CollectionView Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" BackgroundColor="Red"
+            <!--<CollectionView Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" BackgroundColor="Red"
                             HeightRequest="400"
                             ItemsSource="{Binding profiles}">
                 <CollectionView.ItemTemplate>
@@ -85,7 +85,7 @@
                         <Label Text="{Binding Nev}" TextColor="Black"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
         </Grid>
 
