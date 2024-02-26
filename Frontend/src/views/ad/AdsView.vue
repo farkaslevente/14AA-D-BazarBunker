@@ -48,7 +48,7 @@
   import {useUserStore} from '../../stores/userstore';
   import {storeToRefs} from 'pinia';
 
-  const { user } = storeToRefs( useUserStore() );
+  // const { user } = storeToRefs( useUserStore() );
 
   const ads = ref();
 
