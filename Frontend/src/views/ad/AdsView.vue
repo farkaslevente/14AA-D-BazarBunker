@@ -52,7 +52,7 @@
 
   const ads = ref();
 
-  adservices.getAllAd()
+  adservices.getAllAds()
       .then(resp => {
           // console.log(resp.data);
           ads.value = resp.data;
