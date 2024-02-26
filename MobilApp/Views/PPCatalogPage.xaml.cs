@@ -18,6 +18,5 @@ public partial class PPCatalogPage : ContentPage
     private void SelectedSource()
     {
         source = ppCW.SelectedItem.ToString();        
-        profilePage.PPSource = source;
     }
 }

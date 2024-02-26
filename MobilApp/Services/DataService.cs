@@ -15,7 +15,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
-        static string url = url103;
+        static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -82,7 +82,7 @@ namespace MobilApp_Szakdolgozat.Services
 
         public static async Task<string> login(string email, string jelszo) 
         {
-            string jsonData = JsonConvert.SerializeObject(new { email = email, jelszo = jelszo });
+            string jsonData = JsonConvert.SerializeObject(new { email = email, password = jelszo });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.PostAsync(url + "/login", content);
