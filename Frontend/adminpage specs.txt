@@ -1,0 +1,3 @@
+ADmin oldal
+	-táblázatok kezelése
+	-hirdetések kezelése
