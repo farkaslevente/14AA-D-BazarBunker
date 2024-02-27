@@ -32,7 +32,24 @@
          Title="Teszt"
          x:Name="testTab"
          Icon="test.svg"
-         ContentTemplate="{DataTemplate views:NewPage1}"/>
+         ContentTemplate="{DataTemplate views:NewPage1}"
+         IsVisible="True"/>
+        <!--<ShellContent           
+            Title="login"
+            ContentTemplate="{DataTemplate views:LoginPage}"
+            IsVisible="False"
+            Route="loginDetails"/>
+        <ShellContent   
+            Title="register"
+            ContentTemplate="{DataTemplate views:RegisterPage}"
+            IsVisible="False"
+            Route="registerDetails"/>
+        <ShellContent      
+            Title="forgottenPwd"
+            ContentTemplate="{DataTemplate views:ForgottenPwdPage}"
+            IsVisible="False"
+            Route="forgottenPwdDetails"/>-->
+        
     </TabBar>
 
 </Shell>

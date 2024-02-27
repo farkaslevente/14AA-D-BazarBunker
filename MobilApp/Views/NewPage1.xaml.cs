@@ -9,12 +9,12 @@ public partial class NewPage1 : ContentPage
 
     private async void LoginBTN_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("login");
+        await Shell.Current.GoToAsync("loginDetails");
     }
 
     private async void RegisterBTN_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("register");
+        await Shell.Current.GoToAsync("registerDetails");
     }
 
     private async void BTNSearch_Clicked(object sender, EventArgs e)
@@ -29,6 +29,6 @@ public partial class NewPage1 : ContentPage
 
     private async void BTNForgotten_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("forgottenPwd");
+        await Shell.Current.GoToAsync("forgottenPwdDetails");
     }
 }

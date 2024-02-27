@@ -61,7 +61,7 @@ namespace MobilApp_Szakdolgozat.Services
                 {
                     if (variable.Name == "name")
                     {
-                        errorRegister.name = variable.Value[0].ToString();
+                        errorRegister.nev = variable.Value[0].ToString();
                     }
                     if (variable.Name == "email")
                     {

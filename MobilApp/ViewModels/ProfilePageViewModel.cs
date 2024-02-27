@@ -17,8 +17,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         //, IQueryAttributable
     {
         public ObservableCollection<ProfileModel> profiles { get; set; }
-        public ProfileModel profile { get; set; }
-
+        public ProfileModel profile { get; set; }         
         public ProfilePageViewModel()
         {            
             GetProfileData();

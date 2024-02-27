@@ -10,8 +10,13 @@ public partial class LoginPage : ContentPage
         
 	}
           
-    private async void ForgotPwdBTN_Clicked(object sender, EventArgs e)
+    private async void BTNForgotPwd_Clicked(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync("forgottenPwd");
+		await Shell.Current.GoToAsync("forgottenPwdDetails");
+    }
+
+    private async void BTNRegister_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("registerDetails");
     }
 }

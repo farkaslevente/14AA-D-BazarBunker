@@ -48,8 +48,6 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="probaprofilepic.png"/>
-        <ToolbarItem Text="Keresés" IconImageSource="search.png"/>
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
@@ -73,13 +71,15 @@
                     BackgroundColor="#FF642F"                     
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"
+                    IsEnabled="True"
                     Grid.Row="3"                          
                     Grid.Column="2" 
                     CornerRadius="20"
                     HeightRequest="50"
                     WidthRequest="100"                    
-                    Margin="0,90,0,0"     
-                    Source="search.svg"/>
+                    Margin="0,0,0,0"     
+                    Source="search.svg"
+                    Visual="Material.VisualMarker.MaterialZIndex 100"/>
 
         </Grid>
         <!--types of schoolarships-->

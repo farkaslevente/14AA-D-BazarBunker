@@ -8,9 +8,10 @@ namespace MobilApp_Szakdolgozat.Models
 {
     public class RegisterModel
     {
-        public string name { get; set; }
+        public string nev { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string hely { get; set; }
         public string confirm_password { get; set; }
     }
 }
