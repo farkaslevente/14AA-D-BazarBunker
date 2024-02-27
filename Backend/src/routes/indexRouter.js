@@ -24,7 +24,7 @@ router.get("/users", async function(_req, res, next) {
     }
 });
 
-router.get("/items", async function(_req, res, next) {
+router.get("/ads", async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getItems());
     } catch (err) {

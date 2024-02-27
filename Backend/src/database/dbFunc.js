@@ -9,7 +9,7 @@ const dbFunctions = {
         return res;
     },
 
-    getItems: async function (res) {
+    getAds: async function (res) {
     res = await query(
         `SELECT *
         FROM termekek`

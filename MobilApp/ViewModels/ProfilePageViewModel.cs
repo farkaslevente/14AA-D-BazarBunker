@@ -30,6 +30,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             if (!string.IsNullOrEmpty(jsonString))
             {
                 profile = JsonSerializer.Deserialize<ProfileModel>(jsonString);
+                OnPropertyChanged(nameof(profile));
             }
             string[] stringArray = { profile.nev, profile.email, profile.hely, profile.pPic };           
         }

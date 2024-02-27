@@ -48,11 +48,11 @@
   import {useUserStore} from '../../stores/userstore';
   import {storeToRefs} from 'pinia';
 
-  const { user } = storeToRefs( useUserStore() );
+  // const { user } = storeToRefs( useUserStore() );
 
   const ads = ref();
 
-  adservices.getAllAd()
+  adservices.getAllAds()
       .then(resp => {
           // console.log(resp.data);
           ads.value = resp.data;
