@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MobilApp_Szakdolgozat.Services
 {
+    //https://code-maze.com/how-to-decode-jwt-tokens-in-net/
     public static class JWTTokenService
     {
         public static async Task<string?> GetAccessToken() 
