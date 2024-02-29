@@ -104,6 +104,10 @@ const dbFunctions = {
                         process.env.SECRET, {
                         expiresIn: '1d'
                     })
+
+                    const d = new Date()
+                    dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
+                    (null, '${token}', '${d}')`)
     
                     res.status(200).json({
                         token
@@ -151,6 +155,11 @@ const dbFunctions = {
                     process.env.SECRET, {
                     expiresIn: '1d'
                 })
+
+                const d = new Date()
+                dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
+                (null, '${token}', '${d}')`)
+
                 res.status(200).json({
                     token
                 })
