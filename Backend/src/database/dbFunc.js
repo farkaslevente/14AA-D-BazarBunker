@@ -131,6 +131,7 @@ const dbFunctions = {
 
     login: async function (req, res) {
         console.log("Incoming login:")
+        console.log(req.body)
         try {
         const {email, password} = req.body;
 
@@ -150,6 +151,9 @@ const dbFunctions = {
              return res.status(401).json({"message": "Invalid email or password"})
             }
             else {
+
+                    
+
                 const token = jwt.sign(
                     {user: [user.nev, user.email, user.pPic]},
                     process.env.SECRET, {
@@ -172,6 +176,20 @@ const dbFunctions = {
         } catch (err) {
             console.error("Error logging in!", err.message);
         }
+    },
+
+    deleteToken: async function (req, res) {
+        console.log("Delete incoming...")
+        console.log(req)
+        try {
+            await query(`
+            DELETE FROM tokenek WHERE id = ${req.id}`)
+            return res.status(200).json({message: `Token id:${req.id} was deleted succesfully`})
+        } catch (err) {
+            console.error("Error deleting!", err.message);
+            res.status(500).json({error: "Internal server error!"})
+        }
+
     }
 }
 module.exports = {

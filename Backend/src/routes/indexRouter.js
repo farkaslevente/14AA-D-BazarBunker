@@ -45,6 +45,14 @@ router.delete("/users/delete", async function(req, res) {
     }
 }),
 
+router.delete("/tokens/delete", async function(req, res) {
+    try {
+        res.json(await dbFunctions.deleteToken(req.body, res))
+    } catch (err) {
+        console.error("Error deleting!", err.message);
+    }
+}),
+
 router.post("/exec", async function(req, res) {
     try {
         res.json(await dbFunctions.execQuery(req.body))
