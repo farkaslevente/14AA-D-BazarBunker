@@ -146,7 +146,14 @@ const dbFunctions = {
              return res.status(401).json({"message": "Invalid email or password"})
             }
             else {
-                return user; 
+                const token = jwt.sign(
+                    {user: [user.nev, user.email, user.pPic]},
+                    process.env.SECRET, {
+                    expiresIn: '1d'
+                })
+                res.status(200).json({
+                    token
+                })
             }
         }
         else {
