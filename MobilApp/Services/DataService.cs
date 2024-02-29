@@ -1,17 +1,25 @@
 ﻿using MobilApp_Szakdolgozat.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using MobilApp_Szakdolgozat.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
+        public struct t
+        {
+            string token;
+        }
+            
+
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
@@ -94,11 +102,44 @@ namespace MobilApp_Szakdolgozat.Services
             }
             else
             {
-                await SecureStorage.SetAsync("user", result);
-                return null;
-            }
-        }      
+                //var a = JsonConvert.DeserializeObject<t>(result);
+                //string[] fullJWT = result.Split(':');
+                //var fullResult = fullJWT[1].Trim('"');
+                //string[] trimmedJWT = fullResult.Split('"');
+                //var trimmedResult = trimmedJWT[0];
+                //string[] payload = trimmedResult.Split('.');
+                //var finalPayload = payload[1];
 
+                ////var finalResult = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(testResult2)).ToString();
+                //await SecureStorage.SetAsync("user", finalPayload);
+                //return null;
+
+                var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(result);
+                string jwtToken = tokenResponse?.Token;
+
+                if (jwtToken != null)
+                {
+                    var handler = new JwtSecurityTokenHandler();
+                    var token = handler.ReadJwtToken(jwtToken);
+                    var payloadJson = JsonConvert.SerializeObject(token.Payload);
+                    var a = token.Payload.Values.ToArray();
+                    var b = a[0].ToString(); //Itt tartottam 2024.02.29
+
+                    // Store the payloadJson or use it as needed
+                    await SecureStorage.SetAsync("user", payloadJson);
+
+                    return null;
+                }
+                else
+                {
+                    return "Token not found in response.";
+                }
+            }
+        }
+        public class TokenResponse
+        {
+            public string Token { get; set; }
+        }
 
     }
 }

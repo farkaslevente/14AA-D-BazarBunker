@@ -24,7 +24,7 @@ public partial class NewPage1 : ContentPage
 
     private async void BTNAdsPage_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("advertisements");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNForgotten_Clicked(object sender, EventArgs e)

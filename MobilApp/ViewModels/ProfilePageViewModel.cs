@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Android.Service.Autofill;
 using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 //using Newtonsoft.Json;
