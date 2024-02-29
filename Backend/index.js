@@ -2,7 +2,7 @@ const  express  = require("express");
 const  morgan  = require("morgan");
 const { router } = require('./src/routes/indexRouter')
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9090;
 const HOST = process.env.HOST202 || "localhost";
 
 
