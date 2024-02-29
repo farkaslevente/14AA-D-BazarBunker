@@ -32,7 +32,8 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<!--<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />-->
+    <MauiIcon Include="Resources\AppIcon\applogo.png" Color="#111111" />
 
 		<!-- Splash Screen -->
 
@@ -119,6 +120,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\applogo.png" />
 	  <None Remove="Resources\Images\Demoprofilepic.png" />
 	  <None Remove="Resources\Images\hatter.jpg" />
 	  <None Remove="Resources\Images\hatter.mp4" />
@@ -145,6 +147,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\applogo.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiIcon>
 	  <MauiImage Include="Resources\Raw\hatter.mp4">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
