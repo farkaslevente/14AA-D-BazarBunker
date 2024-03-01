@@ -2,7 +2,8 @@ const query = require('./db')
 const bcrypt = require('bcryptjs')
 const { check, validationResult } = require("express-validator")
 const jwt = require("jsonwebtoken")
-const { config } = require("dotenv");
+const { config } = require("dotenv")
+const { verifyToken, createToken } = require("../middlewares/jwtMiddleware")
 config();
 
 const dbFunctions = {
@@ -107,11 +108,7 @@ const dbFunctions = {
                     dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES
                      (null, '${name}', '${email}', '${location}', null, '${hashedPassword}')`)
     
-                    const token = jwt.sign(
-                        {name, email},
-                        process.env.SECRET, {
-                        expiresIn: '1d'
-                    })
+                    const token = createToken({name, email}, '1d')
 
                     const d = new Date()
                     dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
@@ -159,13 +156,7 @@ const dbFunctions = {
             }
             else {
 
-                    
-
-                const token = jwt.sign(
-                    {user: [user.nev, user.email, user.pPic]},
-                    process.env.SECRET, {
-                    expiresIn: '1d'
-                })
+                const token = createToken({email}, '1d')
 
                 const d = new Date()
                 dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
@@ -197,6 +188,17 @@ const dbFunctions = {
             res.status(500).json({error: "Internal server error!"})
         }
 
+    },
+
+    getTokens: async function (res) {
+        try {
+            return res =
+                await query(`
+                SELECT * FROM tokenek`)
+        } catch (err) {
+            console.error("Error getting!", err.message);
+            res.status(500).json({error: "Internal server error!"})
+        }
     }
 }
 module.exports = {

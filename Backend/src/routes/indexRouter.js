@@ -54,11 +54,19 @@ router.delete("/users/delete", async function(req, res) {
     }
 }),
 
-router.delete("/tokens/delete", async function(req, res) {
+router.get("/tokens", async function (req, res) {
     try {
-        res.json(await dbFunctions.deleteToken(req.body, res))
+        res.json(await dbFunctions.getTokens(req, res))
     } catch (err) {
-        console.error("Error deleting!", err.message);
+        console.error("Error getting tokens!", err.message);
+    }
+})
+
+router.delete("/tokens/delete", async function (res) {
+    try {
+        res.json(await dbFunctions.deleteToken(res))
+    } catch (err) {
+        console.error("Error deleting tokens!", err.message);
     }
 }),
 

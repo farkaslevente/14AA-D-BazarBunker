@@ -18,4 +18,12 @@ function verifyToken(req, res, next) {
     });
 }
 
-module.exports = verifyToken;
+ function createToken (payload, expireDate) {
+    const token = jwt.sign(
+        payload,
+        process.env.SECRET,
+        { expiresIn: expireDate});
+    return token;
+ } 
+
+module.exports = {verifyToken, createToken}
