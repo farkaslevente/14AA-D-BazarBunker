@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid p-0">
         <div class="header-bg d-flex justify-content-center align-items-center">
-            <span class="header-title "></span>
+            <span class="header-title"></span>
         </div>
     </div>
 </template>
