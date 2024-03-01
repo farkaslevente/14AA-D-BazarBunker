@@ -23,7 +23,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
-        static string url = url202;
+        static string url = url103;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -102,38 +102,40 @@ namespace MobilApp_Szakdolgozat.Services
             }
             else
             {
-                //var a = JsonConvert.DeserializeObject<t>(result);
-                //string[] fullJWT = result.Split(':');
-                //var fullResult = fullJWT[1].Trim('"');
-                //string[] trimmedJWT = fullResult.Split('"');
-                //var trimmedResult = trimmedJWT[0];
-                //string[] payload = trimmedResult.Split('.');
-                //var finalPayload = payload[1];
+                var a = JsonConvert.DeserializeObject<t>(result);
+                string[] fullJWT = result.Split(':');
+                var fullResult = fullJWT[1].Trim('"');
+                string[] trimmedJWT = fullResult.Split('"');
+                var trimmedResult = trimmedJWT[0];
+                string[] payload = trimmedResult.Split('.');
+                var finalPayload = payload[1];
 
-                ////var finalResult = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(testResult2)).ToString();
-                //await SecureStorage.SetAsync("user", finalPayload);
-                //return null;
+                var finalResult = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
+                await SecureStorage.SetAsync("userName", finalResult[0]);
+                await SecureStorage.SetAsync("userEmail", finalResult[1]);
+                await SecureStorage.SetAsync("userImage", finalResult[2]);
+                return null;
 
-                var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(result);
-                string jwtToken = tokenResponse?.Token;
+                //var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(result);
+                //string jwtToken = tokenResponse?.Token;
 
-                if (jwtToken != null)
-                {
-                    var handler = new JwtSecurityTokenHandler();
-                    var token = handler.ReadJwtToken(jwtToken);
-                    var payloadJson = JsonConvert.SerializeObject(token.Payload);
-                    var a = token.Payload.Values.ToArray();
-                    var b = a[0].ToString(); //Itt tartottam 2024.02.29
+                //if (jwtToken != null)
+                //{
+                //    var handler = new JwtSecurityTokenHandler();
+                //    var token = handler.ReadJwtToken(jwtToken);
+                //    var payloadJson = JsonConvert.SerializeObject(token.Payload);
+                //    var a = token.Payload.Values.ToArray();
+                //    var b = a[0].ToString(); //Itt tartottam 2024.02.29
 
-                    // Store the payloadJson or use it as needed
-                    await SecureStorage.SetAsync("user", payloadJson);
+                //    // Store the payloadJson or use it as needed
+                //    await SecureStorage.SetAsync("user", payloadJson);
 
-                    return null;
-                }
-                else
-                {
-                    return "Token not found in response.";
-                }
+                //    return null;
+                //}
+                //else
+                //{
+                //    return "Token not found in response.";
+                //}
             }
         }
         public class TokenResponse

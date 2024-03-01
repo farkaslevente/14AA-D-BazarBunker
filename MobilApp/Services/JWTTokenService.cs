@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,18 +46,21 @@ namespace MobilApp_Szakdolgozat.Services
             return token;
         }
 
-        public static DecodedTokenService DecodeJwt(JwtSecurityToken token)
+        public static List<string> DecodeJwt(JwtSecurityToken token)
         {
             var keyId = token.Header.Kid;
             var audience = token.Audiences.ToList();
-            var claims = token.Claims.Select(claim => (claim.Type, claim.Value)).ToList();
+            //var claims = token.Claims.Select(claim => (claim.Type, claim.Value)).ToList();
+            var claims = token.Claims.Select(claim => claim.Value).ToList();
+            List<string> claimList = new List<string>();
 
-            return new DecodedTokenService
-            (
-                keyId, token.Issuer, audience, claims, token.ValidTo, token.SignatureAlgorithm,
-                token.RawData, token.Subject, token.ValidFrom,
-                token.EncodedHeader, token.EncodedPayload
-            );
+            for (int i = 0; i <=2; i++)
+            {
+                claimList.Add(claims[i]);
+            }
+                
+            
+            return claimList;
         }
     }
 }

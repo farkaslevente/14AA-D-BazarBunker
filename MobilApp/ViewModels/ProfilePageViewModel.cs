@@ -18,19 +18,41 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ObservableCollection<ProfileModel> profiles { get; set; }
         public ProfileModel profile { get; set; }         
         public ProfilePageViewModel()
-        {            
-            GetProfileData();
+        {
+            profiles = new ObservableCollection<ProfileModel>();
+            a();            
         }
+
+        private async void a()
+        {
+            await GetProfileData();
+        }
+
         private async Task GetProfileData()
         {
-            string jsonString = await SecureStorage.GetAsync("user");
+            //string jsonString = await SecureStorage.GetAsync("user");
 
-            if (!string.IsNullOrEmpty(jsonString))
+            //if (!string.IsNullOrEmpty(jsonString))
+            //{
+            //    profile = JsonSerializer.Deserialize<ProfileModel>(jsonString);
+            //    OnPropertyChanged(nameof(profile));
+            //}
+            string userName = await SecureStorage.GetAsync("userName");
+            string userEmail = await SecureStorage.GetAsync("userEmail");
+            string userImage = await SecureStorage.GetAsync("userImage");
+            profile = new ProfileModel
             {
-                profile = JsonSerializer.Deserialize<ProfileModel>(jsonString);
-                OnPropertyChanged(nameof(profile));
-            }
-            string[] stringArray = { profile.nev, profile.email, profile.hely, profile.pPic };           
+                nev = userName,
+                email = userEmail,
+                pPic = userImage
+            };
+
+            OnPropertyChanged(nameof(profile));
+            //profile.nev = userName;
+            //profile.email = userEmail;
+            //profile.pPic = userImage;
+            
+            //string[] stringArray = { profile.nev, profile.email, profile.hely, profile.pPic };           
         }
         public ICommand openUrlCommand =>
         new Command<string>(async (url) => await Launcher.OpenAsync(url));
