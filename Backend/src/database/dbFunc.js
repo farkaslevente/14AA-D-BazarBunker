@@ -14,6 +14,12 @@ const dbFunctions = {
         return res;
     },
 
+    getPictures: async function(res) {
+        res = await query(`
+        SELECT * FROM kepek`)
+        return res
+    },
+
     postUsers: async function (req) {
         console.log(req);
         const insertValues = [req.id, req.nev, req.email, req.hely, req.pPic, req.jelszo]
@@ -25,14 +31,16 @@ const dbFunctions = {
         }
     },
 
-    putUsers: async function (req) {
+    putUsers: async function (req, res) {
         console.log(req) + "\n";
         try {
+            const hashedPassword = await bcrypt.hash(req.password, 10) 
             await query(`
             UPDATE felhasznalok SET 
-            nev='${req.nev}', email='${req.email}', hely='${req.hely}', pPic='${req.pPic}', jelszo='${req.jelszo}'
+            nev='${req.name}', email='${req.email}', hely='${req.location}', pPic='${req.pPic}', jelszo='${hashedPassword}'
             WHERE id='${req.id}';
             `);
+            res.status(200).json({message: "User patched succesfully!"})
         } catch (err) {
             console.error("Error posting!", err.message);
         }
@@ -146,7 +154,6 @@ const dbFunctions = {
         const user = rows[0]
         if (password) { 
             isPasswordValid = await bcrypt.compare(password, user.jelszo)
-
             if (!isPasswordValid) {
              return res.status(401).json({"message": "Invalid email or password"})
             }

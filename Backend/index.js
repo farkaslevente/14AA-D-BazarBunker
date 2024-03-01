@@ -3,7 +3,7 @@ const  morgan  = require("morgan");
 const { router } = require('./src/routes/indexRouter')
 
 const PORT = process.env.PORT || 9000;
-const HOST = process.env.HOST202 || "localhost";
+const HOST = process.env.HOST103 || "localhost";
 
 
 const app = express()
@@ -19,12 +19,12 @@ app.listen(PORT, () => {
   console.log(`Server listening @ ${HOST}:${PORT}`);
 });
 
-app.use((err, _req, res, _next) => {
-  const statusCode = err.statusCode || 500;
-  console.error(err.message, err.stack);
-  res.status(statusCode).json({message: err.message});
-  return;  
-});
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
 
 app.set('view engine', 'html');
 

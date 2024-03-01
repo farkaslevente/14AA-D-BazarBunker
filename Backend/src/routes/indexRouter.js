@@ -12,6 +12,15 @@ router.get("/", async function(_req, res, next) {
     }
 });
 
+router.get("/pictures", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getPictures());
+    } catch (err) {
+        console.error("Error while getting pictures!", err.message);
+        next(err);
+    }
+});
+
 router.get("/users", async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
@@ -31,7 +40,7 @@ router.post("/users/post", async function(req, res) {
 
 router.put("/users/put", async function(req, res) {
     try {
-        res.json(await dbFunctions.putUsers(req.body));
+        res.json(await dbFunctions.putUsers(req.body, res));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
@@ -86,7 +95,6 @@ router.post("/login", async function (req, res) {
         console.error("Error during login", err.message)
     }
 }),
-
 
 
 module.exports = {
