@@ -12,11 +12,16 @@ import 'primevue/resources/themes/aura-light-green/theme.css';
 import 'primevue/resources/primevue/min.css';
 import 'primevue/primeicons';
 
+//primevue imports
+import InputText from 'primevue/inputtext';
+
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(PrimeVue);
+
+app.component['InputText', InputText];
 
 app.mount('#app')
