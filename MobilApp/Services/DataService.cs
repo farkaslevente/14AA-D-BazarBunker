@@ -18,7 +18,14 @@ namespace MobilApp_Szakdolgozat.Services
         {
             string token;
         }
-            
+ //     /\             (_)    | |/ /   | | |
+ //    /  \    _ __ ___ _     | ' / ___| | |
+ //   / /\ \ | '_ ` _ \| |    |  < / _ \ | |
+ //  / ____ \| | | | | | |    | . \  __/ | |
+ // /_/    \_\_| |_| |_|_|    |_|\_\___|_|_|
+ // képváltáshoz:
+ // - token eltárolás
+ // - post token, post kép id (<--egyben)
 
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
@@ -69,7 +76,7 @@ namespace MobilApp_Szakdolgozat.Services
                 {
                     if (variable.Name == "name")
                     {
-                        errorRegister.nev = variable.Value[0].ToString();
+                        errorRegister.name = variable.Value[0].ToString();
                     }
                     if (variable.Name == "email")
                     {
@@ -78,10 +85,6 @@ namespace MobilApp_Szakdolgozat.Services
                     if (variable.Name == "password")
                     {
                         errorRegister.password = variable.Value[0].ToString();
-                    }
-                    if (variable.Name == "confirm_password")
-                    {
-                        errorRegister.confirm_password = variable.Value[0].ToString();
                     }
                 }
             }
@@ -115,27 +118,6 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userEmail", finalResult[1]);
                 await SecureStorage.SetAsync("userImage", finalResult[2]);
                 return null;
-
-                //var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(result);
-                //string jwtToken = tokenResponse?.Token;
-
-                //if (jwtToken != null)
-                //{
-                //    var handler = new JwtSecurityTokenHandler();
-                //    var token = handler.ReadJwtToken(jwtToken);
-                //    var payloadJson = JsonConvert.SerializeObject(token.Payload);
-                //    var a = token.Payload.Values.ToArray();
-                //    var b = a[0].ToString(); //Itt tartottam 2024.02.29
-
-                //    // Store the payloadJson or use it as needed
-                //    await SecureStorage.SetAsync("user", payloadJson);
-
-                //    return null;
-                //}
-                //else
-                //{
-                //    return "Token not found in response.";
-                //}
             }
         }
         public class TokenResponse

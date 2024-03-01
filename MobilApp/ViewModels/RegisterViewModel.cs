@@ -1,4 +1,6 @@
-﻿using MobilApp_Szakdolgozat.Services;
+﻿using MobilApp_Szakdolgozat.Models;
+using MobilApp_Szakdolgozat.Services;
+using MobilApp_Szakdolgozat.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
 {
     public class RegisterViewModel : BindableObject
     {
-            public string email { get; set; }
-            public string jelszo { get; set; }
+        public RegisterModel regModel { get; set; }
+            public string regName { get; set; }
+            public string regEmail { get; set; }
+            public string regPassword { get; set; }
+            public string regLocation { get; set; }
 
-            private string _errorMessage;
+            private RegisterModel _errorMessage;
 
-            public string errorMessage
+            public RegisterModel errorMessage
             {
                 get { return _errorMessage; }
                 set { _errorMessage = value; OnPropertyChanged(); }
@@ -24,16 +29,23 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             public ICommand registerCommand { get; set; }
 
-            //public RegisterViewModel()
-            //{
-            //    registerCommand = new Command(async () => {
-            //        errorMessage = await DataService.register(email, jelszo);
-            //        if (errorMessage == null)
-            //        {
-            //            await Shell.Current.GoToAsync("//profileDetails");
-            //        }
-            //    });
-            //}
+            public RegisterViewModel()
+            {            
+                registerCommand = new Command(async () => {
+                    regModel = new RegisterModel
+                    {
+                        name = regName,
+                        email = regEmail,
+                        password = regPassword,
+                        location = regLocation
+                    };
+                    errorMessage = await DataService.register(regModel);
+                    if (errorMessage == null)
+                    {
+                        await Shell.Current.GoToAsync("//profileDetails");
+                    }
+                });
+            }
     }
 }
 

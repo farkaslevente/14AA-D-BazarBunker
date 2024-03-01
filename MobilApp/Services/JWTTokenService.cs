@@ -49,8 +49,7 @@ namespace MobilApp_Szakdolgozat.Services
         public static List<string> DecodeJwt(JwtSecurityToken token)
         {
             var keyId = token.Header.Kid;
-            var audience = token.Audiences.ToList();
-            //var claims = token.Claims.Select(claim => (claim.Type, claim.Value)).ToList();
+            var audience = token.Audiences.ToList();            
             var claims = token.Claims.Select(claim => claim.Value).ToList();
             List<string> claimList = new List<string>();
 
