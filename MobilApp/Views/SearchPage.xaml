@@ -8,35 +8,6 @@
             <Setter Property="Margin" Value="10,10,10,10"/>
         </Style>
     </ContentPage.Resources>
-    <!--<Grid ColumnDefinitions="*,7*,*"
-          RowDefinitions="2*,1*,0.5*,1*,0.5*,1*,0.5*,1*">
-        <Image Source="smalllogo" Grid.Column="1" Grid.Row="0" MinimumHeightRequest="100"/>
-        <Frame CornerRadius="10" Padding="3" Margin="0" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-                   MaximumHeightRequest="20"
-                   Text=""/>
-        </Frame>
-
-        <Frame CornerRadius="10" Padding="3" Margin="0" Grid.Column="1" Grid.Row="3">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-                   Text=""/>
-        </Frame>
-
-        <Frame CornerRadius="10" Padding="3" Margin="0" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-                   Text=""/>
-        </Frame>
-
-        <Frame CornerRadius="10" Padding="3" Margin="0" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-                   Text=""/>
-        </Frame>
-
-        <Frame CornerRadius="10" Padding="3" Margin="0" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-                   Text=""/>
-        </Frame>
-    </Grid>-->
     <VerticalStackLayout>
         <Image Source="smalllogo" MaximumHeightRequest="100"/>
         <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
