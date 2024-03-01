@@ -9,8 +9,6 @@ import 'bootstrap'
 import './assets/scss/style.scss';
 
 import 'primevue/resources/themes/aura-light-green/theme.css';
-import 'primevue/resources/primevue/min.css';
-import 'primevue/primeicons';
 
 //primevue imports
 import InputText from 'primevue/inputtext';
