@@ -30,15 +30,16 @@ namespace MobilApp_Szakdolgozat.Services
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
-        static string urlHome = "http://192.168.0.165:9000";
-        static string url = url103;
+        //Itthon 9090-es porton megy a szerver
+        static string urlHome = "http://192.168.0.165:9090";
+        static string url = urlHome;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
-                var uri = "/users"; //Majd meg kell adni a végleges backend elérést
+                var uri = "/users";
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<ProfileModel>>(result);
@@ -50,7 +51,7 @@ namespace MobilApp_Szakdolgozat.Services
             using (var client = new HttpClient()) 
             { 
                 client.BaseAddress = new Uri(url);
-                var uri = "/pictures"; //Majd meg kell adni a végleges backend elérést
+                var uri = "/pictures";
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<PictureCatalogModel>>(result);
@@ -64,7 +65,7 @@ namespace MobilApp_Szakdolgozat.Services
             string jsonData = JsonConvert.SerializeObject(user);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.PostAsync(url + "/register", content); //Majd meg kell adni a végleges backend elérést
+            HttpResponseMessage response = await client.PostAsync(url + "/register", content);
 
             // Debug.WriteLine(response.StatusCode);
             string result = await response.Content.ReadAsStringAsync();
