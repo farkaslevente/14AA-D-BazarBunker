@@ -199,6 +199,15 @@ const dbFunctions = {
             console.error("Error getting!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
+    },
+
+    acceptToken: function (req, res) {
+        try {
+            verifyToken(req, res)
+        } catch (err) {
+            console.error("Error in verifying token!", err.message)
+            res.status(500).json({error: "Internal server error!"})
+        }
     }
 }
 module.exports = {

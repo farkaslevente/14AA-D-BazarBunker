@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const { config } = require('dotenv')
 config();
 
-function verifyToken(req, res, next) {
+function verifyToken(req, res) {
     const token = req.headers['authorization'];
 
     if (!token) {
@@ -14,7 +14,7 @@ function verifyToken(req, res, next) {
             return res.status(403).json({ error: 'Invalid token' });
         }
         req.userId = decoded.userId;
-        next();
+        return res.status(200).json({message: "Authorized"})
     });
 }
 

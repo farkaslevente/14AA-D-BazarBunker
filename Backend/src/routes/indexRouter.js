@@ -104,6 +104,10 @@ router.post("/login", async function (req, res) {
     }
 }),
 
+router.post("/", function (req, res) {
+    res.json(dbFunctions.acceptToken(req, res))
+})
+
 
 module.exports = {
     router

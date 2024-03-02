@@ -3,7 +3,7 @@ const  morgan  = require("morgan");
 const { router } = require('./src/routes/indexRouter')
 
 const PORT = process.env.PORT || 9000;
-const HOST = process.env.HOST103 || "localhost";
+const HOST = "192.168.1.220" || "localhost";
 
 
 const app = express()
