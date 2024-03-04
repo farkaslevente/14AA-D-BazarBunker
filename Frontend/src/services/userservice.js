@@ -12,6 +12,7 @@ export default {
         return Promise.reject(err.response);
       })
   },
+  
   login(data){
     return Axios.post('/login', data)
       .then(resp => {
@@ -21,6 +22,7 @@ export default {
         return Promise.reject(err.response);
       })
   },
+
   logout(token){
     return Axios.post('/logout', '', {headers: {"Authorization" : "Bearer "+token}})
       .then(resp => {

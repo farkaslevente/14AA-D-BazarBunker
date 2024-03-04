@@ -1,4 +1,3 @@
-<!-- Filters.vue -->
 <template>
     <div>
         <h1 class="display-3 m-2 text-center">Hirdetések</h1>
@@ -16,12 +15,10 @@
           <option value="desc">Price Descending</option>
         </select>
   
-        <!-- Add other filter options here -->
   
         <button @click="applyFilters" class="apply-button">Apply Filters</button>
       </div>
   
-      <!-- Demo Advertisements -->
       <div class="demo-ads-container">
         <div v-for="(ad, index) in demoAds" :key="index" class="demo-ad">
           <img :src="ad.image" alt="Ad Image" class="ad-image">
@@ -54,7 +51,6 @@
 
   adservices.getAllAds()
       .then(resp => {
-          // console.log(resp.data);
           ads.value = resp.data;
       });
 
@@ -64,20 +60,16 @@
         searchQuery: '',
         selectedCounty: '',
         selectedPrice: '',
-        // Add other filter options here
         demoAds: [
           { title: 'Example Advertisement 1', price: '$100', county: 'Budapest', image: 'https://via.placeholder.com/150' },
           { title: 'Example Advertisement 2', price: '$150', county: 'Pest', image: 'https://via.placeholder.com/150' },
           { title: 'Example Advertisement 3', price: '$80', county: 'Szabolcs-Szatmár-Bereg', image: 'https://via.placeholder.com/150' }
-          // Add more demo ads as needed
         ]
       };
     },
     props: ['counties'],
     computed: {
       hungaryCounties() {
-        // You can load Hungary's counties from a static list or an API
-        // For this example, I'm using a static list
         return [
           'Bács-Kiskun', 'Baranya', 'Békés', 'Borsod-Abaúj-Zemplén', 'Csongrád-Csanád',
           'Fejér', 'Győr-Moson-Sopron', 'Hajdú-Bihar', 'Heves', 'Jász-Nagykun-Szolnok',
@@ -92,7 +84,6 @@
           searchQuery: this.searchQuery,
           county: this.selectedCounty,
           price: this.selectedPrice,
-          // Add other filter options here
         });
       }
     }
@@ -138,7 +129,7 @@
   }
   
   .demo-ad {
-    width: 80%; /* Adjust width as needed */
+    width: 80%;
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;

@@ -8,12 +8,14 @@
 @import 'bootstrap/scss/bootstrap.scss';
 
 .header-bg{
-    background: url('../img/vectorlogo.svg');
+    background: url('../img/smallLogo.png');
     height: 15vw;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    background-color: #DBF3FA;
 }
+
 .header-title{
     font-size: 8vw;
     font-weight: bold;
@@ -23,6 +25,7 @@
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: black;
 }
+
 .error-message{
     color: red;
 }

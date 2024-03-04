@@ -12,7 +12,7 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "pinia": "^2.1.7",
-    "primevue": "^3.48.1",
+    "primevue": "^3.49.1",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "vue": "^3.3.4",
