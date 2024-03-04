@@ -49,7 +49,7 @@
 }
 
 .nav-login button {
-    width: 150px;
+    width: 170px;
     height: 60px;
     outline: none;
     border: 1px solid black;
@@ -61,7 +61,7 @@
 }
 
 .nav-login button:active {
-    background: gray;
+    background: lightgray;
 }
 
 .nav-img-size {
