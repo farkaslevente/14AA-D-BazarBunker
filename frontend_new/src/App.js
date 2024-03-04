@@ -6,6 +6,7 @@ import { LoginSignupPage } from './Pages/LoginSignupPage';
 import { AllAdsPage } from './Pages/AllAdsPage';
 import { NewAdPage } from './Pages/NewAdPage';
 import { AdDetailsPage } from './Pages/AdDetailsPage';
+import { Footer } from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/login' element={<LoginSignupPage/>}/>
         </Routes>
 
+        <Footer/>
       </BrowserRouter>
     </div>
   );

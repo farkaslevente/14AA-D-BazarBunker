@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import logo from '../Assets/bunker.png'
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
     const [menu, setMenu] = useState("hirdetes")
@@ -9,14 +10,14 @@ export const Navbar = () => {
     <div className='navbar'>
       <div className="nav-logo">
         <img src={logo} alt="" className='nav-img-size'/>
-        <p>BAZARBUNKER</p>
+        <a href='/' style={{textDecoration: 'none'}}>BAZARBUNKER</a>
       </div>
       <ul className='nav-menu'> 
-        <li onClick={()=>{setMenu("hirdetesek")}}>Hirdetések{menu==="hirdetesek"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("ujhirdetes")}}>Új hirdetés{menu==="ujhirdetes"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("hirdetesek")}}><Link style={{textDecoration: 'none'}} to='/hirdetesek'>Hirdetések</Link>{menu==="hirdetesek"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("ujhirdetes")}}><Link style={{textDecoration: 'none'}} to='/ujhirdetes'>Új hirdetés</Link>{menu==="ujhirdetes"?<hr/>:<></>}</li>
       </ul>
       <div className="nav-login">
-        <button>Bejelentkezés</button>
+        <Link style={{textDecoration: 'none'}} to='/bejelentkezes'><button>Bejelentkezés</button></Link>
       </div>
     </div>
   )
