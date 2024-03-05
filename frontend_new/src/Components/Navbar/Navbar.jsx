@@ -17,7 +17,7 @@ export const Navbar = () => {
         <li onClick={()=>{setMenu("ujhirdetes")}}><Link style={{textDecoration: 'none'}} to='/ujhirdetes'>Új hirdetés</Link>{menu==="ujhirdetes"?<hr/>:<></>}</li>
       </ul>
       <div className="nav-login">
-        <Link style={{textDecoration: 'none'}} to='/bejelentkezes'><button>Bejelentkezés</button></Link>
+        <Link style={{textDecoration: 'none'}} to='/bejelentkezes'><button style={{ color: 'black'}}>Bejelentkezés</button></Link>
       </div>
     </div>
   )
