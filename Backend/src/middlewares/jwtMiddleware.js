@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken')
-const { config } = require('dotenv')
-config();
+const { secret } = require('../config/auth.config')
 
 function verifyToken(req, res) {
     const token = req.headers['authorization'];
 
     if (!token) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        return res.status(403).json({ message: "Invalid token provided" });
     }
 
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
         if (err) {
-            return res.status(403).json({ error: 'Invalid token' });
+            return res.status(401).json({ message: "Unathorized" });
         }
         req.userId = decoded.userId;
         return res.status(200).json({message: "Authorized"})
@@ -21,7 +20,7 @@ function verifyToken(req, res) {
  function createToken (payload, expireDate) {
     const token = jwt.sign(
         payload,
-        process.env.SECRET,
+        secret,
         { expiresIn: expireDate});
     return token;
  } 

@@ -1,6 +1,6 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const { check, validationResult } = require("express-validator")
+const { authController } = require('../controllers/auth.controller')
 const router = express.Router();
 
 router.get("/", async function(_req, res, next) {
@@ -79,29 +79,12 @@ router.post("/exec", async function(req, res) {
 }),
 
 router.post(
-    "/register", async function (req, res) {
-    [
-        check("email", "Please Enter a valid email address!")
-            .not()
-            .isEmpty()
-            .isEmail(),
-        check("password", "Please enter a valid password!").isLength({
-            min: 2
-        })
-    ]
-    try {
-        res.json(await dbFunctions.register(req, res))
-    } catch (err) {
-        console.error("Error during registering!", err.message)
-    }
-})
+    "/register", async function (req,res) {
+         res.json(await authController.register(req,res))
+}),
 
 router.post("/login", async function (req, res) {
-    try {
-        res.json(await dbFunctions.login(req, res))
-    } catch (err) {
-        console.error("Error during login", err.message)
-    }
+        res.json(await authController.login(req, res))
 }),
 
 router.post("/", function (req, res) {
