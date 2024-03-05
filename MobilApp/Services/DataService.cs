@@ -14,7 +14,7 @@ namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
-        public struct t
+        public struct T
         {
             string token;
         }
@@ -107,7 +107,7 @@ namespace MobilApp_Szakdolgozat.Services
             }
             else
             {
-                var a = JsonConvert.DeserializeObject<t>(result);
+                var a = JsonConvert.DeserializeObject<T>(result);
                 string[] fullJWT = result.Split(':');
                 var fullResult = fullJWT[1].Trim('"');
                 string[] trimmedJWT = fullResult.Split('"');
