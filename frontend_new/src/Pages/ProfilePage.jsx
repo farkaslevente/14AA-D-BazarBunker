@@ -10,17 +10,21 @@ export const ProfilePage = () => {
                 </div>
                 <div className="profile-content">
                     <img alt="Profile Image" className="profile-image" />
-                    <button>lol</button>
                     <div className="profile-details">
                         <ul>
                             <li><strong>Felhasználónév:</strong></li>
                             <li><strong>Hely:</strong></li>
                             <li><strong>Csatlakozott:</strong></li>
-                            <label for="description">Leírás</label>
-                            <textarea name='description'></textarea>
+                            <li><strong>Összes hirdetés száma:</strong> "" hirdetés</li>
                         </ul>
-                        <button></button>
+                        <div className="description">
+                            <label for="description"><strong>Leírás:</strong></label>
+                            <textarea name='description'></textarea>
+                        </div>
                     </div>
+                </div>
+                <div className="editbutton">
+                    <button>Szerkesztés</button>
                 </div>
             </div>
         </div>
