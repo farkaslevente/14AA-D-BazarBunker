@@ -8,6 +8,7 @@ import { NewAdPage } from './Pages/NewAdPage';
 import { AdDetailsPage } from './Pages/AdDetailsPage';
 import { Footer } from './Components/Footer/Footer';
 import { RegisterPage } from './Pages/RegisterPage';
+import { DataRegisterPage } from './Pages/DataRegisterPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<WelcomePage/>}/>
           <Route path='/bejelentkezes' element={<LoginPage/>}/>
           <Route path='/regisztracio' element={<RegisterPage/>}/>
+          <Route path='/adatregisztracio' element={<DataRegisterPage/>}/>
           <Route path='/hirdetesek' element={<AllAdsPage/>}>
             <Route path=':hirdetesId' element={<AdDetailsPage/>}/>
           </Route>
