@@ -9,6 +9,7 @@ import { AdDetailsPage } from './Pages/AdDetailsPage';
 import { Footer } from './Components/Footer/Footer';
 import { RegisterPage } from './Pages/RegisterPage';
 import { DataRegisterPage } from './Pages/DataRegisterPage';
+import { ProfilePage } from './Pages/ProfilePage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path=':hirdetesId' element={<AdDetailsPage/>}/>
           </Route>
           <Route path='/ujhirdetes' element={<NewAdPage/>}/>
+          <Route path='/profil' element={<ProfilePage/>}/>
 
         </Routes>
 

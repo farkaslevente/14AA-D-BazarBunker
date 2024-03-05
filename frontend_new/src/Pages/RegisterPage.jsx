@@ -70,7 +70,7 @@ export const RegisterPage = () => {
                     {inputs.map((input) => (
                         <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
                     ))}
-                    <button>Tovább</button>
+                    <button onClick={() => navigate('/adatregisztracio')}>Tovább</button>
                 </from>
             </div>
         </div>
