@@ -23,8 +23,9 @@ export const ProfilePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="editbutton">
-                    <button>Szerkesztés</button>
+                <div className="editbutton row">
+                    <button style={{marginRight: '100px'}}>Szerkesztés</button>
+                    <button style={{background: 'lightgreen'}}>Saját hirdetések</button>
                 </div>
             </div>
         </div>

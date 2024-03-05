@@ -54,6 +54,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     border: 2px solid gray;
+    max-width: 250px;
 }
 
 textarea {
@@ -71,5 +72,5 @@ textarea {
 .editbutton {
     align-items: center;
     margin-left: 30px;
-    width: 500px;
+    width: 1000px;
 }
