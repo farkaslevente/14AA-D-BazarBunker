@@ -33,7 +33,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             string userImage = await SecureStorage.GetAsync("userImage");
             profile = new ProfileModel
             {
-                nev = userName,
+                name = userName,
                 email = userEmail,
                 pPic = userImage
             };

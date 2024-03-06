@@ -32,7 +32,8 @@ namespace MobilApp_Szakdolgozat.Services
         static string url103 = "http://10.0.13.5:9000";
         //Itthon 9090-es porton megy a szerver
         static string urlHome = "http://192.168.0.165:9090";
-        static string url = urlHome;
+        static string url102local = "http://10.0.12.16:9090";
+        static string url = url102local;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -93,9 +94,9 @@ namespace MobilApp_Szakdolgozat.Services
             return errorRegister;
         }
 
-        public static async Task<string> login(string email, string jelszo) 
+        public static async Task<string> login(string email, string password) 
         {
-            string jsonData = JsonConvert.SerializeObject(new { email = email, password = jelszo });
+            string jsonData = JsonConvert.SerializeObject(new { email = email, password = password });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.PostAsync(url + "/login", content);
@@ -115,10 +116,23 @@ namespace MobilApp_Szakdolgozat.Services
                 string[] payload = trimmedResult.Split('.');
                 var finalPayload = payload[1];
 
-                var finalResult = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
-                await SecureStorage.SetAsync("userName", finalResult[0]);
-                await SecureStorage.SetAsync("userEmail", finalResult[1]);
-                await SecureStorage.SetAsync("userImage", finalResult[2]);
+                var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
+                //Ha már megoldódott a backend akkor vissza lehet írni
+                //    const tokenPayload = {
+                //        "email": user.email,
+                //        "name": user.nev,
+                //        "location": user.hely,
+                //        "pPic": user.pPic
+                //    }
+
+                //const token = createToken({ tokenPayload}, '1d')                
+                string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
+                string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
+                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");              
+                
+                await SecureStorage.SetAsync("userName", finalResult[0].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userImage", (finalResult[2].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
                 return null;
             }
         }

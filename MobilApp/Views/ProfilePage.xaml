@@ -40,7 +40,7 @@
                 <Label x:Name="NameLB" 
                    Grid.Row="1" 
                    Grid.Column="1"
-                   Text="{Binding profile.nev}"  
+                   Text="{Binding profile.name}"  
                    HorizontalTextAlignment="Center"
                    FontSize="Large"
                          MaximumWidthRequest="165"/>
