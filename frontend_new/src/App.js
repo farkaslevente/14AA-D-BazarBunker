@@ -10,6 +10,7 @@ import { Footer } from './Components/Footer/Footer';
 import { RegisterPage } from './Pages/RegisterPage';
 import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
+import { Card } from './Components/Card/Card';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           </Route>
           <Route path='/ujhirdetes' element={<NewAdPage/>}/>
           <Route path='/profil' element={<ProfilePage/>}/>
-
+          <Route path='/card' element={<Card/>}/>
         </Routes>
 
         <Footer/>
