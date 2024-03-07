@@ -1,4 +1,5 @@
 ﻿using MobilApp_Szakdolgozat.Views;
+using MobilApp_Szakdolgozat.ViewModels;
 
 namespace MobilApp_Szakdolgozat
 {
@@ -6,9 +7,10 @@ namespace MobilApp_Szakdolgozat
     {
         public AppShell()
         {
+            ShellViewModel shellViewModel = new ShellViewModel();
+            shellViewModel.VisibilityLP();
             InitializeComponent();
-            Init();
-            VisibilityLP();
+            Init();            
             Routing.RegisterRoute("loginDetails", typeof(LoginPage));
             Routing.RegisterRoute("registerDetails", typeof(RegisterPage));
             Routing.RegisterRoute("forgottenPwdDetails", typeof(ForgottenPwdPage));
@@ -23,24 +25,9 @@ namespace MobilApp_Szakdolgozat
             
             
         }
+        
 
-        private async void VisibilityLP()
-        {
-
-            string userName = await SecureStorage.GetAsync("userName");
-            if (userName == "empty")
-            {
-                Login.IsVisible = true;
-                Profile.IsVisible = false;
-            }
-            else
-            {
-                Login.IsVisible = false;
-                Profile.IsVisible = true;
-            }
-        }
-
-        private async void Init()
+        private void Init()
         {
             Main_TabBar.CurrentItem = MainSearch;
         }

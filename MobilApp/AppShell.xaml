@@ -5,25 +5,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MobilApp_Szakdolgozat"
     xmlns:views="clr-namespace:MobilApp_Szakdolgozat.Views"
+    xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
     Shell.FlyoutBehavior="Disabled">
 
     <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM
         Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <!--Secure Storage osztály, a telefon tárhelyére teszi el a dolgokat-->
 
-    <TabBar x:Name="Main_TabBar">
+    <Shell.BindingContext>
+        <viewmodels:ShellViewModel/>
+    </Shell.BindingContext>
+    <TabBar x:Name="Main_TabBar" IsEnabled="True">
         <ShellContent     
                 Title="Profil"
-                x:Name="Profile"
+                x:Name="TBIProfile"
                 Icon="profile.svg"
                 ContentTemplate="{DataTemplate views:ProfilePage}"
-                Route="profileDetails"/>
+                IsVisible="{Binding LoggedInVisible}"/>
         <ShellContent     
                 Title="Bejelentkezés"
-                x:Name="Login"
+                x:Name="TBILogin"
                 Icon="profile.svg"
                 ContentTemplate="{DataTemplate views:LoginPage}"
-                Route="loginDetails"/>
+                IsVisible="{Binding LoginVisible}"
+                />
 
         <ShellContent            
                 Title="Keresés" 
@@ -34,29 +39,15 @@
         <ShellContent
                 Title="Üzenetek"   
                 Icon="messages.svg"
-                ContentTemplate="{DataTemplate views:MessagesPage}"/>
-        <ShellContent
-         Title="Teszt"
-         x:Name="testTab"
-         Icon="test.svg"
-         ContentTemplate="{DataTemplate views:NewPage1}"
-         IsVisible="True"/>
-        <!--<ShellContent           
-            Title="login"
-            ContentTemplate="{DataTemplate views:LoginPage}"
-            IsVisible="False"
-            Route="loginDetails"/>
-        <ShellContent   
-            Title="register"
-            ContentTemplate="{DataTemplate views:RegisterPage}"
-            IsVisible="False"
-            Route="registerDetails"/>
-        <ShellContent      
-            Title="forgottenPwd"
-            ContentTemplate="{DataTemplate views:ForgottenPwdPage}"
-            IsVisible="False"
-            Route="forgottenPwdDetails"/>-->
-        
+                ContentTemplate="{DataTemplate views:MessagesPage}"
+                IsVisible="{Binding LoggedInVisible}"/>
+            <ShellContent
+                Title="Teszt"
+                x:Name="testTab"
+                Icon="test.svg"
+                ContentTemplate="{DataTemplate views:NewPage1}"         
+                IsVisible="{Binding LoggedInVisible}"/>
+
     </TabBar>
 
 </Shell>

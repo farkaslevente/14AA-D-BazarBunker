@@ -29,8 +29,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
             loginCommand = new Command(async () => {
                 errorMessage = await DataService.login(email, jelszo);
                 if (errorMessage == null)
-                {
-                    await Shell.Current.GoToAsync("//profileDetails");
+                {                   
+                    await Shell.Current.GoToAsync("profileDetails");
                 }
             });
         }

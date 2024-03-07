@@ -1,3 +1,4 @@
+using MobilApp_Szakdolgozat.ViewModels;
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class NewPage1 : ContentPage
@@ -8,7 +9,7 @@ public partial class NewPage1 : ContentPage
 	}
 
     private async void LoginBTN_Clicked(object sender, EventArgs e)
-    {
+    {        
         await Shell.Current.GoToAsync("loginDetails");
     }
 
@@ -32,13 +33,14 @@ public partial class NewPage1 : ContentPage
         await Shell.Current.GoToAsync("forgottenPwdDetails");
     }
 
-    private async void LogoutBTN_Clicked(object sender, EventArgs e)
+    private void LogoutBTN_Clicked(object sender, EventArgs e)
     {
-        DisplayAlert("Kijelentkezés", "Ön kijelentkezett", "Rendben");
-        string empty = "empty";
-        await SecureStorage.SetAsync("userName", empty);
-        await SecureStorage.SetAsync("userEmail", empty);
-        await SecureStorage.SetAsync("userImage", empty);
-        await SecureStorage.SetAsync("userId", empty);
+        ShellViewModel appShellInstance = new ShellViewModel();
+        DisplayAlert("Kijelentkezés", "Ön kijelentkezett", "Rendben");        
+        SecureStorage.Remove("userName");
+        SecureStorage.Remove("userEmail");
+        SecureStorage.Remove("userImage");
+        SecureStorage.Remove("userId");
+        appShellInstance.VisibilityLP();
     }
 }

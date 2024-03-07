@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
+using MobilApp_Szakdolgozat.ViewModels;
 
 namespace MobilApp_Szakdolgozat.Services
 {
@@ -33,8 +34,9 @@ namespace MobilApp_Szakdolgozat.Services
         //Itthon 9090-es porton megy a szerver
         static string urlHome = "http://192.168.0.165:9090";
         static string url102local = "http://10.0.12.16:9090";
+        static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url302local;
+        static string url = url202local;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -135,7 +137,10 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userImage", (finalResult[2].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
                 await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
+                ShellViewModel appShellInstance = new ShellViewModel();
+                appShellInstance.VisibilityLP();
                 return null;
+                
             }
         }
         public class TokenResponse

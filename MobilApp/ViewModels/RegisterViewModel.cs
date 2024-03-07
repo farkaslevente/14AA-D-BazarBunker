@@ -16,7 +16,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
             public string regName { get; set; }
             public string regEmail { get; set; }
             public string regPassword { get; set; }
+            public string regConfirmPwd { get; set; }
             public string regLocation { get; set; }
+            public string error { get; set; }
 
             private RegisterModel _errorMessage;
 
@@ -30,20 +32,29 @@ namespace MobilApp_Szakdolgozat.ViewModels
             public ICommand registerCommand { get; set; }
 
             public RegisterViewModel()
-            {            
-                registerCommand = new Command(async () => {
-                    regModel = new RegisterModel
+            {          
+                registerCommand = new Command(async () => {                    
+                    if (regPassword == regConfirmPwd)
                     {
-                        name = regName,
-                        email = regEmail,
-                        password = regPassword,
-                        location = regLocation
-                    };
-                    errorMessage = await DataService.register(regModel);
-                    if (errorMessage == null)
-                    {
-                        await Shell.Current.GoToAsync("//profileDetails");
+                        error = "";
+                        regModel = new RegisterModel
+                        {
+                            name = regName,
+                            email = regEmail,
+                            password = regPassword,
+                            location = regLocation
+                        };
+                        errorMessage = await DataService.register(regModel);
+                        if (errorMessage == null)
+                        {
+                            await Shell.Current.GoToAsync("//profileDetails");
+                        }
                     }
+                    else
+                    {
+                        error = "Nem egyeznek jelszavai!";                           
+                    }
+                    
                 });
             }
     }

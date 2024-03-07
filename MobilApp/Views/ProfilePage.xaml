@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Maui;assembly=FFImageLoading.Compat.Svg.Maui"
              x:Class="MobilApp_Szakdolgozat.Views.ProfilePage"
-             Title="">
+             Title=""
+             Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <Style x:Key="GridStyle" TargetType="Grid">
             <Setter Property="Padding" Value="0,10"/>
