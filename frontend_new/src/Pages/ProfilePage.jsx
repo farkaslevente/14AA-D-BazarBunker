@@ -1,7 +1,10 @@
 import React from 'react'
 import './CSS/ProfilePage.css'
+import { useNavigate } from 'react-router-dom';
 
 export const ProfilePage = () => {
+    const navigate = useNavigate()
+
     return (
         <div className='profilepage'>
             <div className="profile">
@@ -12,20 +15,24 @@ export const ProfilePage = () => {
                     <img alt="Profile Image" className="profile-image" />
                     <div className="profile-details">
                         <ul>
-                            <li><strong>Felhasználónév:</strong></li>
-                            <li><strong>Hely:</strong></li>
-                            <li><strong>Csatlakozott:</strong></li>
-                            <li><strong>Összes hirdetés száma:</strong> "" hirdetés</li>
+                            <li>
+                                <label htmlFor="location">Hely:</label>
+                                <span id="location"></span>
+                            </li>
+                            <li>
+                                <label htmlFor="joined">Csatlakozott:</label>
+                                <span id="joined"></span>
+                            </li>
+                            <li>
+                                <label htmlFor="adsCount">Összes hirdetés száma:</label>
+                                <span id="adsCount">"" hirdetés</span>
+                            </li>
                         </ul>
-                        <div className="description">
-                            <label for="description"><strong>Leírás:</strong></label>
-                            <textarea name='description'></textarea>
+                        <div className="editbutton">
+                            <button>Szerkesztés</button>
+                            <button onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>
                         </div>
                     </div>
-                </div>
-                <div className="editbutton row">
-                    <button style={{marginRight: '100px'}}>Szerkesztés</button>
-                    <button style={{background: 'lightgreen'}}>Saját hirdetések</button>
                 </div>
             </div>
         </div>

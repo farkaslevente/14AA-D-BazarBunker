@@ -11,6 +11,7 @@ import { RegisterPage } from './Pages/RegisterPage';
 import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
 import { Card } from './Components/Card/Card';
+import { OwnAdsPage } from './Pages/OwnAdsPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path=':hirdetesId' element={<AdDetailsPage/>}/>
           </Route>
           <Route path='/ujhirdetes' element={<NewAdPage/>}/>
+          <Route path='/sajathirdetesek' element={<OwnAdsPage/>}/>
           <Route path='/profil' element={<ProfilePage/>}/>
           <Route path='/card' element={<Card/>}/>
         </Routes>
