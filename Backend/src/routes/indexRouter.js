@@ -48,13 +48,14 @@ router.delete("/users/delete", [verifyToken], async function(req, res) {
     }
 }),
 
-router.get("/tokens", [verifyToken], async function (res) {
-    try{
-        res.json(await dbFunctions.getTokens(res))
+router.get("/tokens", [verifyToken], async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getTokens());
     } catch (err) {
-        console.error("Error", err.message)
+        console.error("Error while getting tokens!", err.message);
+        next(err);
     }
-})
+});
 
 router.delete("/tokens/delete", [verifyToken], async function (res) {
     try {
@@ -72,8 +73,7 @@ router.post("/exec", async function(req, res) {
     }
 }),
 
-router.post(
-    "/register", async function (req,res) {
+router.post("/register", async function (req,res) {
          res.json(await authController.register(req,res))
 }),
 

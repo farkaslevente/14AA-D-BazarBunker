@@ -60,8 +60,9 @@ const dbFunctions = {
 
     getTokens: async function (res) {
         try {
-            return res = await query(`
+            res = await query(`
             SELECT * FROM tokenek`)
+            return res
         } catch (err) {
             console.error("Error getting!", err.message);
             res.status(500).json({error: "Internal server error!"})

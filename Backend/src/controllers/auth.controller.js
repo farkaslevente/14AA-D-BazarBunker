@@ -85,7 +85,6 @@ const authController = {
             console.error("Error logging in!", err.message);
         }
     },
-
     signout: async function (req, res) {
         try {
             req.session = null;
@@ -100,7 +99,7 @@ const authController = {
     acceptToken: async function (req,res) {
         console.log("Incoming tokenverification...", req.body)
             return verifyToken(req, res)
-    }
+    },
 }
 
 module.exports = {

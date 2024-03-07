@@ -1,14 +1,18 @@
 const query = require('../database/db')
-const bcrypt = require('bcryptjs')
+const { dbFunctions } = require('../database/dbFunc')
 
 
 const userController = {
     patchUsers: async function (req, res) {
-        console.log(req) + "\n";
+        console.log("Patching incoming...", req);
         try {
-            // WAITING TO FINISH
+            const {name, email, location, pPic} = req;
 
-            await query(`UPDATE felhasznalok SET nev= ?, email= ?, hely= ?, pPic= ?, jelszo= ? WHERE id=${req.id}`, insertValues);
+            const rows = await dbFunctions.execQueryWithReturn(
+                `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+            const hashed = rows[0].jelszo
+
+            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}' WHERE id=${req.id}`);
             
             res.status(200).json({message: "User patched succesfully!"})
         } catch (err) {
