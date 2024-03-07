@@ -33,7 +33,8 @@ namespace MobilApp_Szakdolgozat.Services
         //Itthon 9090-es porton megy a szerver
         static string urlHome = "http://192.168.0.165:9090";
         static string url102local = "http://10.0.12.16:9090";
-        static string url = url102local;
+        static string url302local = "http://10.0.33.20:9090";
+        static string url = url302local;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -133,6 +134,7 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userName", finalResult[0].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userImage", (finalResult[2].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
+                await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
                 return null;
             }
         }

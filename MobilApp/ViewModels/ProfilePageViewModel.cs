@@ -31,11 +31,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
             string userName = await SecureStorage.GetAsync("userName");
             string userEmail = await SecureStorage.GetAsync("userEmail");
             string userImage = await SecureStorage.GetAsync("userImage");
+            string userId = await SecureStorage.GetAsync("userId");
             profile = new ProfileModel
             {
                 name = userName,
                 email = userEmail,
-                pPic = userImage
+                pPic = userImage,
+                id = int.Parse(userId),
             };
 
             OnPropertyChanged(nameof(profile));      

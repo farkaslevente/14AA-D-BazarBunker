@@ -14,9 +14,16 @@
     <TabBar x:Name="Main_TabBar">
         <ShellContent     
                 Title="Profil"
+                x:Name="Profile"
                 Icon="profile.svg"
                 ContentTemplate="{DataTemplate views:ProfilePage}"
-            Route="profileDetails"/>
+                Route="profileDetails"/>
+        <ShellContent     
+                Title="Bejelentkezés"
+                x:Name="Login"
+                Icon="profile.svg"
+                ContentTemplate="{DataTemplate views:LoginPage}"
+                Route="loginDetails"/>
 
         <ShellContent            
                 Title="Keresés" 

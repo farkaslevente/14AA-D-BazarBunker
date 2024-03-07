@@ -13,6 +13,12 @@
                 Margin="10"
                 VerticalOptions="End"
                 Clicked="LoginBTN_Clicked"/>
+        <Button x:Name="LogoutBTN" 
+                 Text="Logout"
+                 BackgroundColor="Red" 
+                 Margin="10"
+                 VerticalOptions="End"
+                 Clicked="LogoutBTN_Clicked"/>
         <Button x:Name="RegisterBTN" 
                 Text="Register Page"
                 BackgroundColor="Red" 

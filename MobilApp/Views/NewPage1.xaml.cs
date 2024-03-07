@@ -31,4 +31,14 @@ public partial class NewPage1 : ContentPage
     {
         await Shell.Current.GoToAsync("forgottenPwdDetails");
     }
+
+    private async void LogoutBTN_Clicked(object sender, EventArgs e)
+    {
+        DisplayAlert("Kijelentkezés", "Ön kijelentkezett", "Rendben");
+        string empty = "empty";
+        await SecureStorage.SetAsync("userName", empty);
+        await SecureStorage.SetAsync("userEmail", empty);
+        await SecureStorage.SetAsync("userImage", empty);
+        await SecureStorage.SetAsync("userId", empty);
+    }
 }

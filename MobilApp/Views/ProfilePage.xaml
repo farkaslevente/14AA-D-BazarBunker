@@ -10,9 +10,6 @@
             <Setter Property="Padding" Value="0,10"/>
         </Style>
     </ContentPage.Resources>
-    <!--<ContentPage.BindingContext>
-        <viewmodels:ProfilePageViewModel/>
-    </ContentPage.BindingContext>-->
     <VerticalStackLayout Margin="0,-10,0,0">
         
         <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*">
@@ -67,7 +64,13 @@
                                 PlaceholderColor="Gray"                                                       
                                 Margin="30,0,30,0"/>
                 </Border>
-
+                <Label
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        Text="{Binding profile.id}"  
+                        HorizontalTextAlignment="Center"
+                        FontSize="Large"
+                        MaximumWidthRequest="165"/>
                 <Button x:Name="NameChangeBTN"
                         Text="Név megváltoztatása"
                         MaximumHeightRequest="40"
