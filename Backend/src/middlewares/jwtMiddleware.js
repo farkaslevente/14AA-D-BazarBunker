@@ -1,21 +1,25 @@
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/auth.config')
 
-function verifyToken(req, res) {
-    const token = req.headers['authorization'];
-
+verifyToken = (req, res, next) => {
+    let token = req.session.token;
+  
     if (!token) {
-        return res.status(403).json({ message: "Invalid token provided" });
+      return res.status(403).send({ message: "Invalid token" });
     }
-
-    jwt.verify(token, secret, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: "Unathorized" });
-        }
-        req.userId = decoded.userId;
-        return res.status(200).json({message: "Authorized"})
-    });
-}
+  
+    jwt.verify(token,
+                secret,
+              (err, decoded) => {
+                if (err) {
+                  return res.status(401).send({
+                    message: "Unauthorized",
+                  });
+                }
+                req.userId = decoded.id;
+                next();
+              });
+  };
 
  function createToken (payload, expireDate) {
     const token = jwt.sign(

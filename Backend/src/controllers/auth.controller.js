@@ -1,8 +1,6 @@
 const { dbFunctions } = require('../database/dbFunc')
 const { verifyToken, createToken } = require('../middlewares/jwtMiddleware')
-const query = require('../database/db')
 const bcrypt = require('bcryptjs')
-const { secret } = require('../config/auth.config')
 
 const authController = {
     register: async function (req, res) {
@@ -20,14 +18,8 @@ const authController = {
                     dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES
                     (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}')`)
 
-                    const token = createToken({name, email}, '1d')
-
-                    const d = new Date()
-                    dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
-                    (null, '${token}', '${d}')`)
-
                     res.status(200).json({
-                        token
+                        message: "Successful registration!"
                     })
                     
                 }
@@ -66,8 +58,14 @@ const authController = {
             return res.status(401).json({"message": "Invalid email or password"})
             }
             else {
+                const payload = {
+                    name: user.nev,
+                    email: user.email,
+                    location: user.hely,
+                    pPic: user.pPic
+                }
 
-                const token = createToken({email}, '1d')
+                const token = createToken({payload}, '1d')
 
                 const d = new Date()
                 dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
@@ -97,6 +95,11 @@ const authController = {
           } catch (err) {
             this.next(err);
           }
+    },
+
+    acceptToken: async function (req,res) {
+        console.log("Incoming tokenverification...", req.body)
+            return verifyToken(req, res)
     }
 }
 

@@ -1,6 +1,8 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const { authController } = require('../controllers/auth.controller')
+const { authController } = require('../controllers/auth.controller');
+const { userController } = require('../controllers/user.controller')
+const { verifyToken } = require("../middlewares/jwtMiddleware");
 const router = express.Router();
 
 router.get("/", async function(_req, res, next) {
@@ -12,7 +14,7 @@ router.get("/", async function(_req, res, next) {
     }
 });
 
-router.get("/pictures", async function(_req, res, next) {
+router.get("/pictures", [verifyToken], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getPictures());
     } catch (err) {
@@ -21,7 +23,7 @@ router.get("/pictures", async function(_req, res, next) {
     }
 });
 
-router.get("/users", async function(_req, res, next) {
+router.get("/users", [verifyToken], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
     } catch (err) {
@@ -30,39 +32,31 @@ router.get("/users", async function(_req, res, next) {
     }
 });
 
-router.post("/users/post", async function(req, res) {
+router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
-        res.json(await dbFunctions.postUsers(req.body));
-    } catch (err) {
-        console.error("Error posting!", err.message);
-    }
-});
-
-router.put("/users/put", async function(req, res) {
-    try {
-        res.json(await dbFunctions.putUsers(req.body, res));
+        res.json(await userController.patchUsers(req.body, res));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
 }),
 
-router.delete("/users/delete", async function(req, res) {
+router.delete("/users/delete", [verifyToken], async function(req, res) {
     try {
-        res.json(await dbFunctions.deleteUsers(req.body, res))
+        res.json(await userController.deleteUsers(req.body, res))
     } catch (err) {
         console.error("Error deleting!", err.message);
     }
 }),
 
-router.get("/tokens", async function (req, res) {
-    try {
-        res.json(await dbFunctions.getTokens(req, res))
+router.get("/tokens", [verifyToken], async function (res) {
+    try{
+        res.json(await dbFunctions.getTokens(res))
     } catch (err) {
-        console.error("Error getting tokens!", err.message);
+        console.error("Error", err.message)
     }
 })
 
-router.delete("/tokens/delete", async function (res) {
+router.delete("/tokens/delete", [verifyToken], async function (res) {
     try {
         res.json(await dbFunctions.deleteToken(res))
     } catch (err) {
@@ -86,10 +80,6 @@ router.post(
 router.post("/login", async function (req, res) {
         res.json(await authController.login(req, res))
 }),
-
-router.post("/", function (req, res) {
-    res.json(dbFunctions.acceptToken(req, res))
-})
 
 
 module.exports = {
