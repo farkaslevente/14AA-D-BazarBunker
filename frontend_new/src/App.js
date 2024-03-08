@@ -30,7 +30,6 @@ function App() {
           <Route path='/ujhirdetes' element={<NewAdPage/>}/>
           <Route path='/sajathirdetesek' element={<OwnAdsPage/>}/>
           <Route path='/profil' element={<ProfilePage/>}/>
-          <Route path='/card' element={<Card/>}/>
         </Routes>
 
         <Footer/>

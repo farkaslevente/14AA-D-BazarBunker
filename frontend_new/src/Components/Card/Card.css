@@ -1,3 +1,16 @@
+.card-container {
+    width: 90%;
+    box-shadow: 0 px 10px 8px #999;
+    display: flex;
+    flex-direction: row;
+    margin: 0.5ren;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+}
+
+
 /* * {
     margin: 0;
     padding: 0;

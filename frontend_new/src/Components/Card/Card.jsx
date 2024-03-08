@@ -2,49 +2,13 @@ import React, { useState } from 'react'
 import './Card.css'
 
 export const Card = () => {
-    const [cards] = useState([
-        {
-            title: 'Card-1',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-        {
-            title: 'Card-2',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-        {
-            title: 'Card-3',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-        {
-            title: 'Card-4',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-        {
-            title: 'Card-5',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-        {
-            title: 'Card-6',
-            text: 'Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.'
-        },
-
-    ])
+    
     return (
-        <div>
-            <section>
-                <div className="container">
-                    <div className="cards">
-                        {
-                            cards.map((card, i) => {
-                                <div key={i} className="card">
-                                    <h3>{card.title}</h3>
-                                    <p>{card.text}</p>
-                                </div>
-                            })
-                        }
-                    </div>
-                </div>
-            </section>
+        <div className='card-container'>
+            <img src='https://picsum.photos/300/200' alt='Card Image'/>
+            <h3 className='card-title'>Card title</h3>
+            <p className='card-description'>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.</p>
+            <a href="">llooooll</a>
         </div>
 
         // <div className="cardpage">
