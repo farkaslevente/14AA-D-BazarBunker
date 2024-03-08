@@ -43,14 +43,26 @@
     padding: auto;
 }
 
-.chatbutton {
-    max-height: 80px;
-    width: 200px;
-}
-
 .addetailsbutton {
     max-height: 80px;
     width: 200px;
+    background: pink;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.chatbutton {
+    max-height: 80px;
+    width: 200px;
+    background: lightgreen;
+    color: black;
+    border: 1px dashed gray;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 10px;
 }
 
 /* * {
