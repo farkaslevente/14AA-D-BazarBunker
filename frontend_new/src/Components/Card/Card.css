@@ -10,6 +10,48 @@
     margin-bottom: 20px;
 }
 
+.card-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-data {
+    padding: 10px;
+    margin: 10px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    max-height: fit-content;
+    padding: auto;
+}
+
+.chatbutton {
+    max-height: 80px;
+    width: 200px;
+}
+
+.addetailsbutton {
+    max-height: 80px;
+    width: 200px;
+}
 
 /* * {
     margin: 0;

@@ -2,13 +2,27 @@ import React, { useState } from 'react'
 import './Card.css'
 
 export const Card = () => {
-    
     return (
         <div className='card-container'>
-            <img src='https://picsum.photos/300/200' alt='Card Image'/>
-            <h3 className='card-title'>Card title</h3>
-            <p className='card-description'>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.</p>
-            <a href="">llooooll</a>
+            <div className="card-content">
+                <img src='https://picsum.photos/300/200' alt='Card Image' />
+                <div className="card-data">
+                    <div className="card-info">
+                        <h3 className='card-title'>"Card title"</h3>
+                        <h3 className='card-title' id='category'>Kategória:</h3>
+                        <label htmlFor="category">"Egyetem"</label>
+                        <h3 className='card-title' id='added'>Hozzáadva:</h3>
+                        <label htmlFor="added">"2024.10.21".</label>
+                    </div>
+                    <div className="card-description">
+                        <p className=''>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.</p>
+                    </div>
+                    <div className="card-buttons">
+                        <button className='addetailsbutton'>Részletek</button>
+                        <button className='chatbutton'>Csevegés a hirdetővel</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         // <div className="cardpage">
