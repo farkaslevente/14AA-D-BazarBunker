@@ -27,6 +27,8 @@ function App() {
           <Route path='/hirdetesek' element={<AllAdsPage/>}>
             <Route path=':hirdetesId' element={<AdDetailsPage/>}/>
           </Route>
+          <Route path='/hirdetes' element={<AdDetailsPage/>}/>
+
           <Route path='/ujhirdetes' element={<NewAdPage/>}/>
           <Route path='/sajathirdetesek' element={<OwnAdsPage/>}/>
           <Route path='/profil' element={<ProfilePage/>}/>

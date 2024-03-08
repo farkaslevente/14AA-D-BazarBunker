@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import './Card.css'
+import { useNavigate } from 'react-router-dom'
 
 export const Card = () => {
+    const navigate = useNavigate()
     return (
         <div className='card-container'>
             <div className="card-content">
@@ -18,7 +20,7 @@ export const Card = () => {
                         <p className=''>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.</p>
                     </div>
                     <div className="card-buttons">
-                        <button className='addetailsbutton'>Részletek</button>
+                        <button onClick={() => navigate('/hirdetes')} className='addetailsbutton'>Részletek</button>
                         <button className='chatbutton'>Csevegés a hirdetővel</button>
                     </div>
                 </div>
