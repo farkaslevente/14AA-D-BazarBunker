@@ -81,6 +81,19 @@ router.post("/login", async function (req, res) {
         res.json(await authController.login(req, res))
 }),
 
+router.get("/ads", [verifyToken], async function(_req, res) {
+    try {
+        res.json(await dbFunctions.getAds());
+    } catch (err) {
+        console.error("Error while getting ads!", err.message);
+        next(err);
+    }
+});
+
+router.post("/ads", [verifyToken], async function(req,res) {
+    res.json(await dbFunctions.postAds(req,res))
+})
+
 
 module.exports = {
     router
