@@ -29,6 +29,10 @@
     margin: 10px;
 }
 
+.filtercounty {
+    align-items: center;
+}
+
 .filtercounty label {
     margin-right: 10px;
 }
@@ -38,4 +42,20 @@
 
 .filterprice label {
     margin-right: 10px;
+}
+
+select {
+    cursor: pointer;
+}
+
+.apply {
+    align-items: center;
+    display: flex;
+}
+
+.apply button {
+    max-height: fit-content;
+    font-size: 12px;
+    height: fit-content;
+    width: 200px;
 }

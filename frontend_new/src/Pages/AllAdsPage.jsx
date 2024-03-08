@@ -38,6 +38,9 @@ export const AllAdsPage = () => {
                         <option value="">decending</option>
                     </select>
                 </div>
+                <div className="apply">
+                    <button>Apply filters</button>
+                </div>
             </div>
             <div className="alladspage-content">
                 <div className="cards">
