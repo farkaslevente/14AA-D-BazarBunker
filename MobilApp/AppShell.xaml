@@ -12,16 +12,7 @@
         Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <!--Secure Storage osztály, a telefon tárhelyére teszi el a dolgokat-->
 
-    <Shell.BindingContext>
-        <viewmodels:ShellViewModel/>
-    </Shell.BindingContext>
     <TabBar x:Name="Main_TabBar" IsEnabled="True">
-        <ShellContent     
-                Title="Profil"
-                x:Name="TBIProfile"
-                Icon="profile.svg"
-                ContentTemplate="{DataTemplate views:ProfilePage}"
-                IsVisible="{Binding LoggedInVisible}"/>
         <ShellContent     
                 Title="Bejelentkezés"
                 x:Name="TBILogin"
@@ -30,24 +21,66 @@
                 IsVisible="{Binding LoginVisible}"
                 />
 
-        <ShellContent            
+        <ShellContent       
                 Title="Keresés" 
                 x:Name="MainSearch"
                 Icon="search.svg"         
                 ContentTemplate="{DataTemplate views:MainPage}"/>
+    </TabBar>
+    <TabBar x:Name="Proba_Tabbar" IsEnabled="False">
+        <ShellContent     
+        Title="Profil"
+        x:Name="TBIProfileP"
+        Icon="profile.svg"
+        ContentTemplate="{DataTemplate views:ProfilePage}"
+        IsVisible="{Binding LoggedInVisible}"/>
+
+        <ShellContent            
+        Title="Keresés" 
+        x:Name="MainSearchP"
+        Icon="search.svg"         
+        ContentTemplate="{DataTemplate views:MainPage}"/>
 
         <ShellContent
-                Title="Üzenetek"   
-                Icon="messages.svg"
-                ContentTemplate="{DataTemplate views:MessagesPage}"
-                IsVisible="{Binding LoggedInVisible}"/>
-            <ShellContent
-                Title="Teszt"
-                x:Name="testTab"
-                Icon="test.svg"
-                ContentTemplate="{DataTemplate views:NewPage1}"         
-                IsVisible="{Binding LoggedInVisible}"/>
+        Title="Üzenetek"   
+        Icon="messages.svg"
+        x:Name="TBIMessagesP"
+        ContentTemplate="{DataTemplate views:MessagesPage}"
+        IsVisible="{Binding LoggedInVisible}"/>
+        <ShellContent
+        Title="Teszt"
+        x:Name="testTabP"
+        Icon="test.svg"
+        ContentTemplate="{DataTemplate views:NewPage1}"         
+        IsVisible="{Binding LoggedInVisible}"/>
 
     </TabBar>
+
+    <!--<ShellContent            
+         Title="Keresés" 
+         x:Name="MainSearch"
+         Icon="search.svg"         
+         ContentTemplate="{DataTemplate views:MainPage}"/>
+    
+    <Shell.FlyoutHeader>
+        <HorizontalStackLayout Padding="10">
+        <Label Text="proba" IsVisible="{Binding LoggedInVisible}"/>
+        </HorizontalStackLayout>
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout>
+            <Button x:Name="BTNLogout"
+                    Text="Kijelentkezés" 
+                    Margin="10"
+                    Clicked="BTNLogout_Clicked"
+                    IsVisible="{Binding LoggedInVisible}"/>
+
+            <Button x:Name="BTNTest"
+                    Text="Test" 
+                    Margin="10"
+                    Clicked="BTNTest_Clicked"
+                    IsVisible="True"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>-->
 
 </Shell>

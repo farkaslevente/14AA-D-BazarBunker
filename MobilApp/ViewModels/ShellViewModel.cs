@@ -1,4 +1,37 @@
-﻿using System;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+
+//namespace MobilApp_Szakdolgozat.ViewModels
+//{
+//    public class ShellViewModel: BindableObject
+//    {
+//        public bool LoginVisible { get;set; }
+//        public bool LoggedInVisible { get; set; }
+
+//        public void VisibilityLP()
+//        {
+//            string LoggedIn = SecureStorage.GetAsync("userId").Result;
+//            if (LoggedIn != null)
+//            {
+//                LoginVisible= false;
+//                LoggedInVisible = true;
+//            }
+//            else
+//            {
+//                LoginVisible = true;
+//                LoggedInVisible = false;
+//            }
+//            OnPropertyChanged(nameof(LoginVisible));
+//            OnPropertyChanged(nameof(LoggedInVisible));
+//        }
+//    }
+//}
+
+using System.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +39,55 @@ using System.Threading.Tasks;
 
 namespace MobilApp_Szakdolgozat.ViewModels
 {
-    public class ShellViewModel
+    public class ShellViewModel : INotifyPropertyChanged
     {
-        public bool LoginVisible { get;set; }
-        public bool LoggedInVisible { get; set; }
+        private bool _loginVisible;
+        private bool _loggedInVisible;
+
+        public bool LoginVisible
+        {
+            get => _loginVisible;
+            set
+            {
+                if (_loginVisible != value)
+                {
+                    _loginVisible = value;
+                    OnPropertyChanged(nameof(LoginVisible));
+                }
+            }
+        }
+
+        public bool LoggedInVisible
+        {
+            get => _loggedInVisible;
+            set
+            {
+                if (_loggedInVisible != value)
+                {
+                    _loggedInVisible = value;
+                    OnPropertyChanged(nameof(LoggedInVisible));
+                }
+            }
+        }
+
+        public ShellViewModel()
+        {
+            VisibilityLP();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public void VisibilityLP()
         {
             string LoggedIn = SecureStorage.GetAsync("userId").Result;
             if (LoggedIn != null)
             {
-                LoginVisible= false;
+                LoginVisible = false;
                 LoggedInVisible = true;
             }
             else
@@ -27,3 +98,4 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
     }
 }
+

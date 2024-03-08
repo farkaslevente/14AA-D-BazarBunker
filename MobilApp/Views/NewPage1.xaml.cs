@@ -35,12 +35,12 @@ public partial class NewPage1 : ContentPage
 
     private void LogoutBTN_Clicked(object sender, EventArgs e)
     {
-        ShellViewModel appShellInstance = new ShellViewModel();
+        AppShell appShellInstance = new AppShell();
         DisplayAlert("Kijelentkezés", "Ön kijelentkezett", "Rendben");        
         SecureStorage.Remove("userName");
         SecureStorage.Remove("userEmail");
         SecureStorage.Remove("userImage");
         SecureStorage.Remove("userId");
-        appShellInstance.VisibilityLP();
+        appShellInstance.UpdateShellContentVisibility();
     }
 }

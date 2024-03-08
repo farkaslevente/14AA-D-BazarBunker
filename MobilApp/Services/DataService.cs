@@ -33,10 +33,11 @@ namespace MobilApp_Szakdolgozat.Services
         static string url103 = "http://10.0.13.5:9000";
         //Itthon 9090-es porton megy a szerver
         static string urlHome = "http://192.168.0.165:9090";
+        static string url103local = "http://10.0.13.6:9090";
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url202local;
+        static string url = url103local;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -137,8 +138,8 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userImage", (finalResult[2].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
                 await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
-                ShellViewModel appShellInstance = new ShellViewModel();
-                appShellInstance.VisibilityLP();
+                AppShell appShellInstance = new AppShell();
+                appShellInstance.UpdateShellContentVisibility();
                 return null;
                 
             }
