@@ -1,0 +1,146 @@
+.card-container {
+    width: 90%;
+    box-shadow: 0 px 10px 8px #999;
+    display: flex;
+    flex-direction: row;
+    margin: 0.5ren;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-data {
+    padding: 10px;
+    margin: 10px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    max-height: fit-content;
+    padding: auto;
+}
+
+.addetailsbutton {
+    max-height: 80px;
+    width: 200px;
+    background: pink;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.chatbutton {
+    max-height: 80px;
+    width: 200px;
+    background: lightgreen;
+    color: black;
+    border: 1px dashed gray;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 10px;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #111;
+}
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: auto;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 60px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    width: 100%;
+    border: 20px;
+    border-radius: 10px;
+}
+ */
+
+/* .cardpage {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.card {
+    background: gray;
+    width: 80%;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 5px 5ox 5px hsla(0, 0%, 0%, 0.1);
+    padding: 10px;
+}
+
+.cardcontent {
+    display: flex;
+    margin-right: 0px;
+}
+
+.card-addetails {
+    padding: auto;
+}
+
+.card-data {
+    display: flex;
+    gap: 10px;
+}
+
+img {
+    border: 1px solid black;
+} */
