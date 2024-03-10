@@ -47,7 +47,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                         errorMessage = await DataService.register(regModel);
                         if (errorMessage == null)
                         {
-                            await Shell.Current.GoToAsync("//profileDetails");
+                            await Shell.Current.GoToAsync("//"+nameof(ProfilePage));
                         }
                     }
                     else

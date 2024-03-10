@@ -44,11 +44,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         public ICommand openUrlCommand =>
         new Command<string>(async (url) => await Launcher.OpenAsync(url));       
-        private async Task getAllProfiles()
-        {
-            IEnumerable<ProfileModel> list = await DataService.getAllProfiles();
-            list.ToList().ForEach(p => profiles.Add(p));
-        }
+        //private async Task getAllProfiles()
+        //{
+        //    IEnumerable<ProfileModel> list = await DataService.getAllProfiles();
+        //    list.ToList().ForEach(p => profiles.Add(p));
+        //}
 
     }
 }

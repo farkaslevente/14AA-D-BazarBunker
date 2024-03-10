@@ -12,12 +12,12 @@ public partial class LoginPage : ContentPage
           
     private async void BTNForgotPwd_Clicked(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync("forgottenPwdDetails");
+		await Shell.Current.GoToAsync(nameof(ForgottenPwdPage));
     }
 
     private async void BTNRegister_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("registerDetails");
+        await Shell.Current.GoToAsync(nameof(RegisterPage));
     }
 
     private void Button_Clicked(object sender, EventArgs e)

@@ -17,41 +17,41 @@ public partial class MainPage : ContentPage
     private async void BTNUni_Clicked(object sender, EventArgs e)
     {
         classification = "uni";
-        await Shell.Current.GoToAsync("advertisments");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNMiddleSch_Clicked(object sender, EventArgs e)
     {
         classification = "middleSch";
-        await Shell.Current.GoToAsync("advertisments");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNPrimarySch_Clicked(object sender, EventArgs e)
     {
         classification = "primarySch";
-        await Shell.Current.GoToAsync("advertisments");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNBooks_Clicked(object sender, EventArgs e)
     {
         classification = "books";
-        await Shell.Current.GoToAsync("advertisments");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNStationeries_Clicked(object sender, EventArgs e)
     {
         classification = "stationeries";
-        await Shell.Current.GoToAsync("advertisments");
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNTools_Clicked(object sender, EventArgs e)
     {
-        classification = "tools";       
-        await Shell.Current.GoToAsync("advertisments");
+        classification = "tools";
+        await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
     private async void BTNSearch_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("searchDetails");
+        await Shell.Current.GoToAsync(nameof(SearchPage));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
+using MobilApp_Szakdolgozat.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +24,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getAllPictures();
             detailsCommand = new Command(async () => {
                 if (selectedPicture == null) return;
-                await Shell.Current.GoToAsync("//profileDetails",
+                await Shell.Current.GoToAsync(nameof(ProfilePage),
                     new Dictionary<string, object> { { "source",selectedPicture } });
                 
                 OnPropertyChanged(nameof(selectedPicture));

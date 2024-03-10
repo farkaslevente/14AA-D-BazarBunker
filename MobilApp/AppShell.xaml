@@ -12,7 +12,7 @@
         Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <!--Secure Storage osztály, a telefon tárhelyére teszi el a dolgokat-->
 
-    <TabBar x:Name="Main_TabBar" IsEnabled="True">
+    <TabBar x:Name="Main_TabBar">
         <ShellContent     
                 Title="Bejelentkezés"
                 x:Name="TBILogin"
@@ -27,7 +27,7 @@
                 Icon="search.svg"         
                 ContentTemplate="{DataTemplate views:MainPage}"/>
     </TabBar>
-    <TabBar x:Name="Proba_Tabbar" IsEnabled="False">
+    <TabBar x:Name="Proba_Tabbar">
         <ShellContent     
         Title="Profil"
         x:Name="TBIProfileP"
