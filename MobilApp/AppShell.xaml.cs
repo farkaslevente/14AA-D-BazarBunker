@@ -4,17 +4,21 @@ using MobilApp_Szakdolgozat.ViewModels;
 namespace MobilApp_Szakdolgozat
 {
     //lehet jól jön: https://stackoverflow.com/questions/77086642/how-to-update-the-tab-bar-in-net-maui
+    //               https://dev.to/dotnet/hide-shell-flyout-items-and-tabs-in-xamarin-forms-1agi
     public partial class AppShell : Shell
     {
         public bool LoginVisible { get; set; }
         public bool LoggedInVisible { get; set; }
         public AppShell()
-        {            
+        {
+            
             InitializeComponent();
-            UpdateShellContentVisibility();
+            Proba_Tabbar.IsEnabled = false;
+            Proba_Tabbar.IsVisible = false;
+            //UpdateShellContentVisibility();
             ShellViewModel shellViewModel = new ShellViewModel();
             //shellViewModel.VisibilityLP();
-            //this.BindingContext  = shellViewModel;            
+            this.BindingContext  = shellViewModel;            
             Init();
             //Routing.RegisterRoute("loginDetails", typeof(LoginPage));
             //Routing.RegisterRoute("registerDetails", typeof(RegisterPage));
@@ -41,23 +45,31 @@ namespace MobilApp_Szakdolgozat
 
         }
 
-        public async void UpdateShellContentVisibility()
+        public void UpdateShellContentVisibility()
         {
             //Main_TabBar.Items.Clear();            
+            
             string LoggedIn = SecureStorage.GetAsync("userId").Result;
             if (LoggedIn != null)
-            {                
-                Main_TabBar.IsEnabled = false;
-                Main_TabBar.IsVisible = false;
-                Proba_Tabbar.IsVisible = true;
-                Proba_Tabbar.IsEnabled = true;
+            {
+                //Main_TabBar.IsEnabled = false;
+                //Main_TabBar.IsVisible = false;
+                //Proba_Tabbar.IsVisible = true;
+                //Proba_Tabbar.IsEnabled = true;
+                //Main_TabBar.Items.Add(new ShellContent()
+                //{
+                //    Title = "Profil",                    
+                //    Icon = "profile.svg",
+                //    ContentTemplate = new DataTemplate(() => new ProfilePage()),
+                //});
             }
             else
-            {                
-                Main_TabBar.IsEnabled = true;
-                Main_TabBar.IsVisible = true;
-                Proba_Tabbar.IsVisible = false;
-                Proba_Tabbar.IsEnabled = false;
+            {
+                //Main_TabBar.IsEnabled = true;
+                //Main_TabBar.IsVisible = true;
+                //Proba_Tabbar.IsVisible = false;
+                //Proba_Tabbar.IsEnabled = false;
+                
             }
             //OnPropertyChanged(nameof(LoginVisible));
             //OnPropertyChanged(nameof(LoggedInVisible));
@@ -70,7 +82,7 @@ namespace MobilApp_Szakdolgozat
 
     private void Init()
         {
-           Main_TabBar.CurrentItem = MainSearch;
+           //Main_TabBar.CurrentItem = MainSearch;
            Proba_Tabbar.CurrentItem = MainSearchP;
         }
     }

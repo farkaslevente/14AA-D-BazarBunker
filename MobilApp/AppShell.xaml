@@ -12,7 +12,7 @@
         Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <!--Secure Storage osztály, a telefon tárhelyére teszi el a dolgokat-->
 
-    <TabBar x:Name="Main_TabBar">
+    <!--<TabBar x:Name="Main_TabBar">
         <ShellContent     
                 Title="Bejelentkezés"
                 x:Name="TBILogin"
@@ -26,33 +26,57 @@
                 x:Name="MainSearch"
                 Icon="search.svg"         
                 ContentTemplate="{DataTemplate views:MainPage}"/>
-    </TabBar>
+    </TabBar>-->
     <TabBar x:Name="Proba_Tabbar">
-        <ShellContent     
-        Title="Profil"
-        x:Name="TBIProfileP"
+        <Tab Title="Bejelentkezés" Icon="profile.svg" IsVisible="{Binding LoginVisible}">
+            <ShellContent     
+        Title="Bejelentkezés"
+        x:Name="TBILogin"
         Icon="profile.svg"
-        ContentTemplate="{DataTemplate views:ProfilePage}"
-        IsVisible="{Binding LoggedInVisible}"/>
-
-        <ShellContent            
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        IsVisible="{Binding LoginVisible}"
+        />
+        </Tab>
+        <Tab Title="Keresés" Icon="search.svg" IsVisible="{Binding LoginVisible}">
+            <ShellContent       
         Title="Keresés" 
-        x:Name="MainSearchP"
+        x:Name="MainSearch"
         Icon="search.svg"         
         ContentTemplate="{DataTemplate views:MainPage}"/>
+        </Tab>
+        <Tab Title="Profil" Icon="profile.svg" IsVisible="{Binding LoggedInVisible}">
+            <ShellContent     
+            Title="Profil"
+            x:Name="TBIProfileP"
+            Icon="profile.svg"
+            ContentTemplate="{DataTemplate views:ProfilePage}"
+            IsVisible="{Binding LoggedInVisible}"/>
+        </Tab>
 
-        <ShellContent
-        Title="Üzenetek"   
-        Icon="messages.svg"
-        x:Name="TBIMessagesP"
-        ContentTemplate="{DataTemplate views:MessagesPage}"
-        IsVisible="{Binding LoggedInVisible}"/>
-        <ShellContent
+        <Tab Icon="search.svg" Title="Keresés" IsVisible="{Binding LoggedInVisible}">
+            <ShellContent            
+            Title="Keresés" 
+            x:Name="MainSearchP"
+            Icon="search.svg"         
+            ContentTemplate="{DataTemplate views:MainPage}"/>  
+        </Tab>
+        <Tab Title="Üzenetek" Icon="messages.svg" IsVisible="{Binding LoggedInVisible}">
+            <ShellContent
+            Title="Üzenetek"   
+            Icon="messages.svg"
+            x:Name="TBIMessagesP"
+            ContentTemplate="{DataTemplate views:MessagesPage}"
+            IsVisible="{Binding LoggedInVisible}"/>
+        </Tab>
+
+        <Tab Title="Teszt" Icon="test.svg" IsVisible="{Binding LoggedInVisible}">
+                    <ShellContent
         Title="Teszt"
         x:Name="testTabP"
         Icon="test.svg"
         ContentTemplate="{DataTemplate views:NewPage1}"         
         IsVisible="{Binding LoggedInVisible}"/>
+        </Tab>
 
     </TabBar>
 

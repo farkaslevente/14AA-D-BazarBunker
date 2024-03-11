@@ -5,6 +5,7 @@
              x:Class="MobilApp_Szakdolgozat.Views.MainPage"            
              Title=""
              Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              >
 
     <!--SVG catalouge:
@@ -49,8 +50,16 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
     </ContentPage.ToolbarItems>
-    <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*"
+    <Grid RowDefinitions="102*,2*,20*,2*,20*,100*,20*,100*,20*,100*,20*,140*,26*,40"
           ColumnDefinitions="2*,4*,*,4*,*,4*,2*">
+
+        <Grid Grid.Row="13" Grid.ColumnSpan="7"
+              ColumnDefinitions="*,*,*,*" Margin="0,0,0,10">
+            <ImageButton x:Name="BTNProba1" Source="profile.svg" Clicked="BTNProba1_Clicked" Grid.Column="0" IsVisible="true"/>
+            <ImageButton x:Name="BTNProba2" Source="search.svg" Clicked="BTNProba1_Clicked" Grid.Column="1"/>
+            <ImageButton x:Name="BTNProba3" Source="messages.svg" Clicked="BTNProba1_Clicked" Grid.Column="2"/>
+            <ImageButton x:Name="BTNProba4" Source="test.svg" Clicked="BTNProba1_Clicked" Grid.Column="3"/>
+        </Grid>
 
         <Rectangle Grid.ColumnSpan="7" BackgroundColor="Gray"/>
         <Grid Grid.RowSpan="2" 
