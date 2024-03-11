@@ -43,6 +43,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
     {
         private bool _loginVisible;
         private bool _loggedInVisible;
+        private bool _loggedInAdmin;
 
         public bool LoginVisible
         {
@@ -70,6 +71,19 @@ namespace MobilApp_Szakdolgozat.ViewModels
             }
         }
 
+        public bool LoggedInAdmin
+        {
+            get => _loggedInAdmin;
+            set
+            {
+                if (_loggedInAdmin != value)
+                {
+                    _loggedInAdmin = value;
+                    OnPropertyChanged(nameof(LoggedInAdmin));
+                }
+            }
+        }
+
         public ShellViewModel()
         {
             VisibilityLP();
@@ -84,11 +98,16 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         public void VisibilityLP()
         {
-            string LoggedIn = SecureStorage.GetAsync("userId").Result;
+            string LoggedIn = SecureStorage.GetAsync("userEmail").Result;
             if (LoggedIn != null)
             {
                 LoginVisible = false;
                 LoggedInVisible = true;
+                if (LoggedIn.Contains("admin.com"))
+                {
+                    LoggedInAdmin = true;
+                }
+                LoggedInAdmin = false;
             }
             else
             {

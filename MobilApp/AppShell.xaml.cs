@@ -12,9 +12,7 @@ namespace MobilApp_Szakdolgozat
         public AppShell()
         {
             
-            InitializeComponent();
-            Proba_Tabbar.IsEnabled = false;
-            Proba_Tabbar.IsVisible = false;
+            InitializeComponent();            
             //UpdateShellContentVisibility();
             ShellViewModel shellViewModel = new ShellViewModel();
             //shellViewModel.VisibilityLP();
@@ -37,8 +35,8 @@ namespace MobilApp_Szakdolgozat
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute("ppCatalog", typeof(PPCatalogPage));
             Routing.RegisterRoute(nameof(AdsPage), typeof(AdsPage));
-            Routing.RegisterRoute("messages", typeof(MessagesPage));
-            Routing.RegisterRoute("conversations", typeof(ConversationsPage));
+            Routing.RegisterRoute(nameof(MessagesPage), typeof(MessagesPage));
+            Routing.RegisterRoute(nameof(ConversationsPage), typeof(ConversationsPage));
             Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
             Routing.RegisterRoute(nameof(NewPage1), typeof(NewPage1));
 
@@ -83,7 +81,7 @@ namespace MobilApp_Szakdolgozat
     private void Init()
         {
            //Main_TabBar.CurrentItem = MainSearch;
-           Proba_Tabbar.CurrentItem = MainSearchP;
+           //Proba_Tabbar.CurrentItem = MainSearchP;
         }
     }
 }

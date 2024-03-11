@@ -53,10 +53,35 @@ public partial class MainPage : ContentPage
     private async void BTNSearch_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(SearchPage));
+    }    
+
+    private async void BTNProfile_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(ProfilePage));
     }
 
-    private async void BTNProba1_Clicked(object sender, EventArgs e)
+    private async void BTNLogin_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(LoginPage));
+    }
+
+    private async void BTNMyAds_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(AdsPage));
+    }
+
+    private async void BTNMessages_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(MessagesPage));
+    }
+
+    private async void BTNAdmin_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(NewPage1));
+    }
+
+    private async void BTNSearchPage_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SearchPage));
     }
 }

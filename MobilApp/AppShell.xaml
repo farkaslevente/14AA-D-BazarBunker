@@ -8,6 +8,9 @@
     xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
     Shell.FlyoutBehavior="Disabled">
 
+    <ShellContent       
+         Title="Keresés"                 
+         ContentTemplate="{DataTemplate views:MainPage}"/>
     <!--értesítési szám:https://www.youtube.com/watch?v=XSg_Fa4ThRM
         Routing: https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation?view=net-maui-8.0-->
     <!--Secure Storage osztály, a telefon tárhelyére teszi el a dolgokat-->
@@ -27,7 +30,10 @@
                 Icon="search.svg"         
                 ContentTemplate="{DataTemplate views:MainPage}"/>
     </TabBar>-->
-    <TabBar x:Name="Proba_Tabbar">
+    
+    <!--Új NavBar-->
+    
+    <!--<TabBar x:Name="Proba_Tabbar">
         <Tab Title="Bejelentkezés" Icon="profile.svg" IsVisible="{Binding LoginVisible}">
             <ShellContent     
         Title="Bejelentkezés"
@@ -78,7 +84,7 @@
         IsVisible="{Binding LoggedInVisible}"/>
         </Tab>
 
-    </TabBar>
+    </TabBar>-->
 
     <!--<ShellContent            
          Title="Keresés" 
