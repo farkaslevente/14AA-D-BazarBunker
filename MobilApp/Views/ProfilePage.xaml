@@ -94,6 +94,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>-->
+            <Button Grid.Column="1" Grid.Row="7" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
 
         </Grid>
 

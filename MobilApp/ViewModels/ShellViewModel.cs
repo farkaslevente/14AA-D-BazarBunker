@@ -103,11 +103,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 LoginVisible = false;
                 LoggedInVisible = true;
-                if (LoggedIn.Contains("admin.com"))
+                LoggedInAdmin = false;
+                if (LoggedIn.Contains("admin"))
                 {
                     LoggedInAdmin = true;
                 }
-                LoggedInAdmin = false;
+                
             }
             else
             {

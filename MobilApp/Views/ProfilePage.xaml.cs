@@ -49,5 +49,15 @@ public partial class ProfilePage : ContentPage
         await Shell.Current.GoToAsync("ppCatalog");
     }
 
-   
+    private void BTNLogout_Clicked(object sender, EventArgs e)
+    {
+        ShellViewModel ShellInstance = new ShellViewModel();
+        DisplayAlert("Kijelentkezés", "Ön kijelentkezett", "Rendben");
+        SecureStorage.Remove("userName");
+        SecureStorage.Remove("userEmail");
+        SecureStorage.Remove("userImage");
+        SecureStorage.Remove("userId");
+        ShellInstance.VisibilityLP();
+        Shell.Current.GoToAsync(nameof(MainPage));
+    }
 }
