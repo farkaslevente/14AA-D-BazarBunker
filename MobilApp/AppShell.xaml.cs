@@ -3,6 +3,7 @@ using MobilApp_Szakdolgozat.ViewModels;
 
 namespace MobilApp_Szakdolgozat
 {
+    //lehet jól jön: https://stackoverflow.com/questions/77086642/how-to-update-the-tab-bar-in-net-maui
     public partial class AppShell : Shell
     {
         public bool LoginVisible { get; set; }
