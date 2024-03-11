@@ -84,7 +84,7 @@ const dbFunctions = {
         try {
             const {name, description, category, price, countyId, settlement, ownerId} = req.body
             const d = new Date()
-            await query(`INSERT INTO hirdetesek (id, nev, leiras,	kategoria, ar, varmegyeId, telepules, tulajId, datum) VALUES 
+            await query(`INSERT INTO hirdetesek (id, nev, leiras, kategoria, ar, varmegyeId, telepules, tulajId, datum) VALUES 
             (null, '${name}', '${description}', '${category}', '${price}', '${countyId}', '${settlement}', '${ownerId}', '${d}')`)
             res.status(200).json({message: "Ad successfully uploaded!"})
         } catch (err) {

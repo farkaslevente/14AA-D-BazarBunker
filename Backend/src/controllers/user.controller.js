@@ -30,6 +30,22 @@ const userController = {
             console.error("Error deleting!", err.message);
         }
     },
+
+    changePicture: async function (req,res) {
+        console.log("Incoming PP change...", req.body)
+        try {
+            const {id, pPic} = req.body
+            const rows = await dbFunctions.execQueryWithReturn(
+                `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
+            user = rows[0];
+            await query(`
+            UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${pPic}', jelszo= '${user.jelszo}' WHERE id=${id}`)
+            res.status(200).json({message: "Updating profile was successful"})
+        } catch (err) {
+            console.error("Error changing pic!", err.message);
+            res.status(500).json({error: "Internal server error!"})
+        }
+    }
 }
 
 module.exports = {

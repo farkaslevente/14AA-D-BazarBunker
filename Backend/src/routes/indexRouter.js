@@ -23,6 +23,14 @@ router.get("/pictures", [verifyToken], async function(_req, res, next) {
     }
 });
 
+router.post("/pictures", [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.changePicture(req,res))
+    } catch {
+        console.error("Error while posting pictures!", err.message);
+    }
+})
+
 router.get("/users", [verifyToken], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
@@ -86,7 +94,6 @@ router.get("/ads", [verifyToken], async function(_req, res) {
         res.json(await dbFunctions.getAds());
     } catch (err) {
         console.error("Error while getting ads!", err.message);
-        next(err);
     }
 });
 
