@@ -1,3 +1,5 @@
+using MobilApp_Szakdolgozat.ViewModels;
+
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class MainPage : ContentPage
@@ -5,7 +7,9 @@ public partial class MainPage : ContentPage
     public string classification { get; set; }
 	public MainPage()
 	{
-		InitializeComponent();
+        ShellViewModel shellViewModel = new ShellViewModel();
+        shellViewModel.VisibilityLP();
+        InitializeComponent();        
         classification = "";
         
     }

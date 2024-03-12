@@ -42,5 +42,6 @@ public partial class NewPage1 : ContentPage
         SecureStorage.Remove("userImage");
         SecureStorage.Remove("userId");
         ShellInstance.VisibilityLP();
+        Shell.Current.GoToAsync(nameof(MainPage));
     }
 }

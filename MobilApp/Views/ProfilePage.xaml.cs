@@ -46,7 +46,7 @@ public partial class ProfilePage : ContentPage
 
     private async void ProfilePicChangeBTN_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ppCatalog");
+        await Shell.Current.GoToAsync(nameof(PPCatalogPage));
     }
 
     private void BTNLogout_Clicked(object sender, EventArgs e)
@@ -56,6 +56,7 @@ public partial class ProfilePage : ContentPage
         SecureStorage.Remove("userName");
         SecureStorage.Remove("userEmail");
         SecureStorage.Remove("userImage");
+        SecureStorage.Remove("userLocation");
         SecureStorage.Remove("userId");
         ShellInstance.VisibilityLP();
         Shell.Current.GoToAsync(nameof(MainPage));

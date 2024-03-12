@@ -33,7 +33,7 @@ namespace MobilApp_Szakdolgozat
             Routing.RegisterRoute(nameof(ForgottenPwdPage), typeof(ForgottenPwdPage));
             Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
-            Routing.RegisterRoute("ppCatalog", typeof(PPCatalogPage));
+            Routing.RegisterRoute(nameof(PPCatalogPage), typeof(PPCatalogPage));
             Routing.RegisterRoute(nameof(AdsPage), typeof(AdsPage));
             Routing.RegisterRoute(nameof(MessagesPage), typeof(MessagesPage));
             Routing.RegisterRoute(nameof(ConversationsPage), typeof(ConversationsPage));

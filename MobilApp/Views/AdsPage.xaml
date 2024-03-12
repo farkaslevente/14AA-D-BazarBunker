@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.AdsPage"
              Title="AdsPage">
-    <CollectionView ItemsSource="{Binding}">
+    <ContentPage.BindingContext>
+        <vm:AdsViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView ItemsSource="{Binding advertisements}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame>
                     <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="1*,3*">
-                        <Image Source="{Binding}" 
+                        <Image Source="{Binding }" 
                             Grid.RowSpan="3" 
                             Grid.Column="0"/>
 
                         <Label x:Name="LBLAdName" 
-                            Text="{Binding}" 
+                            Text="{Binding name}" 
                             Grid.Row="0" 
                             Grid.Column="1"
                             FontAttributes="Bold"/>
 
                         <Label x:Name="LBLAdLoc" 
-                            Text="{Binding}" 
+                            Text="{Binding settlement}" 
                             Grid.Row="1" 
                             Grid.Column="1"/>
 
                         <Label x:Name="LBLAdPrice" 
-                            Text="{Binding}" 
+                            Text="{Binding price}" 
                             Grid.Row="2" 
                             Grid.Column="1"/>
                     </Grid>

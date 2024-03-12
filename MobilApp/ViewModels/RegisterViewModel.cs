@@ -33,28 +33,41 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             public RegisterViewModel()
             {          
-                registerCommand = new Command(async () => {                    
-                    if (regPassword == regConfirmPwd)
+                registerCommand = new Command(async () => {    
+                    if(regName != null)
                     {
-                        error = "";
-                        regModel = new RegisterModel
+                        if (regEmail != null && regEmail.Contains('@'))
                         {
-                            name = regName,
-                            email = regEmail,
-                            password = regPassword,
-                            location = regLocation
-                        };
-                        errorMessage = await DataService.register(regModel);
-                        if (errorMessage == null)
+                            if (regPassword == regConfirmPwd)
+                            {
+                                error = "";
+                                regModel = new RegisterModel
+                                {
+                                    name = regName,
+                                    email = regEmail,
+                                    password = regPassword,
+                                    location = regLocation
+                                };
+                                errorMessage = await DataService.register(regModel);
+                                if (errorMessage.email == null)
+                                {
+                                    await Shell.Current.GoToAsync(nameof(MainPage));
+                                }
+                            }
+                            else
+                            {
+                                error = "Nem egyeznek jelszavai!";
+                            }
+                        }
+                        else
                         {
-                            await Shell.Current.GoToAsync("//"+nameof(ProfilePage));
+                            error = "Adjon meg érvényes email-címet!";
                         }
                     }
                     else
                     {
-                        error = "Nem egyeznek jelszavai!";                           
-                    }
-                    
+                        error = "Adjon meg egy felhasználónevet!";
+                    }                                        
                 });
             }
     }

@@ -10,6 +10,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using MobilApp_Szakdolgozat.ViewModels;
+using System.Net.Http.Headers;
 
 namespace MobilApp_Szakdolgozat.Services
 {
@@ -37,7 +38,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = urlHome;
+        static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -54,12 +55,51 @@ namespace MobilApp_Szakdolgozat.Services
         public static async Task<IEnumerable<PictureCatalogModel>> getAllPictures() 
         {
             using (var client = new HttpClient()) 
-            { 
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
                 var uri = "/pictures";
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<PictureCatalogModel>>(result);
+            }
+        }
+        
+        public static async Task<IEnumerable<AdsModel>> getAds()
+        {
+            using(var client = new HttpClient()) 
+            {
+                client.BaseAddress = new Uri(url);
+                var uri = "/ads";
+                var result = await client.GetStringAsync(uri);
+
+                return JsonConvert.DeserializeObject<List<AdsModel>>(result);
+            }
+        }
+
+        public static async Task<IEnumerable<AdsModel>> getCounties()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                var uri = "/counties";
+                var result = await client.GetStringAsync(uri);
+
+                return JsonConvert.DeserializeObject<List<AdsModel>>(result);
+            }
+        }
+
+        public static async Task<IEnumerable<AdsModel>> getSettlements()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                var uri = "/settlements";
+                var result = await client.GetStringAsync(uri);
+
+                return JsonConvert.DeserializeObject<List<AdsModel>>(result);
             }
         }
 
@@ -116,7 +156,7 @@ namespace MobilApp_Szakdolgozat.Services
                 string[] fullJWT = result.Split(':');
                 var fullResult = fullJWT[1].Trim('"');
                 string[] trimmedJWT = fullResult.Split('"');
-                var trimmedResult = trimmedJWT[0];
+                var trimmedResult = trimmedJWT[0]; //<-- ez kell tokenhez                
                 string[] payload = trimmedResult.Split('.');
                 var finalPayload = payload[1];
 
@@ -132,14 +172,39 @@ namespace MobilApp_Szakdolgozat.Services
                 //const token = createToken({ tokenPayload}, '1d')                
                 string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
                 string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");              
-                
-                await SecureStorage.SetAsync("userName", finalResult[0].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userImage", (finalResult[2].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
-                await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
-                AppShell appShellInstance = new AppShell();
-                appShellInstance.UpdateShellContentVisibility();
+                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
+                //await SecureStorage.SetAsync("userImage", (finalResult[4].Split(':')[1] + ":" + finalResult[2].Split(':')[2]).Trim('"'));
+
+                string userImage = null;
+
+                foreach (string item in finalResult)
+                {
+                    string[] keyValue = item.Split(':');
+                    if (keyValue.Length >= 2)
+                    {
+                        string key = keyValue[0].Trim('"');
+                        string value = string.Join(":", keyValue.Skip(1)).Trim('"');
+
+                        if (key == "pPic")
+                        {
+                            userImage = value;
+                            break; // Once you find pPic, exit the loop
+                        }
+                    }
+                }
+
+                // Check if pPic was found and set it using SecureStorage
+                if (userImage != null)
+                {
+                    await SecureStorage.SetAsync("userImage", userImage);
+                }
+                await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userLocation", finalResult[3].Split(':')[1].Trim('"'));
+                //await SecureStorage.SetAsync("userImage", (finalResult[4].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
+                await SecureStorage.SetAsync("userToken", trimmedResult);
+
                 return null;
                 
             }
