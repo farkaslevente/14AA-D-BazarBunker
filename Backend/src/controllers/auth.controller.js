@@ -1,5 +1,5 @@
 const { dbFunctions } = require('../database/dbFunc')
-const { verifyToken, createToken } = require('../middlewares/jwtMiddleware')
+const { verifyToken, accessToken, refreshToken } = require('../middlewares/jwtMiddleware')
 const bcrypt = require('bcryptjs')
 
 const authController = {
@@ -42,6 +42,8 @@ const authController = {
         console.log("Incoming login:", req.body)
         try {
         const {email, password} = req.body;
+        if (!email || !password) return res.status(400).json({ message: 'Username and password are required.' });
+
 
         const rows = await dbFunctions.execQueryWithReturn(
         `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
@@ -59,22 +61,21 @@ const authController = {
             }
             else {
                 const payload = {
+                    id: user.id,
                     name: user.nev,
                     email: user.email,
                     location: user.hely,
                     pPic: user.pPic
                 }
-
-                const token = createToken({payload}, '1d')
+                const _accessToken = accessToken({payload})
+                const _refreshToken = refreshToken({payload})
 
                 const d = new Date()
                 dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
-                (null, '${token}', '${d}')`)
+                (null, '${_refreshToken}', '${d}')`)
 
-                req.session.token = token;
-                res.status(200).json({
-                    token
-                })
+                req.session.token = _refreshToken;
+                res.status(200).json({_accessToken})
             }
         }
         else {
@@ -87,12 +88,17 @@ const authController = {
     },
     signout: async function (req, res) {
         try {
-            req.session = null;
-            return res.status(200).send({
-              message: "You've been signed out!"
-            });
+            const cookies = req.cookies
+            if (!cookies?.jwt) return res.status(204).json({message: "No content"});
+            const refreshToken = cookies.jwt;
+
+            res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+            res.status(204).json({message: "You've been signed out!"});
+
+
+            
           } catch (err) {
-            this.next(err);
+            console.error("Error logging in!", err.message);
           }
     },
 

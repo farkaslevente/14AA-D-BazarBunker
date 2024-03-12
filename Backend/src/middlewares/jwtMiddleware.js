@@ -21,12 +21,20 @@ verifyToken = (req, res, next) => {
               });
   };
 
- function createToken (payload, expireDate) {
+ function accessToken (payload) {
     const token = jwt.sign(
         payload,
         secret,
-        { expiresIn: expireDate});
+        { expiresIn: '10s'});
     return token;
  } 
 
-module.exports = {verifyToken, createToken}
+ function refreshToken (payload) {
+  const token = jwt.sign(
+      payload,
+      secret,
+      { expiresIn: '1d'});
+  return token;
+} 
+
+module.exports = {verifyToken, accessToken, refreshToken}

@@ -15,6 +15,18 @@ const dbFunctions = {
         return res
     },
 
+    getSettlements: async function(res) {
+        res = await query(`
+        SELECT * FROM telepulesek`)
+        return res
+    },
+
+    getCounties: async function(res) {
+        res = await query(`
+        SELECT * FROM varmegyek`)
+        return res
+    },
+
     execQuerystring: async function (req) {
         console.log(req)
         try {
@@ -91,7 +103,8 @@ const dbFunctions = {
             console.error("Error getting!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
-    }
+    },
+
 }
 module.exports = {
     dbFunctions

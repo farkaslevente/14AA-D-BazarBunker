@@ -29,7 +29,25 @@ router.post("/pictures", [verifyToken], async function(req,res) {
     } catch {
         console.error("Error while posting pictures!", err.message);
     }
-})
+});
+
+router.get("/settlements", [verifyToken], async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getSettlements());
+    } catch (err) {
+        console.error("Error while getting settlements!", err.message);
+        next(err);
+    }
+});
+
+router.get("/counties", [verifyToken], async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getCounties());
+    } catch (err) {
+        console.error("Error while getting counties!", err.message);
+        next(err);
+    }
+});
 
 router.get("/users", [verifyToken], async function(_req, res, next) {
     try {

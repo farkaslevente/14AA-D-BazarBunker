@@ -18,7 +18,7 @@ morgan.format(
 );
 app.use(morgan('dev'))
 app.use(cookieSession({
-  name: 'bazarbunker_session',
+  name: 'bazarbunker',
   keys: cookie_keys,
   httpOnly: true,
   sameSite: 'strict',
