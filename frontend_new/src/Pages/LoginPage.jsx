@@ -11,11 +11,12 @@ export const LoginPage = () => {
                 <div className="login-fields">
                     <label for="email">Email</label>
                     <input type="email" placeholder='Az Ön email címe'/>
+
                     <label for="password">Jelszó</label>
                     <input type="password" placeholder='Jelszó'/>
                 </div>
                 <div>
-                    <button onClick={() => navigate('/hirdetesek')}>Bejelentkezés</button>
+                    <button onClick={() => navigate('/')}>Bejelentkezés</button>
                     <p className="login-signup">Még nincs fiókja? <a style={{ textDecoration: 'none'}} href='/regisztracio'>Hozzon létre egyet!</a></p>
                 </div>
             </div>

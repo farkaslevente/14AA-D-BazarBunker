@@ -15,29 +15,28 @@ import { OwnAdsPage } from './Pages/OwnAdsPage';
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Navbar/>
+    <BrowserRouter>
+      <Navbar />
 
-        <Routes>
-          <Route path='/' element={<WelcomePage/>}/>
-          <Route path='/bejelentkezes' element={<LoginPage/>}/>
-          <Route path='/regisztracio' element={<RegisterPage/>}/>
-          <Route path='/adatregisztracio' element={<DataRegisterPage/>}/>
-          <Route path='/hirdetesek' element={<AllAdsPage/>}>
-            <Route path=':hirdetesId' element={<AdDetailsPage/>}/>
-          </Route>
-          <Route path='/hirdetes' element={<AdDetailsPage/>}/>
+      <Routes>
+        <Route path='/' element={<WelcomePage/>} />
+        <Route path='/bejelentkezes' element={<LoginPage />} />
+        <Route path='/regisztracio' element={<RegisterPage />} />
 
-          <Route path='/ujhirdetes' element={<NewAdPage/>}/>
-          <Route path='/sajathirdetesek' element={<OwnAdsPage/>}/>
-          <Route path='/profil' element={<ProfilePage/>}/>
-          <Route path='/card' element={<Card/>}/>
-        </Routes>
+        <Route path='/adatregisztracio' element={<DataRegisterPage />} />
 
-        <Footer/>
-      </BrowserRouter>
-    </div>
+        <Route path='/hirdetesek' element={<AllAdsPage />}>
+          <Route path=':hirdetesId' element={<AdDetailsPage />} />
+        </Route>
+        <Route path='/hirdetes' element={<AdDetailsPage />} />
+
+        <Route path='/ujhirdetes' element={<NewAdPage />} />
+        <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
+        <Route path='/profil' element={<ProfilePage />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
   );
 }
 
