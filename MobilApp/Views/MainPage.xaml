@@ -65,6 +65,7 @@
             <ImageButton x:Name="BTNSearchPage" Source="search.svg" Clicked="BTNSearchPage_Clicked" Grid.Column="2"/>
             <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
+            <ImageButton x:Name="BTNFav" Source="favorites.svg" Clicked="BTNFav_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
         </Grid>
 
         <Rectangle Grid.ColumnSpan="7" BackgroundColor="Gray"/>

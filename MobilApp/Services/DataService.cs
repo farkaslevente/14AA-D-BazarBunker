@@ -38,7 +38,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url202;
+        static string url = urlHome;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -160,20 +160,10 @@ namespace MobilApp_Szakdolgozat.Services
                 string[] payload = trimmedResult.Split('.');
                 var finalPayload = payload[1];
 
-                var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
-                //Ha már megoldódott a backend akkor vissza lehet írni
-                //    const tokenPayload = {
-                //        "email": user.email,
-                //        "name": user.nev,
-                //        "location": user.hely,
-                //        "pPic": user.pPic
-                //    }
-
-                //const token = createToken({ tokenPayload}, '1d')                
+                var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));                              
                 string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
                 string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
-                //await SecureStorage.SetAsync("userImage", (finalResult[4].Split(':')[1] + ":" + finalResult[2].Split(':')[2]).Trim('"'));
+                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");                
 
                 string userImage = null;
 
@@ -188,12 +178,10 @@ namespace MobilApp_Szakdolgozat.Services
                         if (key == "pPic")
                         {
                             userImage = value;
-                            break; // Once you find pPic, exit the loop
+                            break;
                         }
                     }
-                }
-
-                // Check if pPic was found and set it using SecureStorage
+                }                
                 if (userImage != null)
                 {
                     await SecureStorage.SetAsync("userImage", userImage);
@@ -201,8 +189,7 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userLocation", finalResult[3].Split(':')[1].Trim('"'));
-                //await SecureStorage.SetAsync("userImage", (finalResult[4].Split(':')[1] +":" +finalResult[2].Split(':')[2]).Trim('"'));
+                await SecureStorage.SetAsync("userLocation", finalResult[3].Split(':')[1].Trim('"'));               
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 
                 return null;

@@ -19,10 +19,5 @@ public partial class LoginPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(RegisterPage));
     }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        AppShell appShell = new AppShell();
-        appShell.UpdateShellContentVisibility();
-    }
+   
 }

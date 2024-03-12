@@ -85,32 +85,4 @@
         </Tab>
 
     </TabBar>-->
-
-    <!--<ShellContent            
-         Title="Keresés" 
-         x:Name="MainSearch"
-         Icon="search.svg"         
-         ContentTemplate="{DataTemplate views:MainPage}"/>
-    
-    <Shell.FlyoutHeader>
-        <HorizontalStackLayout Padding="10">
-        <Label Text="proba" IsVisible="{Binding LoggedInVisible}"/>
-        </HorizontalStackLayout>
-    </Shell.FlyoutHeader>
-    <Shell.FlyoutFooter>
-        <VerticalStackLayout>
-            <Button x:Name="BTNLogout"
-                    Text="Kijelentkezés" 
-                    Margin="10"
-                    Clicked="BTNLogout_Clicked"
-                    IsVisible="{Binding LoggedInVisible}"/>
-
-            <Button x:Name="BTNTest"
-                    Text="Test" 
-                    Margin="10"
-                    Clicked="BTNTest_Clicked"
-                    IsVisible="True"/>
-        </VerticalStackLayout>
-    </Shell.FlyoutFooter>-->
-
 </Shell>
