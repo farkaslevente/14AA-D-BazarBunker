@@ -3,30 +3,27 @@ const { secret } = require('../config/auth.config')
 
 verifyToken = (req, res, next) => {
 
-  const token = req.headers['authorization'];
-  if (!token || !token.startsWith('Bearer ')) {
-    return res.status(403).send({ message: "Invalid token or not a Bearer token" });
-  }
-  const tokenOnly = token.slice(7, token.length);
-  console.log(tokenOnly)
+  const reqToken = req.headers['authorization'];
 
-    if (!tokenOnly) {
+    if (!reqToken) {
       return res.status(403).send({ message: "Invalid token" });
+    } else if (!reqToken.startsWith('Bearer ')) {
+      return res.status(403).send({ message: "Not a Bearer token" });
     }
+
+    const token = reqToken.slice(7, reqToken.length);
   
-    jwt.verify(tokenOnly,
+    jwt.verify(token,
       secret,
       (err, decoded) => {
         if (err) {
-          // Handle the case when the token is invalid or expired
           if (err.name === 'TokenExpiredError') {
             return res.status(401).send({ message: "Token expired" });
           } else {
             return res.status(401).send({ message: "Unauthorized" });
           }
         }
-        req.userId = decoded.id;
-        next();
+        next()
       });
   };
 
