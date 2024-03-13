@@ -85,7 +85,10 @@
                         Margin="30,0"
                         Clicked="NameSaveBTN_Clicked"/>
             </Grid>
-            <Button Grid.Column="1" Grid.Row="7" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
+            <Grid Grid.RowSpan="9" Grid.Row="3" Grid.ColumnSpan="3" HeightRequest="320">
+                <Image Source="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"/>
+            </Grid>
+            <Button Grid.Column="1" Grid.Row="10" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
 
             <Grid Grid.Row="12" Grid.ColumnSpan="3"
       ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
@@ -95,7 +98,6 @@
                 <ImageButton x:Name="BTNSearchPage" Source="search.svg" Clicked="BTNSearchPage_Clicked" Grid.Column="2"/>
                 <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
                 <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
-                <ImageButton x:Name="BTNFav" Source="favorites.svg" Clicked="BTNFav_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
             </Grid>
 
         </Grid>

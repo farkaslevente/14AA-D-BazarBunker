@@ -186,10 +186,10 @@ namespace MobilApp_Szakdolgozat.Services
                 {
                     await SecureStorage.SetAsync("userImage", userImage);
                 }
-                await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userLocation", finalResult[3].Split(':')[1].Trim('"'));               
+                await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userName", finalResult[0].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
+                //await SecureStorage.SetAsync("userLocation", finalResult[].Split(':')[1].Trim('"'));               
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 
                 return null;

@@ -6,10 +6,10 @@ public partial class ProfilePage : ContentPage
 {
     bool Saved = false;    
 	public ProfilePage()
-	{
-        this.BindingContext = new ProfilePageViewModel();
+	{        
         this.BindingContext = new ShellViewModel();
-		InitializeComponent();
+        this.BindingContext = new ProfilePageViewModel();
+        InitializeComponent();
         NameChangeBTN.IsVisible = true;
         NameSaveBTN.IsVisible = false;
 

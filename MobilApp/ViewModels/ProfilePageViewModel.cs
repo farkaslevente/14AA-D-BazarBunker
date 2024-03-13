@@ -31,16 +31,24 @@ namespace MobilApp_Szakdolgozat.ViewModels
             string userName = await SecureStorage.GetAsync("userName");
             string userEmail = await SecureStorage.GetAsync("userEmail");
             string userImage = await SecureStorage.GetAsync("userImage");
-            string userId = await SecureStorage.GetAsync("userId");
-            profile = new ProfileModel
-            {
-                name = userName,
-                email = userEmail,
-                pPic = userImage,
-                id = int.Parse(userId),
-            };
+            string tempUserId = await SecureStorage.GetAsync("userId");
 
-            OnPropertyChanged(nameof(profile));      
+            int userId;
+            bool Success = int.TryParse(tempUserId, out userId);
+            if (Success)
+            {
+                profile = new ProfileModel
+                {
+                    name = userName,
+                    email = userEmail,
+                    pPic = userImage,
+                    id = userId
+                };
+                OnPropertyChanged(nameof(profile));
+            }
+            
+
+                 
         }
         public ICommand openUrlCommand =>
         new Command<string>(async (url) => await Launcher.OpenAsync(url));       
