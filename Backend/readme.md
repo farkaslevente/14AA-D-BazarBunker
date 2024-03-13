@@ -1,5 +1,2 @@
-## 1.0.0
-#### index.js created and simple database connection is possible now
-## 1.0.1 
-#### made the database more reliable, now you can use querys
-## 1.0.2
+# BAZARBUNKER BACKEND
+![lol](https://media.discordapp.net/attachments/1049777303250534474/1213107569304805457/image0.gif?ex=65f44576&is=65e1d076&hm=3c17f48916dd5b544cb3a59dbe6119b9662a61eafd783e33593ba3bd8977a415&)
