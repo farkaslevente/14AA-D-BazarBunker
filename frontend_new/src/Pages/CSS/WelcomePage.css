@@ -1,0 +1,15 @@
+.welcomepage {
+    text-align: center;
+    justify-content: center;
+    margin: 150px;
+}
+
+.title {
+    text-align: center;
+    font-size: 40px;
+}
+
+.description {
+    text-align: center;
+    font-size: larger;
+}

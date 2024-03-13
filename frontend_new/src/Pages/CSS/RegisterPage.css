@@ -1,0 +1,88 @@
+.registerpage {
+    width: 100%;
+    height: 90vh;
+    background: #fce3fe;
+    padding-top: 100px;
+}
+
+.register-container {
+    width: 580px;
+    height: 600px;
+    background: white;
+    margin: auto;
+    padding: 40px 60px;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+form {
+    background-color: white;
+    padding: 0px 60px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+button {
+    
+    width: 50%;
+    height: 70px;
+    color: white;
+    background: blue;
+    margin-top: 30px;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* .registerpage {
+    width: 100%;
+    height: 80vh;
+    background: #fce3fe;
+    padding-top: 100px;
+}
+
+.register-container {
+    width: 580px;
+    height: 600px;
+    background: white;
+    margin: auto;
+    padding: 40px 60px;
+}
+
+.register-container h1 {
+    margin: 20px 0px;
+}
+
+.register-fields {
+    display:  flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.register-fields input {
+    height: 70px;
+    width: 100%;
+    padding-left: 20px;
+    border: 1px solid black;
+    outline: none;
+    color: black;
+    font-size: 18px;
+}
+
+.register-container button {
+    width: 50%;
+    height: 70px;
+    color: white;
+    background: blue;
+    margin-top: 30px;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+} */

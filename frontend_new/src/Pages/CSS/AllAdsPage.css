@@ -1,0 +1,62 @@
+.alladspage {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+}
+
+.alladspage-title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+.alladspage-content {
+    text-align: center;
+    display: flex;
+    padding: auto;
+    justify-content: center;
+}
+
+.alladspage-filterbar {
+    justify-content: center;
+    display: flex;
+    gap: 15rem;
+    padding: 10px;
+    margin: 10px;
+}
+
+.filtercounty {
+    align-items: center;
+}
+
+.filtercounty label {
+    margin-right: 10px;
+}
+.filtercategory label {
+    margin-right: 10px;
+}
+
+.filterprice label {
+    margin-right: 10px;
+}
+
+select {
+    cursor: pointer;
+}
+
+.apply {
+    align-items: center;
+    display: flex;
+}
+
+.apply button {
+    max-height: fit-content;
+    font-size: 12px;
+    height: fit-content;
+    width: 200px;
+}

@@ -1,19 +1,46 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const { secret } = require('../config/auth.config')
 
-function verifyToken(req, res, next) {
-    const token = req.headers['authorization'];
+verifyToken = (req, res, next) => {
 
-    if (!token) {
-        return res.status(401).json({ error: 'Unauthorized' });
+  const reqToken = req.headers['authorization'];
+
+    if (!reqToken) {
+      return res.status(403).send({ message: "Invalid token" });
+    } else if (!reqToken.startsWith('Bearer ')) {
+      return res.status(403).send({ message: "Not a Bearer token" });
     }
 
-    jwt.verify(token, 'your_secret_key', (err, decoded) => {
+    const token = reqToken.slice(7, reqToken.length);
+  
+    jwt.verify(token,
+      secret,
+      (err, decoded) => {
         if (err) {
-            return res.status(403).json({ error: 'Invalid token' });
+          if (err.name === 'TokenExpiredError') {
+            return res.status(401).send({ message: "Token expired" });
+          } else {
+            return res.status(401).send({ message: "Unauthorized" });
+          }
         }
-        req.userId = decoded.userId;
-        next();
-    });
-}
+        next()
+      });
+  };
 
-module.exports = verifyToken;
+ function accessToken (payload) {
+    const token = jwt.sign(
+        payload,
+        secret,
+        { expiresIn: '1d'});
+    return token;
+ } 
+
+ function refreshToken (payload) {
+  const token = jwt.sign(
+      payload,
+      secret,
+      { expiresIn: '1d'});
+  return token;
+} 
+
+module.exports = {verifyToken, accessToken, refreshToken}
