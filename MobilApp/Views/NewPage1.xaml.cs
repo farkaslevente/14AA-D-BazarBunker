@@ -43,40 +43,5 @@ public partial class NewPage1 : ContentPage
         SecureStorage.Remove("userId");
         ShellInstance.VisibilityLP();
         Shell.Current.GoToAsync(nameof(MainPage));
-    }
-
-    private async void BTNProfile_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(ProfilePage));
-    }
-
-    private async void BTNLogin_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(LoginPage));
-    }
-
-    private async void BTNMyAds_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(AdsPage));
-    }
-
-    private async void BTNMessages_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(MessagesPage));
-    }
-
-    private async void BTNAdmin_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(NewPage1));
-    }
-
-    private async void BTNSearchPage_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(SearchPage));
-    }
-
-    private async void BTNFav_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(FavPage));
-    }
+    }   
 }

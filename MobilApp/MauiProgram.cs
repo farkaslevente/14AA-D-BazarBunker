@@ -2,7 +2,7 @@
 using FFImageLoading.Maui;
 using Microsoft.Extensions.Logging;
 using MobilApp_Szakdolgozat.Platforms.Android;
-
+//https://learn.microsoft.com/en-us/answers/questions/1306079/how-to-animate-the-image-in-splash-screen-in-maui
 namespace MobilApp_Szakdolgozat
 {
     public static class MauiProgram

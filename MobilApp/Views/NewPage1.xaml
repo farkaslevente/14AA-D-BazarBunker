@@ -8,60 +8,49 @@
         <vm:ShellViewModel/>
     </ContentPage.BindingContext>
     <Grid RowDefinitions="auto,40">
-    <VerticalStackLayout Grid.Row="0">
-        <Image Source="logo"
+        <VerticalStackLayout Grid.Row="0">
+            <Image Source="logo"
                VerticalOptions="Start"
                HorizontalOptions="CenterAndExpand"/>
-        <Button x:Name="LoginBTN" 
+            <Button x:Name="LoginBTN" 
                 Text="Login Page"
              BackgroundColor="Red" 
                 Margin="10"
                 VerticalOptions="End"
                 Clicked="LoginBTN_Clicked"/>
-        <Button x:Name="LogoutBTN" 
+            <Button x:Name="LogoutBTN" 
                  Text="Logout"
                  BackgroundColor="Red" 
                  Margin="10"
                  VerticalOptions="End"
                  Clicked="LogoutBTN_Clicked"/>
-        <Button x:Name="RegisterBTN" 
+            <Button x:Name="RegisterBTN" 
                 Text="Register Page"
                 BackgroundColor="Red" 
                 Margin="10"
                 VerticalOptions="End"
                 Clicked="RegisterBTN_Clicked"/>
-        <Button x:Name="BTNAdsPage" 
+            <Button x:Name="BTNAdsPage" 
         Text="Ads Page"
         BackgroundColor="Red" 
         Margin="10"
         VerticalOptions="End"
         Clicked="BTNAdsPage_Clicked"/>
-        
-        <Button x:Name="BTNForgotten" 
+
+            <Button x:Name="BTNForgotten" 
         Text="Forgotten Password Page"
         BackgroundColor="Red" 
         Margin="10"
         VerticalOptions="End"
         Clicked="BTNForgotten_Clicked"/>
-        
-        <Button x:Name="BTNSearch" 
+
+            <Button x:Name="BTNSearch" 
         Text="Search Page"
         BackgroundColor="Red" 
         Margin="10"
         VerticalOptions="End"
         Clicked="BTNSearch_Clicked"/>
 
-    </VerticalStackLayout>
-        <Grid Grid.Row="1"
-              ColumnDefinitions="*,*,*,*,*" 
-              Margin="0,0,0,10">
-            <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
-            <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNSearchPage" Source="search.svg" Clicked="BTNSearchPage_Clicked" Grid.Column="2"/>
-            <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
-            <ImageButton x:Name="BTNFav" Source="favorites.svg" Clicked="BTNFav_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
-        </Grid>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

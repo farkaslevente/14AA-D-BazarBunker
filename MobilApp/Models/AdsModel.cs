@@ -13,11 +13,16 @@ namespace MobilApp_Szakdolgozat.Models
         public string name { get; set; }
         public string desc { get; set; }
         public string category { get; set; }
-        public string price { get; set; }
+        public int price { get; set; }
         public int countyID { get; set; }
         public string settlement { get; set; }
         public int ownerId { get; set; }
         public DateTime date { get; set; }
+
+        //post calculated
+        public bool isFav { get; set; }
+        public List<string> adImages { get; set; } = new List<string>();
+        public string ownerName { get; set; }
 
     }
 }
