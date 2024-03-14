@@ -10,7 +10,6 @@ import { Footer } from './Components/Footer/Footer';
 import { RegisterPage } from './Pages/RegisterPage';
 import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
-import { Card } from './Components/Card/Card';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 
 function App() {

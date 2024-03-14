@@ -21,7 +21,6 @@ export const Card = () => {
                     </div>
                     <div className="card-buttons">
                         <button onClick={() => navigate('/hirdetes')} className='addetailsbutton'>Részletek</button>
-                        <button className='chatbutton'>Csevegés a hirdetővel</button>
                     </div>
                 </div>
             </div>
