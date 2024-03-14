@@ -4,12 +4,14 @@ const { router } = require('./src/routes/indexRouter')
 const { hosts } = require('./src/config/host.config')
 const { cookie_keys } = require('./src/config/auth.config')
 const cookieSession = require('cookie-session')
+const cors = require('cors')
 
 const PORT = 9000;
 const HOST = hosts.HOST202 || "localhost";
 
 
 const app = express()
+app.use(cors())
 app.use(express.static("src/views"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
