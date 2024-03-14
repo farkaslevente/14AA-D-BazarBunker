@@ -5,8 +5,8 @@ const { hosts } = require('./src/config/host.config')
 const { cookie_keys } = require('./src/config/auth.config')
 const cookieSession = require('cookie-session')
 
-const PORT = 9000;
-const HOST = hosts.HOST202 || "localhost";
+const PORT = 9090;
+const HOST = hosts.HOST302loc || "localhost";
 
 
 const app = express()

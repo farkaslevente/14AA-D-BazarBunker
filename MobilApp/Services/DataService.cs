@@ -38,7 +38,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = urlHome;
+        static string url = url302local;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -186,9 +186,9 @@ namespace MobilApp_Szakdolgozat.Services
                 {
                     await SecureStorage.SetAsync("userImage", userImage);
                 }
-                await SecureStorage.SetAsync("userId", finalResult[3].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userName", finalResult[0].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userEmail", finalResult[1].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
                 //await SecureStorage.SetAsync("userLocation", finalResult[].Split(':')[1].Trim('"'));               
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 

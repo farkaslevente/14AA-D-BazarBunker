@@ -85,8 +85,8 @@
                         Margin="30,0"
                         Clicked="NameSaveBTN_Clicked"/>
             </Grid>
-            <Grid Grid.RowSpan="9" Grid.Row="3" Grid.ColumnSpan="3" HeightRequest="320">
-                <Image Source="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg"/>
+            <Grid Grid.RowSpan="9" Grid.Row="3" Grid.ColumnSpan="3" HeightRequest="430">
+                <Image Source="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg" VerticalOptions="CenterAndExpand"/>
             </Grid>
             <Button Grid.Column="1" Grid.Row="10" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
 
