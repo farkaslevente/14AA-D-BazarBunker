@@ -100,7 +100,7 @@ const dbFunctions = {
             (null, '${name}', '${description}', '${category}', '${price}', '${countyId}', '${settlement}', '${ownerId}', '${d}')`)
             res.status(200).json({message: "Ad successfully uploaded!"})
         } catch (err) {
-            console.error("Error getting!", err.message);
+            console.error("Error posting ads!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
     },

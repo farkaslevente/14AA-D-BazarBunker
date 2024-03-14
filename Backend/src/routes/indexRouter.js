@@ -101,11 +101,19 @@ router.post("/exec", async function(req, res) {
 }),
 
 router.post("/register", async function (req,res) {
-         res.json(await authController.register(req,res))
+    try {
+        res.json(await authController.register(req,res))
+    } catch (err) {
+        console.error("Error registering!", err.message)
+    }    
 }),
 
 router.post("/login", async function (req, res) {
+    try { 
         res.json(await authController.login(req, res))
+    } catch (err) {
+        console.error("Error logging in!", err.message)
+    }
 }),
 
 router.get("/ads", [verifyToken], async function(_req, res) {

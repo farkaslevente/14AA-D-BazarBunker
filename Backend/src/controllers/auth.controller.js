@@ -28,7 +28,7 @@ const authController = {
                 }
             } catch (err) {
                 console.log(err.message);
-                res.status(500).send("Error in register!");
+                return res.status(500).send("Error in register!");
             }
 
         }
@@ -44,14 +44,13 @@ const authController = {
         const {email, password} = req.body;
         if (!email || !password) return res.status(400).json({ message: 'Username and password are required.' });
 
-
         const rows = await dbFunctions.execQueryWithReturn(
         `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
 
-        if (!rows || rows.length === 0) {
+        if (rows == [] || !rows || rows.length === 0) {
             return res.status(401).json({error: "Invalid email or password"})
         }
-
+        
         let isPasswordValid = false
         const user = rows[0]
         if (password) { 
