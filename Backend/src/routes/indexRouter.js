@@ -1,7 +1,8 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const { authController } = require('../controllers/auth.controller');
+const { authController } = require('../controllers/auth.controller')
 const { userController } = require('../controllers/user.controller')
+const { isAdmin } = require('../controllers/role.controller')
 const { verifyToken } = require("../middlewares/jwtMiddleware");
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get("/", async function(_req, res, next) {
     }
 });
 
-router.get("/pictures", [verifyToken], async function(_req, res, next) {
+router.get("/pictures", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getPictures());
     } catch (err) {
@@ -23,7 +24,7 @@ router.get("/pictures", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.post("/pictures", [verifyToken], async function(req,res) {
+router.post("/pictures", [verifyToken], [isAdmin], async function(req,res) {
     try {
         res.json(await userController.changePicture(req,res))
     } catch {
@@ -31,7 +32,7 @@ router.post("/pictures", [verifyToken], async function(req,res) {
     }
 });
 
-router.get("/settlements", [verifyToken], async function(_req, res, next) {
+router.get("/settlements", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getSettlements());
     } catch (err) {
@@ -40,7 +41,7 @@ router.get("/settlements", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.get("/counties", [verifyToken], async function(_req, res, next) {
+router.get("/counties", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getCounties());
     } catch (err) {
@@ -49,7 +50,7 @@ router.get("/counties", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.get("/users", [verifyToken], async function(_req, res, next) {
+router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
     } catch (err) {
@@ -58,7 +59,7 @@ router.get("/users", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.put("/users/patch", [verifyToken], async function(req, res) {
+router.put("/users/patch", [verifyToken], [isAdmin], async function(req, res) {
     try {
         res.json(await userController.patchUsers(req.body, res));
     } catch (err) {
@@ -66,7 +67,7 @@ router.put("/users/patch", [verifyToken], async function(req, res) {
     }
 }),
 
-router.delete("/users/delete", [verifyToken], async function(req, res) {
+router.delete("/users/delete", [verifyToken], [isAdmin], async function(req, res) {
     try {
         res.json(await userController.deleteUsers(req.body, res))
     } catch (err) {
@@ -74,7 +75,7 @@ router.delete("/users/delete", [verifyToken], async function(req, res) {
     }
 }),
 
-router.get("/tokens", [verifyToken], async function(_req, res, next) {
+router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getTokens());
     } catch (err) {
@@ -83,7 +84,7 @@ router.get("/tokens", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.delete("/tokens/delete", [verifyToken], async function (res) {
+router.delete("/tokens/delete", [verifyToken], [isAdmin], async function (res) {
     try {
         res.json(await dbFunctions.deleteToken(res))
     } catch (err) {
