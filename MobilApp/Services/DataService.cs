@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
 
+
 namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
@@ -33,12 +34,12 @@ namespace MobilApp_Szakdolgozat.Services
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
         //Itthon 9090-es porton megy a szerver
-        static string urlHome = "http://192.168.0.165:9090";
+        static string urlHome = "http://192.168.0.165:9000";
         static string url103local = "http://10.0.13.6:9090";
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url202;
+        static string url = urlHome;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -71,6 +72,9 @@ namespace MobilApp_Szakdolgozat.Services
         {
             using(var client = new HttpClient()) 
             {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
                 var uri = "/ads";
                 var result = await client.GetStringAsync(uri);
@@ -83,6 +87,9 @@ namespace MobilApp_Szakdolgozat.Services
         {
             using (var client = new HttpClient())
             {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
                 var uri = "/counties";
                 var result = await client.GetStringAsync(uri);
@@ -95,6 +102,9 @@ namespace MobilApp_Szakdolgozat.Services
         {
             using (var client = new HttpClient())
             {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
                 var uri = "/settlements";
                 var result = await client.GetStringAsync(uri);
@@ -189,11 +199,34 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
-                //await SecureStorage.SetAsync("userLocation", finalResult[].Split(':')[1].Trim('"'));               
+                //await SecureStorage.SetAsync("userLocation", finalResult[].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userRole", finalResult[4].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 
                 return null;
                 
+            }
+        }
+
+        public static async Task<string> profilePictureUpdate(string id, string url)
+        {            
+            string jsonData = JsonConvert.SerializeObject(new { id = id, pPic = url });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/pictures", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            if ((int)response.StatusCode == 401)
+            {
+                return "error";
+            }
+            else
+            {
+                await SecureStorage.SetAsync("success", null);
+                return null;
             }
         }
         public class TokenResponse

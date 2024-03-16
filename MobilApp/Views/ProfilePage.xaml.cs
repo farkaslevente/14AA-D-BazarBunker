@@ -59,6 +59,7 @@ public partial class ProfilePage : ContentPage
         SecureStorage.Remove("userImage");
         SecureStorage.Remove("userLocation");
         SecureStorage.Remove("userId");
+        SecureStorage.Remove("userRole");
         ShellInstance.VisibilityLP();
         Shell.Current.GoToAsync(nameof(MainPage));
     }

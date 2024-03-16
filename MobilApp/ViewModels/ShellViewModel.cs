@@ -98,16 +98,14 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         public void VisibilityLP()
         {
-            string LoggedIn = SecureStorage.GetAsync("userEmail").Result;
+            string LoggedIn = SecureStorage.GetAsync("userRole").Result;
             if (LoggedIn != null)
             {
                 LoginVisible = false;
                 LoggedInVisible = true;
                 LoggedInAdmin = false;
-                if (LoggedIn.Contains("admin"))
-                {
-                    LoggedInAdmin = true;
-                }
+                if (LoggedIn == 1.ToString())
+                    LoggedInAdmin = true;                
                 
             }
             else
