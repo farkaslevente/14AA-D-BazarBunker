@@ -1,6 +1,7 @@
 import React from 'react'
 import './OwnCard.css'
 import { useNavigate } from 'react-router-dom'
+import Carousel from 'react-bootstrap/Carousel';
 
 export const OwnCard = () => {
     const navigate = useNavigate()
