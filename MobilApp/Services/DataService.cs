@@ -83,7 +83,7 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<IEnumerable<AdsModel>> getCounties()
+        public static async Task<IEnumerable<CountyModel>> getCounties()
         {
             using (var client = new HttpClient())
             {
@@ -94,11 +94,11 @@ namespace MobilApp_Szakdolgozat.Services
                 var uri = "/counties";
                 var result = await client.GetStringAsync(uri);
 
-                return JsonConvert.DeserializeObject<List<AdsModel>>(result);
+                return JsonConvert.DeserializeObject<List<CountyModel>>(result);
             }
         }
 
-        public static async Task<IEnumerable<AdsModel>> getSettlements()
+        public static async Task<IEnumerable<SettlementModel>> getSettlements()
         {
             using (var client = new HttpClient())
             {
@@ -109,7 +109,7 @@ namespace MobilApp_Szakdolgozat.Services
                 var uri = "/settlements";
                 var result = await client.GetStringAsync(uri);
 
-                return JsonConvert.DeserializeObject<List<AdsModel>>(result);
+                return JsonConvert.DeserializeObject<List<SettlementModel>>(result);
             }
         }
 
@@ -162,7 +162,7 @@ namespace MobilApp_Szakdolgozat.Services
             }
             else
             {
-                var a = JsonConvert.DeserializeObject<T>(result);
+                //var a = JsonConvert.DeserializeObject<T>(result);
                 string[] fullJWT = result.Split(':');
                 var fullResult = fullJWT[1].Trim('"');
                 string[] trimmedJWT = fullResult.Split('"');

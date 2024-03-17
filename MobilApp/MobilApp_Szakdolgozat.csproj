@@ -36,7 +36,7 @@
     <MauiIcon Include="Resources\AppIcon\applogo.png" Color="#FFFFFF" BaseSize="512,512" />
 
 		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="512,512" Color="#123455" Resize="false" TintColor="#FFFFFF"/>
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="512,512" Color="#123455" Resize="false" TintColor="#FFFFFF" />
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\add.svg">
@@ -143,6 +143,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="MySql.Data" Version="8.3.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 		<PackageReference Include="SQLite" Version="3.13.0" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />
 	</ItemGroup>

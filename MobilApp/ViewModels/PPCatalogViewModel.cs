@@ -22,6 +22,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             pictures = new ObservableCollection<PictureCatalogModel>();
             getAllPictures();
+            selectedPicture = null; 
             detailsCommand = new Command(async () =>
             {
                 if (selectedPicture == null) return;
