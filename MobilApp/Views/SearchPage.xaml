@@ -31,14 +31,14 @@
         </Frame>
         <Picker Margin="10" 
                 Title="Válasszon Vármegyét"
-                ItemsSource="{Binding counties}"
-                ItemDisplayBinding="{Binding selectedCounty}"
+                ItemsSource="{Binding counties}"                
+                ItemDisplayBinding="{Binding nev}"
                 SelectedItem="{Binding selectedCounty}">
         </Picker>
         
         <Picker Margin="10" 
                 ItemsSource="{Binding settlements}"
-                ItemDisplayBinding="{Binding selectedSettlement}"
+                ItemDisplayBinding="{Binding nev}"
                 IsEnabled="{Binding SettlementEnabled}"
                 SelectedItem="{Binding selectedSettlement}"/>
 

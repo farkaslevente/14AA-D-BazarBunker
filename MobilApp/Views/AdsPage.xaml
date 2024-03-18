@@ -7,7 +7,7 @@
     <ContentPage.BindingContext>
         <vm:SearchViewModel/>
     </ContentPage.BindingContext>
-    <CollectionView ItemsSource="{Binding filteredAds}">
+    <CollectionView ItemsSource="{Binding filteredAds}" BackgroundColor="Red">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame CornerRadius="10">

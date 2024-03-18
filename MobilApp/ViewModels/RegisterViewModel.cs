@@ -18,7 +18,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             public string regPassword { get; set; }
             public string regConfirmPwd { get; set; }
             public string regLocation { get; set; }
-            public string error { get; set; }
+            public string error { get; set; }          
 
             private RegisterModel _errorMessage;
 
@@ -33,6 +33,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             public RegisterViewModel()
             {          
+            
                 registerCommand = new Command(async () => {    
                     if(regName != null)
                     {

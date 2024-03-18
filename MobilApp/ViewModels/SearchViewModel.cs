@@ -31,6 +31,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
                     SettlementEnabled = true;
                     getSettlements();
+                    OnPropertyChanged(nameof(settlements));
                 }
             }
         }
