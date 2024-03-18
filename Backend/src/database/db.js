@@ -1,4 +1,4 @@
-const conf  = require("../database/dbConfig.js");
+const conf = require('../config/db.config');
 const { createConnection } = require("mysql2/promise");
 
 async function query(sql, params) {

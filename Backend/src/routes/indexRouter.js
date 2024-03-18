@@ -1,6 +1,9 @@
 const  express = require("express");
 const {dbFunctions} = require('../database/dbFunc')
-const { check, validationResult } = require("express-validator")
+const { authController } = require('../controllers/auth.controller')
+const { userController } = require('../controllers/user.controller')
+const { isAdmin } = require('../controllers/role.controller')
+const { verifyToken } = require("../middlewares/jwtMiddleware");
 const router = express.Router();
 
 router.get("/", async function(_req, res, next) {
@@ -12,7 +15,42 @@ router.get("/", async function(_req, res, next) {
     }
 });
 
-router.get("/users", async function(_req, res, next) {
+router.get("/pictures", [verifyToken], async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getPictures());
+    } catch (err) {
+        console.error("Error while getting pictures!", err.message);
+        next(err);
+    }
+});
+
+router.post("/pictures", [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.changePicture(req,res))
+    } catch {
+        console.error("Error while posting pictures!", err.message);
+    }
+});
+
+router.get("/settlements", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getSettlements());
+    } catch (err) {
+        console.error("Error while getting settlements!", err.message);
+        next(err);
+    }
+});
+
+router.get("/counties",  async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getCounties());
+    } catch (err) {
+        console.error("Error while getting counties!", err.message);
+        next(err);
+    }
+});
+
+router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
     } catch (err) {
@@ -21,35 +59,36 @@ router.get("/users", async function(_req, res, next) {
     }
 });
 
-router.post("/users/post", async function(req, res) {
+router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
-        res.json(await dbFunctions.postUsers(req.body));
-    } catch (err) {
-        console.error("Error posting!", err.message);
-    }
-});
-
-router.put("/users/put", async function(req, res) {
-    try {
-        res.json(await dbFunctions.putUsers(req.body));
+        res.json(await userController.patchUsers(req.body, res));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
 }),
 
-router.delete("/users/delete", async function(req, res) {
+router.delete("/users/delete", [verifyToken], [isAdmin], async function(req, res) {
     try {
-        res.json(await dbFunctions.deleteUsers(req.body, res))
+        res.json(await userController.deleteUsers(req.body, res))
     } catch (err) {
         console.error("Error deleting!", err.message);
     }
 }),
 
-router.delete("/tokens/delete", async function(req, res) {
+router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
-        res.json(await dbFunctions.deleteToken(req.body, res))
+        res.json(await dbFunctions.getTokens());
     } catch (err) {
-        console.error("Error deleting!", err.message);
+        console.error("Error while getting tokens!", err.message);
+        next(err);
+    }
+});
+
+router.delete("/tokens/delete", [verifyToken], [isAdmin], async function (res) {
+    try {
+        res.json(await dbFunctions.deleteToken(res))
+    } catch (err) {
+        console.error("Error deleting tokens!", err.message);
     }
 }),
 
@@ -61,32 +100,33 @@ router.post("/exec", async function(req, res) {
     }
 }),
 
-router.post(
-    "/register", async function (req, res) {
-    [
-        check("email", "Please Enter a valid email address!")
-            .not()
-            .isEmpty()
-            .isEmail(),
-        check("password", "Please enter a valid password!").isLength({
-            min: 2
-        })
-    ]
+router.post("/register", async function (req,res) {
     try {
-        res.json(await dbFunctions.register(req, res))
+        res.json(await authController.register(req,res))
     } catch (err) {
-        console.error("Error during registering!", err.message)
-    }
-})
+        console.error("Error registering!", err.message)
+    }    
+}),
 
 router.post("/login", async function (req, res) {
-    try {
-        res.json(await dbFunctions.login(req, res))
+    try { 
+        res.json(await authController.login(req, res))
     } catch (err) {
-        console.error("Error during login", err.message)
+        console.error("Error logging in!", err.message)
     }
 }),
 
+router.get("/ads", [verifyToken], async function(_req, res) {
+    try {
+        res.json(await dbFunctions.getAds());
+    } catch (err) {
+        console.error("Error while getting ads!", err.message);
+    }
+});
+
+router.post("/ads", [verifyToken], async function(req,res) {
+    res.json(await dbFunctions.postAds(req,res))
+})
 
 
 module.exports = {
