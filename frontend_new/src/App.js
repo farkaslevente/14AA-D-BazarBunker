@@ -12,6 +12,7 @@ import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
         <Route path='/ujhirdetes' element={<NewAdPage />} />
         <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
         <Route path='/profil' element={<ProfilePage />} />
+
       </Routes>
 
       <Footer />
