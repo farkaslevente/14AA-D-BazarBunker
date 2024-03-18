@@ -31,7 +31,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
                     SettlementEnabled = true;
                     getSettlements();
-                    OnPropertyChanged(nameof(settlements));
+                    OnPropertyChanged(nameof(SettlementEnabled));
                 }
             }
         }
@@ -59,8 +59,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             settlements = new ObservableCollection<SettlementModel>();
             allAds = new ObservableCollection<AdsModel>();
             getAllAds();
-            getCounties();
-            getSettlements();
+            getCounties();            
             searchTitle = null;
             searchCounty = null;
             searchSettlement = null;
@@ -161,7 +160,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
         private async void getSettlements()
         {
             IEnumerable<SettlementModel> settlementList = await DataService.getSettlements();
-            settlementList.ToList().ForEach(settlement => settlements.Add(settlement));
+            settlementList.ToList().ForEach(settlement => {
+                if (settlement.varmegyeId == selectedCounty.id)
+                {
+                    settlements.Add(settlement);
+                }
+                
+            });
         }
 
         private async void getCounties()

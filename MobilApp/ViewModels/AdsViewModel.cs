@@ -9,20 +9,21 @@ using System.Threading.Tasks;
 
 namespace MobilApp_Szakdolgozat.ViewModels
 {
-    public class AdsViewModel: BindableObject
+    public partial class AdsViewModel: BindableObject
     {
-        public ObservableCollection<AdsModel> advertisements { get; set; }
+        public ObservableCollection<AdsModel> advertisements { get; set; }        
         public AdsModel advertisement { get; set; }
-        public AdsViewModel()
+        public AdsViewModel(SearchViewModel vm)
         {
             advertisements = new ObservableCollection<AdsModel>();
-            getAllAds();
+            vm = new SearchViewModel();
+            advertisements = vm.filteredAds;           
             
         }
-        private async Task getAllAds()
-        {
-            IEnumerable<AdsModel> list = await DataService.getAds();
-            list.ToList().ForEach(p => advertisements.Add(p));
-        }
+        //private async Task getAllAds()
+        //{
+        //    IEnumerable<AdsModel> list = await DataService.getAds();
+        //    list.ToList().ForEach(p => advertisements.Add(p));
+        //}
     }
 }
