@@ -15,7 +15,7 @@ router.get("/", async function(_req, res, next) {
     }
 });
 
-router.get("/pictures", [verifyToken], [isAdmin], async function(_req, res, next) {
+router.get("/pictures", [verifyToken], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getPictures());
     } catch (err) {
@@ -24,7 +24,7 @@ router.get("/pictures", [verifyToken], [isAdmin], async function(_req, res, next
     }
 });
 
-router.post("/pictures", [verifyToken], [isAdmin], async function(req,res) {
+router.post("/pictures", [verifyToken], async function(req,res) {
     try {
         res.json(await userController.changePicture(req,res))
     } catch {
@@ -32,7 +32,7 @@ router.post("/pictures", [verifyToken], [isAdmin], async function(req,res) {
     }
 });
 
-router.get("/settlements", [verifyToken], [isAdmin], async function(_req, res, next) {
+router.get("/settlements", async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getSettlements());
     } catch (err) {
@@ -41,7 +41,7 @@ router.get("/settlements", [verifyToken], [isAdmin], async function(_req, res, n
     }
 });
 
-router.get("/counties", [verifyToken], [isAdmin], async function(_req, res, next) {
+router.get("/counties",  async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getCounties());
     } catch (err) {
@@ -59,7 +59,7 @@ router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     }
 });
 
-router.put("/users/patch", [verifyToken], [isAdmin], async function(req, res) {
+router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
         res.json(await userController.patchUsers(req.body, res));
     } catch (err) {

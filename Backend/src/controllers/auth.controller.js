@@ -15,8 +15,8 @@ const authController = {
 
                     const hashedPassword = await bcrypt.hash(password, 10)
 
-                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo) VALUES
-                    (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}')`)
+                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo, role) VALUES
+                    (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}', 0)`)
 
                     res.status(200).json({
                         message: "Successful registration!"

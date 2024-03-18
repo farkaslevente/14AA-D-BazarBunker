@@ -31,7 +31,7 @@ verifyToken = (req, res, next) => {
     const token = jwt.sign(
         payload,
         secret,
-        { expiresIn: '1d'});
+        { expiresIn: '1000d'});
     return token;
  } 
 
@@ -39,7 +39,7 @@ verifyToken = (req, res, next) => {
   const token = jwt.sign(
       payload,
       secret,
-      { expiresIn: '1d'});
+      { expiresIn: '1000d'});
   return token;
 } 
 
