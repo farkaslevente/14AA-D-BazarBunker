@@ -60,6 +60,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getAllAds();
             getCounties();
             getSettlements();
+            searchTitle = null;
+            searchCounty = null;
+            searchSettlement = null;
+            searchCategory = null;
+            searchMinPrice = 0;
+            searchMaxPrice = 0;
             selectedCounty = null;
             selectedSettlement = null;
             SettlementEnabled = false;
@@ -88,11 +94,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                     }
                                     else 
                                     {
-                                        var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle) && 
-                                                                    ad.countyID == selectedCounty.id && 
-                                                                    ad.settlement == selectedSettlement.ToString() && 
-                                                                    ad.category.Contains(searchCategory) && 
-                                                                    ad.price >= searchMinPrice && ad.price <= searchMaxPrice
+                                        var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) && 
+                                                                    ad.varmegyeId == selectedCounty.id && 
+                                                                    ad.telepules == selectedSettlement.nev.ToString() && 
+                                                                    ad.kategoria.Contains(searchCategory) && 
+                                                                    ad.ar >= searchMinPrice && ad.ar <= searchMaxPrice
                                                                     ).ToList();
                                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
                                         Shell.Current.GoToAsync(nameof(AdsPage));
@@ -100,45 +106,45 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                 }
                                 else
                                 {
-                                    var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle) &&
-                                                                    ad.countyID == selectedCounty.id &&
-                                                                    ad.settlement == selectedSettlement.ToString() &&
-                                                                    ad.category.Contains(searchCategory) &&
-                                                                    ad.price >= searchMinPrice).ToList();
+                                    var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
+                                                                    ad.varmegyeId == selectedCounty.id &&
+                                                                    ad.telepules == selectedSettlement.nev.ToString() &&
+                                                                    ad.kategoria.Contains(searchCategory) &&
+                                                                    ad.ar >= searchMinPrice).ToList();
                                     filteredAds = new ObservableCollection<AdsModel>(filteredList);
                                     Shell.Current.GoToAsync(nameof(AdsPage));
                                 }
                             }
                             else
                             {
-                                var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle) &&
-                                                                    ad.countyID == selectedCounty.id &&
-                                                                    ad.settlement == selectedSettlement.ToString() &&
-                                                                    ad.category.Contains(searchCategory)).ToList();
+                                var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
+                                                                    ad.varmegyeId == selectedCounty.id &&
+                                                                    ad.telepules == selectedSettlement.nev.ToString() &&
+                                                                    ad.kategoria.Contains(searchCategory)).ToList();
                                 filteredAds = new ObservableCollection<AdsModel>(filteredList);
                                 Shell.Current.GoToAsync(nameof(AdsPage));
                             }
                         }
                         else
                         {
-                            var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle) &&
-                                                                    ad.countyID == selectedCounty.id &&
-                                                                    ad.settlement == selectedSettlement.ToString()).ToList();
+                            var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
+                                                                    ad.varmegyeId == selectedCounty.id &&
+                                                                    ad.telepules == selectedSettlement.nev.ToString()).ToList();
                             filteredAds = new ObservableCollection<AdsModel>(filteredList);
                             Shell.Current.GoToAsync(nameof(AdsPage));
                         }
                     }
                     else
                     {
-                        var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle) &&
-                                                              ad.countyID == selectedCounty.id).ToList();
+                        var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
+                                                              ad.varmegyeId== selectedCounty.id).ToList();
                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
                         Shell.Current.GoToAsync(nameof(AdsPage));
                     }
                 }
                 else
                 {
-                    var filteredList = allAds.Where(ad => ad.name.Contains(searchTitle)).ToList();
+                    var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle)).ToList();
                     filteredAds = new ObservableCollection<AdsModel>(filteredList);
                     Shell.Current.GoToAsync(nameof(AdsPage));
                 }

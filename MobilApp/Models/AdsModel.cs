@@ -10,14 +10,14 @@ namespace MobilApp_Szakdolgozat.Models
     {
         //id, nev, leiras, kategoria, ar, varmegyeId, telepules, tulajId, datum
         public int id { get; set; }
-        public string name { get; set; }
-        public string desc { get; set; }
-        public string category { get; set; }
-        public int price { get; set; }
-        public int countyID { get; set; }
-        public string settlement { get; set; }
-        public int ownerId { get; set; }
-        public DateTime date { get; set; }
+        public string nev { get; set; }
+        public string leiras { get; set; }
+        public string kategoria { get; set; }
+        public int ar { get; set; }
+        public int varmegyeId { get; set; }
+        public string telepules { get; set; }
+        public int tulajId { get; set; }
+        public string datum { get; set; }
 
         //post calculated
         public bool isFav { get; set; }

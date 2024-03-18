@@ -39,7 +39,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9090";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = urlHome;
+        static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {

@@ -9,6 +9,6 @@ namespace MobilApp_Szakdolgozat.Models
     public class CountyModel
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string nev { get; set; }
     }
 }
