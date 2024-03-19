@@ -1,6 +1,22 @@
 .addetailspage {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
     padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addetailspage h1 {
+    margin-bottom: 20px;
+}
+
+.addetails {
+    display: flex;
+    flex-direction: row;
+    background: #fce3fe;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+
+.addetails-data {
+    padding: 20px;
+    flex-direction: column;
 }

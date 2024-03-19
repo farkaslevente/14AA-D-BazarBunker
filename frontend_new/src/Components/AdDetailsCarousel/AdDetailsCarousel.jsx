@@ -6,34 +6,38 @@ import './AdDetailsCarousel.css'
 export default function MyCarousel() {
     const images = [
         {
-            url: require('./Images/book.jpg'),
+            url: require('./Images/1.jfif'),
             alt: 'Első kép'
         },
         {
-            url: require('./Images/chair.jpg'),
+            url: require('./Images/2.jfif'),
             alt: 'Második kép'
         },
         {
-            url: require('./Images/desk.jpg'),
+            url: require('./Images/3.jfif'),
             alt: 'Harmadik kép'
         },
         {
-            url: require('./Images/pen.jpg'),
+            url: require('./Images/4.jfif'),
             alt: 'Negyedik kép'
         },
         {
-            url: require('./Images/pencil.png'),
+            url: require('./Images/5.jfif'),
             alt: 'Ötödik kép'
+        },
+        {
+            url: require('./Images/6.jfif'),
+            alt: 'Hatodik kép'
         }
     ]
 
     return(
         <div className="carousel">
-            <Carousel showThumbs={false} showStatus={false} className="rounded-full" showIndicators={true} showArrows={true} infiniteLoop={true} autoPlay={false}>
+            <Carousel showThumbs={false} showStatus={false} showIndicators={true} showArrows={true} infiniteLoop={true} autoPlay={false} >
                  {
                     images.map((image, index) => (
                         <div key={index}>
-                            <img loading="lazy" src={image.url} className="img" />
+                            <img loading="lazy" src={image.url} className="carousel-img" />
                         </div>
                     ))
                 }

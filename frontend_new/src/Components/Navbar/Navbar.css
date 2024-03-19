@@ -17,6 +17,11 @@
     font-weight: 600;
 }
 
+.nav-logo a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
 .nav-menu {
     display: flex;
     align-items: center;

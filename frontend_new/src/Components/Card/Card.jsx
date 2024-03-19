@@ -17,7 +17,7 @@ export const Card = () => {
                         <label htmlFor="added">"2024.10.21".</label>
                     </div>
                     <div className="card-description">
-                        <p className=''>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított.</p>
+                        <p className=''>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. </p>
                     </div>
                     <div className="card-buttons">
                         <button onClick={() => navigate('/hirdetes')} className='addetailsbutton'>Részletek</button>
