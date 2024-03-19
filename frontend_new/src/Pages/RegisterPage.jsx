@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import './CSS/RegisterPage.css'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-const registerurl = 'http://127.0.0.1:9000/register'
+const registerurl = 'http://10.0.22.14:9000/register'
 
 export const RegisterPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,20 +31,20 @@ export const RegisterPage = () => {
                     <form className='form' onSubmit={handleSubmit}>
                         <div className="register-fields">
                             <label htmlFor='name' className='form-label'>Felhasználónév:</label>
-                            <input type='text' className='form-input' id='name' placeholder='Felhasználónév'
+                            <input type='text' required className='form-input' id='name' placeholder='Felhasználónév'
                                 value={name} onChange={(e) => setName(e.target.value)} />
 
                             <label htmlFor='email' className='form-label'>Email:</label>
-                            <input type='email' className='form-input' id='email' placeholder='email@email.com'
+                            <input type='email' required className='form-input' id='email' placeholder='email@email.com'
                                 value={email} onChange={(e) => setEmail(e.target.value)} />
 
                             <label htmlFor='password' className='form-label'>Jelszó:</label>
-                            <input type='password' className='form-input' id='password' placeholder='Jelszó'
+                            <input type='password' required className='form-input' id='password' placeholder='Jelszó'
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
+                        <button type='submit' className='btn  btn-block'>Regisztráció</button>
                     </form>
                     <div>
-                        <button type='submit' className='btn  btn-block'>Regisztráció</button>
                     </div>
                 </div>
             </div>
