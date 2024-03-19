@@ -11,8 +11,8 @@
             <Setter Property="Margin" Value="10,20,0,0"/>
         </Style>
     </ContentPage.Resources>
-
-    <VerticalStackLayout Padding="10">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
         <Image Source="logo" HorizontalOptions="Center" MaximumHeightRequest="100"/>
         <Label Text="Regisztrálás"
            FontSize="30"
@@ -26,18 +26,12 @@
         </Frame>
         
         <Label Text="E-mail cím:"/>
-        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
+            <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
+                <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
            Text="{Binding regEmail}"/>
-        </Frame>
+            </Frame>
 
-        <Label Text="Lakhelye:"/>
-        <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
-            <Entry FontSize="18" Placeholder="Lakhelye" Margin="5,0,5,0"
-   Text="{Binding regLocation}"/>
-        </Frame>
-
-        <Label Text="Jelszó:"/>
+            <Label Text="Jelszó:"/>
         <Frame CornerRadius="10" Padding="3" Margin="0,10,0,15">
             <Entry FontSize="18" Placeholder="Jelszó" Margin="5,0,5,0"
     IsPassword="True"
@@ -50,9 +44,24 @@
                    IsPassword="True"
                    Text="{Binding regConfirmPwd}"/>
         </Frame>
+        <Picker Margin="10" 
+        Title="Válasszon Vármegyét"
+        ItemsSource="{Binding counties}"                
+        ItemDisplayBinding="{Binding nev}"
+        SelectedItem="{Binding selectedCounty}">
+        </Picker>
 
+        <Picker Margin="10" 
+        ItemsSource="{Binding settlements}"
+        ItemDisplayBinding="{Binding nev}"
+        IsEnabled="{Binding SettlementEnabled}"
+        IsVisible="{Binding SettlementEnabled}"
+        Title="Válasszon települést"
+        SelectedItem="{Binding selectedSettlement}"/>
+        
         <Button Text="Regisztrálás" Margin="0,10,0,15" Command="{Binding registerCommand}"/>
         <Label Text="{Binding error}" Style="{StaticResource errorMessage}"
        />
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

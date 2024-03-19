@@ -53,9 +53,9 @@ public partial class MessagesPage : ContentPage, IDisposable
         await Shell.Current.GoToAsync(nameof(NewPage1));
     }
 
-    private async void BTNSearchPage_Clicked(object sender, EventArgs e)
+    private async void BTNMainPage_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(SearchPage));
+        await Shell.Current.GoToAsync(nameof(MainPage));
     }
 
     private async void BTNFav_Clicked(object sender, EventArgs e)

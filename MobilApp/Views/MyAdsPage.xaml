@@ -8,26 +8,29 @@
         <vm:MyAdsViewModel/>
     </ContentPage.BindingContext>
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
+        <Grid RowDefinitions="*, 40,10" Grid.Column="1" Grid.RowSpan="1">
         <CollectionView ItemsSource="{Binding advertisements}"
                         SelectionMode="Single"
                         SelectionChangedCommand="{Binding detailsCommand}"
-                        SelectedItem="{Binding selectedAd}">
+                        SelectedItem="{Binding selectedAd}"
+                        Grid.Row="0"
+                        Grid.Column="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame CornerRadius="10" 
                            Padding="3" 
                            Margin="10">
-                        <Grid ColumnDefinitions="*,1.5*,1.5*" RowDefinitions="*,*,*">
+                        <Grid ColumnDefinitions="2*,1.5*,1.5*" RowDefinitions="*,*,*">
                             <Image Source="{Binding adImages[0]}"
                                    Grid.RowSpan="3"
                                    Grid.Column="0"/>
                             
-                            <Label Text="{Binding name}"
+                            <Label Text="{Binding nev}"
                                    Grid.Row="0"
                                    Grid.Column="1"
                                    Grid.ColumnSpan="2"/>
 
-                            <Label Text="{Binding price}"
+                            <Label Text="{Binding ar,StringFormat='{0} Ft'}"
                                    Grid.Row="1"
                                    Grid.Column="1"/>
                             
@@ -39,7 +42,7 @@
                                    Grid.Row="2"
                                    Grid.Column="1"/>
 
-                            <Label Text="{Binding date}"
+                            <Label Text="{Binding datum}"
                                    Grid.Row="2"
                                    Grid.Column="2"/>
 
@@ -49,16 +52,16 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button x:Name="BTNNewAd" 
-                Grid.Row="0"
-                Grid.Column="1"
+                Grid.Row="1"                
                 Text="Új hirdetés" 
                 Clicked="BTNNewAd_Clicked"/>
+        </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="3"
               ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
             <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
             <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNSearchPage" Source="search.svg" Clicked="BTNSearchPage_Clicked" Grid.Column="2"/>
+            <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
             <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
         </Grid>

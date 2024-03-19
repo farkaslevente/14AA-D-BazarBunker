@@ -90,16 +90,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                     if (searchMaxPrice == 0)
                                     {                                        
                                         filteredAds = new ObservableCollection<AdsModel>(allAds);
-                                        try
-                                        {
-                                            await Shell.Current.GoToAsync(nameof(AdsPage),
-                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            // Log the exception or handle it accordingly
-                                            Console.WriteLine($"Navigation to AdsPage failed: {ex.Message}");
-                                        }
+                                        await Shell.Current.GoToAsync(nameof(AdsPage),
+                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
                                     }
                                     else 
                                     {
@@ -110,7 +102,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                                     ad.ar >= searchMinPrice && ad.ar <= searchMaxPrice
                                                                     ).ToList();
                                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                        //await NavigationPage.PushAsync(new AdsPage(filteredAds));
+                                        await Shell.Current.GoToAsync(nameof(AdsPage),
+                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
                                     }
                                 }
                                 else
@@ -121,7 +114,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                                     ad.kategoria.Contains(searchCategory) &&
                                                                     ad.ar >= searchMinPrice).ToList();
                                     filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                    Shell.Current.GoToAsync(nameof(AdsPage));
+                                    await Shell.Current.GoToAsync(nameof(AdsPage),
+                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
                                 }
                             }
                             else
@@ -131,7 +125,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                                     ad.telepules == selectedSettlement.nev.ToString() &&
                                                                     ad.kategoria.Contains(searchCategory)).ToList();
                                 filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                Shell.Current.GoToAsync(nameof(AdsPage));
+                                await Shell.Current.GoToAsync(nameof(AdsPage),
+                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
                             }
                         }
                         else
@@ -140,7 +135,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                                     ad.varmegyeId == selectedCounty.id &&
                                                                     ad.telepules == selectedSettlement.nev.ToString()).ToList();
                             filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                            Shell.Current.GoToAsync(nameof(AdsPage));
+                            await Shell.Current.GoToAsync(nameof(AdsPage),
+                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
                         }
                     }
                     else
@@ -148,14 +144,16 @@ namespace MobilApp_Szakdolgozat.ViewModels
                         var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
                                                               ad.varmegyeId == selectedCounty.id).ToList();
                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                        Shell.Current.GoToAsync(nameof(AdsPage));
+                        await Shell.Current.GoToAsync(nameof(AdsPage),
+                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
                     }
                 }
                 else
                 {
                     var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle)).ToList();
                     filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                    Shell.Current.GoToAsync(nameof(AdsPage));
+                    await Shell.Current.GoToAsync(nameof(AdsPage),
+                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
                 }
             });
         }

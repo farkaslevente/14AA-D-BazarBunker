@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
+             x:Class="MobilApp_Szakdolgozat.Views.NewAdPage"
+             Title="Új Hirdetés">
+    <ContentPage.BindingContext>
+        <vm:NewAdViewModel/>
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
+        <Grid Grid.Row="0" Grid.Column="1"
+              RowDefinitions="*,*,4*,*,4*,40">
+            <Frame Margin="10" CornerRadius="10">
+                <Entry Text="{Binding adTitle}" Placeholder="Hirdetés megnevezése:"/>
+            </Frame>
+            
+            <Frame Margin="10" CornerRadius="10">
+                <Picker ItemsSource="{Binding}" />
+            </Frame>
+            
+            <Frame Margin="10" CornerRadius="10">
+
+            </Frame>
+            
+            <Frame Margin="10" CornerRadius="10">
+
+            </Frame>
+            
+            
+        </Grid>
+    </Grid>
+</ContentPage>

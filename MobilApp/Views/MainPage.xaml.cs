@@ -71,7 +71,7 @@ public partial class MainPage : ContentPage
 
     private async void BTNMyAds_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(AdsPage));
+        await Shell.Current.GoToAsync(nameof(MyAdsPage));
     }
 
     private async void BTNMessages_Clicked(object sender, EventArgs e)
@@ -84,9 +84,9 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync(nameof(NewPage1));
     }
 
-    private async void BTNSearchPage_Clicked(object sender, EventArgs e)
+    private async void BTNMainPage_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(SearchPage));
+        await Shell.Current.GoToAsync(nameof(MainPage));
     }
 
     private async void BTNFav_Clicked(object sender, EventArgs e)

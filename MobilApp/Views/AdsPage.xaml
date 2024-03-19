@@ -7,7 +7,8 @@
     <ContentPage.BindingContext>
         <vm:AdsViewModel/>
     </ContentPage.BindingContext>
-    <CollectionView ItemsSource="{Binding filteredAds}">
+    <Grid RowDefinitions="auto,40" ColumnDefinitions="*,16*,*">
+    <CollectionView ItemsSource="{Binding filteredAds}" Grid.Row="0" Grid.Column="1">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame CornerRadius="10" Margin="10,5,10,5" MinimumHeightRequest="150">
@@ -34,7 +35,7 @@
                                 Grid.Column="1"/>
 
                         <Label x:Name="LBLAdCategory" 
-                                Text="{Binding kategoria}" 
+                                Text="{Binding kategoria, StringFormat='Kategória: {0}'}" 
                                 Grid.Row="1" 
                                 Grid.Column="2"/>
                         
@@ -48,4 +49,14 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3"
+       ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
+            <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
+            <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
+            <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
+        </Grid>
+    </Grid>
 </ContentPage>

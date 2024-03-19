@@ -43,8 +43,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
             advertisements.Clear();
             list.ToList().ForEach(advert =>
             {
-                advertisements.Add(advert);
-
+                if (advert.tulajId == UserId)
+                {
+                    advertisements.Add(advert);
+                }
             });            
         }
         private async void getAllPics()

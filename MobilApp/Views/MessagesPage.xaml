@@ -26,7 +26,7 @@
               ColumnDefinitions="*,*,*" Margin="0,0,0,10">
             <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="2" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNSearchPage" Source="search.svg" Clicked="BTNSearchPage_Clicked" Grid.Column="1"/>
+            <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="1"/>
         </Grid>
     </Grid>
 </ContentPage>

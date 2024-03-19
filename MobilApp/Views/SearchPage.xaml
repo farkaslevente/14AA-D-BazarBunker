@@ -40,8 +40,10 @@
                 ItemsSource="{Binding settlements}"
                 ItemDisplayBinding="{Binding nev}"
                 IsEnabled="{Binding SettlementEnabled}"
+                IsVisible="{Binding SettlementEnabled}"
+                Title="Válasszon települést"
                 SelectedItem="{Binding selectedSettlement}"/>
 
-        <Button Text="Why are we here? Just to suffer.." Command="{Binding searchCommand}"/>
+        <Button Text="Keresés" Command="{Binding searchCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
