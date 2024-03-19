@@ -5,5 +5,5 @@ public partial class NewAdPage : ContentPage
 	public NewAdPage()
 	{
 		InitializeComponent();
-	}
+	}    
 }

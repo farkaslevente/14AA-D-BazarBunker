@@ -30,7 +30,7 @@
              Text=""/>
         </Frame>
         <Picker Margin="10" 
-                Title="Válasszon Vármegyét"
+                Title="Válasszon Vármegyét:"
                 ItemsSource="{Binding counties}"                
                 ItemDisplayBinding="{Binding nev}"
                 SelectedItem="{Binding selectedCounty}">
@@ -41,7 +41,7 @@
                 ItemDisplayBinding="{Binding nev}"
                 IsEnabled="{Binding SettlementEnabled}"
                 IsVisible="{Binding SettlementEnabled}"
-                Title="Válasszon települést"
+                Title="Válasszon települést:"
                 SelectedItem="{Binding selectedSettlement}"/>
 
         <Button Text="Keresés" Command="{Binding searchCommand}"/>

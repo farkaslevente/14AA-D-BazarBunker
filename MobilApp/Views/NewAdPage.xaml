@@ -7,26 +7,52 @@
     <ContentPage.BindingContext>
         <vm:NewAdViewModel/>
     </ContentPage.BindingContext>
-    <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
-        <Grid Grid.Row="0" Grid.Column="1"
-              RowDefinitions="*,*,4*,*,4*,40">
-            <Frame Margin="10" CornerRadius="10">
-                <Entry Text="{Binding adTitle}" Placeholder="Hirdetés megnevezése:"/>
-            </Frame>
-            
-            <Frame Margin="10" CornerRadius="10">
-                <Picker ItemsSource="{Binding}" />
-            </Frame>
-            
-            <Frame Margin="10" CornerRadius="10">
+    <ScrollView>
+        <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
+            <Grid Grid.Row="0" Grid.Column="1"
+                  RowDefinitions="*,*,*,*,4*,40,10">
+                <Frame CornerRadius="10" Grid.Row="0" Margin="0,0,0,10" Padding="6">
+                    <Entry Text="{Binding adTitle}" Placeholder="Hirdetés megnevezése:"/>
+                </Frame>
 
-            </Frame>
-            
-            <Frame Margin="10" CornerRadius="10">
+                <Frame CornerRadius="10" Grid.Row="1" Padding="6" Margin="0,10,0,10">
+                    <Picker Title="Válasszon kategóriát:"
+                            ItemsSource="{Binding categories}" 
+                            SelectedItem="{Binding selectedCategory}"  />
+                </Frame>
 
-            </Frame>
-            
-            
+                <Frame Margin="0,10,0,10" CornerRadius="10" Grid.Row="2" Padding="6">
+                    <Grid ColumnDefinitions="2*,*">
+                        <Entry Text="{Binding adPrice}" Placeholder="Hirdetés ára:" Grid.Column="0"/>
+                        <Label Text="Forint" Grid.Column="1" VerticalOptions="Center" FontSize="Body"/>
+                    </Grid>
+                </Frame>
+
+
+                <Frame Margin="10" CornerRadius="10" Grid.Row="3" Padding="6">
+
+                    <Picker Title="Válasszon vármegyét:"                                 
+                                 ItemsSource="{Binding counties}" 
+                                 ItemDisplayBinding="{Binding nev}"
+                                 SelectedItem="{Binding selectedCounty}"/>
+                </Frame>
+
+                <Frame Margin="10" CornerRadius="10" Grid.Row="3" Padding="6" IsVisible="{Binding SettlementEnabled}">
+                <Picker                           
+                          ItemsSource="{Binding settlements}"
+                          ItemDisplayBinding="{Binding nev}"
+                          IsEnabled="{Binding SettlementEnabled}"
+                          IsVisible="{Binding SettlementEnabled}"
+                          Title="Válasszon települést:"
+                          SelectedItem="{Binding selectedSettlement}"/> 
+                </Frame>
+
+                <Frame Margin="0,10,0,10" CornerRadius="10" Grid.Row="4">
+                    <Editor Text="{Binding adDescription}" Placeholder="Hirdetés leírása:"/>
+                </Frame>
+
+                <Button Grid.Row="5" Command="{Binding uploadCommand}" Text="Hirdetés regisztrálása"/>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollView>
 </ContentPage>

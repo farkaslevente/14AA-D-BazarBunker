@@ -5,11 +5,16 @@ public partial class MyAdsPage : ContentPage
 	public MyAdsPage()
 	{
 		InitializeComponent();
-	}
+        if (SecureStorage.GetAsync("uploaded").ToString() == true.ToString())
+        {
+            SecureStorage.Remove("uploaded");
+            DisplayAlert("Köszönjük feltöltését!", "Hirdetését sikeresen feljegyeztük. Köszönjük, hogy minket választott!", "Rendben");
+        }
+    }
 
-    private void BTNNewAd_Clicked(object sender, EventArgs e)
+    private async void BTNNewAd_Clicked(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync(nameof(NewAdPage));
     }
     private async void BTNProfile_Clicked(object sender, EventArgs e)
     {
