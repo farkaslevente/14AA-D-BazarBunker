@@ -66,15 +66,14 @@ const authController = {
                     location: user.hely,
                     pPic: user.pPic
                 }
-                const _accessToken = accessToken({payload})
-                const _refreshToken = refreshToken({payload})
+                const token = accessToken({payload})
 
                 const d = new Date()
                 dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
-                (null, '${_refreshToken}', '${d}')`)
+                (null, '${token}', '${d}')`)
 
-                req.session.token = _refreshToken;
-                res.status(200).json({_accessToken})
+                req.session.token = token;
+                res.status(200).json({token})
             }
         }
         else {

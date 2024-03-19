@@ -31,7 +31,6 @@ app.listen(PORT, () => {
   console.log(`Server listening @ ${HOST}:${PORT}`);
 });
 
-app.set('view engine', 'html');
-
 app.use(router);
+app.use('/uploads', express.static('uploads'))
 module.exports = app;

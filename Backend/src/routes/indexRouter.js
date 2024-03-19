@@ -6,6 +6,21 @@ const { isAdmin } = require('../controllers/role.controller')
 const { verifyToken } = require("../middlewares/jwtMiddleware");
 const router = express.Router();
 
+
+
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname)
+    }
+  })
+const upload = multer({storage: storage})
+
+
+
 router.get("/", async function(_req, res, next) {
     try {
         res.render("index.html");
@@ -126,6 +141,10 @@ router.get("/ads", [verifyToken], async function(_req, res) {
 
 router.post("/ads", [verifyToken], async function(req,res) {
     res.json(await dbFunctions.postAds(req,res))
+});
+
+router.post('/pictures/upload', upload.single('file'), (req,res) => {
+    res.json(req.file)
 })
 
 

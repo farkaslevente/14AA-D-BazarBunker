@@ -35,12 +35,4 @@ verifyToken = (req, res, next) => {
     return token;
  } 
 
- function refreshToken (payload) {
-  const token = jwt.sign(
-      payload,
-      secret,
-      { expiresIn: '1000d'});
-  return token;
-} 
-
-module.exports = {verifyToken, accessToken, refreshToken}
+module.exports = {verifyToken, accessToken}
