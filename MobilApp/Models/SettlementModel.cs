@@ -9,7 +9,7 @@ namespace MobilApp_Szakdolgozat.Models
     public class SettlementModel
     {
         public int id { get; set; }
-        public int varmegyeId { get; set; }
+        public string varmegye { get; set; }
         public string nev { get; set; }
     }
 }

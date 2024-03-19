@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Maui.Graphics;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 
 namespace MobilApp_Szakdolgozat.ViewModels
 {
@@ -60,14 +62,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
             allAds = new ObservableCollection<AdsModel>();
             getAllAds();
             getCounties();            
-            searchTitle = null;
-            searchCounty = null;
-            searchSettlement = null;
-            searchCategory = null;
-            searchMinPrice = 0;
-            searchMaxPrice = 0;
-            selectedCounty = null;
-            selectedSettlement = null;
+            //searchTitle = null;
+            //searchCounty = null;
+            //searchSettlement = null;
+            //searchCategory = null;
+            //searchMinPrice = 0;
+            //searchMaxPrice = 0;            
             SettlementEnabled = false;
             CountySelectionChangeCommand = new Command(async () =>
             {
@@ -79,18 +79,27 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 if (searchTitle == null)
                 {
-                    if (searchCounty == null)
+                    if (selectedCounty == null)
                     {
-                        if (searchSettlement == null)
+                        if (selectedSettlement == null)
                         {
                             if (searchCategory == null)
                             {
                                 if (searchMinPrice == 0)
                                 {
                                     if (searchMaxPrice == 0)
-                                    {
-                                        filteredAds = allAds;
-                                        Shell.Current.GoToAsync(nameof(AdsPage));
+                                    {                                        
+                                        filteredAds = new ObservableCollection<AdsModel>(allAds);
+                                        try
+                                        {
+                                            await Shell.Current.GoToAsync(nameof(AdsPage),
+                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            // Log the exception or handle it accordingly
+                                            Console.WriteLine($"Navigation to AdsPage failed: {ex.Message}");
+                                        }
                                     }
                                     else 
                                     {
@@ -101,7 +110,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                                     ad.ar >= searchMinPrice && ad.ar <= searchMaxPrice
                                                                     ).ToList();
                                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                        Shell.Current.GoToAsync(nameof(AdsPage));
+                                        //await NavigationPage.PushAsync(new AdsPage(filteredAds));
                                     }
                                 }
                                 else
@@ -137,7 +146,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     else
                     {
                         var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
-                                                              ad.varmegyeId== selectedCounty.id).ToList();
+                                                              ad.varmegyeId == selectedCounty.id).ToList();
                         filteredAds = new ObservableCollection<AdsModel>(filteredList);
                         Shell.Current.GoToAsync(nameof(AdsPage));
                     }
@@ -161,7 +170,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             IEnumerable<SettlementModel> settlementList = await DataService.getSettlements();
             settlementList.ToList().ForEach(settlement => {
-                if (settlement.varmegyeId == selectedCounty.id)
+                if (settlement.varmegye == selectedCounty.nev)
                 {
                     settlements.Add(settlement);
                 }

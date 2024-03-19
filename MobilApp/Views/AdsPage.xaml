@@ -5,37 +5,44 @@
              x:Class="MobilApp_Szakdolgozat.Views.AdsPage"
              Title="AdsPage">
     <ContentPage.BindingContext>
-        <vm:SearchViewModel/>
+        <vm:AdsViewModel/>
     </ContentPage.BindingContext>
-    <CollectionView ItemsSource="{Binding filteredAds}" BackgroundColor="Red">
+    <CollectionView ItemsSource="{Binding filteredAds}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame CornerRadius="10">
-                    <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="1*,3*">
+                <Frame CornerRadius="10" Margin="10,5,10,5" MinimumHeightRequest="150">
+                    <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="2*,1.5*,1.5*">
                         <!--<Image Source="{Binding }" 
                                 Grid.RowSpan="3" 
                                 Grid.Column="0"/>-->
 
                         <Label x:Name="LBLAdName" 
-                                Text="{Binding name}" 
+                                Text="{Binding nev}" 
                                 Grid.Row="0" 
                                 Grid.Column="1"
-                                FontAttributes="Bold"/>
+                                FontAttributes="Bold"
+                               FontSize="Body"/>
 
                         <Label x:Name="LBLAdLoc" 
-                                Text="{Binding settlement}" 
+                                Text="{Binding telepules}" 
                                 Grid.Row="1" 
                                 Grid.Column="1"/>
 
                         <Label x:Name="LBLAdPrice" 
-                                Text="{Binding price}" 
+                                Text="{Binding ar, StringFormat='{0} Ft'}" 
                                 Grid.Row="2" 
                                 Grid.Column="1"/>
 
                         <Label x:Name="LBLAdCategory" 
-                                Text="{Binding category}" 
+                                Text="{Binding kategoria}" 
                                 Grid.Row="1" 
-                                Grid.Column="1"/>
+                                Grid.Column="2"/>
+                        
+                        <Label x:Name="LBLAd?" 
+                                Text="{Binding kategoria}" 
+                                Grid.Row="1" 
+                                Grid.Column="2"/>
+
                     </Grid>
                 </Frame>
             </DataTemplate>

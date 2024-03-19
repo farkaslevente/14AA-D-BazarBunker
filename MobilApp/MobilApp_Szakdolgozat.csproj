@@ -140,6 +140,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="FFImageLoadingCompat.Svg.Maui" Version="0.1.1" />
 		<PackageReference Include="IdentityModel" Version="6.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="MySql.Data" Version="8.3.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
