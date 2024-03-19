@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CSS/NewAdPage.css'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export const NewAdPage = () => {
     // const [values, setValues] = useState({

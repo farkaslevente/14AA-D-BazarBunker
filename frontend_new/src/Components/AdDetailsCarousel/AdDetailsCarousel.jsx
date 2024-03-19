@@ -37,7 +37,7 @@ export default function MyCarousel() {
                  {
                     images.map((image, index) => (
                         <div key={index}>
-                            <img loading="lazy" src={image.url} className="carousel-img" />
+                            <img loading="lazy" alt={image.alt} src={image.url} className="carousel-img" />
                         </div>
                     ))
                 }

@@ -15,6 +15,8 @@ export const LoginPage = () => {
         e.preventDefault();
         try {
             const resp = await axios.post(loginurl, {email: email, password: password})
+            const token = resp.data;
+            localStorage.setItem('token', token);
             console.log(resp.data);
         } catch (error) {
             console.log(error.response);

@@ -20,7 +20,7 @@ export const DataRegisterPage = () => {
             placeholder: "Telefonszám - pl: +36703411003",
             errorMessage: "Nem megfelelő a formátum",
             label: "Telefonszám",
-            pattern: "/^\+?[0-9]{6,14}$/",
+            pattern: '/^\+?[0-9]{6,14}$/',
             required: true,
         },
         {
