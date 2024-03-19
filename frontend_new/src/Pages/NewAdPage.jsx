@@ -3,63 +3,63 @@ import './CSS/NewAdPage.css'
 import { useNavigate } from 'react-router-dom';
 
 export const NewAdPage = () => {
-    const [values, setValues] = useState({
-        title: "",
-        email: "",
-        password: "",
-        passwordagain: ""
-    });
-    const navigate = useNavigate()
+    // const [values, setValues] = useState({
+    //     title: "",
+    //     email: "",
+    //     password: "",
+    //     passwordagain: ""
+    // });
+    // const navigate = useNavigate()
 
-    const inputs = [
-        {
-            id: 1,
-            name:"username",
-            type: "text",
-            placeholder: "Felhasználónév",
-            errorMessage: "A felhasználónév 3-16 karakter hosszúnak kell lenni, és nem tartalmazhat speciális karaktereket!",
-            label: "Felhasználónév",
-            pattern: "^[A-Za-z0-9]{3,16}$",
-            required: true,
-        },
-        {
-            id: 2,
-            name:"email",
-            type: "email",
-            placeholder: "Email",
-            label: "Email",
-            errorMessage: "Az email nem megfelelő formátumú!",
-            required: true
-        },
-        {
-            id: 3,
-            name: "password",
-            type: "password",
-            placeholder: "Jelszó",
-            label: "Jelszó",
-            errorMessage: "A jelszónak 8-30 karakter hosszúnak kell lenni és tartalmaznia kell legalább egyet-egyet az alábbiak közül: Betű, Szám, Speciális karakter!",
-            pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$`,
-            required: true
-        },
-        {
-            id: 4,
-            name: "passwordagain",
-            type: "password",
-            placeholder: "Jelszó újra",
-            label: "Jelszó újra",
-            errorMessage: "A jelszó nem egyezik a másik jelszóval!",
-            pattern: values.password,
-            required: true
-        }
-    ];
+    // const inputs = [
+    //     {
+    //         id: 1,
+    //         name:"username",
+    //         type: "text",
+    //         placeholder: "Felhasználónév",
+    //         errorMessage: "A felhasználónév 3-16 karakter hosszúnak kell lenni, és nem tartalmazhat speciális karaktereket!",
+    //         label: "Felhasználónév",
+    //         pattern: "^[A-Za-z0-9]{3,16}$",
+    //         required: true,
+    //     },
+    //     {
+    //         id: 2,
+    //         name:"email",
+    //         type: "email",
+    //         placeholder: "Email",
+    //         label: "Email",
+    //         errorMessage: "Az email nem megfelelő formátumú!",
+    //         required: true
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "password",
+    //         type: "password",
+    //         placeholder: "Jelszó",
+    //         label: "Jelszó",
+    //         errorMessage: "A jelszónak 8-30 karakter hosszúnak kell lenni és tartalmaznia kell legalább egyet-egyet az alábbiak közül: Betű, Szám, Speciális karakter!",
+    //         pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$`,
+    //         required: true
+    //     },
+    //     {
+    //         id: 4,
+    //         name: "passwordagain",
+    //         type: "password",
+    //         placeholder: "Jelszó újra",
+    //         label: "Jelszó újra",
+    //         errorMessage: "A jelszó nem egyezik a másik jelszóval!",
+    //         pattern: values.password,
+    //         required: true
+    //     }
+    // ];
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // };
 
-    const onChange = (e) => {
-        setValues({...values, [e.target.name]: e.target.value});
-    }
+    // const onChange = (e) => {
+    //     setValues({...values, [e.target.name]: e.target.value});
+    // }
 
     return (
         <div className='newadpage'>
@@ -72,7 +72,7 @@ export const NewAdPage = () => {
                     <input type="text" name='title' placeholder='pl: Asztal' />
 
                     <label htmlFor="county">Hirdetés megye:</label>
-                    <input type="text" name='county' placeholder='pl: Győr-moson-Sopron' />
+                    <input type="text" name='county' placeholder='pl: Győr-Moson-Sopron' />
 
                     <label htmlFor="settlement">Hirdetés pontos helye:</label>
                     <input type="text" name='settlement' placeholder='pl: Győr' />

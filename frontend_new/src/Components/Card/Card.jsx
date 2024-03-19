@@ -13,8 +13,8 @@ export const Card = () => {
                         <h3 className='card-title'>"Card title"</h3>
                         <h3 className='card-title' id='category'>Kategória:</h3>
                         <label htmlFor="category">"Egyetem"</label>
-                        <h3 className='card-title' id='added'>Hozzáadva:</h3>
-                        <label htmlFor="added">"2024.10.21".</label>
+                        <h3 className='card-title' id='added'>Ár:</h3>
+                        <label htmlFor="added">"3000 Ft".</label>
                     </div>
                     <div className="card-description">
                         <p className=''>Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. Itt fog megjelenni a hirdetés leírása, amit a hirdető beállított. </p>
