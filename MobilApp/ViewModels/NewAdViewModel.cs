@@ -119,31 +119,37 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                     else
                                     {
                                         adError = "Adja meg a hirdetésének helyszínét!";
+                                        OnPropertyChanged(nameof(adError));
                                     }
                                 }
                                 else
                                 {
                                     adError = "Adja meg a hirdetésének helyszínét!";
+                                    OnPropertyChanged(nameof(adError));
                                 }
                             }
                             else
                             {
                                 adError = "Adja meg a hirdetésének árát!";
+                                OnPropertyChanged(nameof(adError));
                             }
                         }
                         else
                         {
                             adError = "Adja meg a hirdetésének kategóriáját!";
+                            OnPropertyChanged(nameof(adError));
                         }
                     }
                     else
                     {
                         adError = "Adja meg a hirdetésének leírását!";
+                        OnPropertyChanged(nameof(adError));
                     }
                 }
                 else
                 {
                     adError = "Adja meg a hirdetésének nevét!";
+                    OnPropertyChanged(nameof(adError));
                 }
 
             });

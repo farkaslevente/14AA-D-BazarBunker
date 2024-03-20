@@ -28,9 +28,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 if (selectedPicture == null) return;
                 int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
                 await DataService.profilePictureUpdate(UserId.ToString(), selectedPicture.Url);
-                OnPropertyChanged(nameof(selectedPicture));
-                if (await SecureStorage.GetAsync("success") == null)
+                //OnPropertyChanged(nameof(selectedPicture));
+                if (await SecureStorage.GetAsync("success") == "success")
                 {
+                   await SecureStorage.SetAsync("userImage", selectedPicture.Url);
                    await Shell.Current.GoToAsync(nameof(ProfilePage));
                 }
             });
