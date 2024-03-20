@@ -3,7 +3,7 @@ import './CSS/RegisterPage.css'
 import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
-const registerurl = 'http://10.0.22.14:9000/register'
+const registerurl = 'http://127.0.0.1:9000/register'
 
 export const RegisterPage = () => {
     const [name, setName] = useState('');

@@ -3,7 +3,7 @@ import './CSS/LoginPage.css'
 //import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const loginurl = 'http://10.0.22.14:9000/login'
+const loginurl = 'http://127.0.0.1:9000/login'
 
 export const LoginPage = () => {
     //const navigate = useNavigate()
