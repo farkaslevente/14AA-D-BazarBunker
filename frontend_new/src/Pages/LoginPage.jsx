@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './CSS/LoginPage.css'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const loginurl = 'http://127.0.0.1:9000/login'
+const loginurl = 'http://10.0.22.14:9000/login'
+
 
 export const LoginPage = () => {
-    //const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +19,7 @@ export const LoginPage = () => {
             const token = resp.data;
             localStorage.setItem('token', token);
             console.log(resp.data);
+            navigate('/');
         } catch (error) {
             console.log(error.response);
         }
@@ -38,6 +40,12 @@ export const LoginPage = () => {
                     <div>
                         <button type='submit'>Bejelentkezés</button>
                         <p className="login-signup">Még nincs fiókja? <a style={{ textDecoration: 'none'}} href='/regisztracio'>Hozzon létre egyet!</a></p>
+                    </div>
+                    if (condition) {
+                        
+                    }
+                    <div className="">
+                        
                     </div>
                 </form>
             </div>

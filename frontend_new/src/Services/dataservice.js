@@ -1,6 +1,6 @@
-import axios from 'axios';
+import Axios from 'axios';
 
-const instance = axios.create({
+const instance = Axios.create({
     baseURL: process.REACT_APP_HOST202,
     headers:{
         'Content-Type' : 'application/json'
