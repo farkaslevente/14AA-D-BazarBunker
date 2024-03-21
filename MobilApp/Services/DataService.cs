@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
+using FFImageLoading.Args;
 
 
 namespace MobilApp_Szakdolgozat.Services
@@ -21,14 +22,14 @@ namespace MobilApp_Szakdolgozat.Services
         {
             string token;
         }
- //     /\             (_)    | |/ /   | | |
- //    /  \    _ __ ___ _     | ' / ___| | |
- //   / /\ \ | '_ ` _ \| |    |  < / _ \ | |
- //  / ____ \| | | | | | |    | . \  __/ | |
- // /_/    \_\_| |_| |_|_|    |_|\_\___|_|_|
- // képváltáshoz:
- // - token eltárolás
- // - post token, post kép id (<--egyben)
+        //     /\             (_)    | |/ /   | | |
+        //    /  \    _ __ ___ _     | ' / ___| | |
+        //   / /\ \ | '_ ` _ \| |    |  < / _ \ | |
+        //  / ____ \| | | | | | |    | . \  __/ | |
+        // /_/    \_\_| |_| |_|_|    |_|\_\___|_|_|
+        // képváltáshoz:
+        // - token eltárolás
+        // - post token, post kép id (<--egyben)
 
         static string url202 = "http://10.0.22.14:9000";
         static string url303 = "http://10.0.33.12:9000";
@@ -39,7 +40,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url102local;
+        static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -53,9 +54,9 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<IEnumerable<PictureCatalogModel>> getAllPictures() 
+        public static async Task<IEnumerable<PictureCatalogModel>> getAllPictures()
         {
-            using (var client = new HttpClient()) 
+            using (var client = new HttpClient())
             {
                 string token = await SecureStorage.GetAsync("userToken");
                 client.DefaultRequestHeaders.Authorization =
@@ -67,10 +68,10 @@ namespace MobilApp_Szakdolgozat.Services
                 return JsonConvert.DeserializeObject<List<PictureCatalogModel>>(result);
             }
         }
-        
+
         public static async Task<IEnumerable<AdsModel>> getAds()
         {
-            using(var client = new HttpClient()) 
+            using (var client = new HttpClient())
             {
                 string token = await SecureStorage.GetAsync("userToken");
                 client.DefaultRequestHeaders.Authorization =
@@ -113,7 +114,7 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<RegisterModel> register(RegisterModel user) 
+        public static async Task<RegisterModel> register(RegisterModel user)
         {
             RegisterModel errorRegister = new RegisterModel();
 
@@ -125,11 +126,11 @@ namespace MobilApp_Szakdolgozat.Services
             // Debug.WriteLine(response.StatusCode);
             string result = await response.Content.ReadAsStringAsync();
 
-            if ((int)response.StatusCode == 400) 
+            if ((int)response.StatusCode == 400)
             {
                 //hiba
                 dynamic errorObj = JsonConvert.DeserializeObject<dynamic>(result);
-                foreach (JProperty variable in errorObj) 
+                foreach (JProperty variable in errorObj)
                 {
                     if (variable.Name == "name")
                     {
@@ -148,7 +149,7 @@ namespace MobilApp_Szakdolgozat.Services
             return errorRegister;
         }
 
-        public static async Task<string> login(string email, string password) 
+        public static async Task<string> login(string email, string password)
         {
             string jsonData = JsonConvert.SerializeObject(new { email = email, password = password });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -170,10 +171,10 @@ namespace MobilApp_Szakdolgozat.Services
                 string[] payload = trimmedResult.Split('.');
                 var finalPayload = payload[1];
 
-                var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));                              
+                var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
                 string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
                 string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");                
+                string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
 
                 string userImage = null;
 
@@ -191,7 +192,7 @@ namespace MobilApp_Szakdolgozat.Services
                             break;
                         }
                     }
-                }                
+                }
                 if (userImage != null)
                 {
                     await SecureStorage.SetAsync("userImage", userImage);
@@ -204,13 +205,15 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 
                 return null;
-                
+
             }
         }
 
-        public static async Task<string> profilePictureUpdate(string id, string url)
-        {            
-            string jsonData = JsonConvert.SerializeObject(new { id = id, pPic = url });
+        public static async Task<string> profilePictureUpdate(int id, string picUrl)
+        {
+            string jsonData = JsonConvert.SerializeObject(new {
+                id = id,
+                pPic = picUrl });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
             string token = await SecureStorage.GetAsync("userToken");
@@ -259,6 +262,25 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("uploaded", true.ToString());
                 return null;
             }
+        }
+
+        public static async Task<string> imageUpload(int userId, int adId, int imgId) 
+        {
+            var uploadFile = await MediaPicker.PickPhotoAsync();
+
+            if (uploadFile == null) return "error";
+
+            var httpContent = new MultipartFormDataContent();         
+            string[] fileType = uploadFile.FileName.Split('.');
+            uploadFile.FileName = $"{userId}_{adId}_{imgId}.{fileType[1]}";
+            httpContent.Add(new StreamContent(await uploadFile.OpenReadAsync()), "file", uploadFile.FileName);
+
+            var httpClient = new HttpClient();
+            var result = await httpClient.PostAsync($"{url}/pictures/upload", httpContent);
+            var response = await result.Content.ReadAsStringAsync();
+            //await Shell.Current.DisplayAlert("Response from server", response, "K");
+            await SecureStorage.SetAsync("imgId", imgId.ToString());
+            return "";
         }
         public class TokenResponse
         {

@@ -20,7 +20,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public string adError { get; set; }
         public int adCountyId { get; set; }
         public int adOwnerId { get; set; }
-        
+        public int imageId { get; set; }
+        public List<string> imageList;
+        public ObservableCollection<AdsModel> advertisements { get; set; }
 
         public ObservableCollection<CountyModel> counties { get; set; }
         private CountyModel _selectedCounty;
@@ -58,11 +60,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ICommand CountySelectionChangeCommand { get; set; }
         public ICommand CategorySelectionChangeCommand { get; set; }
         public ICommand uploadCommand { get; set; }
+        public ICommand uploadImagesCommand { get; set; }
         public NewAdViewModel()
         {        
             counties = new ObservableCollection<CountyModel>();
             settlements = new ObservableCollection<SettlementModel>();
             categories = new ObservableCollection<string>();
+            advertisements = new ObservableCollection<AdsModel>();
             getCategories();
             getCounties();
             //adTitle = "";
@@ -153,6 +157,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 }
 
             });
+
+            uploadImagesCommand = new Command(async () =>
+            {
+                await getAllAds();
+                int userId = int.Parse(await SecureStorage.GetAsync("userId"));
+                int adId = advertisements.Count()+1;                
+                List<string> imageList = new List<string>();
+                await DataService.imageUpload(userId, adId, imageId);
+                imageId = int.Parse(await SecureStorage.GetAsync("imgId"))+1;
+
+            });
         }
 
 
@@ -188,6 +203,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
             categories.Add("Írószerek");
             categories.Add("Kiegészítők");
 
+        }
+        private async Task getAllAds()
+        {
+            IEnumerable<AdsModel> list = await DataService.getAds();
+            list.ToList().ForEach(p => advertisements.Add(p));
         }
     }
 }
