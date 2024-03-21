@@ -3,7 +3,7 @@ import './CSS/RegisterPage.css'
 import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
-const registerurl = 'http://10.0.22.14:9000/register'
+const registerurl = 'http://localhost:9000/register'
 
 export const RegisterPage = () => {
     const [name, setName] = useState('');
@@ -42,7 +42,7 @@ export const RegisterPage = () => {
                             <input type='password' required className='form-input' id='password' placeholder='Jelszó'
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button type='submit' className='btn  btn-block'>Regisztráció</button>
+                        <button type='submit' className='btn btn-block rounded'>Regisztráció</button>
                     </form>
                     <div>
                     </div>

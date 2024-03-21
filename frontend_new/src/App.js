@@ -1,17 +1,21 @@
 import './App.css';
-import { Navbar } from './Components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+//Components
+import { Footer } from './Components/Footer/Footer';
+import { Navbar } from './Components/Navbar/Navbar';
+
+//Pages
 import { WelcomePage } from './Pages/WelcomePage';
 import { LoginPage } from './Pages/LoginPage';
 import { AllAdsPage } from './Pages/AllAdsPage';
 import { NewAdPage } from './Pages/NewAdPage';
 import { AdDetailsPage } from './Pages/AdDetailsPage';
-import { Footer } from './Components/Footer/Footer';
 import { RegisterPage } from './Pages/RegisterPage';
 import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
-
+import { PasswordResetPage } from './Pages/PasswordResetPage';
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
         <Route path='/' element={<WelcomePage/>} />
         <Route path='/bejelentkezes' element={<LoginPage />} />
         <Route path='/regisztracio' element={<RegisterPage />} />
+        <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
 
         <Route path='/adatregisztracio' element={<DataRegisterPage />} />
 

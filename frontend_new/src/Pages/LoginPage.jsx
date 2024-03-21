@@ -3,7 +3,7 @@ import './CSS/LoginPage.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const loginurl = 'http://10.0.22.14:9000/login'
+const loginurl = 'http://localhost:9000/login'
 
 
 export const LoginPage = () => {
@@ -38,14 +38,9 @@ export const LoginPage = () => {
                         <input type="password" id='password' autoComplete='off' required placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <div>
-                        <button type='submit'>Bejelentkezés</button>
+                        <button className='rounded' type='submit'>Bejelentkezés</button>
                         <p className="login-signup">Még nincs fiókja? <a style={{ textDecoration: 'none'}} href='/regisztracio'>Hozzon létre egyet!</a></p>
-                    </div>
-                    if (condition) {
-                        
-                    }
-                    <div className="">
-                        
+                        <p className="login-signup"><a style={{ textDecoration: 'none'}} href='/elfelejtettjelszo'>Elfelejtett jelszó?</a></p>
                     </div>
                 </form>
             </div>
