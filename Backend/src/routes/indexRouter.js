@@ -4,6 +4,7 @@ const { authController } = require('../controllers/auth.controller')
 const { userController } = require('../controllers/user.controller')
 const { isAdmin } = require('../controllers/role.controller')
 const { verifyToken } = require("../middlewares/jwtMiddleware");
+const { sendMail } = require('../controllers/email.controller')
 const router = express.Router();
 
 
@@ -145,6 +146,14 @@ router.post("/ads", [verifyToken], async function(req,res) {
 
 router.post('/pictures/upload', upload.single('file'), (req,res) => {
     res.json(req.file)
+});
+
+router.get('/sendemail', async function(req,res) {
+    try {
+        sendMail();
+    } catch (err) {
+        console.error(err.message)
+    }
 })
 
 
