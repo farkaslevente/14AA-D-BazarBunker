@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
 import './CSS/RegisterPage.css'
-import axios from 'axios';
+import userservice from '../Services/userservice';
 // import { useNavigate } from 'react-router-dom';
-
-const registerurl = 'http://localhost:9000/register'
 
 export const RegisterPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(name, email, password);
         try {
-            const resp = await axios.post(registerurl, { name: name, email: email, password: password });
+            const resp = await userservice.registerUser({ name: name, email: email, password: password });
             console.log(resp.data);
         } catch (error) {
-            console.log(error.response);
+            if (error.resp) {
+                console.log('Error response:', error.resp);
+            } else if (error.request) {
+                console.log('No response received:', error.request);
+            } else {
+                console.log('Error:', error.message);
+            }
         }
     };
 
@@ -53,30 +54,6 @@ export const RegisterPage = () => {
                     </div>
                 </div>
             </div>
-
-            {/* <div className="registerpage">
-                <h2 className='text-center'>Regisztráció</h2>
-                <form className='form' onSubmit={handleSubmit}>
-                    <div className="form-fields">
-                        <div className='form-row form-control form-floating'>
-                            <label for='name' className='form-label'>Felhasználónév:</label>
-                            <input type='text' className='form-input' id='name' placeholder='Felhasználónév'
-                                value={name} onChange={(e) => setName(e.target.value)} />
-                        </div>
-                        <div className='form-row'>
-                            <label for='email' className='form-label'>Email:</label>
-                            <input type='email' className='form-input' id='email' placeholder='email@email.com'
-                                value={email} onChange={(e) => setEmail(e.target.value)} />
-                        </div>
-                        <div className='form-row'>
-                            <label for='password' className='form-label'>Jelszó:</label>
-                            <input type='password' className='form-input' id='password' placeholder='Jelszó'
-                                value={password} onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                    </div>
-                    <button type='submit' className='btn btn-block'>register</button>
-                </form>
-            </div> */}
         </div>
     );
 }

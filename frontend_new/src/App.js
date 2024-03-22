@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { UserStoreProvider } from './Stores/userStore';
 
 //Components
 import { Footer } from './Components/Footer/Footer';
@@ -20,28 +21,30 @@ import { PasswordResetPage } from './Pages/PasswordResetPage';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <UserStoreProvider>
+        <Navbar />
 
-      <Routes>
-        <Route path='/' element={<WelcomePage/>} />
-        <Route path='/bejelentkezes' element={<LoginPage />} />
-        <Route path='/regisztracio' element={<RegisterPage />} />
-        <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
+        <Routes>
+          <Route path='/' element={<WelcomePage/>} />
+          <Route path='/bejelentkezes' element={<LoginPage />} />
+          <Route path='/regisztracio' element={<RegisterPage />} />
+          <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
 
-        <Route path='/adatregisztracio' element={<DataRegisterPage />} />
+          <Route path='/adatregisztracio' element={<DataRegisterPage />} />
 
-        <Route path='/hirdetesek' element={<AllAdsPage />}>
-          <Route path=':hirdetesId' element={<AdDetailsPage />} />
-        </Route>
-        <Route path='/hirdetes' element={<AdDetailsPage />} />
+          <Route path='/hirdetesek' element={<AllAdsPage />}>
+            <Route path=':hirdetesId' element={<AdDetailsPage />} />
+          </Route>
+          <Route path='/hirdetes' element={<AdDetailsPage />} />
 
-        <Route path='/ujhirdetes' element={<NewAdPage />} />
-        <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
-        <Route path='/profil' element={<ProfilePage />} />
+          <Route path='/ujhirdetes' element={<NewAdPage />} />
+          <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
+          <Route path='/profil' element={<ProfilePage />} />
 
-      </Routes>
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </UserStoreProvider> {/* Close UserStoreProvider */}
     </BrowserRouter>
   );
 }

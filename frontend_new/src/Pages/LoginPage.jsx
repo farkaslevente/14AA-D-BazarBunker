@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import './CSS/LoginPage.css'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
-const loginurl = 'http://localhost:9000/login'
-
+import userservice from '../Services/userservice'
 
 export const LoginPage = () => {
     const navigate = useNavigate()
@@ -15,7 +12,7 @@ export const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const resp = await axios.post(loginurl, {email: email, password: password})
+            const resp = await userservice.login({email: email, password: password})
             const token = resp.data;
             localStorage.setItem('token', token);
             console.log(resp.data);
