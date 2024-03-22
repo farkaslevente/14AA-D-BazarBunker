@@ -42,7 +42,12 @@ export const RegisterPage = () => {
                             <input type='password' required className='form-input' id='password' placeholder='Jelszó'
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button type='submit' className='btn btn-block rounded'>Regisztráció</button>
+                        <div className="">
+                            <button type='submit' className='btn rounded'>Regisztráció</button>
+                        </div>
+                        <div className="">
+                            <p className="register-signup">Már van fiókja? <a style={{ textDecoration: 'none' }} href='/bejelentkezes'>Jelentkezzen be!</a></p>
+                        </div>
                     </form>
                     <div>
                     </div>
