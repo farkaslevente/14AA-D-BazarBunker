@@ -64,7 +64,9 @@ const authController = {
                     name: user.nev,
                     email: user.email,
                     location: user.hely,
-                    pPic: user.pPic
+                    pPic: user.pPic,
+                    favourites: user.kedvencek,
+                    phone: user.telefonszam
                 }
                 const token = accessToken({payload})
 
