@@ -9,7 +9,7 @@ export const WelcomePage = () => {
         <div className="description">
           <p>A <b><i>BAZÁRBUNKER</i></b> azért jött létre, hogy mindenki számára megkönnyítse és olcsóbbá tegye az iskolát.</p>
           <p>Ha nem bánod az esetleges használt cuccokat, akkor <b>ITT</b> a helyed, nézz körül, és spórolj!</p>
-          <p>Legyen szó színes ceruza készletről, köteleő olvasmányokról, tankönyvekről, akár íróasztalról is, itt könnyedén megtalálhatod.</p>
+          <p>Legyen szó színes ceruza készletről, köteleő olvasmányokról, tankönyvekről, akár íróasztalról is, itt könnyedén megtalálhatod!</p>
         </div>
       </div>
     </div>
