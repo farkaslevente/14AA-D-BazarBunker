@@ -1,8 +1,6 @@
 .carousel {
     height: fit-content;
     width: 50rem;
-    /* border: 1px solid black;
-    border-radius: 20px; */
     margin: auto;
 }
 
@@ -13,3 +11,24 @@
     height: auto;
     margin: auto;
 }
+
+.react-responsive-carousel .control-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+  }
+  
+  .react-responsive-carousel .control-arrow.prev {
+    left: 20px;
+  }
+  
+  .react-responsive-carousel .control-arrow.next {
+    right: 20px;
+  }
+
+  .control-dots {
+    border: 1px solid black;
+    border-radius: 10px;
+    background: gray;
+  }
+  
