@@ -9,8 +9,8 @@ export const Navbar = () => {
   return (
     <div className='navbar'>
       <div className="nav-logo">
-        <img src={logo} alt="" className='nav-img-size'/>
-        <a href='/' style={{textDecoration: 'none'}}>BAZARBUNKER</a>
+        <img src={logo} alt="" className='nav-img-size' />
+        <a href='/' style={{textDecoration: 'none'}}>BAZARBUNKER</a>        
       </div>
       <ul className='nav-menu'> 
         <li onClick={()=>{setMenu("hirdetesek")}}><Link style={{textDecoration: 'none'}} to='/hirdetesek'>Hirdetések</Link>{menu==="hirdetesek"?<hr/>:<></>}</li>

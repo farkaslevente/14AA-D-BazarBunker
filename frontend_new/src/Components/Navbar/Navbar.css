@@ -65,6 +65,7 @@
     background: white;
     cursor: pointer;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .nav-login button:active {
@@ -72,7 +73,7 @@
 }
 
 .nav-img-size {
-    max-width: 35%;
-    max-height: 35%;
+    max-width: 25%;
+    max-height: 25%;
     background-color: black;
 }
