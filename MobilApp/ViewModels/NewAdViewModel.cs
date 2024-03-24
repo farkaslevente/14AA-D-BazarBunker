@@ -206,6 +206,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         private async Task getAllAds()
         {
+            advertisements.Clear();
             IEnumerable<AdsModel> list = await DataService.getAds();
             list.ToList().ForEach(p => advertisements.Add(p));
         }

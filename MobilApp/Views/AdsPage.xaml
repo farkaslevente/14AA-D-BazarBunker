@@ -7,17 +7,17 @@
     <ContentPage.BindingContext>
         <vm:AdsViewModel/>
     </ContentPage.BindingContext>
-    <Grid RowDefinitions="auto,40" ColumnDefinitions="*,16*,*">
+    <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
     <CollectionView ItemsSource="{Binding filteredAds}" Grid.Row="0" Grid.Column="1">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame CornerRadius="10" Margin="10,5,10,5" MinimumHeightRequest="150">
                     <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="2*,1.5*,1.5*">
-                        <!--<Image Source="{Binding }" 
-                                Grid.RowSpan="3" 
-                                Grid.Column="0"/>-->
-
-                        <Label x:Name="LBLAdName" 
+                            <Frame CornerRadius="10" Grid.RowSpan="3" 
+                                    Grid.Column="0">
+                            <Image Source="{Binding adImages[0]}"/>
+                        </Frame>
+                            <Label x:Name="LBLAdName" 
                                 Text="{Binding nev}" 
                                 Grid.Row="0" 
                                 Grid.Column="1"

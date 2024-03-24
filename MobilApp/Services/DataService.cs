@@ -40,7 +40,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        static string url = url202;
+        public static string url = urlHome;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -111,6 +111,21 @@ namespace MobilApp_Szakdolgozat.Services
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<SettlementModel>>(result);
+            }
+        }
+
+        public static async Task<IEnumerable<string>> getUploads()
+        {
+            using (var client = new HttpClient())
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri(url);
+                var uri = "/pictures/uploads";
+                var result = await client.GetStringAsync(uri);
+
+                return JsonConvert.DeserializeObject<List<string>>(result);
             }
         }
 
