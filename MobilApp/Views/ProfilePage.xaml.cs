@@ -3,46 +3,26 @@ using MobilApp_Szakdolgozat.ViewModels;
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class ProfilePage : ContentPage
-{
-    bool Saved = false;    
+{    
+    public ProfilePageViewModel vm { get; set; }
 	public ProfilePage()
 	{        
         this.BindingContext = new ShellViewModel();
         this.BindingContext = new ProfilePageViewModel();
-        InitializeComponent();
-        NameChangeBTN.IsVisible = true;
-        NameSaveBTN.IsVisible = false;
+        vm = new ProfilePageViewModel();
+        vm.profileChangeVisibility = false;
+        InitializeComponent();        
 
     }
 
-    private void NameChangeBTN_Clicked(object sender, EventArgs e)
+    private void ProfileChangeBTN_Clicked(object sender, EventArgs e)
     {
-		NameChangeBTN.IsVisible = false;
-        NameSaveBTN.IsVisible = true;
-        NameEntry.Text = "";
-        NameEntry.Placeholder = "Teszt Elek";
-        NameEntry.PlaceholderColor = Colors.Gray;
-        Saved = false;
+        vm.profileChangeVisibility = true;
+        ProfileChangeBTN.IsVisible = false;              
     }
 
-    private void NameSaveBTN_Clicked(object sender, EventArgs e)
-    {
-        
-        if (NameEntry.Text != "" && Saved == false)
-        {
-            NameLB.Text = NameEntry.Text;
-            NameChangeBTN.IsVisible = true;
-            NameSaveBTN.IsVisible = false;
-            Saved = true;
-
-        }
-        else
-        {
-            NameEntry.Placeholder = "Adjon meg egy érvényes nevet!";
-            NameEntry.PlaceholderColor = Colors.Red;
-
-        }
-        
+    private void ProfileSaveBTN_Clicked(object sender, EventArgs e)
+    {                        
     }
 
     private async void ProfilePicChangeBTN_Clicked(object sender, EventArgs e)

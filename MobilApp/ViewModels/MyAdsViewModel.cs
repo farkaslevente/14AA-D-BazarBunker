@@ -23,8 +23,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ICommand favCommand { get; set; }
         public MyAdsViewModel()
         {
+            uploadFileNames = new ObservableCollection<string>();
             advertisements = new ObservableCollection<AdsModel>();
-            getAllAds();
+            //getAllAds();
             getImages();
             detailsCommand = new Command(async () => {
                 if (selectedAd == null) return;
@@ -38,31 +39,32 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getImages()
         {
+            await getAllAds();
             await getAllUploads();
-            for (int i = 0; i < advertisements.Count(); i++)
+            for (int i = 0; i < uploadFileNames.Count(); i++)
             {
-                for (int y = 0; y < uploadFileNames.Count(); y++)
+                for (int y = 0; y < advertisements.Count(); y++)
                 {
-                    string[] nameWithoutFileType = uploadFileNames[y].Split('.');
+                    string[] nameWithoutFileType = uploadFileNames[i].Split('.');
                     string[] nameParts = nameWithoutFileType[0].Split('_');
                     //nameParts[0] = UserId
                     //nameParts[1] = AdId
                     //nameParts[2] = ImgId
-                    if (advertisements[i].id == Int32.Parse(nameParts[1]))
+                    if (advertisements[y].id == Int32.Parse(nameParts[1]))
                     {
-                        advertisements[i].adImages.Add($"{DataService.url}/pictures/upload/{nameParts[0]}_{nameParts[0]}_{nameParts[0]}.{nameWithoutFileType[1]}");
+                        advertisements[y].adImages.Add($"{DataService.url}/pictures/upload/{nameParts[0]}_{nameParts[0]}_{nameParts[0]}.{nameWithoutFileType[1]}");
                     }
                 }
             }
         }
 
-        private async void getAllAds()
-        {
-            //int isLike = 0;
-            int? UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-
-            IEnumerable<AdsModel> list = await DataService.getAds();
+        private async Task getAllAds()
+        {            
             advertisements.Clear();
+            //int isLike = 0;
+            int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+
+            IEnumerable<AdsModel> list = await DataService.getAds();            
             list.ToList().ForEach(advert =>
             {
                 if (advert.tulajId == UserId)
@@ -74,8 +76,6 @@ namespace MobilApp_Szakdolgozat.ViewModels
         private async void getAllPics()
         {
             IEnumerable<PictureCatalogModel> list = await DataService.getAllPictures();
-            //list.ToArray().ForEach(p => selectedAd.adImages.Add(p));
-            //selectedAd.adImages = list.Select(item => item.ToString());
             list.ToList().ForEach(advert =>
             {
                 selectedAd.adImages.Add(advert.Url);

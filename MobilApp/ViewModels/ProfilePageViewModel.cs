@@ -14,7 +14,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
     public class ProfilePageViewModel: BindableObject        
     {
         public ObservableCollection<ProfileModel> profiles { get; set; }
-        public ProfileModel profile { get; set; }         
+        public ProfileModel profile { get; set; }       
+        public bool profileChangeVisibility { get; set; }
         public ProfilePageViewModel()
         {
             profiles = new ObservableCollection<ProfileModel>();

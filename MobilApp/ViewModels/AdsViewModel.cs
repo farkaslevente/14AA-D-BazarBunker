@@ -18,6 +18,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
        
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
+            uploadFileNames = new ObservableCollection<string>();
             filteredAds = query["filteredAds"] as ObservableCollection<AdsModel>;
             await getAllUploads();
             for (int i = 0; i < filteredAds.Count(); i++)
@@ -39,6 +40,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         private async Task getAllUploads()
         {
+            uploadFileNames.Clear();
             IEnumerable<string> list = await DataService.getUploads();
             list.ToList().ForEach(fn => uploadFileNames.Add(fn));
         }

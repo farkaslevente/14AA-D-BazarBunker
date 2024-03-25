@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
+             xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Maui;assembly=FFImageLoading.Compat.Svg.Maui"
              x:Class="MobilApp_Szakdolgozat.Views.ProfilePage"
              Title=""
              Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:ProfilePageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style x:Key="GridStyle" TargetType="Grid">
             <Setter Property="Padding" Value="0,10"/>
@@ -65,18 +68,18 @@
                                 PlaceholderColor="Gray"                                                       
                                 Margin="30,0,30,0"/>
                 </Border>
-                <Button x:Name="NameChangeBTN"
-                        Text="Név megváltoztatása"
+                <Button x:Name="ProfileChangeBTN"
+                        Text="Profiladatok módosítása"
                         MaximumHeightRequest="40"
                         Margin="30,0"
-                        Clicked="NameChangeBTN_Clicked"/>
+                        Clicked="ProfileChangeBTN_Clicked"/>
 
                 <Button Grid.Row="1"
-                        x:Name="NameSaveBTN"
-                        Text="Változtatás mentése"
+                        x:Name="ProfileSaveBTN"
+                        Text="Profiladatok frissítése"
                         MaximumHeightRequest="40"
                         Margin="30,0"
-                        Clicked="NameSaveBTN_Clicked"/>
+                        Clicked="ProfileSaveBTN_Clicked"/>
             </Grid>
             <Grid Grid.RowSpan="9" Grid.Row="3" Grid.ColumnSpan="3" HeightRequest="460">
                 <Image Source="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg" VerticalOptions="CenterAndExpand"/>

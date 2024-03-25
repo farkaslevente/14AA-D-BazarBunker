@@ -23,9 +23,11 @@
                         <Grid ColumnDefinitions="2*,1.5*,1.5*" RowDefinitions="*,*,*">
                             <Image Source="{Binding adImages[0]}"
                                    Grid.RowSpan="3"
-                                   Grid.Column="0"/>
-                            
-                            <Label Text="{Binding nev}"
+                                   Grid.Column="0"
+                                   />
+                                <Label Text="{Binding adImages[0]}"/>
+
+                                <Label Text="{Binding nev}"
                                    Grid.Row="0"
                                    Grid.Column="1"
                                    Grid.ColumnSpan="2"/>
