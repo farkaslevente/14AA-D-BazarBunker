@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import './CSS/RegisterPage.css'
 import userservice from '../Services/userservice';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterPage = () => {
+    const navigate = useNavigate();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,6 +15,9 @@ export const RegisterPage = () => {
         try {
             const resp = await userservice.registerUser({ name: name, email: email, password: password });
             console.log(resp.data);
+            if (resp.message = 'Successful registration') {
+                navigate('/bejelentkezes');
+            }
         } catch (error) {
             if (error.resp) {
                 console.log('Error response:', error.resp);
