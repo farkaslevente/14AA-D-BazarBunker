@@ -21,7 +21,6 @@ export const LoginPage = () => {
             localStorage.setItem('jsonwebtoken', token);
             //const data = jwt.decode(token);
             if (resp.data) {
-                //localStorage.setItem('userData', data);
                 navigate('/');
             }
         } catch (error) {
