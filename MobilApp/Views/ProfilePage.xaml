@@ -14,91 +14,111 @@
             <Setter Property="Padding" Value="0,10"/>
         </Style>
     </ContentPage.Resources>
-    <VerticalStackLayout Margin="0,-10,0,0">
-        
-        <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*,40">
-            <Rectangle BackgroundColor="#045dd1" Grid.ColumnSpan="3" Margin="0,0,0,80"/>
-            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" 
-                         HorizontalOptions="Center"
-                         Margin="0,10,0,0">
-                <Grid>
-                    <Border WidthRequest="200"
-                            HeightRequest="200"
-                            StrokeShape="RoundRectangle 100">
+    <Grid RowDefinitions="*,40">
+        <VerticalStackLayout Margin="0,-10,0,0">
 
-                        <svg:SvgCachedImage x:Name="IMGProfielPic"  
-                               Source="{Binding profile.pPic}"
-                               Aspect="AspectFill"/>
+            <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*,40">
+                <Rectangle BackgroundColor="#045dd1" Grid.ColumnSpan="3" Margin="0,0,0,80"/>
+                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" 
+                     HorizontalOptions="Center"
+                     Margin="0,10,0,0">
+                    <Grid>
+                        <Border WidthRequest="200"
+                        HeightRequest="200"
+                        StrokeShape="RoundRectangle 100">
+
+                            <svg:SvgCachedImage x:Name="IMGProfielPic"  
+                           Source="{Binding profile.pPic}"
+                           Aspect="AspectFill"/>
+                        </Border>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1"
+                     Grid.Column="1"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     MaximumWidthRequest="200">
+                    <Label x:Name="NameLB" 
+                           Grid.Row="1" 
+                           Grid.Column="1"
+                           Text="{Binding profile.nev}"  
+                           HorizontalTextAlignment="Center"
+                           FontSize="Large"
+                           MaximumWidthRequest="165"/>
+                    <ImageButton x:Name="ProfilePicChangeBTN" 
+                                 Source="changepp.svg"                           
+                                 Grid.Row="1" 
+                                 Grid.Column="1"
+                                 MaximumHeightRequest="35"
+                                 MaximumWidthRequest="35"                          
+                                 VerticalOptions="End"
+                                 Clicked="ProfilePicChangeBTN_Clicked"
+                                 IsVisible="{Binding InversVisibilityState}"/>
+                </StackLayout>
+
+                <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource GridStyle}" 
+              RowDefinitions="*,*" MaximumHeightRequest="100">
+                    <Border Stroke="White"
+                    StrokeThickness="2">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="45,45,45,45" />
+                        </Border.StrokeShape>
+
+                        <Entry x:Name="NameEntry"
+                            Placeholder="Teszt Elek" 
+                            PlaceholderColor="Gray"                                                       
+                            Margin="30,0,30,0"/>
                     </Border>
+                    <Button x:Name="ProfileChangeBTN"
+                    Text="Profiladatok módosítása"
+                    MaximumHeightRequest="40"
+                    Margin="30,0"
+                    Clicked="ProfileChangeBTN_Clicked"
+                    IsVisible="{Binding InversVisibilityState}"/>
+
+                    <Button Grid.Row="1"
+                    x:Name="ProfileSaveBTN"
+                    Text="Profiladatok frissítése"
+                    MaximumHeightRequest="40"
+                    Margin="30,0"
+                    Clicked="ProfileSaveBTN_Clicked"
+                    IsVisible="{Binding VisibilityState}"/>
                 </Grid>
-            </StackLayout>
+                <Grid Grid.RowSpan="9" Grid.Row="3" Grid.Column="1" HeightRequest="460">
+                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
+                        <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="0" Grid.ColumnSpan="2">
+                            <Entry Text="{Binding profile.nev}" Placeholder="felhasználónév"/>
+                        </Frame>
 
-            <StackLayout Grid.Row="1"
-                         Grid.Column="1"
-                         Orientation="Horizontal"
-                         HorizontalOptions="Center"
-                         MaximumWidthRequest="200">
-                <Label x:Name="NameLB" 
-                   Grid.Row="1" 
-                   Grid.Column="1"
-                   Text="{Binding profile.name}"  
-                   HorizontalTextAlignment="Center"
-                   FontSize="Large"
-                         MaximumWidthRequest="165"/>
-                <ImageButton x:Name="ProfilePicChangeBTN" 
-                 Source="changepp.svg"                           
-                 Grid.Row="1" 
-                 Grid.Column="1"
-                 MaximumHeightRequest="35"
-                 MaximumWidthRequest="35"                          
-                 VerticalOptions="End"
-                 Clicked="ProfilePicChangeBTN_Clicked"/>
-            </StackLayout>
+                        <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Entry Text="{Binding profile.email}" Placeholder=""/>
+                        </Frame>
+                        <!--//location-->
+                        <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="2" Grid.ColumnSpan="2">
+                            <Entry Text="{Binding profile.hely}" Placeholder=""/>
+                        </Frame>
+                        <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="3" Grid.ColumnSpan="2">
+                            <Entry Text="{Binding profile.telefonszam}" Placeholder=""/>
+                        </Frame>
 
-            <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource GridStyle}" 
-                  RowDefinitions="*,*" MaximumHeightRequest="100">
-                <Border Stroke="White"
-                        StrokeThickness="2">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="45,45,45,45" />
-                    </Border.StrokeShape>
+                    </Grid>
+                </Grid>
+                <Button Grid.Column="1" Grid.Row="10" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
 
-                    <Entry x:Name="NameEntry"
-                                Placeholder="Teszt Elek" 
-                                PlaceholderColor="Gray"                                                       
-                                Margin="30,0,30,0"/>
-                </Border>
-                <Button x:Name="ProfileChangeBTN"
-                        Text="Profiladatok módosítása"
-                        MaximumHeightRequest="40"
-                        Margin="30,0"
-                        Clicked="ProfileChangeBTN_Clicked"/>
-
-                <Button Grid.Row="1"
-                        x:Name="ProfileSaveBTN"
-                        Text="Profiladatok frissítése"
-                        MaximumHeightRequest="40"
-                        Margin="30,0"
-                        Clicked="ProfileSaveBTN_Clicked"/>
-            </Grid>
-            <Grid Grid.RowSpan="9" Grid.Row="3" Grid.ColumnSpan="3" HeightRequest="460">
-                <Image Source="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg" VerticalOptions="CenterAndExpand"/>
-            </Grid>
-            <Button Grid.Column="1" Grid.Row="10" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
-
-            <Grid Grid.Row="12" Grid.ColumnSpan="3"
-                  ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
-                <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
-                <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
-                <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
-                <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
-                <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
-                <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
             </Grid>
 
+
+
+        </VerticalStackLayout>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3"
+ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
+            <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
+            <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
+            <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
         </Grid>
-
-
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

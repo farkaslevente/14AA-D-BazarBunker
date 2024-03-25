@@ -52,7 +52,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     //nameParts[2] = ImgId
                     if (advertisements[y].id == Int32.Parse(nameParts[1]))
                     {
-                        advertisements[y].adImages.Add($"{DataService.url}/pictures/upload/{nameParts[0]}_{nameParts[0]}_{nameParts[0]}.{nameWithoutFileType[1]}");
+                        advertisements[y].adImages.Add($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}");
                     }
                 }
             }

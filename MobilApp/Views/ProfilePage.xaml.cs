@@ -5,24 +5,33 @@ namespace MobilApp_Szakdolgozat.Views;
 public partial class ProfilePage : ContentPage
 {    
     public ProfilePageViewModel vm { get; set; }
-	public ProfilePage()
+    public bool VisibilityState { get; set; }
+    public bool InversVisibilityState { get; set; }
+
+    public ProfilePage()
 	{        
         this.BindingContext = new ShellViewModel();
         this.BindingContext = new ProfilePageViewModel();
         vm = new ProfilePageViewModel();
         vm.profileChangeVisibility = false;
+        VisibilityState = false;
+        InversVisibilityState = true;
         InitializeComponent();        
 
     }
 
     private void ProfileChangeBTN_Clicked(object sender, EventArgs e)
     {
-        vm.profileChangeVisibility = true;
-        ProfileChangeBTN.IsVisible = false;              
+        //vm.profileChangeVisibility = true;
+        VisibilityState = true;
+        InversVisibilityState = false;
     }
 
     private void ProfileSaveBTN_Clicked(object sender, EventArgs e)
-    {                        
+    {
+        //vm.profileChangeVisibility = false;
+        VisibilityState = false;
+        InversVisibilityState = true;
     }
 
     private async void ProfilePicChangeBTN_Clicked(object sender, EventArgs e)

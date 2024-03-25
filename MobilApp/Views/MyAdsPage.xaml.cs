@@ -1,10 +1,13 @@
+using MobilApp_Szakdolgozat.ViewModels;
+
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class MyAdsPage : ContentPage
 {
 	public MyAdsPage()
 	{
-		InitializeComponent();
+        this.BindingContext = new MyAdsViewModel();        
+        InitializeComponent();
         if (SecureStorage.GetAsync("uploaded").ToString() == true.ToString())
         {
             SecureStorage.Remove("uploaded");

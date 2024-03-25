@@ -15,7 +15,19 @@ namespace MobilApp_Szakdolgozat.ViewModels
     {
         public ObservableCollection<ProfileModel> profiles { get; set; }
         public ProfileModel profile { get; set; }       
-        public bool profileChangeVisibility { get; set; }
+        public bool _profileChangeVisibility { get; set; }
+        public bool profileChangeVisibility
+        {
+            get => _profileChangeVisibility;
+            set
+            {
+                if (_profileChangeVisibility != value)
+                {
+                    _profileChangeVisibility = value;
+                    OnPropertyChanged(nameof(profileChangeVisibility));
+                }
+            }
+        }        
         public ProfilePageViewModel()
         {
             profiles = new ObservableCollection<ProfileModel>();
@@ -40,10 +52,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 profile = new ProfileModel
                 {
-                    name = userName,
+                    nev = userName,
                     email = userEmail,
                     pPic = userImage,
-                    id = userId
+                    id = userId,
+                    telefonszam = "",
                 };
                 OnPropertyChanged(nameof(profile));
             }

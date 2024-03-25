@@ -4,9 +4,9 @@
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.MyAdsPage"
              Title="MyAdsPage">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <vm:MyAdsViewModel/>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
         <Grid RowDefinitions="*, 40,10" Grid.Column="1" Grid.RowSpan="1">
         <CollectionView ItemsSource="{Binding advertisements}"
@@ -21,11 +21,11 @@
                            Padding="3" 
                            Margin="10">
                         <Grid ColumnDefinitions="2*,1.5*,1.5*" RowDefinitions="*,*,*">
-                            <Image Source="{Binding adImages[0]}"
+                            <!--Sidenote for the future: Binding works, but for some reason you have to tinker with the code here in the xaml to make it work....-->
+                                <Image Source="{Binding adImages[0]}"
                                    Grid.RowSpan="3"
                                    Grid.Column="0"
                                    />
-                                <Label Text="{Binding adImages[0]}"/>
 
                                 <Label Text="{Binding nev}"
                                    Grid.Row="0"

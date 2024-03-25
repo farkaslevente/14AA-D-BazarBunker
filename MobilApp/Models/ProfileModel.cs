@@ -9,10 +9,11 @@ namespace MobilApp_Szakdolgozat.Models
     public class ProfileModel
     {
         public int id { get; set; }
-        public string? name { get; set; }
+        public string? nev { get; set; }
         public string? email { get; set; }
-        public string? location { get; set; }
+        public string? hely { get; set; }
         public string? pPic { get; set; }        
-        private string? password { get; set;}
+        public string? jelszo { get; set;}
+        public string? telefonszam { get; set; }
     }
 }
