@@ -77,3 +77,7 @@
     max-height: 25%;
     background-color: black;
 }
+
+.loggedInUser {
+    margin-right: 50px;
+}

@@ -22,7 +22,7 @@ export const LoginPage = () => {
             const decoded = jwtDecode(token);
             console.log(decoded);
             const authEmail = decoded.payload.email;
-            if (authEmail != '') {
+            if (authEmail !== '') {
                 localStorage.setItem('isLoggedIn', true)
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
                 // localStorage.setItem('authEmail', email);

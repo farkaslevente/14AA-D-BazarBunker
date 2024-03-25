@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import logo from '../Assets/bunker.png'
 import { Link } from 'react-router-dom'
+import { Dropdown } from 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("hirdetes");
@@ -32,7 +34,13 @@ export const Navbar = () => {
       {!isLoggedIn && <div className="nav-login">
         <Link style={{ textDecoration: 'none' }} to='/bejelentkezes'><button style={{ color: 'black' }}>Bejelentkezés</button></Link>
       </div>}
-      {user && <div>{user.email}</div>}
+      {user && <div className='loggedInUser'>
+        Bejelentkezve mint: <strong>{user.name}</strong>
+        <ul className='dropdown dropdown-menu'>
+          <li className='dropdown-item'><Link style={{ textDecoration: 'none' }} to='/profil'><button style={{ color: 'black' }}>Profil</button></Link></li>
+          <li className='dropdown-item'><button>Kijelentkezes</button></li>
+        </ul>
+      </div>}
     </div>
   )
 }
