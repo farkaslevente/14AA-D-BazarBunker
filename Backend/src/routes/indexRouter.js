@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
       cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname)
+      cb(null, file.originalname)
     }
   })
 const upload = multer({storage: storage})
@@ -152,7 +152,6 @@ router.post('/pictures/upload', upload.single('file'), (req,res) => {
 router.get("/pictures/upload", async (req,res) => {
     try {
         const filenames = await uploadController.uploadedPictures("./uploads")
-        console.log(filenames)
         res.send(filenames)
     } catch (err) {
         console.error(err.message)
