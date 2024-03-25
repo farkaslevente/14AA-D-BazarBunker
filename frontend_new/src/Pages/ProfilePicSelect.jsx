@@ -3,6 +3,6 @@ import './CSS/ProfilePicSelect.css'
 
 export const ProfilePicSelect = () => {
   return (
-    <div>Will contain the possible pictures for profile pictures</div>
+    <div className='text-center'>Will contain the possible pictures for profile pictures</div>
   )
 }
