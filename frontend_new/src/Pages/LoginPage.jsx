@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './CSS/LoginPage.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, browserHistory } from 'react-router-dom'
 import userservice from '../Services/userservice'
+import { jwtDecode } from "jwt-decode";
 //import jwt from 'jsonwebtoken'
 
 export const LoginPage = () => {
@@ -16,15 +17,24 @@ export const LoginPage = () => {
         e.preventDefault();
         try {
             const resp = await userservice.login({ email: email, password: password })
-            const token = resp.data;
+            const token = resp.data.token;
             console.log(token);
-            localStorage.setItem('jsonwebtoken', token);
+            const decoded = jwtDecode(token);
+            console.log(decoded);
+            const authEmail = decoded.payload.email;
+            if (authEmail != '') {
+                localStorage.setItem('isLoggedIn', true)
+                localStorage.setItem('authUser', JSON.stringify(decoded.payload));
+                // localStorage.setItem('authEmail', email);
+                // localStorage.setItem('authEmail', email);
+            }
             //const data = jwt.decode(token);
             if (resp.data) {
-                navigate('/');
+                navigate('/', {replace: true});
+                //history.push('/');
             }
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
             setError("Hibás email cím vagy jelszó!");
         }
     }
