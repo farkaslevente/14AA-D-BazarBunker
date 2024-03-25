@@ -11,19 +11,29 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = {
-  from: process.env.EMAIL,
-  to: 'marko.bence.mendbajr@students.jedlik.eu',
-  subject: 'Sending test email',
-  text: 'That was easy!'
-};
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
+let emailController = {
+  sendMail: async function (req,res) {
+    const {email, subject, text} = req.body;
+    var mailOptions = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: subject,
+      text: text
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).json({message: "Email sent"})
+      }
+    });
   }
-});
+}
 
-module.exports = transporter.sendMail
+
+module.exports = {
+  emailController
+}
