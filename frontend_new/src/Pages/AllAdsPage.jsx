@@ -1,15 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from '../Components/Card/Card'
 import './CSS/AllAdsPage.css'
+import adservice from '../Services/adservice'
 
 export const AllAdsPage = () => {
+    // useEffect(() => {
+    //     const axiosRequests = async () => {
+    //         try {
+    //             const ads = await adservice.getAllAds();
+    //             const counties = await adservice.getCounties();
+    //             const settlements = await adservice.getSettlements();
+
+    //             console.log('Ads:', ads);
+    //             console.log('Counties:', counties);
+    //             console.log('Settlement:', settlements);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     axiosRequests();
+    // }, []) ;
+
+    const [ads, setAds] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const adsData = await adservice.getAllAds();
+                setAds(adsData);
+                console.log(adsData);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className='alladspage'>
             <div className="alladspage-title">
                 <h1>Hirdetések</h1>
             </div>
-            <div className="alladspage-filterbar">
+            {/* <div className="alladspage-filterbar">
                 <div className="filtercounty">
                     <label htmlFor="county">Vármegye:</label>
                     <select name="county" id="county">
@@ -41,14 +73,12 @@ export const AllAdsPage = () => {
                 <div className="apply">
                     <button>Apply filters</button>
                 </div>
-            </div>
+            </div> */}
             <div className="alladspage-content">
                 <div className="cards">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {ads.map(ad => (
+                        <Card key={ad.id} ad={ad}/>
+                    ))}
                 </div>
             </div>
         </div>
