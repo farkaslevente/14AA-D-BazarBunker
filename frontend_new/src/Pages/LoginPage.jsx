@@ -18,9 +18,7 @@ export const LoginPage = () => {
         try {
             const resp = await userservice.login({ email: email, password: password })
             const token = resp.data.token;
-            console.log(token);
             const decoded = jwtDecode(token);
-            console.log(decoded);
             const authEmail = decoded.payload.email;
             if (authEmail !== '') {
                 localStorage.setItem('isLoggedIn', true)
@@ -36,7 +34,6 @@ export const LoginPage = () => {
                 //history.push('/');
             }
         } catch (error) {
-            console.log(error);
             setError("Hibás email cím vagy jelszó!");
         }
     }
