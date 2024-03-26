@@ -24,13 +24,15 @@ export const LoginPage = () => {
             const authEmail = decoded.payload.email;
             if (authEmail !== '') {
                 localStorage.setItem('isLoggedIn', true)
+                localStorage.setItem('authToken', token)
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
                 // localStorage.setItem('authEmail', email);
                 // localStorage.setItem('authEmail', email);
             }
             //const data = jwt.decode(token);
             if (resp.data) {
-                navigate('/', {replace: true});
+                navigate('/');
+                window.location.reload();
                 //history.push('/');
             }
         } catch (error) {

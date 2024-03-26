@@ -8,7 +8,7 @@
 
 .login-container {
     width: 580px;
-    height: 600px;
+    height: fit-content;
     background: white;
     margin: auto;
     padding: 40px 60px;

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import logo from '../Assets/bunker.png'
 import { Link } from 'react-router-dom'
-import { Dropdown } from 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import userservice from '../../Services/userservice'
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("hirdetes");
@@ -21,6 +21,13 @@ export const Navbar = () => {
     setIsLoggedIn(loggedIn);
   }, [isLoggedIn]);
 
+  function handleLogout() {
+    localStorage.removeItem('authToken');
+      localStorage.removeItem('authUser');
+      localStorage.setItem('isLoggedIn', false);
+      window.location.reload();
+  }
+
   return (
     <div className='navbar'>
       <div className="nav-logo">
@@ -34,12 +41,11 @@ export const Navbar = () => {
       {!isLoggedIn && <div className="nav-login">
         <Link style={{ textDecoration: 'none' }} to='/bejelentkezes'><button style={{ color: 'black' }}>Bejelentkezés</button></Link>
       </div>}
-      {user && <div className='loggedInUser'>
-        Bejelentkezve mint: <strong>{user.name}</strong>
-        <ul className='dropdown dropdown-menu'>
-          <li className='dropdown-item'><Link style={{ textDecoration: 'none' }} to='/profil'><button style={{ color: 'black' }}>Profil</button></Link></li>
-          <li className='dropdown-item'><button>Kijelentkezes</button></li>
-        </ul>
+      {isLoggedIn && <div className='loggedInUser'>
+        <h5>Bejelentkezve: <strong><Link style={{ color: 'black' }} to='/profil'>{user.name}</Link></strong></h5>
+        <div className="">
+          <Link onClick={handleLogout} style={{ color: 'gray' }}>Kijelentkezés</Link>
+        </div>
       </div>}
     </div>
   )

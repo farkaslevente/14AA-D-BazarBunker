@@ -20,16 +20,6 @@ const userservice = {
         return Promise.reject(err);
       });
   },
-
-  logout(token) {
-    return Axios.post('/logout', '', { headers: { "Authorization": "Bearer " + token } })
-      .then(resp => {
-        return resp;
-      })
-      .catch(err => {
-        return Promise.reject(err);
-      });
-  }
 };
 
 export default userservice;
