@@ -3,7 +3,6 @@ import './Navbar.css'
 import logo from '../Assets/bunker.png'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import userservice from '../../Services/userservice'
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("hirdetes");
@@ -36,7 +35,7 @@ export const Navbar = () => {
       </div>
       <ul className='nav-menu'>
         <li onClick={() => { setMenu("hirdetesek") }}><Link style={{ textDecoration: 'none' }} to='/hirdetesek'>Hirdetések</Link>{menu === "hirdetesek" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("ujhirdetes") }}><Link style={{ textDecoration: 'none' }} to='/ujhirdetes'>Új hirdetés</Link>{menu === "ujhirdetes" ? <hr /> : <></>}</li>
+        {isLoggedIn && <li onClick={() => { setMenu("ujhirdetes") }}><Link style={{ textDecoration: 'none' }} to='/ujhirdetes'>Új hirdetés</Link>{menu === "ujhirdetes" ? <hr /> : <></>}</li>}
       </ul>
       {!isLoggedIn && <div className="nav-login">
         <Link style={{ textDecoration: 'none' }} to='/bejelentkezes'><button style={{ color: 'black' }}>Bejelentkezés</button></Link>
