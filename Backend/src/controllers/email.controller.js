@@ -19,8 +19,7 @@ let emailController = {
       from: process.env.EMAIL,
       to: email,
       subject: subject,
-      html: 
-      '<h1>That was easy</h1><div class="row"><p>hniofejfousdh</p></div>'
+      html: ({path: './uploads/email.html'})
       
     };
     
