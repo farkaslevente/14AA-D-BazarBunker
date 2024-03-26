@@ -4,7 +4,8 @@ const { authController } = require('../controllers/auth.controller')
 const { userController } = require('../controllers/user.controller')
 const { isAdmin } = require('../controllers/role.controller')
 const { verifyToken } = require("../middlewares/jwtMiddleware");
-const { sendMail } = require('../controllers/email.controller')
+const { emailController } = require('../controllers/email.controller')
+const { uploadController } = require('../controllers/upload.controller')
 const router = express.Router();
 
 
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
       cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname)
+      cb(null, file.originalname)
     }
   })
 const upload = multer({storage: storage})
@@ -75,6 +76,14 @@ router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     }
 });
 
+router.get("/users/:id", [verifyToken], async function(req,res) {
+    try {
+        res.json(await dbFunctions.getUserById(req,res))
+    } catch (err) {
+        console.error("Error getting user by id!", err.message)
+    }
+})
+
 router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
         res.json(await userController.patchUsers(req.body, res));
@@ -132,7 +141,7 @@ router.post("/login", async function (req, res) {
     }
 }),
 
-router.get("/ads", [verifyToken], async function(_req, res) {
+router.get("/ads", async function(_req, res) {
     try {
         res.json(await dbFunctions.getAds());
     } catch (err) {
@@ -144,13 +153,22 @@ router.post("/ads", [verifyToken], async function(req,res) {
     res.json(await dbFunctions.postAds(req,res))
 });
 
-router.post('/pictures/upload', upload.single('file'), (req,res) => {
+router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
     res.json(req.file)
 });
 
-router.get('/sendemail', async function(req,res) {
+router.get("/pictures/upload", async (req,res) => {
     try {
-        sendMail();
+        const filenames = await uploadController.uploadedPictures("./uploads")
+        res.send(filenames)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/sendemail', [verifyToken], async function(req,res) {
+    try {
+        await emailController.sendMail(req,res)
     } catch (err) {
         console.error(err.message)
     }

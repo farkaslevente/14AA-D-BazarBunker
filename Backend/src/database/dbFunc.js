@@ -9,6 +9,22 @@ const dbFunctions = {
         return res;
     },
 
+    getUserById: async function (req) {
+        const id = req.params.id
+        res = await query(`
+        SELECT * FROM felhasznalok WHERE id = '${id}'`)
+
+        const payload = {
+            id: res[0].id,
+            name: res[0].nev,
+            email: res[0].email,
+            location: res[0].hely,
+            pPic: res[0].pPic,
+            phone: res[0].telefonszam
+        }
+        return payload
+    },
+
     getPictures: async function(res) {
         res = await query(`
         SELECT * FROM kepek`)

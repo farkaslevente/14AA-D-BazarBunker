@@ -45,7 +45,7 @@ const userController = {
             console.error("Error changing pic!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
-    }
+    },
 }
 
 module.exports = {
