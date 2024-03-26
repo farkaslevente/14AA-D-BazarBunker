@@ -7,20 +7,19 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL,
-    pass: 'sdyr qzej uvkc spap'
+    pass: process.env.PASS
   }
 });
 
 
 let emailController = {
   sendMail: async function (req,res) {
-    const {email, subject, text} = req.body;
+    const {email, subject} = req.body;
     var mailOptions = {
       from: process.env.EMAIL,
       to: email,
       subject: subject,
       html: ({path: 'src/views/email.html'})
-      
     };
     
     transporter.sendMail(mailOptions, function(error, info){
