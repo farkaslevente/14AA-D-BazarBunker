@@ -27,8 +27,8 @@ export const AllAdsPage = () => {
         const fetchData = async () => {
             try {
                 const adsData = await adservice.getAllAds();
-                setAds(adsData);
                 console.log(adsData);
+                setAds(adsData);
             } catch (error) {
                 console.log(error);
             }
