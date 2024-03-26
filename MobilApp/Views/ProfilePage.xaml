@@ -85,10 +85,11 @@
                     Clicked="ProfileSaveBTN_Clicked"
                     IsVisible="{Binding VisibilityState}"/>
                 </Grid>
-                <Grid Grid.RowSpan="9" Grid.Row="3" Grid.Column="1" HeightRequest="460">
-                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
+                <Grid Grid.RowSpan="9" Grid.Row="3" Grid.Column="1" HeightRequest="460"
+                      RowDefinitions="*,100">
+                    <Grid RowDefinitions="0.3*,0.3*,0.3*,0.3*" ColumnDefinitions="*,*" Grid.Row="0">
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="0" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding profile.nev}" Placeholder="felhasználónév"/>
+                            <Entry Text="" Placeholder="{Binding profile.nev}"/>
                         </Frame>
 
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="1" Grid.ColumnSpan="2">

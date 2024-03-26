@@ -12,7 +12,7 @@ public partial class MyAdsPage : ContentPage
     private async Task startTimer()
     {
         this.BindingContext = new MyAdsViewModel();     
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         InitializeComponent();        
     }
 

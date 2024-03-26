@@ -14,6 +14,7 @@ using System.Windows.Input;
 using Microsoft.Maui.Graphics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Cryptography.X509Certificates;
+using CommunityToolkit.Maui.Core.Views;
 
 
 namespace MobilApp_Szakdolgozat.ViewModels
@@ -21,6 +22,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
     public partial class SearchViewModel : BindableObject
     {
         public ObservableCollection<CountyModel> counties { get; set; }
+        
         //public CountyModel selectedCounty { get; set; }
         private CountyModel _selectedCounty;
         public CountyModel selectedCounty
@@ -38,6 +40,19 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 }
             }
         }
+        public ObservableCollection<string> categories { get; set; }
+        private string _selectedCategory;
+        public string selectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                if (_selectedCategory != value)
+                {
+                    _selectedCategory = value;
+                }
+            }
+        }        
         public ObservableCollection<SettlementModel> settlements { get; set; }
         public SettlementModel selectedSettlement { get; set; }     
         public bool SettlementEnabled { get; set; }
@@ -61,8 +76,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
             counties = new ObservableCollection<CountyModel>();
             settlements = new ObservableCollection<SettlementModel>();
             allAds = new ObservableCollection<AdsModel>();
+            categories = new ObservableCollection<string>();
             getAllAds();
-            getCounties();            
+            getCounties();
+            getCategories();
             //searchTitle = null;
             //searchCounty = null;
             //searchSettlement = null;
@@ -78,6 +95,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             searchCommand = new Command(async () =>
             {
+                searchCategory = selectedCategory;
+
                 List<AdsModel> filteredList = new List<AdsModel>();
                 if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 0)
                 {
@@ -121,11 +140,26 @@ namespace MobilApp_Szakdolgozat.ViewModels
             });
         }
 
+        private void getCategories()
+        {
+            categories.Clear();
+            categories.Add("Általános iskolásoknak");
+            categories.Add("Középiskolásoknak");
+            categories.Add("Egyetemistáknak");
+            categories.Add("Kötelező olvasmány");
+            categories.Add("Kellékek");
+            categories.Add("Írószerek");
+            categories.Add("Kiegészítők");
+        }
 
         private async void getAllAds()
         {
             IEnumerable<AdsModel> adList = await DataService.getAds();
-            adList.ToList().ForEach(ad => allAds.Add(ad));
+            adList.ToList().ForEach(advert => {
+                string[] butcheredDate = advert.datum.Split(" ");
+                advert.datum = $"{butcheredDate[3]}. {butcheredDate[1]}. {butcheredDate[2]}.";                
+                allAds.Add(advert);
+            });
         }
         private async void getSettlements()
         {

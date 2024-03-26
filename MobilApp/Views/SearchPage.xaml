@@ -11,38 +11,47 @@
     <Grid RowDefinitions="*,40,40" ColumnDefinitions="*,16*,*">
     <VerticalStackLayout Grid.Row="0" Grid.Column="1">
         <Image Source="smalllogo" MaximumHeightRequest="100" Margin="0,-30,0,10"/>
-        <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="Kulcsszó" Margin="5,0,5,0"     
-             Text="{Binding searchTitle}"/>
-        </Frame>
+            <Grid RowDefinitions="*,*,*,*,*" 
+                  ColumnDefinitions="*,*">
+                <Frame CornerRadius="10" Padding="3" Margin="10" Grid.ColumnSpan="2" Grid.Row="0">
+                    <Entry FontSize="18" Placeholder="Kulcsszó" Margin="5,0,5,0"     
+                     Text="{Binding searchTitle}"/>
+                </Frame>
 
-        <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="3">
-                <Picker />
-            </Frame>
-        <!--kell kategória, meg ár slider, folyt köv hamarosan-->
-        <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-             Text=""/>
-        </Frame>
+                <Frame CornerRadius="10" Padding="3" Margin="10" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Picker Title="Válasszon kategóriát:"
+                                     ItemsSource="{Binding categories}" 
+                                     SelectedItem="{Binding selectedCategory}"/>
+                </Frame>
+                <!--kell kategória, meg ár slider, folyt köv hamarosan-->
+                <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="0" Grid.Row="2">
+                    <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
+                     Text=""/>
+                </Frame>
 
-        <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-             Text=""/>
-        </Frame>
-        <Picker Margin="10" 
-                Title="Válasszon Vármegyét:"
-                ItemsSource="{Binding counties}"                
-                ItemDisplayBinding="{Binding nev}"
-                SelectedItem="{Binding selectedCounty}">
-        </Picker>
+                <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="2">
+                    <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
+                     Text=""/>
+                </Frame>
+                <Picker Margin="10" 
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        Title="Válasszon Vármegyét:"
+                        ItemsSource="{Binding counties}"                
+                        ItemDisplayBinding="{Binding nev}"
+                        SelectedItem="{Binding selectedCounty}">
+                </Picker>
 
-            <Picker Margin="10" 
-                ItemsSource="{Binding settlements}"
-                ItemDisplayBinding="{Binding nev}"
-                IsEnabled="{Binding SettlementEnabled}"
-                IsVisible="{Binding SettlementEnabled}"
-                Title="Válasszon települést:"
-                SelectedItem="{Binding selectedSettlement}"/>
+                <Picker Margin="10" 
+                            Grid.Row="4"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding settlements}"
+                            ItemDisplayBinding="{Binding nev}"
+                            IsEnabled="{Binding SettlementEnabled}"
+                            IsVisible="{Binding SettlementEnabled}"
+                            Title="Válasszon települést:"
+                            SelectedItem="{Binding selectedSettlement}"/>
+            </Grid>
         </VerticalStackLayout>
         <Button Text="Keresés" Command="{Binding searchCommand}" Grid.Row="1" Grid.Column="1"/>
     </Grid>

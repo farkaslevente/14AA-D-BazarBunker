@@ -1,4 +1,5 @@
-﻿using MobilApp_Szakdolgozat.Models;
+﻿using CommunityToolkit.Maui.Core.Views;
+using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using Org.BouncyCastle.Bcpg;
 using System;
@@ -33,7 +34,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     if (filteredAds[y].id == Int32.Parse(nameParts[1]))
                     {
                         filteredAds[y].adImages.Add($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}");
-                    }
+                    }                    
                 }               
             }            
             OnPropertyChanged(nameof(filteredAds));
