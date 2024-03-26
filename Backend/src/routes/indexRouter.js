@@ -141,7 +141,7 @@ router.post("/login", async function (req, res) {
     }
 }),
 
-router.get("/ads", [verifyToken], async function(_req, res) {
+router.get("/ads", async function(_req, res) {
     try {
         res.json(await dbFunctions.getAds());
     } catch (err) {
