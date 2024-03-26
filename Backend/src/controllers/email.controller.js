@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.PASS
+    pass: 'sdyr qzej uvkc spap'
   }
 });
 
@@ -19,7 +19,9 @@ let emailController = {
       from: process.env.EMAIL,
       to: email,
       subject: subject,
-      text: text
+      html: 
+      '<h1>That was easy</h1><div class="row"><p>hniofejfousdh</p></div>'
+      
     };
     
     transporter.sendMail(mailOptions, function(error, info){

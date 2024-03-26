@@ -76,6 +76,14 @@ router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     }
 });
 
+router.get("/users/:id", [verifyToken], async function(req,res) {
+    try {
+        res.json(await dbFunctions.getUserById(req,res))
+    } catch (err) {
+        console.error("Error getting user by id!", err.message)
+    }
+})
+
 router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
         res.json(await userController.patchUsers(req.body, res));
@@ -145,7 +153,7 @@ router.post("/ads", [verifyToken], async function(req,res) {
     res.json(await dbFunctions.postAds(req,res))
 });
 
-router.post('/pictures/upload', upload.single('file'), (req,res) => {
+router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
     res.json(req.file)
 });
 
@@ -158,7 +166,7 @@ router.get("/pictures/upload", async (req,res) => {
     }
 })
 
-router.post('/sendemail', async function(req,res) {
+router.post('/sendemail', [verifyToken], async function(req,res) {
     try {
         await emailController.sendMail(req,res)
     } catch (err) {
