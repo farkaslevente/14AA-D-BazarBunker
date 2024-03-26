@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Maui.Graphics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace MobilApp_Szakdolgozat.ViewModels
@@ -77,84 +78,46 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             searchCommand = new Command(async () =>
             {
-                if (searchTitle == null)
+                List<AdsModel> filteredList = new List<AdsModel>();
+                if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 0)
                 {
-                    if (selectedCounty == null)
-                    {
-                        if (selectedSettlement == null)
-                        {
-                            if (searchCategory == null)
-                            {
-                                if (searchMinPrice == 0)
-                                {
-                                    if (searchMaxPrice == 0)
-                                    {                                        
-                                        filteredAds = new ObservableCollection<AdsModel>(allAds);
-                                        await Shell.Current.GoToAsync(nameof(AdsPage),
-                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                                    }
-                                    else 
-                                    {
-                                        var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) && 
-                                                                    ad.varmegyeId == selectedCounty.id && 
-                                                                    ad.telepules == selectedSettlement.nev.ToString() && 
-                                                                    ad.kategoria.Contains(searchCategory) && 
-                                                                    ad.ar >= searchMinPrice && ad.ar <= searchMaxPrice
-                                                                    ).ToList();
-                                        filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                        await Shell.Current.GoToAsync(nameof(AdsPage),
-                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                                    }
-                                }
-                                else
-                                {
-                                    var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
-                                                                    ad.varmegyeId == selectedCounty.id &&
-                                                                    ad.telepules == selectedSettlement.nev.ToString() &&
-                                                                    ad.kategoria.Contains(searchCategory) &&
-                                                                    ad.ar >= searchMinPrice).ToList();
-                                    filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                    await Shell.Current.GoToAsync(nameof(AdsPage),
-                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                                }
-                            }
-                            else
-                            {
-                                var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
-                                                                    ad.varmegyeId == selectedCounty.id &&
-                                                                    ad.telepules == selectedSettlement.nev.ToString() &&
-                                                                    ad.kategoria.Contains(searchCategory)).ToList();
-                                filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                                await Shell.Current.GoToAsync(nameof(AdsPage),
-                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                            }
-                        }
-                        else
-                        {
-                            var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
-                                                                    ad.varmegyeId == selectedCounty.id &&
-                                                                    ad.telepules == selectedSettlement.nev.ToString()).ToList();
-                            filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                            await Shell.Current.GoToAsync(nameof(AdsPage),
-                                               new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                        }
-                    }
-                    else
-                    {
-                        var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle) &&
-                                                              ad.varmegyeId == selectedCounty.id).ToList();
-                        filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                        await Shell.Current.GoToAsync(nameof(AdsPage),
-                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
-                    }
+                    filteredList = allAds.ToList();
                 }
-                else
+                
+
+                if (!string.IsNullOrEmpty(searchTitle))
                 {
-                    var filteredList = allAds.Where(ad => ad.nev.Contains(searchTitle)).ToList();
-                    filteredAds = new ObservableCollection<AdsModel>(filteredList);
-                    await Shell.Current.GoToAsync(nameof(AdsPage),
-                                                new Dictionary<string, object> { { "filteredAds", filteredAds } });
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.nev.Contains(searchTitle))).ToList();   
                 }
+
+                if (selectedCounty != null)
+                {
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.varmegyeId == selectedCounty.id)).ToList();
+                }
+
+                if (selectedSettlement != null)
+                {
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.telepules == selectedSettlement.nev.ToString())).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchCategory))
+                {
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.kategoria.Contains(searchCategory))).ToList();
+                }
+
+                if (searchMinPrice != 0)
+                {
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.ar >= searchMinPrice)).ToList();
+                }
+
+                if (searchMaxPrice != 0)
+                {
+                    filteredList = filteredList.Union(allAds.Where(ad => ad.ar <= searchMaxPrice)).ToList();
+                }
+
+                filteredAds = new ObservableCollection<AdsModel>(filteredList);
+                await Shell.Current.GoToAsync(nameof(AdsPage),
+                    new Dictionary<string, object> { { "filteredAds", filteredAds } });                
             });
         }
 

@@ -8,18 +8,18 @@
     <ContentPage.BindingContext>
         <vm:SearchViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <Image Source="smalllogo" MaximumHeightRequest="100"/>
+    <Grid RowDefinitions="*,40,40" ColumnDefinitions="*,16*,*">
+    <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+        <Image Source="smalllogo" MaximumHeightRequest="100" Margin="0,-30,0,10"/>
         <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
             <Entry FontSize="18" Placeholder="Kulcsszó" Margin="5,0,5,0"     
              Text="{Binding searchTitle}"/>
         </Frame>
 
         <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="3">
-            <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
-             Text=""/>
-        </Frame>
-
+                <Picker />
+            </Frame>
+        <!--kell kategória, meg ár slider, folyt köv hamarosan-->
         <Frame CornerRadius="10" Padding="3" Margin="10" Grid.Column="1" Grid.Row="1">
             <Entry FontSize="18" Placeholder="E-mail cím" Margin="5,0,5,0"
              Text=""/>
@@ -35,15 +35,15 @@
                 ItemDisplayBinding="{Binding nev}"
                 SelectedItem="{Binding selectedCounty}">
         </Picker>
-        
-        <Picker Margin="10" 
+
+            <Picker Margin="10" 
                 ItemsSource="{Binding settlements}"
                 ItemDisplayBinding="{Binding nev}"
                 IsEnabled="{Binding SettlementEnabled}"
                 IsVisible="{Binding SettlementEnabled}"
                 Title="Válasszon települést:"
                 SelectedItem="{Binding selectedSettlement}"/>
-
-        <Button Text="Keresés" Command="{Binding searchCommand}"/>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+        <Button Text="Keresés" Command="{Binding searchCommand}" Grid.Row="1" Grid.Column="1"/>
+    </Grid>
 </ContentPage>

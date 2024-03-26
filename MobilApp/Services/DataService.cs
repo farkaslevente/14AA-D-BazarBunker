@@ -12,6 +12,8 @@ using System.IdentityModel.Tokens.Jwt;
 using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
 using FFImageLoading.Args;
+using MySqlX.XDevAPI;
+//using ThreadNetwork;
 
 
 namespace MobilApp_Szakdolgozat.Services
@@ -40,7 +42,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = urlHome;
+        public static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
         {
@@ -289,8 +291,11 @@ namespace MobilApp_Szakdolgozat.Services
             string[] fileType = uploadFile.FileName.Split('.');
             uploadFile.FileName = $"{userId}_{adId}_{imgId}.{fileType[1]}";
             httpContent.Add(new StreamContent(await uploadFile.OpenReadAsync()), "file", uploadFile.FileName);
-
+            
             var httpClient = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
             var result = await httpClient.PostAsync($"{url}/pictures/upload", httpContent);
             var response = await result.Content.ReadAsStringAsync();
             //await Shell.Current.DisplayAlert("Response from server", response, "K");

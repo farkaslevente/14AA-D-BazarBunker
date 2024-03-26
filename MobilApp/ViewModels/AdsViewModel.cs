@@ -21,18 +21,18 @@ namespace MobilApp_Szakdolgozat.ViewModels
             uploadFileNames = new ObservableCollection<string>();
             filteredAds = query["filteredAds"] as ObservableCollection<AdsModel>;
             await getAllUploads();
-            for (int i = 0; i < filteredAds.Count(); i++)
+            for (int i = 0; i < uploadFileNames.Count(); i++)
             {
-                for (int y = 0; y < uploadFileNames.Count(); y++)
+                for (int y = 0; y < filteredAds.Count(); y++)
                 {
-                    string[] nameWithoutFileType = uploadFileNames[y].Split('.');
+                    string[] nameWithoutFileType = uploadFileNames[i].Split('.');
                     string[] nameParts = nameWithoutFileType[0].Split('_');
                     //nameParts[0] = UserId
                     //nameParts[1] = AdId
                     //nameParts[2] = ImgId
-                    if (filteredAds[i].id == Int32.Parse(nameParts[1]))
+                    if (filteredAds[y].id == Int32.Parse(nameParts[1]))
                     {
-                        filteredAds[i].adImages.Add($"{DataService.url}/pictures/upload/{nameParts[0]}_{nameParts[0]}_{nameParts[0]}.{nameWithoutFileType[1]}");
+                        filteredAds[y].adImages.Add($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}");
                     }
                 }               
             }            

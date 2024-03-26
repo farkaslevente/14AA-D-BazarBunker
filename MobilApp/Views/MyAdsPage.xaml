@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.MyAdsPage"
-             Title="MyAdsPage">
+             Title="MyAdsPage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <!--<ContentPage.BindingContext>
         <vm:MyAdsViewModel/>
     </ContentPage.BindingContext>-->
@@ -19,13 +21,21 @@
                 <DataTemplate>
                     <Frame CornerRadius="10" 
                            Padding="3" 
-                           Margin="10">
+                           Margin="10"
+                           HeightRequest="100">
                         <Grid ColumnDefinitions="2*,1.5*,1.5*" RowDefinitions="*,*,*">
                             <!--Sidenote for the future: Binding works, but for some reason you have to tinker with the code here in the xaml to make it work....-->
-                                <Image Source="{Binding adImages[0]}"
-                                   Grid.RowSpan="3"
-                                   Grid.Column="0"
+                                <Frame CornerRadius="10" HeightRequest="90"
+                                       WidthRequest="90" Padding="0" Grid.RowSpan="3" Grid.Column="0" Margin="0,0,10,0">
+                                <Image Source="{Binding adImages[0]}"                                   
+                                       Aspect="AspectFill"
                                    />
+                                </Frame>
+                                <!--<Label Text="{Binding adImages[0]}"/>
+                                <Image Source="{Binding adImages[0]}"
+                                 Grid.RowSpan="3"
+                                 Grid.Column="0"
+                                />-->
 
                                 <Label Text="{Binding nev}"
                                    Grid.Row="0"
@@ -36,9 +46,10 @@
                                    Grid.Row="1"
                                    Grid.Column="1"/>
                             
-                            <Label Text="{Binding category, StringFormat='Kategória: {0}'}"
+                            <Label Text="{Binding kategoria, StringFormat='Kategória: {0}'}"
                                    Grid.Row="1"
-                                   Grid.Column="2"/>
+                                   Grid.Column="2"
+                                   FontSize="10"/>
                             
                             <Label Text="{Binding ownerName}"
                                    Grid.Row="2"

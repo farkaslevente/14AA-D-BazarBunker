@@ -15,8 +15,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
     public class MyAdsViewModel : BindableObject
     {
         public ObservableCollection<AdsModel> advertisements { get; set; }
-        public ObservableCollection<PictureCatalogModel> pics{ get; set; }
+        public ObservableCollection<PictureCatalogModel> pics { get; set; }
         public ObservableCollection<string> uploadFileNames { get; set; }
+        public ObservableCollection<ProfileModel> profiles{ get; set; }
         public AdsModel selectedAd { get; set; }   
 
         public ICommand detailsCommand { get; set; }
@@ -40,7 +41,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         private async void getImages()
         {
             await getAllAds();
-            await getAllUploads();
+            await getAllUploads();            
             for (int i = 0; i < uploadFileNames.Count(); i++)
             {
                 for (int y = 0; y < advertisements.Count(); y++)
@@ -53,10 +54,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     if (advertisements[y].id == Int32.Parse(nameParts[1]))
                     {
                         advertisements[y].adImages.Add($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}");
+                        OnPropertyChanged(advertisements[y].adImages[0]);
                     }
                 }
-            }
-        }
+            }           
+        }       
 
         private async Task getAllAds()
         {            
@@ -69,6 +71,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 if (advert.tulajId == UserId)
                 {
+                    string[] butcheredDate = advert.datum.Split(" ");
+                    advert.datum = $"{butcheredDate[3]}. {butcheredDate[1]}. {butcheredDate[2]}.";
                     advertisements.Add(advert);
                 }
             });            

@@ -6,13 +6,14 @@ public partial class MyAdsPage : ContentPage
 {
 	public MyAdsPage()
 	{
-        this.BindingContext = new MyAdsViewModel();        
-        InitializeComponent();
-        if (SecureStorage.GetAsync("uploaded").ToString() == true.ToString())
-        {
-            SecureStorage.Remove("uploaded");
-            DisplayAlert("Köszönjük feltöltését!", "Hirdetését sikeresen feljegyeztük. Köszönjük, hogy minket választott!", "Rendben");
-        }
+        startTimer();
+    }
+
+    private async Task startTimer()
+    {
+        this.BindingContext = new MyAdsViewModel();     
+        await Task.Delay(3000);
+        InitializeComponent();        
     }
 
     private async void BTNNewAd_Clicked(object sender, EventArgs e)

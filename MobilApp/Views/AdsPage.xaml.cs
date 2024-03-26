@@ -8,9 +8,16 @@ public partial class AdsPage : ContentPage
 {
 	public ObservableCollection<AdsModel> filteredAds { get; set; }
 	public AdsPage()
-	{		
-		InitializeComponent();		
-	}
+	{
+        startTimer();
+    }
+
+    private async Task startTimer()
+    {
+        this.BindingContext = new AdsViewModel();
+        await Task.Delay(3000);
+        InitializeComponent();
+    }
 
     private async void BTNProfile_Clicked(object sender, EventArgs e)
     {
