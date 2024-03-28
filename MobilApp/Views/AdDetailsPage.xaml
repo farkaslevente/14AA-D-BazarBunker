@@ -2,16 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
+             xmlns:models="clr-namespace:MobilApp_Szakdolgozat.Models"
              x:Class="MobilApp_Szakdolgozat.Views.AdDetailsPage"
              Title="AdDetailsPage">
-    <ContentPage.BindingContext>
-        <vm:AdDetailsViewModel/>
-    </ContentPage.BindingContext>
+    
     <ScrollView>
-        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="4*,*,2*,*,*">
-            <CarouselView ItemsSource="{Binding}"/>
-
-
+        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,60,40,40,200">
+            <CarouselView ItemsSource="{Binding advertisement.adImages}" Grid.Column="1" Grid.Row="0">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame CornerRadius="10" Padding="0">
+                            <Image Source="{Binding}" Aspect="AspectFill"/>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Label Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding advertisement.nev}"
+                   FontSize="25"
+                   Margin="10"/>
+            <Label Grid.Column="1"
+                   Grid.Row="2"
+                   Text="{Binding advertisement.ar, StringFormat='{0} Ft'}"
+                   FontSize="20"/>
+            <Label Grid.Column="1"
+                    Grid.Row="3"
+                    Text="{Binding advertisement.kategoria, StringFormat='Kategória: {0}'}"
+                    FontSize="20"/>
+            <Label Grid.Column="1"
+                   Grid.Row="4"
+                   Text="{Binding advertisement.leiras}"
+                   FontSize="15"/>
         </Grid>
     </ScrollView>
 </ContentPage>

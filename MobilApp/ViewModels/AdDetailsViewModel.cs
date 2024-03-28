@@ -14,8 +14,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public AdsModel advertisement { get; set; }      
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            advertisement = query["advertisement"] as AdsModel;
+            advertisement = query["selectedAd"] as AdsModel;
             OnPropertyChanged(nameof(advertisement));
+            
         }
     }
 

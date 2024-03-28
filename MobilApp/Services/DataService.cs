@@ -251,6 +251,36 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
+        public static async Task<string> profileUpdate(int id, string userName, string userEmail, string userLocation, string userMobile)
+        {
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                id = id,
+                nev = userName,
+                email = userEmail,
+                hely = userLocation,
+                telefonszam = userMobile
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/patch", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            if ((int)response.StatusCode == 401)
+            {
+                return "error";
+            }
+            else
+            {
+                string success = "success";
+                await SecureStorage.SetAsync("success", success);
+                return null;
+            }
+        }
+
         public static async Task<string> newAdvertisementUpload(string name, string description, string category, int price, int countyId, string settlement, int ownerId)
         {
             string jsonData = JsonConvert.SerializeObject(new {

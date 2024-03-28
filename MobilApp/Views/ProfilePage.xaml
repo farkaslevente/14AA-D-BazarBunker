@@ -14,7 +14,7 @@
             <Setter Property="Padding" Value="0,10"/>
         </Style>
     </ContentPage.Resources>
-    <Grid RowDefinitions="*,40">
+    <Grid RowDefinitions="*,40,10,40">
         <VerticalStackLayout Margin="0,-10,0,0">
 
             <Grid ColumnDefinitions="1*,16*,1*" RowDefinitions="230*,60*,60*,23*,60*,23*,60*,23*,60*,23*,60*,70*,40">
@@ -54,7 +54,7 @@
                                  MaximumWidthRequest="35"                          
                                  VerticalOptions="End"
                                  Clicked="ProfilePicChangeBTN_Clicked"
-                                 IsVisible="{Binding InversVisibilityState}"/>
+                                 IsVisible="{Binding editVisibility}"/>
                 </StackLayout>
 
                 <Grid Grid.Row="2" Grid.Column="1" Style="{StaticResource GridStyle}" 
@@ -64,55 +64,64 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="45,45,45,45" />
                         </Border.StrokeShape>
-
-                        <Entry x:Name="NameEntry"
-                            Placeholder="Teszt Elek" 
-                            PlaceholderColor="Gray"                                                       
-                            Margin="30,0,30,0"/>
                     </Border>
                     <Button x:Name="ProfileChangeBTN"
                     Text="Profiladatok módosítása"
                     MaximumHeightRequest="40"
                     Margin="30,0"
-                    Clicked="ProfileChangeBTN_Clicked"
-                    IsVisible="{Binding InversVisibilityState}"/>
+                    Command="{Binding profileEditCommand}"
+                    IsVisible="{Binding editVisibilityInvers}"/>
 
                     <Button Grid.Row="1"
                     x:Name="ProfileSaveBTN"
                     Text="Profiladatok frissítése"
                     MaximumHeightRequest="40"
                     Margin="30,0"
-                    Clicked="ProfileSaveBTN_Clicked"
-                    IsVisible="{Binding VisibilityState}"/>
+                    Command="{Binding profileUpdateCommand}"
+                    IsVisible="{Binding editVisibility}"/>
                 </Grid>
                 <Grid Grid.RowSpan="9" Grid.Row="3" Grid.Column="1" HeightRequest="460"
-                      RowDefinitions="*,100">
+                      RowDefinitions="*,100"
+                      IsVisible="{Binding editVisibility}">
                     <Grid RowDefinitions="0.3*,0.3*,0.3*,0.3*" ColumnDefinitions="*,*" Grid.Row="0">
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="0" Grid.ColumnSpan="2">
-                            <Entry Text="" Placeholder="{Binding profile.nev}"/>
+                            <Entry Text="{Binding newUserName}" Placeholder="{Binding profile.nev}"/>
                         </Frame>
 
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="1" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding profile.email}" Placeholder=""/>
+                            <Entry Text="{Binding newUserEmail}" Placeholder="{Binding profile.email}"/>
                         </Frame>
                         <!--//location-->
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="2" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding profile.hely}" Placeholder=""/>
+                            <Grid ColumnDefinitions="*,*">
+                                <Picker Grid.Column="0"            
+                                    Title="Válasszon Vármegyét:"
+                                    ItemsSource="{Binding counties}"                
+                                    ItemDisplayBinding="{Binding nev}"
+                                    SelectedItem="{Binding selectedCounty}"
+                                    Margin="0,0,10,0">
+                                </Picker>
+
+                                <Picker Grid.Column="1"  
+                                    Title="Válasszon települést:"
+                                    ItemsSource="{Binding settlements}"
+                                    ItemDisplayBinding="{Binding nev}"
+                                    IsEnabled="{Binding SettlementEnabled}"
+                                    IsVisible="{Binding SettlementEnabled}"                                   
+                                    SelectedItem="{Binding selectedSettlement}"
+                                    Margin="10,0,0,0"/>
+                            </Grid>
                         </Frame>
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="3" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding profile.telefonszam}" Placeholder=""/>
+                            <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.telefonszam}"/>
                         </Frame>
 
                     </Grid>
                 </Grid>
-                <Button Grid.Column="1" Grid.Row="10" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
-
             </Grid>
-
-
-
         </VerticalStackLayout>
-        <Grid Grid.Row="1" Grid.ColumnSpan="3"
+        <Button Grid.Row="1" HorizontalOptions="Center" x:Name="BTNLogout" Text="Kijelentkezés" Clicked="BTNLogout_Clicked"/>
+        <Grid Grid.Row="3" Grid.ColumnSpan="3"
 ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
             <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>

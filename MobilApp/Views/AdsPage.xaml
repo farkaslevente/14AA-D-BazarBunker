@@ -5,10 +5,14 @@
              x:Class="MobilApp_Szakdolgozat.Views.AdsPage"
              Title="AdsPage">
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
-    <CollectionView ItemsSource="{Binding filteredAds}" Grid.Row="0" Grid.Column="1">
+    <CollectionView ItemsSource="{Binding filteredAds}" Grid.Row="0" Grid.Column="1"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding adDetailsCommand}"
+                    SelectedItem="{Binding advertisement}"
+                    ZIndex="10">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame CornerRadius="10" Margin="0,5,0,5" HeightRequest="150" Padding="10">
+                <Border Margin="0,5,0,5" HeightRequest="150" Padding="10">
                     <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="2*,1*,1.5*">
                             <Frame CornerRadius="10" Grid.RowSpan="3" 
                                     Grid.Column="0"
@@ -43,12 +47,13 @@
                         <Label 
                                 Text="{Binding datum}" 
                                 Grid.Row="2" 
-                                Grid.Column="2"/>
+                                Grid.Column="2"
+                            Margin="5,0,0,0"/>
 
                                                 
 
                     </Grid>
-                </Frame>
+                </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
