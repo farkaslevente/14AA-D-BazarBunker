@@ -26,12 +26,14 @@
                 <!--kell kategória, meg ár slider, folyt köv hamarosan-->
                 <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="0" Grid.Row="2">
                     <Entry FontSize="18" Placeholder="Minimum ár" Margin="5,0,5,0"
-                     Text="{Binding searchMinPrice}"/>
+                     Text="{Binding searchMinPrice}"
+                           Keyboard="Numeric"/>
                 </Frame>
 
                 <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="1" Grid.Row="2">
                     <Entry FontSize="18" Placeholder="Maximum ár" Margin="5,0,5,0"
-                     Text="{Binding searchMaxPrice}"/>
+                     Text="{Binding searchMaxPrice}"
+                           Keyboard="Numeric"/>
                 </Frame>
                 <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="3">
                     <Picker                     

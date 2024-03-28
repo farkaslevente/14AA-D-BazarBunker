@@ -96,6 +96,19 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 }
             }
         }
+        public ObservableCollection<string> contractors { get; set; }
+        private string _selectedContractor;
+        public string selectedContractor
+        {
+            get => _selectedCategory;
+            set
+            {
+                if (_selectedContractor != value)
+                {
+                    _selectedContractor = value;
+                }
+            }
+        }
         public ObservableCollection<SettlementModel> settlements { get; set; }
         public SettlementModel selectedSettlement { get; set; }
         public bool SettlementEnabled { get; set; }
@@ -106,7 +119,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
             profiles = new ObservableCollection<ProfileModel>();
             settlements = new ObservableCollection<SettlementModel>();
             counties = new ObservableCollection<CountyModel>();
+            contractors = new ObservableCollection<string>();
             getCounties();
+            getContractors();
             a();
             SettlementEnabled = false;
             editVisibility = false;
@@ -137,7 +152,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                             profile.hely = newUserLocation;
                             if (!newUserMobileNumber.IsNullOrEmpty())
                             {
-                                profile.telefonszam = newUserMobileNumber;
+                                profile.telefonszam = $"06 {selectedContractor} {newUserMobileNumber}";
                             }
                         }
                     }
@@ -146,12 +161,21 @@ namespace MobilApp_Szakdolgozat.ViewModels
                         updateError = "Adjon meg egy érvényes email címet";
                     }
                 }                           
-                int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));                
-                await DataService.profileUpdate(UserId, profile.nev, profile.email, profile.hely, profile.telefonszam);
+                int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                string UserPic = await SecureStorage.GetAsync("userImage");
+                await DataService.profileUpdate(UserId, profile.nev, profile.email, profile.hely, UserPic, profile.telefonszam);
                 await Shell.Current.GoToAsync(nameof(ProfilePage));
             });
         }
-        
+
+        private void getContractors()
+        {
+            contractors.Clear();
+            contractors.Add("20");
+            contractors.Add("30");
+            contractors.Add("40");
+            contractors.Add("70");
+        }
 
         private async void a()
         {

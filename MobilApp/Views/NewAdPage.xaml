@@ -28,6 +28,7 @@
                                    Grid.Column="0" 
                                    MaximumWidthRequest="100" 
                                    HorizontalOptions="Start"
+                                   Keyboard="Numeric"
                                    />
                             <Label Text="Forint" Grid.Column="1" VerticalOptions="Center" FontSize="Body"/>
                         </Grid>

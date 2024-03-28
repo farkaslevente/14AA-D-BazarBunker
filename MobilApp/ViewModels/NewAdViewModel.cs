@@ -162,7 +162,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 await getAllAds();
                 int userId = int.Parse(await SecureStorage.GetAsync("userId"));
-                int adId = advertisements.Count()+1;                
+                int adId = 0;
+                for (int i = 0; i < advertisements.Count(); i++)
+                {
+                    if (adId < advertisements[i].id)
+                    {
+                        adId = advertisements[i].id;
+                    }
+                }
+                adId++;
                 List<string> imageList = new List<string>();
                 await DataService.imageUpload(userId, adId, imageId);
                 imageId = int.Parse(await SecureStorage.GetAsync("imgId"))+1;

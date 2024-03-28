@@ -251,15 +251,16 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<string> profileUpdate(int id, string userName, string userEmail, string userLocation, string userMobile)
+        public static async Task<string> profileUpdate(int id, string userName, string userEmail, string userLocation, string userPic, string userMobile)
         {
             string jsonData = JsonConvert.SerializeObject(new
             {
                 id = id,
-                nev = userName,
+                name = userName,
                 email = userEmail,
-                hely = userLocation,
-                telefonszam = userMobile
+                location = userLocation,
+                pPic = userPic,
+                mobNum = userMobile
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();

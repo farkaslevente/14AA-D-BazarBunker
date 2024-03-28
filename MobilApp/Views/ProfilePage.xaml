@@ -91,7 +91,6 @@
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="1" Grid.ColumnSpan="2">
                             <Entry Text="{Binding newUserEmail}" Placeholder="{Binding profile.email}"/>
                         </Frame>
-                        <!--//location-->
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="2" Grid.ColumnSpan="2">
                             <Grid ColumnDefinitions="*,*">
                                 <Picker Grid.Column="0"            
@@ -112,10 +111,21 @@
                                     Margin="10,0,0,0"/>
                             </Grid>
                         </Frame>
-                        <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="3" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.telefonszam}"/>
-                        </Frame>
-
+                        <Grid MaximumHeightRequest="50" Grid.Row="3" Grid.ColumnSpan="2" ColumnDefinitions="*,3*">
+                            <Frame CornerRadius="10" Padding="6"
+                                   Grid.Column="0">
+                                <Picker ItemsSource="{Binding contractors}"
+                                        SelectedItem="{Binding selectedContractor}"
+                                        Title="Szolg."
+                                        />
+                            </Frame>
+                            <Frame CornerRadius="10" Padding="6"
+                                   Grid.Column="1">
+                                <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.telefonszam}"
+                                       Keyboard="Numeric"
+                                       MaxLength="7"/>
+                            </Frame>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

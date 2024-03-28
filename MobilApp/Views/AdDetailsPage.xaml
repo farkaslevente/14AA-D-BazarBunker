@@ -7,7 +7,7 @@
              Title="AdDetailsPage">
     
     <ScrollView>
-        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,60,40,40,200">
+        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,40,30,40,30,200">
             <CarouselView ItemsSource="{Binding advertisement.adImages}" Grid.Column="1" Grid.Row="0">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -22,8 +22,7 @@
             <Label Grid.Column="1"
                    Grid.Row="1"
                    Text="{Binding advertisement.nev}"
-                   FontSize="25"
-                   Margin="10"/>
+                   FontSize="25"/>
             <Label Grid.Column="1"
                    Grid.Row="2"
                    Text="{Binding advertisement.ar, StringFormat='{0} Ft'}"
@@ -32,8 +31,12 @@
                     Grid.Row="3"
                     Text="{Binding advertisement.kategoria, StringFormat='Kategória: {0}'}"
                     FontSize="20"/>
-            <Label Grid.Column="1"
+            <Label Text="Leírás:" TextColor="Orange"
                    Grid.Row="4"
+                   Grid.Column="1"
+                   FontSize="20"/>
+            <Label Grid.Column="1"
+                   Grid.Row="5"
                    Text="{Binding advertisement.leiras}"
                    FontSize="15"/>
         </Grid>
