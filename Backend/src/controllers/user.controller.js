@@ -9,7 +9,7 @@ const userController = {
             const {id, name, email, location, pPic, phone} = req;
 
             const rows = await dbFunctions.execQueryWithReturn(
-                `SELECT * FROM felhasznalok WHERE email = '${id}'`) || [];
+                `SELECT * FROM felhasznalok WHERE id = '${id}'`) || [];
             const hashed = rows[0].jelszo
             const favourites = rows[0].kedvencek
 
