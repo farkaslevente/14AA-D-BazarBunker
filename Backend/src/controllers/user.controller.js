@@ -6,13 +6,15 @@ const userController = {
     patchUsers: async function (req, res) {
         console.log("Patching incoming...", req);
         try {
-            const {name, email, location, pPic} = req;
+            const {id, name, email, location, pPic, phone} = req;
 
             const rows = await dbFunctions.execQueryWithReturn(
-                `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+                `SELECT * FROM felhasznalok WHERE email = '${id}'`) || [];
             const hashed = rows[0].jelszo
+            const favourites = rows[0].kedvencek
 
-            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}' WHERE id=${req.id}`);
+            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}',
+            telefon= '${phone}', kedvencek= '${favourites}' WHERE id=${id}`);
             
             res.status(200).json({message: "User patched succesfully!"})
         } catch (err) {
