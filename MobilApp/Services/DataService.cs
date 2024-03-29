@@ -13,6 +13,7 @@ using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
 using FFImageLoading.Args;
 using MySqlX.XDevAPI;
+using Android.App;
 //using ThreadNetwork;
 
 
@@ -130,7 +131,24 @@ namespace MobilApp_Szakdolgozat.Services
                 return JsonConvert.DeserializeObject<List<string>>(result);
             }
         }
+        public static async Task<string[]> getFavorites()
+        {
+            string result = await SecureStorage.GetAsync("userToken");                            
+            string[] payload = result.Split('.');
+            var finalPayload = payload[1];
 
+            var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(result));
+            string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
+            string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
+            string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
+            await SecureStorage.SetAsync("userFavorites", finalResult[6].Split(':')[1].Trim('"'));
+            string favoritesList = await SecureStorage.GetAsync("userFavorites");
+            string[] favorites = favoritesList.Split(",");
+
+            return favorites;
+
+            
+        }
         public static async Task<RegisterModel> register(RegisterModel user)
         {
             RegisterModel errorRegister = new RegisterModel();
@@ -191,6 +209,7 @@ namespace MobilApp_Szakdolgozat.Services
                 var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
                 string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
                 string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
+                //this following line contains problems for favorites, to be fixed tomorrow
                 string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
 
                 string userImage = null;
