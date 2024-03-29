@@ -22,9 +22,9 @@ public partial class FavPage : ContentPage
         await Shell.Current.GoToAsync(nameof(AdsPage));
     }
 
-    private async void BTNMessages_Clicked(object sender, EventArgs e)
+    private async void BTNSupport_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(MessagesPage));
+        await Shell.Current.GoToAsync(nameof(SupportPage));
     }
 
     private async void BTNAdmin_Clicked(object sender, EventArgs e)

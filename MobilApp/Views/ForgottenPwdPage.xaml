@@ -31,7 +31,6 @@
 
 
             <Button Text="Új jelszó igénylése" Margin="0,10,0,15" Command="{Binding newPwdCommand}"/>
-            <Label Text="{Binding errorMessage}" Style="{StaticResource errorMessage}"
-         />
+            <Label Text="{Binding errorMessage}" Style="{StaticResource errorMessage}"/>
         </VerticalStackLayout>
 </ContentPage>

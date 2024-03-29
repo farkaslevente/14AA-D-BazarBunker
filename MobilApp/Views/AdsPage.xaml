@@ -64,7 +64,7 @@
             <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
             <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
-            <ImageButton x:Name="BTNMessages" Source="messages.svg" Clicked="BTNMessages_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNSupport" Source="messages.svg" Clicked="BTNSupport_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
         </Grid>
     </Grid>

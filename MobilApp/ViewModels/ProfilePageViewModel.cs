@@ -163,7 +163,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 }                           
                 int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
                 string UserPic = await SecureStorage.GetAsync("userImage");
-                await DataService.profileUpdate(UserId, profile.nev, profile.email, profile.hely, UserPic, profile.telefonszam);
+                string userFavorites = await SecureStorage.GetAsync("userFavs");
+                int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));                
+                await DataService.profileUpdate(UserId, profile.nev, profile.email, profile.hely, UserPic, userRole, userFavorites, profile.telefonszam);
                 await Shell.Current.GoToAsync(nameof(ProfilePage));
             });
         }

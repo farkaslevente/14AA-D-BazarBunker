@@ -4,21 +4,30 @@
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              xmlns:models="clr-namespace:MobilApp_Szakdolgozat.Models"
              x:Class="MobilApp_Szakdolgozat.Views.AdDetailsPage"
-             Title="AdDetailsPage">
-    
+             Title="">
     <ScrollView>
         <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,40,30,40,30,200">
-            <CarouselView ItemsSource="{Binding advertisement.adImages}" Grid.Column="1" Grid.Row="0">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Frame CornerRadius="10" Padding="0">
-                            <Image Source="{Binding}" Aspect="AspectFill"/>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="50,*" ColumnDefinitions="*,50"
+                  Margin="0,-10,0,0">
+                <ImageButton Command="{Binding adToFavoritesCommand}" Grid.Row="0" Grid.Column="1"
+                        Source="favorite.svg"
+                        IsVisible="{Binding favoriteVisibility}"/>
+                <ImageButton Command="{Binding removeFromFavoritesCommand}" Grid.Row="0" HorizontalOptions="End"
+                        Source="unfavorit.svg"                               
+                        IsVisible="{Binding inversFavoriteVisibility}"/>
+                
+                <CarouselView ItemsSource="{Binding advertisement.adImages}" Grid.Row="1" Grid.ColumnSpan="2">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame CornerRadius="10" Padding="0">
+                                    <Image Source="{Binding}" Aspect="AspectFill"/>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
             <Label Grid.Column="1"
                    Grid.Row="1"
                    Text="{Binding advertisement.nev}"

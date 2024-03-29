@@ -217,8 +217,10 @@ namespace MobilApp_Szakdolgozat.Services
                 await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
-                //await SecureStorage.SetAsync("userLocation", finalResult[].Split(':')[1].Trim('"'));
-                await SecureStorage.SetAsync("userRole", finalResult[4].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userLocation", finalResult[3].Split(':')[1].Trim('"'));                
+                await SecureStorage.SetAsync("userRole", finalResult[5].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userFavorites", finalResult[6].Split(':')[1].Trim('"'));
+                await SecureStorage.SetAsync("userPhone", finalResult[7].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userToken", trimmedResult);
 
                 return null;
@@ -251,7 +253,7 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<string> profileUpdate(int id, string userName, string userEmail, string userLocation, string userPic, string userMobile)
+        public static async Task<string> profileUpdate(int id, string userName, string userEmail, string userLocation, string userPic, int userRole,string userFavorites, string userMobile)
         {
             string jsonData = JsonConvert.SerializeObject(new
             {
@@ -260,6 +262,7 @@ namespace MobilApp_Szakdolgozat.Services
                 email = userEmail,
                 location = userLocation,
                 pPic = userPic,
+                favorites = userFavorites,
                 mobNum = userMobile
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -267,7 +270,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/users/patch", content);
+            HttpResponseMessage response = await client.PutAsync(url + "/users/patch", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)

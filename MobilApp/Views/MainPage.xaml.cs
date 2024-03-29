@@ -13,10 +13,6 @@ public partial class MainPage : ContentPage
         classification = "";
         
     }
-    //private async void SearchBTN_Clicked(object sender, EventArgs e)
-    //{
-    //    await Shell.Current.GoToAsync("searchDetails");
-    //}
 
     private async void BTNUni_Clicked(object sender, EventArgs e)
     {
@@ -74,9 +70,9 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync(nameof(MyAdsPage));
     }
 
-    private async void BTNMessages_Clicked(object sender, EventArgs e)
+    private async void BTNSupport_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(MessagesPage));
+        await Shell.Current.GoToAsync(nameof(SupportPage));
     }
 
     private async void BTNAdmin_Clicked(object sender, EventArgs e)
