@@ -173,7 +173,7 @@ router.get("/pictures/upload", async (req,res) => {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
 router.post('/sendmail', [verifyToken], async function(req,res) {
     try {
@@ -181,7 +181,15 @@ router.post('/sendmail', [verifyToken], async function(req,res) {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
+
+router.post('/addfavourite', [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.updateFavourites(req,res))
+    } catch (err) {
+        console.error(err.message)
+    }
+});
 
 
 module.exports = {
