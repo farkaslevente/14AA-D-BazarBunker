@@ -100,7 +100,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         private string _selectedContractor;
         public string selectedContractor
         {
-            get => _selectedCategory;
+            get => _selectedContractor;
             set
             {
                 if (_selectedContractor != value)

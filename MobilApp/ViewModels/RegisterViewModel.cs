@@ -1,4 +1,5 @@
-﻿using MobilApp_Szakdolgozat.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using MobilApp_Szakdolgozat.Views;
 using System;
@@ -32,16 +33,30 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         public ObservableCollection<SettlementModel> settlements { get; set; }
         public SettlementModel selectedSettlement { get; set; }
+        public ObservableCollection<string> contractors { get; set; }
+        private string _selectedContractor;
+        public string selectedContractor
+        {
+            get => _selectedContractor;
+            set
+            {
+                if (_selectedContractor != value)
+                {
+                    _selectedContractor = value;
+                }
+            }
+        }
         public bool SettlementEnabled { get; set; }
         public ICommand CountySelectionChangeCommand { get; set; }
         
         public RegisterModel regModel { get; set; }
-            public string regName { get; set; }
-            public string regEmail { get; set; }
-            public string regPassword { get; set; }
-            public string regConfirmPwd { get; set; }
-            public string regLocation { get; set; }
-            public string error { get; set; }          
+        public string regName { get; set; }
+        public string regEmail { get; set; }
+        public string regPassword { get; set; }
+        public string regConfirmPwd { get; set; }
+        public string regLocation { get; set; }
+        public string regMobileNumber { get; set; }
+        public string error { get; set; }          
 
             private RegisterModel _errorMessage;
 
@@ -57,7 +72,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
             public RegisterViewModel()
             {
             counties = new ObservableCollection<CountyModel>();
-            settlements = new ObservableCollection<SettlementModel>();           
+            settlements = new ObservableCollection<SettlementModel>();
+            contractors = new ObservableCollection<string>();
+            getContractors();
             getCounties();        
             SettlementEnabled = false;
             CountySelectionChangeCommand = new Command(async () =>
@@ -75,18 +92,26 @@ namespace MobilApp_Szakdolgozat.ViewModels
                             if (regPassword == regConfirmPwd)
                             {
                                 error = "";
+                            if (!regMobileNumber.IsNullOrEmpty())
+                            {
                                 regModel = new RegisterModel
                                 {
                                     name = regName,
                                     email = regEmail,
                                     password = regPassword,
-                                    location = selectedSettlement.nev
+                                    location = selectedSettlement.nev,
+                                    phone = $"06 {selectedContractor} {regMobileNumber}"
                                 };
                                 errorMessage = await DataService.register(regModel);
                                 if (errorMessage.email == null)
                                 {
                                     await Shell.Current.GoToAsync(nameof(MainPage));
                                 }
+                            }
+                            else {
+                                error = "Nem egyeznek jelszavai!";
+                            }
+                                
                             }
                             else
                             {
@@ -120,6 +145,14 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             IEnumerable<CountyModel> countyList = await DataService.getCounties();
             countyList.ToList().ForEach(county => counties.Add(county));
+        }
+        private void getContractors()
+        {
+            contractors.Clear();
+            contractors.Add("20");
+            contractors.Add("30");
+            contractors.Add("40");
+            contractors.Add("70");
         }
     }
 }

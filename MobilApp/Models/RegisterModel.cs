@@ -12,5 +12,6 @@ namespace MobilApp_Szakdolgozat.Models
         public string email { get; set; }
         public string password { get; set; }
         public string location { get; set; }
+        public string phone { get; set; }
     }
 }

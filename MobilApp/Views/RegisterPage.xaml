@@ -59,6 +59,18 @@
         Title="Válasszon települést"
         SelectedItem="{Binding selectedSettlement}"/>
         
+        <Grid ColumnDefinitions="*,3*" HeightRequest="60">
+                <Frame CornerRadius="10" Grid.Column="0" Margin="0,0,5,0" Padding="6">
+                    <Picker ItemsSource="{Binding contractors}"
+                            SelectedItem="{Binding selectedContractor}"
+                            Title="Szolg."/>
+                </Frame>
+
+                <Frame CornerRadius="10" Grid.Column="1" Margin="5,0,0,0" Padding="6">
+                    <Entry Text="{Binding regMobileNumber}" Placeholder="Telefonszám:" MaxLength="7" Keyboard="Numeric"/>
+                </Frame>
+            </Grid>
+        
         <Button Text="Regisztrálás" Margin="0,10,0,15" Command="{Binding registerCommand}"/>
         <Label Text="{Binding error}" Style="{StaticResource errorMessage}"
        />
