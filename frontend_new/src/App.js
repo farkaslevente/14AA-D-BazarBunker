@@ -18,7 +18,6 @@ import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 import { PasswordResetPage } from './Pages/PasswordResetPage';
 import { ProfilePicSelect } from './Pages/ProfilePicSelect';
-import { useEffect } from 'react';
 
 function App() {
   return (
