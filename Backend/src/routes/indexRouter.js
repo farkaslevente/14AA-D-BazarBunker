@@ -9,6 +9,11 @@ const { uploadController } = require('../controllers/upload.controller')
 const router = express.Router();
 
 
+    //• ▌ ▄ ·. ▄• ▄▌▄▄▌  ▄▄▄▄▄▄▄▄ .▄▄▄  
+    //·██ ▐███▪█▪██▌██•  •██  ▀▄.▀·▀▄ █·
+    //▐█ ▌▐▌▐█·█▌▐█▌██▪   ▐█.▪▐▀▀▪▄▐▀▀▄ 
+    //██ ██▌▐█▌▐█▄█▌▐█▌▐▌ ▐█▌·▐█▄▄▌▐█•█▌
+    //▀▀  █▪▀▀▀ ▀▀▀ .▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀
 
 const multer = require('multer')
 const storage = multer.diskStorage({
@@ -21,7 +26,11 @@ const storage = multer.diskStorage({
   })
 const upload = multer({storage: storage})
 
-
+        //▄▄▄        ▄• ▄▌▄▄▄▄▄▄▄▄ ..▄▄ · 
+        //▀▄ █·▪     █▪██▌•██  ▀▄.▀·▐█ ▀. 
+        //▐▀▀▄  ▄█▀▄ █▌▐█▌ ▐█.▪▐▀▀▪▄▄▀▀▀█▄
+        //▐█•█▌▐█▌.▐▌▐█▄█▌ ▐█▌·▐█▄▄▌▐█▄▪▐█
+        //.▀  ▀ ▀█▄▀▪ ▀▀▀  ▀▀▀  ▀▀▀  ▀▀▀▀ 
 
 router.get("/", async function(_req, res, next) {
     try {
@@ -164,15 +173,23 @@ router.get("/pictures/upload", async (req,res) => {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
-router.post('/sendemail', [verifyToken], async function(req,res) {
+router.post('/sendmail', [verifyToken], async function(req,res) {
     try {
         await emailController.sendMail(req,res)
     } catch (err) {
         console.error(err.message)
     }
-})
+});
+
+router.post('/addfavourite', [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.updateFavourites(req,res))
+    } catch (err) {
+        console.error(err.message)
+    }
+});
 
 
 module.exports = {

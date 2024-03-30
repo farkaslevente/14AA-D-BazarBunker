@@ -6,13 +6,16 @@ const userController = {
     patchUsers: async function (req, res) {
         console.log("Patching incoming...", req);
         try {
-            const {name, email, location, pPic} = req;
+            const {id, name, email, location, pPic, phone} = req;
 
             const rows = await dbFunctions.execQueryWithReturn(
-                `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+                `SELECT * FROM felhasznalok WHERE id = '${id}'`) || [];
             const hashed = rows[0].jelszo
+            const favourites = rows[0].kedvencek
+            const role = rows[0].role
 
-            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}' WHERE id=${req.id}`);
+            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}',
+            telefonszam= '${phone}', kedvencek= '${favourites}', role= '${role}' WHERE id=${id}`);
             
             res.status(200).json({message: "User patched succesfully!"})
         } catch (err) {
@@ -38,14 +41,35 @@ const userController = {
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
             user = rows[0];
-            await query(`
-            UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${pPic}', jelszo= '${user.jelszo}' WHERE id=${id}`)
+            await query(`UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${pPic}', jelszo= '${user.jelszo}',
+            telefonszam= '${user.telefonszam}', kedvencek= '${user.kedvencek}', role= '${user.role}' WHERE id=${id}`);
             res.status(200).json({message: "Updating profile was successful"})
         } catch (err) {
             console.error("Error changing pic!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
     },
+
+    updateFavourites: async function (req,res) {
+        console.log("Adding favourite...", req.body)
+        try {
+            const {id, adId} = req.body
+
+            const rows = await dbFunctions.execQueryWithReturn(
+                `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
+            user = rows[0];
+            const newFavourites = user.kedvencek + "," + adId
+            console.log(user.kedvencek)
+
+            await query(`
+            UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${user.pPic}', jelszo= '${user.jelszo}',
+            telefonszam= '${user.telefonszam}', kedvencek= '${newFavourites}', role= '${user.role}' WHERE id=${id}`)
+            res.status(200).json({message: "Ad marked as saved"})
+        } catch (err) {
+            console.error("Error updating favourites...", err.message)
+            res.status(500).json({error: "Internal server error!"})
+        }
+    } 
 }
 
 module.exports = {
