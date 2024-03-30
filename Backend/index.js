@@ -28,7 +28,7 @@ app.use(cookieSession({
 }))
 
 app.listen(PORT, () => {
-  console.log(`Server listening @ ${HOST}:${PORT}`);
+  console.log(`Server listening @ ${HOST}:${PORT}, !TURN ON XAMPP!`);
 });
 
 app.use(router);

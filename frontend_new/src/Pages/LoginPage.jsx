@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './CSS/LoginPage.css'
-import { useNavigate, browserHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import userservice from '../Services/userservice'
 import { jwtDecode } from "jwt-decode";
-//import jwt from 'jsonwebtoken'
 
 export const LoginPage = () => {
     const navigate = useNavigate()
@@ -21,17 +20,13 @@ export const LoginPage = () => {
             const decoded = jwtDecode(token);
             const authEmail = decoded.payload.email;
             if (authEmail !== '') {
-                localStorage.setItem('isLoggedIn', true)
-                localStorage.setItem('authToken', token)
+                localStorage.setItem('isLoggedIn', true);
+                localStorage.setItem('authToken', token);
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
-                // localStorage.setItem('authEmail', email);
-                // localStorage.setItem('authEmail', email);
             }
-            //const data = jwt.decode(token);
             if (resp.data) {
                 navigate('/');
                 window.location.reload();
-                //history.push('/');
             }
         } catch (error) {
             setError("Hibás email cím vagy jelszó!");

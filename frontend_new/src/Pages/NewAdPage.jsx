@@ -24,20 +24,16 @@ export const NewAdPage = () => {
     ];
 
     useEffect(() => {
-        // Fetch authToken from localStorage
         const token = localStorage.getItem('authToken');
         setAuthToken(token);
-        // Fetch counties and settlements from backend
         Promise.all([adservice.getCounties(), adservice.getSettlements()])
             .then(([countiesData, settlementsData]) => {
-                // Format counties for react-select
                 const formattedCounties = countiesData.map(county => ({
                     label: county.nev,
                     value: county.nev
                 }));
                 setCounties(formattedCounties);
 
-                // Set settlements
                 setSettlements(settlementsData);
                 setSettlementOptions(settlementsData.map(settlement => ({
                     label: settlement.nev,
@@ -52,14 +48,13 @@ export const NewAdPage = () => {
     const handleCountyChange = (selectedOption) => {
         setSelectedCounty(selectedOption);
 
-        // Filter settlements based on the selected county
         const filteredSettlements = settlements.filter(settlement => settlement.varmegye === selectedOption.value);
         setSettlementOptions(filteredSettlements.map(settlement => ({
             label: settlement.nev,
             value: settlement.nev
         })));
 
-        setSettlementDisabled(false); // Enable settlement dropdown
+        setSettlementDisabled(false);
     };
 
     const handleDescriptionChange = (event) => {
@@ -71,26 +66,27 @@ export const NewAdPage = () => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            // Replace ownerId with the actual user ID from localStorage
-            const countyId = selectedCounty.value; // Assuming county ID is used
-            // Post ad data to the backend
-            await axios.post('/ads', {
-                name: event.target.title.value,
-                description,
-                category: selectedCategory,
-                price: event.target.price.value,
-                countyId,
-                authToken
-            });
-            // Redirect or show success message
-            console.log('Ad posted successfully!');
-        } catch (error) {
-            console.error('Error posting ad:', error);
-            // Handle error (e.g., show error message)
-        }
-    };
+    event.preventDefault();
+    try {
+        const countyId = selectedCounty.value;
+        const authToken = localStorage.getItem('authToken');
+        const headers = {
+            'Authorization': `Bearer ${authToken}`
+        };
+
+        await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
+            name: event.target.title.value,
+            description,
+            category: selectedCategory,
+            price: event.target.price.value,
+            countyId,
+        }, { headers });
+
+        console.log('Ad posted successfully!');
+    } catch (error) {
+        console.error('Error posting ad:', error);
+    }
+};
 
     return (
         <div className='newadpage'>
