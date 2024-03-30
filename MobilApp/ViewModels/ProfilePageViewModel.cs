@@ -142,17 +142,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 newUserLocation = selectedSettlement.nev;
                 if (!newUserName.IsNullOrEmpty())
                 {
-                    profile.nev = newUserName;
+                    profile.name = newUserName;
 
                     if (!newUserEmail.IsNullOrEmpty() && newUserEmail.Contains('@'))
                     {
                         profile.email = newUserEmail;
                         if (!newUserLocation.IsNullOrEmpty())
                         {
-                            profile.hely = newUserLocation;
+                            profile.location = newUserLocation;
                             if (!newUserMobileNumber.IsNullOrEmpty())
                             {
-                                profile.telefonszam = $"06 {selectedContractor} {newUserMobileNumber}";
+                                profile.phone = $"06 {selectedContractor} {newUserMobileNumber}";
                             }
                         }
                     }
@@ -165,7 +165,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 string UserPic = await SecureStorage.GetAsync("userImage");
                 string userFavorites = await SecureStorage.GetAsync("userFavs");
                 int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));                
-                await DataService.profileUpdate(UserId, profile.nev, profile.email, profile.hely, UserPic, userRole, userFavorites, profile.telefonszam);
+                await DataService.profileUpdate(UserId, profile.name, profile.email, profile.location, UserPic, userRole, userFavorites, profile.phone);
                 await Shell.Current.GoToAsync(nameof(ProfilePage));
             });
         }
@@ -197,11 +197,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 profile = new ProfileModel
                 {
-                    nev = userName,
+                    name = userName,
                     email = userEmail,
                     pPic = userImage,
                     id = userId,
-                    telefonszam = "",
+                    phone = "",
                 };
                 OnPropertyChanged(nameof(profile));
             }

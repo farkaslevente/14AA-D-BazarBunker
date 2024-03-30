@@ -57,15 +57,18 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<IEnumerable<ProfileModel>> getProfileById(int userId)
+        public static async Task<ProfileModel> getProfileById(int userId)
         {
             using (var client = new HttpClient())
             {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
-                var uri = $"/users/:{userId}";
+                var uri = $"/users/{userId}";
                 var result = await client.GetStringAsync(uri);
 
-                return JsonConvert.DeserializeObject<List<ProfileModel>>(result);
+                return JsonConvert.DeserializeObject<ProfileModel>(result);
             }
         }
 

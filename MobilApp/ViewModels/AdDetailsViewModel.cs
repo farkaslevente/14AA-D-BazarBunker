@@ -98,13 +98,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         private async void getUserInfo()
         {
             int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-            IEnumerable<ProfileModel> profileList = await DataService.getAllProfiles();
-            profileList.ToList().ForEach(profile => {
-                if (uId == profile.id)
-                {
-                    adOwner = profile;
-                }
-            });
+            adOwner = await DataService.getProfileById(uId);                       
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)

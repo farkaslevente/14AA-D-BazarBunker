@@ -16,8 +16,13 @@ public partial class AdDetailsPage : ContentPage
         InitializeComponent();
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
+    private async void BTNanimation_Clicked(object sender, EventArgs e)
     {
-        await contact.TranslateTo(0, -500, 1000);        
+        await contact.TranslateTo(0, -300, 500);        
+    }
+
+    private async void BTNanimationBack_Clicked(object sender, EventArgs e)
+    {
+        await contact.TranslateTo(0, 300, 500);
     }
 }

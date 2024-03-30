@@ -42,7 +42,7 @@
                     <Label x:Name="NameLB" 
                            Grid.Row="1" 
                            Grid.Column="1"
-                           Text="{Binding profile.nev}"  
+                           Text="{Binding profile.name}"  
                            HorizontalTextAlignment="Center"
                            FontSize="Large"
                            MaximumWidthRequest="165"/>
@@ -85,7 +85,7 @@
                       IsVisible="{Binding editVisibility}">
                     <Grid RowDefinitions="0.3*,0.3*,0.3*,0.3*" ColumnDefinitions="*,*" Grid.Row="0">
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="0" Grid.ColumnSpan="2">
-                            <Entry Text="{Binding newUserName}" Placeholder="{Binding profile.nev}"/>
+                            <Entry Text="{Binding newUserName}" Placeholder="{Binding profile.name}"/>
                         </Frame>
 
                         <Frame CornerRadius="10" Padding="6" MaximumHeightRequest="50" Grid.Row="1" Grid.ColumnSpan="2">
@@ -121,7 +121,7 @@
                             <Frame CornerRadius="10" Padding="6"
                                    Grid.Column="1"
                                    Margin="10,0,10,0">
-                                <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.telefonszam}"
+                                <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.phone}"
                                        Keyboard="Numeric"
                                        MaxLength="7"/>
                             </Frame>
@@ -136,7 +136,6 @@ ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
             <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
             <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
-            <!--<ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}" BackgroundColor="White"/>-->
         </Grid>
     </Grid>
 </ContentPage>

@@ -174,9 +174,6 @@
 	  <MauiXaml Update="Views\AdsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ConversationsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\FavPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
