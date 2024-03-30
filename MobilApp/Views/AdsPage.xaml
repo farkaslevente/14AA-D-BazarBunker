@@ -14,7 +14,7 @@
             <DataTemplate>
                 <Border Margin="0,5,0,5" HeightRequest="150" Padding="10"
                         StrokeShape="RoundRectangle 10">
-                    <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="2*,1*,1.5*">
+                        <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="120,1*,1.5*">
                             <Frame CornerRadius="10" Grid.RowSpan="3" 
                                     Grid.Column="0"
                                     Margin="0,0,10,0"
@@ -62,10 +62,8 @@
        ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
             <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
-            <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
-            <ImageButton x:Name="BTNSupport" Source="messages.svg" Clicked="BTNSupport_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNAdmin" Source="test.svg" Clicked="BTNAdmin_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInAdmin}"/>
+            <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
         </Grid>
     </Grid>
 </ContentPage>

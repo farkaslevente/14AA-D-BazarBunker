@@ -4,11 +4,58 @@
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.FavPage">
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
-        <Label 
-            Grid.Row="0"
-            Grid.Column="1"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <CollectionView ItemsSource="{Binding favoriteAds}" Grid.Row="0" Grid.Column="1"
+                 SelectionMode="Single"
+                 SelectionChangedCommand="{Binding adDetailsCommand}"
+                 SelectedItem="{Binding advertisement}"
+                 ZIndex="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5,0,5" HeightRequest="150" Padding="10"
+                     StrokeShape="RoundRectangle 10">
+                        <Grid RowDefinitions="1*,1*,1*" ColumnDefinitions="120,1*,1.5*">
+                            <Frame CornerRadius="10" Grid.RowSpan="3" 
+                                 Grid.Column="0"
+                                 Margin="0,0,10,0"
+                                Padding="0">
+                                <Image Source="{Binding adImages[0]}"
+                                    Aspect="AspectFill"/>
+                            </Frame>
+                            <Label
+                             Text="{Binding nev}" 
+                             Grid.Row="0" 
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             FontAttributes="Bold"
+                            FontSize="Body"/>
+
+                            <Label 
+                             Text="{Binding telepules}" 
+                             Grid.Row="2" 
+                             Grid.Column="1"/>
+
+                            <Label 
+                             Text="{Binding ar, StringFormat='{0} Ft'}" 
+                             Grid.Row="1" 
+                             Grid.Column="1"/>
+
+                            <Label 
+                             Text="{Binding kategoria}" 
+                             Grid.Row="1" 
+                             Grid.Column="2"
+                            FontSize="12"/>
+                            <Label 
+                             Text="{Binding datum}" 
+                             Grid.Row="2" 
+                             Grid.Column="2"
+                         Margin="5,0,0,0"/>
+
+
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

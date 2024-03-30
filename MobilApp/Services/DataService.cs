@@ -13,8 +13,8 @@ using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
 using FFImageLoading.Args;
 using MySqlX.XDevAPI;
-using Android.App;
-//using ThreadNetwork;
+//using Android.App;
+
 
 
 namespace MobilApp_Szakdolgozat.Services
@@ -45,12 +45,24 @@ namespace MobilApp_Szakdolgozat.Services
         static string url302local = "http://10.0.33.20:9090";
         public static string url = urlHome;
 
-        public static async Task<IEnumerable<ProfileModel>> getAllProfiles()
+        public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
                 var uri = "/users";
+                var result = await client.GetStringAsync(uri);
+
+                return JsonConvert.DeserializeObject<List<ProfileModel>>(result);
+            }
+        }
+
+        public static async Task<IEnumerable<ProfileModel>> getProfileById(int userId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                var uri = $"/users/:{userId}";
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<ProfileModel>>(result);
@@ -143,7 +155,7 @@ namespace MobilApp_Szakdolgozat.Services
             string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
             await SecureStorage.SetAsync("userFavorites", finalResult[6].Split(':')[1].Trim('"'));
             string favoritesList = await SecureStorage.GetAsync("userFavorites");
-            string[] favorites = favoritesList.Split(",");
+            string[] favorites = favoritesList.Split("+");
 
             return favorites;
 

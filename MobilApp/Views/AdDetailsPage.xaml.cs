@@ -15,4 +15,9 @@ public partial class AdDetailsPage : ContentPage
         await Task.Delay(3000);
         InitializeComponent();
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await contact.TranslateTo(0, -500, 1000);        
+    }
 }

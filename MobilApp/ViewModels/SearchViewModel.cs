@@ -95,7 +95,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             searchCommand = new Command(async () =>
             {
-                searchCategory = selectedCategory;
+                if (searchCategory == null)
+                {
+                    searchCategory = selectedCategory;
+                }                
 
                 List<AdsModel> filteredList = new List<AdsModel>();
                 if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 0)

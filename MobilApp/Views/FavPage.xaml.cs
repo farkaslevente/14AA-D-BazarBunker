@@ -6,7 +6,13 @@ public partial class FavPage : ContentPage
 {
 	public FavPage()
 	{
-		InitializeComponent();
-		this.BindingContext = new FavoriteViewModel();
-	}
+        startTimer();
+    }
+
+    private async Task startTimer()
+    {
+        this.BindingContext = new FavoriteViewModel();
+        await Task.Delay(4000);
+        InitializeComponent();
+    }
 }

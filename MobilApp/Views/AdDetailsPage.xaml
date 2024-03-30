@@ -6,17 +6,13 @@
              x:Class="MobilApp_Szakdolgozat.Views.AdDetailsPage"
              Title="">
     <ScrollView>
-        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,40,30,40,30,200">
-            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="50,*" ColumnDefinitions="*,50"
-                  Margin="0,-10,0,0">
-                <ImageButton Command="{Binding adToFavoritesCommand}" Grid.Row="0" Grid.Column="1"
-                        Source="favorite.svg"
-                        IsVisible="{Binding favoriteVisibility}"/>
-                <ImageButton Command="{Binding removeFromFavoritesCommand}" Grid.Row="0" HorizontalOptions="End"
-                        Source="unfavorit.svg"                               
-                        IsVisible="{Binding inversFavoriteVisibility}"/>
-                
-                <CarouselView ItemsSource="{Binding advertisement.adImages}" Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,40,30,40,30,150,20,40,20">
+            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,20" ColumnDefinitions="*"
+                  Margin="0,0,0,0">
+                <CarouselView ItemsSource="{Binding advertisement.adImages}" 
+                              Grid.Row="0"                               
+                              IndicatorView="indicatorView"
+                              Loop="False">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -27,11 +23,30 @@
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                               HorizontalOptions="Center"
+                               VerticalOptions="End"
+                               IndicatorColor="#3468c0"
+                               IndicatorSize="8"
+                               SelectedIndicatorColor="Orange"
+                               Grid.Row="1"
+                               Margin="0,0,0,5"/>
             </Grid>
+
             <Label Grid.Column="1"
                    Grid.Row="1"
                    Text="{Binding advertisement.nev}"
                    FontSize="25"/>
+            <ImageButton Command="{Binding adToFavoritesCommand}" Grid.Row="1" Grid.Column="1"
+                        Source="favorite.svg"
+                        Margin="300,0,0,10"
+                        IsVisible="{Binding favoriteVisibility}"/>
+
+            <ImageButton Command="{Binding removeFromFavoritesCommand}" Grid.Row="1" Grid.Column="1"
+                         Margin="300,0,0,10"
+                        Source="unfavorit.svg"                               
+                        IsVisible="{Binding inversFavoriteVisibility}"/>
+
             <Label Grid.Column="1"
                    Grid.Row="2"
                    Text="{Binding advertisement.ar, StringFormat='{0} Ft'}"
@@ -44,10 +59,39 @@
                    Grid.Row="4"
                    Grid.Column="1"
                    FontSize="20"/>
-            <Label Grid.Column="1"
-                   Grid.Row="5"
-                   Text="{Binding advertisement.leiras}"
-                   FontSize="15"/>
+            <ScrollView Grid.Column="1"
+                        Grid.Row="5">
+                
+                <Label Text="{Binding advertisement.leiras}"
+                       FontSize="15"
+                       Margin="0,0,0,10"/>
+            </ScrollView>
+            
+            <Button Text="Kapcsolatfelvétel az eladóval"
+                    FontSize="18"
+                    Padding="0"
+                    Grid.Row="7" 
+                    Grid.Column="1"
+                    Margin="10,0,10,0"
+                    Clicked="Button_Clicked"/>
+            <Border StrokeShape="RoundRectangle 10"
+                    Padding="3" 
+                    Grid.Row="5" 
+                    Grid.Column="1"
+                    Grid.RowSpan="3" 
+                    Margin="0,0,0,-500"
+                    HeightRequest="120"
+                    x:Name="contact"
+                    Background="White">
+                <Grid RowDefinitions="*,*,*,*,*">
+                    <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" HorizontalOptions="Center"/>
+                    <Label Text="{Binding adOwner.nev, StringFormat='Hirdető neve: {0}'}" Grid.Row="1"/>
+                    <Label Text="{Binding adOwner.hely, StringFormat='Település: {0}'}" Grid.Row="2"/>
+                    <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail elérhetősége: {0}'}" Grid.Row="3"/>
+                    <Label Text="{Binding adOwner.telefonszam, StringFormat='Hirdető telefonos elérhetősége: {0}'}" Grid.Row="4"/>
+                    
+                </Grid>
+            </Border>
         </Grid>
     </ScrollView>
 </ContentPage>

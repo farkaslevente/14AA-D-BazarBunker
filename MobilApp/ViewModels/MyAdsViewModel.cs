@@ -25,13 +25,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public MyAdsViewModel()
         {
             uploadFileNames = new ObservableCollection<string>();
-            advertisements = new ObservableCollection<AdsModel>();
-            //getAllAds();
+            advertisements = new ObservableCollection<AdsModel>();            
             getImages();
             detailsCommand = new Command(async () => {
                 if (selectedAd == null) return;
                 await Shell.Current.GoToAsync(nameof(AdDetailsPage),
-                    new Dictionary<string, object> { { "advertisement", selectedAd } });
+                    new Dictionary<string, object> { { "selectedAd", selectedAd } });
 
                 selectedAd = null;
                 OnPropertyChanged(nameof(selectedAd));

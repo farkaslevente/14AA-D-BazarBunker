@@ -116,8 +116,7 @@
                                    Grid.Column="0">
                                 <Picker ItemsSource="{Binding contractors}"
                                         SelectedItem="{Binding selectedContractor}"
-                                        Title="Szolg."
-                                        />
+                                        Title="Szolg."/>
                             </Frame>
                             <Frame CornerRadius="10" Padding="6"
                                    Grid.Column="1"
