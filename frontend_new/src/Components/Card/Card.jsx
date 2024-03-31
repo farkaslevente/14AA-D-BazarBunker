@@ -20,7 +20,7 @@ export const Card = ({ ad }) => {
                         <p className=''>{ad.leiras}</p>
                     </div>
                     <div className="card-buttons">
-                        <button onClick={() => navigate('/hirdetes')} className='addetailsbutton'>Részletek</button>
+                        <button onClick={() => navigate(`/hirdetes/${ad.id}`)} className='addetailsbutton'>Részletek</button>
                     </div>
                 </div>
             </div>
