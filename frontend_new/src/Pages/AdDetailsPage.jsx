@@ -18,6 +18,8 @@ export const AdDetailsPage = () => {
                     <label htmlFor="">Phone Number</label><br />
                     <label htmlFor="">Date added</label><br />
                     <label htmlFor="">Description</label><br />
+                    <label htmlFor="favourite" style={{ marginRight: '10px'}}>Kedvenc</label>
+                    <input type="checkbox" name="favourite" id="favourote" />
                 </div>
             </div>
         </div>
