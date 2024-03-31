@@ -88,7 +88,7 @@
                     <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" FontSize="20" Margin="30,0,0,0"/>
                     <Label Text="{Binding adOwner.name, StringFormat='Hirdető neve: {0}'}" Grid.Row="1" FontSize="15" Margin="10,0,0,0"/>
                     <Label Text="{Binding adOwner.location, StringFormat='Település: {0}'}" Grid.Row="2" FontSize="15" Margin="10,0,0,0"/>
-                    <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail elérhetősége: {0}'}" Grid.Row="3" FontSize="15" Margin="10,0,0,0"/>
+                    <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail\n elérhetősége: {0}'}" Grid.Row="3" FontSize="15" Margin="10,0,0,0"/>
                     <Label Text="{Binding adOwner.phone, StringFormat='Hirdető telefonos elérhetősége: {0}'}" Grid.Row="4" FontSize="15" Margin="10,0,0,0"/>
                     <Button Clicked="BTNanimationBack_Clicked" Grid.Row="5" Text="Vissza a hirdetéshez" HorizontalOptions="Center" Margin="10"/>
                 </Grid>

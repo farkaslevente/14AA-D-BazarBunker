@@ -121,7 +121,7 @@
                             <Frame CornerRadius="10" Padding="6"
                                    Grid.Column="1"
                                    Margin="10,0,10,0">
-                                <Entry Text="{Binding newUserMobileNumber}" Placeholder="{Binding profile.phone}"
+                                <Entry Text="{Binding newUserMobileNumber}" Placeholder="telefonszám"
                                        Keyboard="Numeric"
                                        MaxLength="7"/>
                             </Frame>
