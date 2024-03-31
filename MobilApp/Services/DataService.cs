@@ -297,7 +297,7 @@ namespace MobilApp_Szakdolgozat.Services
                 location = userLocation,
                 pPic = userPic,
                 favorites = userFavorites,
-                mobNum = userMobile
+                phone = userMobile
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();

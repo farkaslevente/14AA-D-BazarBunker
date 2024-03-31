@@ -110,7 +110,22 @@ namespace MobilApp_Szakdolgozat.ViewModels
             }
         }
         public ObservableCollection<SettlementModel> settlements { get; set; }
-        public SettlementModel selectedSettlement { get; set; }
+        //public SettlementModel selectedSettlement { get; set; }
+        private SettlementModel _selectedSettlement;
+        public SettlementModel selectedSettlement
+        {
+            get => _selectedSettlement;
+            set
+            {
+                if (_selectedSettlement != value)
+                {
+                    _selectedSettlement = value;
+                    newUserLocation = value.nev;
+                    OnPropertyChanged(nameof(selectedSettlement));
+
+                }
+            }
+        }
         public bool SettlementEnabled { get; set; }
         public ICommand CountySelectionChangeCommand { get; set; }
         public ICommand profileEditCommand { get; set; }
@@ -119,7 +134,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             profiles = new ObservableCollection<ProfileModel>();
             settlements = new ObservableCollection<SettlementModel>();
             counties = new ObservableCollection<CountyModel>();
-            contractors = new ObservableCollection<string>();
+            contractors = new ObservableCollection<string>();           
             getCounties();
             getContractors();
             a();
@@ -139,29 +154,38 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             profileUpdateCommand = new Command(async () =>
             {
-                newUserLocation = selectedSettlement.nev;
+                int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                profile = await DataService.getProfileById(UserId);
+                if (newUserLocation.IsNullOrEmpty())
+                {
+                    newUserLocation = await SecureStorage.GetAsync("userLocation");
+                }
+                if (newUserEmail.IsNullOrEmpty())
+                {
+                    newUserEmail = profile.email;
+                }
                 if (!newUserName.IsNullOrEmpty())
                 {
                     profile.name = newUserName;
+                }
 
-                    if (!newUserEmail.IsNullOrEmpty() && newUserEmail.Contains('@'))
-                    {
-                        profile.email = newUserEmail;
-                        if (!newUserLocation.IsNullOrEmpty())
-                        {
-                            profile.location = newUserLocation;
-                            if (!newUserMobileNumber.IsNullOrEmpty())
-                            {
-                                profile.phone = $"06 {selectedContractor} {newUserMobileNumber}";
-                            }
-                        }
-                    }
-                    else if (!newUserEmail.Contains('@'))
-                    {
-                        updateError = "Adjon meg egy érvényes email címet";
-                    }
-                }                           
-                int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                if (!newUserEmail.IsNullOrEmpty() && newUserEmail.Contains('@'))
+                {
+                    profile.email = newUserEmail;
+
+                }
+                else if (!newUserEmail.Contains('@'))
+                {
+                    updateError = "Adjon meg egy érvényes email címet";
+                }
+                if (!newUserLocation.IsNullOrEmpty())
+                {
+                    profile.location = newUserLocation;
+                }
+                if (!newUserMobileNumber.IsNullOrEmpty())
+                {
+                    profile.phone = $"06 {selectedContractor} {newUserMobileNumber}";
+                }                
                 string UserPic = await SecureStorage.GetAsync("userImage");
                 string userFavorites = await SecureStorage.GetAsync("userFavs");
                 int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));                
