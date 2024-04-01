@@ -4,6 +4,7 @@ namespace MobilApp_Szakdolgozat.Views;
 
 public partial class MainPage : ContentPage
 {    
+    public static string mainCategory { get; set; }
 	public MainPage()
 	{
         ShellViewModel shellViewModel = new ShellViewModel();        
@@ -23,42 +24,42 @@ public partial class MainPage : ContentPage
     private void BTNUni_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Egyetemistáknak";
+        mainCategory = "Egyetemistáknak";
         BTNUni.Command = searchViewModel.searchCommand;
     }
 
     private void BTNMiddleSch_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Középiskolásoknak";
+        mainCategory = "Középiskolásoknak";
         BTNMiddleSch.Command = searchViewModel.searchCommand;
     }
 
     private void BTNPrimarySch_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Általános iskolásoknak";
+        mainCategory = "Általános iskolásoknak";
         BTNPrimarySch.Command = searchViewModel.searchCommand;
     }
 
     private void BTNBooks_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Kötelezõ olvasmány";
+        mainCategory = "Kötelezõ olvasmány";
         BTNBooks.Command = searchViewModel.searchCommand;
     }
 
     private void BTNStationeries_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Írószerek";
+        mainCategory = "Írószerek";
         BTNStationeries.Command = searchViewModel.searchCommand;
     }
 
     private void BTNTools_Clicked(object sender, EventArgs e)
     {
         SearchViewModel searchViewModel = new SearchViewModel();
-        searchViewModel.searchCategory = "Kellékek";
+        mainCategory = "Kellékek";
         BTNTools.Command = searchViewModel.searchCommand;
     }
 

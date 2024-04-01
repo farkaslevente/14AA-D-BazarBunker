@@ -20,25 +20,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public string[] favIds { get; set; }
         public ICommand adDetailsCommand { get; set; }
 
-        public FavoriteViewModel()
-        {
-            //favoriteAds = new ObservableCollection<AdsModel>();
-           // startupC();
-            adDetailsCommand = new Command(async () =>
-            {
-                if (advertisement == null) return;
-                await Shell.Current.GoToAsync(nameof(AdDetailsPage),
-                    new Dictionary<string, object> { { "selectedAd", advertisement } });
-
-                advertisement = null;
-                OnPropertyChanged(nameof(advertisement));
-            });
-        }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             int userId = int.Parse(await SecureStorage.GetAsync("userId"));
-            string userEmail = await SecureStorage.GetAsync("userEmail");            
+            string userEmail = await SecureStorage.GetAsync("userEmail");
             favIds = await DataService.getFavorites();
             favIds = favIds.Take(favIds.Count() - 1).ToArray();
             uploadFileNames = new ObservableCollection<string>();
@@ -63,6 +49,22 @@ namespace MobilApp_Szakdolgozat.ViewModels
             }
             OnPropertyChanged(nameof(favoriteAds));
         }
+        public FavoriteViewModel()
+        {
+            //favoriteAds = new ObservableCollection<AdsModel>();
+           // startupC();
+            adDetailsCommand = new Command(async () =>
+            {
+                if (advertisement == null) return;                
+                await Shell.Current.GoToAsync(nameof(AdDetailsPage),
+                    new Dictionary<string, object> { { "selectedAd", advertisement } });
+
+                advertisement = null;
+                OnPropertyChanged(nameof(advertisement));
+            });
+        }
+
+        
        
 
         private async void startupC()

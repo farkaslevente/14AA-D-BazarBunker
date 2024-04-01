@@ -27,6 +27,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 if (_favoriteVisibility != value)
                 {
                     _favoriteVisibility = value;
+                    inversFavoriteVisibility = !value;
                     OnPropertyChanged(nameof(favoriteVisibility));
                 }
             }
@@ -46,10 +47,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         public AdDetailsViewModel()
         {
-            favorites = new ObservableCollection<string>();
-            favoriteVisibility = true;
-            inversFavoriteVisibility = !favoriteVisibility;
-            getUserInfo();
+            favorites = new ObservableCollection<string>();                     
+            
             adToFavoritesCommand = new Command(async () => {               
                int userId = Int32.Parse(await SecureStorage.GetAsync("userId"));
                string userName = await SecureStorage.GetAsync("userName");
@@ -67,7 +66,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                         userFavorites += item.ToString();
                     }                    
                 }
-                
+                await SecureStorage.SetAsync("userFavorites", userFavorites);
                 await DataService.profileUpdate(userId,userName,userEmail,userLocation,userImage, userRole,userFavorites, userPhone);
                 await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést hozzáadtuk kedvenceihez", "Rendben");
                 favoriteVisibility = true;
@@ -86,25 +85,25 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 string userImage = await SecureStorage.GetAsync("userImage");
                 favorites.Remove($"{advertisement.id}+");
                 userFavorites = favorites.ToString();
-                await SecureStorage.SetAsync("userFavs", userFavorites);
+                await SecureStorage.SetAsync("userFavorites", userFavorites);
                 await DataService.profileUpdate(userId, userName, userEmail, userLocation, userImage, userRole, userFavorites, userPhone);
                 await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést kivettük kedvencei közül", "Rendben");
                 favoriteVisibility = false;
                 inversFavoriteVisibility = !favoriteVisibility;
                 OnPropertyChanged(favoriteVisibility.ToString());
-            });
+            });            
         }
 
         private async void getUserInfo()
-        {
-            int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-            adOwner = await DataService.getProfileById(uId);                       
+        {            
+            adOwner = await DataService.getProfileById(advertisement.tulajId);                       
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             advertisement = query["selectedAd"] as AdsModel;
             OnPropertyChanged(nameof(advertisement));
+            getUserInfo();
             
         }
     }

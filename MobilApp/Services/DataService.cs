@@ -148,21 +148,22 @@ namespace MobilApp_Szakdolgozat.Services
         }
         public static async Task<string[]> getFavorites()
         {
-            string result = await SecureStorage.GetAsync("userToken");                            
+            string result = await SecureStorage.GetAsync("userToken");
             string[] payload = result.Split('.');
             var finalPayload = payload[1];
 
             var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(result));
             string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
             string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-            string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
-            await SecureStorage.SetAsync("userFavorites", finalResult[6].Split(':')[1].Trim('"'));
-            string favoritesList = await SecureStorage.GetAsync("userFavorites");
-            string[] favorites = favoritesList.Split("+");
+            string[] finalResult = ResultwithoutMustachetwo[0].Split(",");           
+            string storedFavoritesList = await SecureStorage.GetAsync("userFavorites");
+            string[] storedFavorites = storedFavoritesList.Split("+");
+            return storedFavorites;
 
-            return favorites;
 
-            
+
+
+
         }
         public static async Task<RegisterModel> register(RegisterModel user)
         {
@@ -315,6 +316,13 @@ namespace MobilApp_Szakdolgozat.Services
             {
                 string success = "success";
                 await SecureStorage.SetAsync("success", success);
+                await SecureStorage.SetAsync("userId", id.ToString());
+                await SecureStorage.SetAsync("userName", userName);
+                await SecureStorage.SetAsync("userEmail", userEmail);
+                await SecureStorage.SetAsync("userLocation", userLocation);
+                await SecureStorage.SetAsync("userRole", userRole.ToString());
+                await SecureStorage.SetAsync("userFavorites", userFavorites);
+                await SecureStorage.SetAsync("userPhone", userMobile);
                 return null;
             }
         }

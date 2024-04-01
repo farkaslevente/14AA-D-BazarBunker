@@ -15,6 +15,7 @@ using Microsoft.Maui.Graphics;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Cryptography.X509Certificates;
 using CommunityToolkit.Maui.Core.Views;
+using Microsoft.IdentityModel.Tokens;
 
 
 namespace MobilApp_Szakdolgozat.ViewModels
@@ -95,6 +96,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
             searchCommand = new Command(async () =>
             {
+                ;
+                if (!MainPage.mainCategory.IsNullOrEmpty())
+                {
+                    selectedCategory = MainPage.mainCategory;
+                }
                 if (searchCategory == null)
                 {
                     searchCategory = selectedCategory;
@@ -105,37 +111,18 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 {
                     filteredList = allAds.ToList();
                 }
-                
 
-                if (!string.IsNullOrEmpty(searchTitle))
+                if (searchMaxPrice == 0)
                 {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.nev.Contains(searchTitle))).ToList();   
+                    searchMaxPrice = 10000000;
                 }
-
-                if (selectedCounty != null)
-                {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.varmegyeId == selectedCounty.id)).ToList();
-                }
-
-                if (selectedSettlement != null)
-                {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.telepules == selectedSettlement.nev.ToString())).ToList();
-                }
-
-                if (!string.IsNullOrEmpty(searchCategory))
-                {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.kategoria.Contains(searchCategory))).ToList();
-                }
-
-                if (searchMinPrice != 0)
-                {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.ar >= searchMinPrice)).ToList();
-                }
-
-                if (searchMaxPrice != 0)
-                {
-                    filteredList = filteredList.Union(allAds.Where(ad => ad.ar <= searchMaxPrice)).ToList();
-                }
+                filteredList = allAds.Where(listing =>
+                               (searchTitle == null || listing.nev.Contains(searchTitle, StringComparison.OrdinalIgnoreCase)) &&
+                               (selectedCategory == null || listing.kategoria.Equals(selectedCategory, StringComparison.OrdinalIgnoreCase)) &&
+                               (selectedCounty == null || listing.varmegyeId == selectedCounty.id) &&
+                               (selectedSettlement == null || listing.telepules.Equals(selectedSettlement.nev, StringComparison.OrdinalIgnoreCase)) &&
+                               ( listing.ar >= searchMinPrice) &&
+                               (listing.ar <= searchMaxPrice)).ToList();
 
                 filteredAds = new ObservableCollection<AdsModel>(filteredList);
                 await Shell.Current.GoToAsync(nameof(AdsPage),

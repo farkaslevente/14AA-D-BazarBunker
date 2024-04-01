@@ -187,9 +187,9 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     profile.phone = $"06 {selectedContractor} {newUserMobileNumber}";
                 }                
                 string UserPic = await SecureStorage.GetAsync("userImage");
-                string userFavorites = await SecureStorage.GetAsync("userFavs");
+                string userFavorites = await SecureStorage.GetAsync("userFavorites");
                 int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));                
-                await DataService.profileUpdate(UserId, profile.name, profile.email, profile.location, UserPic, userRole, userFavorites, profile.phone);
+                await DataService.profileUpdate(profile.id, profile.name, profile.email, profile.location, profile.pPic, userRole, userFavorites, profile.phone);
                 await Shell.Current.GoToAsync(nameof(ProfilePage));
             });
         }

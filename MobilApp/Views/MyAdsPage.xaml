@@ -24,7 +24,7 @@
                            Margin="10"
                            HeightRequest="120">
                             <Grid ColumnDefinitions="120,1.5*,1.5*" RowDefinitions="*,*,*">
-                                <Frame CornerRadius="10" HeightRequest="90"
+                                <Frame CornerRadius="10" HeightRequest="100"
                                        WidthRequest="90" Padding="0" Grid.RowSpan="3" Grid.Column="0" Margin="0,0,10,0">
                                     <Image Source="{Binding adImages[0]}"                                   
                                        Aspect="AspectFill"
@@ -40,12 +40,12 @@
                                    Grid.Row="1"
                                    Grid.Column="1"/>
                             
-                            <Label Text="{Binding kategoria, StringFormat='Kategória: {0}'}"
+                            <Label Text="{Binding kategoria, StringFormat='Kategória: &#10;{0}'}"
                                    Grid.Row="1"
                                    Grid.Column="2"
-                                   FontSize="10"/>
+                                   FontSize="12"/>
                             
-                            <Label Text="{Binding ownerName}"
+                            <Label Text="{Binding telepules}"
                                    Grid.Row="2"
                                    Grid.Column="1"/>
 
