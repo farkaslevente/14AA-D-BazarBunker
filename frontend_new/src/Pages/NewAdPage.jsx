@@ -98,7 +98,7 @@ export const NewAdPage = () => {
                 <h1>Új hirdetés</h1>
             </div>
             <div className="newadpage-content">
-                <form onSubmit={handleSubmit}>
+                <form className='newadform' onSubmit={handleSubmit}>
                     <div className="data1">
                         <label htmlFor="title">Hirdetés megnevezése:</label>
                         <input type="text" name='title' placeholder='pl: Asztal' required />
