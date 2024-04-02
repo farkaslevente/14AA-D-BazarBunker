@@ -158,14 +158,6 @@ router.get("/ads", async function(_req, res) {
     }
 });
 
-router.get("/ads/:id", async function (req, res) {
-  try {
-    res.json(await dbFunctions.getAdById(req, res));
-  } catch (err) {
-    console.error("Error getting ad by id!", err.message);
-  }
-});
-
 router.post("/ads", [verifyToken], async function(req,res) {
     res.json(await dbFunctions.postAds(req,res))
 });

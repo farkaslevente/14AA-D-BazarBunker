@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import adservice from '../Services/adservice';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import './CSS/NewAdPage.css';
 import Select from 'react-select';
 

@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session')
 const cors = require('cors')
 
 const PORT = 9000;
-const HOST = hosts.HOST202 || "localhost";
+const HOST = hosts.LOCAL || "localhost";
 
 
 const app = express()
@@ -28,7 +28,7 @@ app.use(cookieSession({
 }))
 
 app.listen(PORT, () => {
-  console.log(`Server listening @ ${HOST}:${PORT}, !TURN ON XAMPP!`);
+  console.log(`Server listening @ ${HOST}:${PORT}`);
 });
 
 app.use(router);
