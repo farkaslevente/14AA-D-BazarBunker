@@ -147,7 +147,7 @@ export const NewAdPage = () => {
                         />
                         <label htmlFor="category">Kategória:</label>
                         <Select
-                            value={selectedCategory} // Change to selectedCategory.value
+                            value={selectedCategory.value}
                             onChange={handleCategoryChange}
                             options={categoryOptions}
                             placeholder="Válasszon kategóriát..."
