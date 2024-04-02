@@ -4,30 +4,12 @@ import './CSS/AllAdsPage.css'
 import adservice from '../Services/adservice'
 
 export const AllAdsPage = () => {
-    // useEffect(() => {
-    //     const axiosRequests = async () => {
-    //         try {
-    //             const ads = await adservice.getAllAds();
-    //             const counties = await adservice.getCounties();
-    //             const settlements = await adservice.getSettlements();
-
-    //             console.log('Ads:', ads);
-    //             console.log('Counties:', counties);
-    //             console.log('Settlement:', settlements);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     axiosRequests();
-    // }, []) ;
-
     const [ads, setAds] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const adsData = await adservice.getAllAds();
-                console.log(adsData);
                 setAds(adsData);
             } catch (error) {
                 console.log(error);
