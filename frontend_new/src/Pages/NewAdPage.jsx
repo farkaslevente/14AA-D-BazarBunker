@@ -167,7 +167,7 @@ export const NewAdPage = () => {
                             }}
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='false' />
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off'/>
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea

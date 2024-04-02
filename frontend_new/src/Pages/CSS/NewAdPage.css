@@ -17,6 +17,11 @@
 
 .newadpage-content {
     display: flex;
+    width: 70%;
+}
+
+form {
+    width: 800px;
 }
 
 .data1 {
