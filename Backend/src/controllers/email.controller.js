@@ -30,6 +30,25 @@ let emailController = {
         res.status(200).json({message: "Email sent"})
       }
     });
+  },
+  subscribe: async function (req,res) {
+    const {email} = req.body
+
+    var mailOptions = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: "Hírlevél feliratkozás",
+      text: "Sikeresen feliratkozott a hírnevünkre!"
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).json({message: "Subscribe was successful"})
+      }
+    });
   }
 }
 

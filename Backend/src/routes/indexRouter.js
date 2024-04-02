@@ -191,6 +191,14 @@ router.post('/addfavourite', [verifyToken], async function(req,res) {
     }
 });
 
+router.post('/subscribe', [verifyToken], async function(req,res) {
+    try {
+        await emailController.subscribe(req,res)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 
 module.exports = {
     router
