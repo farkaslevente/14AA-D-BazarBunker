@@ -7,6 +7,7 @@ import Select from 'react-select';
 export const NewAdPage = () => {
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
+    const [selectedCountyId, setSelectedCountyId] = useState('');
     const [settlements, setSettlements] = useState([]);
     const [settlementOptions, setSettlementOptions] = useState([]);
     const [settlementDisabled, setSettlementDisabled] = useState(true);
@@ -15,12 +16,12 @@ export const NewAdPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
 
     const categoryOptions = [
-        { value: 'uni', label: 'Egyetem' },
-        { value: 'mid', label: 'Középiskola' },
-        { value: 'pri', label: 'Általános iskola' },
-        { value: 'book', label: 'Könyv' },
-        { value: 'wri', label: 'Írószer' },
-        { value: 'furn', label: 'Bútor' }
+        { value: 'Egyetem', label: 'Egyetem' },
+        { value: 'Középiskola', label: 'Középiskola' },
+        { value: 'Általános iskola', label: 'Általános iskola' },
+        { value: 'Könyv', label: 'Könyv' },
+        { value: 'Írószer', label: 'Írószer' },
+        { value: 'Bútor', label: 'Bútor' }
     ];
 
     useEffect(() => {
@@ -30,7 +31,8 @@ export const NewAdPage = () => {
             .then(([countiesData, settlementsData]) => {
                 const formattedCounties = countiesData.map(county => ({
                     label: county.nev,
-                    value: county.nev
+                    value: county.nev, // Assuming county ID is used
+                    id: county.id // Store the county ID
                 }));
                 setCounties(formattedCounties);
 
@@ -55,6 +57,7 @@ export const NewAdPage = () => {
         })));
 
         setSettlementDisabled(false);
+        setSelectedCountyId(selectedOption.id); // Set selected county ID
     };
 
     const handleDescriptionChange = (event) => {
@@ -66,27 +69,28 @@ export const NewAdPage = () => {
     };
 
     const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-        const countyId = selectedCounty.value;
-        const authToken = localStorage.getItem('authToken');
-        const headers = {
-            'Authorization': `Bearer ${authToken}`
-        };
+        event.preventDefault();
+        try {
+            const countyId = selectedCounty.value;
+            const authToken = localStorage.getItem('authToken');
+            const headers = {
+                'Authorization': `Bearer ${authToken}`
+            };
 
-        await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
-            name: event.target.title.value,
-            description,
-            category: selectedCategory,
-            price: event.target.price.value,
-            countyId,
-        }, { headers });
+            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
+                name: event.target.title.value,
+                description,
+                category: selectedCategory,
+                price: event.target.price.value,
+                countyId: selectedCounty.id,
+                ownerId: localStorage.getItem('userId')
+            }, { headers });
 
-        console.log('Ad posted successfully!');
-    } catch (error) {
-        console.error('Error posting ad:', error);
-    }
-};
+            console.log('Ad posted successfully!');
+        } catch (error) {
+            console.error('Error posting ad:', error);
+        }
+    };
 
     return (
         <div className='newadpage'>
@@ -143,7 +147,7 @@ export const NewAdPage = () => {
                         />
                         <label htmlFor="category">Kategória:</label>
                         <Select
-                            value={selectedCategory}
+                            value={selectedCategory} // Change to selectedCategory.value
                             onChange={handleCategoryChange}
                             options={categoryOptions}
                             placeholder="Válasszon kategóriát..."
@@ -163,7 +167,7 @@ export const NewAdPage = () => {
                             }}
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required />
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='false' />
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
@@ -177,13 +181,11 @@ export const NewAdPage = () => {
                         ></textarea>
 
                         <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
-                        <input type="file" name='images' id='images' accept='image/*' multiple  max={6} />
-                        <button type='submit'>Hirdetés közzététele</button>
+                        <input type="file" name='images' id='images' accept='image/*' multiple max={6} />
+                        <button type='submit' id='formButton'>Hirdetés közzététele</button>
                     </div>
                 </form>
             </div>
         </div>
     );
 };
-
-export default NewAdPage;

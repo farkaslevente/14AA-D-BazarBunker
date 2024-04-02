@@ -41,7 +41,7 @@ export const AllAdsPage = () => {
             <div className="alladspage-title">
                 <h1>Hirdetések</h1>
             </div>
-            {/* <div className="alladspage-filterbar">
+            <div className="alladspage-filterbar">
                 <div className="filtercounty">
                     <label htmlFor="county">Vármegye:</label>
                     <select name="county" id="county">
@@ -73,7 +73,7 @@ export const AllAdsPage = () => {
                 <div className="apply">
                     <button>Apply filters</button>
                 </div>
-            </div> */}
+            </div>
             <div className="alladspage-content">
                 <div className="cards">
                     {ads.map(ad => (

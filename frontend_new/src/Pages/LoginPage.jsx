@@ -19,9 +19,21 @@ export const LoginPage = () => {
             const token = resp.data.token;
             const decoded = jwtDecode(token);
             const authEmail = decoded.payload.email;
+            const userId = decoded.payload.id;
+            const userName = decoded.payload.name;
+            const userLocation = decoded.payload.location
+            const userPhone = decoded.payload.phone;
+            const userPPic = decoded.payload.pPic;
+            const userFavourites = decoded.payload.favourites;
             if (authEmail !== '') {
                 localStorage.setItem('isLoggedIn', true);
                 localStorage.setItem('authToken', token);
+                localStorage.setItem('userId', userId)
+                localStorage.setItem('userName', userName)
+                localStorage.setItem('userLocation', userLocation)
+                localStorage.setItem('userPhone', userPhone)
+                localStorage.setItem('userPPic', userPPic)
+                localStorage.setItem('userFavourites', userFavourites)
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
             }
             if (resp.data) {

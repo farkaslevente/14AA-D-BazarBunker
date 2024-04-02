@@ -21,10 +21,9 @@ export const Navbar = () => {
   }, [isLoggedIn]);
 
   function handleLogout() {
-    localStorage.removeItem('authToken');
-      localStorage.removeItem('authUser');
-      localStorage.setItem('isLoggedIn', false);
-      window.location.reload();
+    localStorage.clear()
+    localStorage.setItem('isLoggedIn', false);
+    window.location.reload();
   }
 
   return (
