@@ -15,6 +15,7 @@ export const NewAdPage = () => {
     const [authToken, setAuthToken] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSettlement, setSelectedSettlement] = useState('');
+    const [adId, setAdId] = useState(0);
 
     const categoryOptions = [
         { value: 'Egyetem', label: 'Egyetem' },
@@ -28,12 +29,14 @@ export const NewAdPage = () => {
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         setAuthToken(token);
+
+        // Fetch counties and settlements
         Promise.all([adservice.getCounties(), adservice.getSettlements()])
             .then(([countiesData, settlementsData]) => {
                 const formattedCounties = countiesData.map(county => ({
                     label: county.nev,
-                    value: county.nev, // Assuming county ID is used
-                    id: county.id // Store the county ID
+                    value: county.nev,
+                    id: county.id
                 }));
                 setCounties(formattedCounties);
 
@@ -73,25 +76,67 @@ export const NewAdPage = () => {
         setSelectedCategory(selectedOption.value);
     };
 
+    const handleFileChange = (event) => {
+        const files = event.target.files;
+        const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        for (let i = 0; i < files.length; i++) {
+            if (!allowedTypes.includes(files[i].type)) {
+                alert('Please select only PNG, JPG, or JPEG files.');
+                event.target.value = null; // Clear the selected file
+                return;
+            }
+        }
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            // Fetch all ads to determine the latest adId
+            adservice.getAllAds()
+                .then(ads => {
+                    if (ads.length > 0) {
+                        // Find the maximum id among the ads
+                        const maxId = Math.max(...ads.map(ad => ad.id));
+                        // Set the adId to maxId + 1
+                        setAdId(maxId + 1);
+                    } else {
+                        // If no ads exist, start adId from 1
+                        setAdId(1);
+                        localStorage.setItem('adId', adId);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching ads:', error);
+                });
+
             const countyId = selectedCounty.value;
             const authToken = localStorage.getItem('authToken');
             const headers = {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
-                name: event.target.title.value,
-                description,
-                category: selectedCategory,
-                price: event.target.price.value,
-                countyId: selectedCounty.id,
-                ownerId: localStorage.getItem('userId'),
-                settlement: selectedSettlement.value
-            }, { headers });
-            //miamanó
+            // Create FormData object to append files
+            const formData = new FormData();
+            formData.append('name', event.target.title.value);
+            formData.append('description', description);
+            formData.append('category', selectedCategory);
+            formData.append('price', event.target.price.value);
+            formData.append('countyId', selectedCountyId); // Use selectedCountyId instead of selectedCounty.id
+            formData.append('ownerId', localStorage.getItem('userId'));
+            formData.append('settlement', selectedSettlement.value);
+
+            // Append images to FormData object
+            const images = event.target.images.files;
+            for (let i = 0; i < images.length; i++) {
+                formData.append('images', images[i], `${localStorage.getItem('userId')}_${adId}_${i}`);
+            }
+            
+            // Upload images first
+            const uploadResponse = await axios.post(`${process.env.REACT_APP_HOST102}/pictures/upload`, formData, { headers });
+            const adId = uploadResponse.data.adId; // Assuming the response contains the adId
+
+            // Then submit ad data
+            await axios.post(`${process.env.REACT_APP_HOST102}/ads`, formData, { headers });
 
             console.log('Ad posted successfully!');
         } catch (error) {
@@ -177,7 +222,7 @@ export const NewAdPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off'/>
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' />
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
@@ -191,7 +236,16 @@ export const NewAdPage = () => {
                         ></textarea>
 
                         <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
-                        <input type="file" name='images' id='images' accept='image/*' multiple max={6} />
+                        <input
+                            type="file"
+                            name='images'
+                            id='images'
+                            accept='.png, .jpg, .jpeg'
+                            onChange={handleFileChange}
+                            multiple
+                            max={6}
+                        />
+                        {/* filenév: userID_adId_index */}
                         <button type='submit' id='formButton'>Hirdetés közzététele</button>
                     </div>
                 </form>
