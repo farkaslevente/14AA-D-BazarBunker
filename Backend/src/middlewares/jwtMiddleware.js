@@ -21,7 +21,11 @@ verifyToken = (req, res, next) => {
                 return res.status(401).send({ message: "Unauthorized" });
               }
             }
+
+            decoded = jwt.verify(token, secret)
+            req.user = decoded.payload
             next()
+            
           });
 }
 

@@ -5,9 +5,9 @@ const bcrypt = require('bcryptjs')
 const authController = {
     register: async function (req, res) {
         console.log('Register incoming...', req.body)
-        const { name, email, location, password } = req.body;
+        const { name, email, location, password, phone } = req.body;
 
-        if (name, email, location, password) {
+        if (name, email, location, password, phone) {
             try {
                 const rows = await dbFunctions.execQueryWithReturn(
                     `SELECT * FROM felhasznalok WHERE email = '${email}'`) || []
@@ -15,8 +15,8 @@ const authController = {
 
                     const hashedPassword = await bcrypt.hash(password, 10)
 
-                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo, role) VALUES
-                    (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}', 0)`)
+                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo, role, kedvencek, telefonszam) VALUES
+                    (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}', 0, 0, '${phone}')`)
 
                     res.status(200).json({
                         message: "Successful registration!"

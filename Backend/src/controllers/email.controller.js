@@ -31,8 +31,7 @@ let emailController = {
       }
     });
   },
-  subscribe: async function (req,res) {
-    const {email} = req.body
+  subscribe: async function (req,res,email) {
 
     var mailOptions = {
       from: process.env.EMAIL,
