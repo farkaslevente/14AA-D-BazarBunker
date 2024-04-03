@@ -52,7 +52,7 @@ router.get("/pictures", [verifyToken], async function(_req, res, next) {
 
 router.post("/pictures", [verifyToken], async function(req,res) {
     try {
-        res.json(await userController.changePicture(req,res))
+        res.json(await userController.changePicture(req,res,req.user.id))
     } catch {
         console.error("Error while posting pictures!", err.message);
     }
@@ -101,9 +101,9 @@ router.put("/users/patch", [verifyToken], async function(req, res) {
     }
 }),
 
-router.delete("/users/delete", [verifyToken], [isAdmin], async function(req, res) {
+router.delete("/users/delete", [verifyToken], async function(req, res) {
     try {
-        res.json(await userController.deleteUsers(req.body, res))
+        res.json(await userController.deleteUsers(req.body, res, req.user.id))
     } catch (err) {
         console.error("Error deleting!", err.message);
     }
@@ -123,14 +123,6 @@ router.delete("/tokens/delete", [verifyToken], [isAdmin], async function (res) {
         res.json(await dbFunctions.deleteToken(res))
     } catch (err) {
         console.error("Error deleting tokens!", err.message);
-    }
-}),
-
-router.post("/exec", async function(req, res) {
-    try {
-        res.json(await dbFunctions.execQuery(req.body))
-    } catch (err) {
-        console.error("Error executing query!", err.message);
     }
 }),
 
@@ -159,7 +151,7 @@ router.get("/ads", async function(_req, res) {
 });
 
 router.post("/ads", [verifyToken], async function(req,res) {
-    res.json(await dbFunctions.postAds(req,res))
+    res.json(await dbFunctions.postAds(req,res,req.user.id))
 });
 
 router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
@@ -185,15 +177,15 @@ router.post('/sendmail', [verifyToken], async function(req,res) {
 
 router.post('/addfavourite', [verifyToken], async function(req,res) {
     try {
-        res.json(await userController.updateFavourites(req,res))
+        res.json(await userController.updateFavourites(req,res,req.user.id))
     } catch (err) {
         console.error(err.message)
     }
 });
 
-router.post('/subscribe', [verifyToken], async function(req,res) {
+router.get('/subscribe', [verifyToken], async function(req,res) {
     try {
-        await emailController.subscribe(req,res)
+        await emailController.subscribe(req,res,req.user.email)
     } catch (err) {
         console.error(err.message)
     }
@@ -201,7 +193,7 @@ router.post('/subscribe', [verifyToken], async function(req,res) {
 
 router.post('/newpassword', [verifyToken], async function (req,res) {
     try {
-        await userController.newPassword(req,res,req.user)
+        await userController.newPassword(req,res,req.user.id)
     } catch (err) {
         console.error(err.message)
     }

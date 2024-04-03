@@ -23,7 +23,7 @@ verifyToken = (req, res, next) => {
             }
 
             decoded = jwt.verify(token, secret)
-            req.user = decoded.payload.id
+            req.user = decoded.payload
             next()
             
           });

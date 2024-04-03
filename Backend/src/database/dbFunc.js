@@ -41,18 +41,7 @@ const dbFunctions = {
         res = await query(`
         SELECT * FROM varmegyek`)
         return res
-    },
-
-    execQuerystring: async function (req) {
-        console.log(req)
-        try {
-            await query(`
-            ${req.exec}`)
-        } catch (err) {
-            console.error("Error executing query!", err.message);
-        }
-    },
-    
+    },   
         execQueryWithReturn: async function (req) {
             try {
                 const result = await query(req);
@@ -108,12 +97,12 @@ const dbFunctions = {
         }
     },
     
-    postAds: async function (req,res) {
+    postAds: async function (req,res,id) {
         try {
-            const {name, description, category, price, countyId, settlement, ownerId} = req.body
+            const {name, description, category, price, countyId, settlement} = req.body
             const d = new Date()
             await query(`INSERT INTO hirdetesek (id, nev, leiras, kategoria, ar, varmegyeId, telepules, tulajId, datum) VALUES 
-            (null, '${name}', '${description}', '${category}', '${price}', '${countyId}', '${settlement}', '${ownerId}', '${d}')`)
+            (null, '${name}', '${description}', '${category}', '${price}', '${countyId}', '${settlement}', '${id}', '${d}')`)
             res.status(200).json({message: "Ad successfully uploaded!"})
         } catch (err) {
             console.error("Error posting ads!", err.message);

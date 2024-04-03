@@ -24,21 +24,21 @@ const userController = {
         }
     },
 
-    deleteUsers: async function (req, res) {
+    deleteUsers: async function (req, res, id) {
         console.log("Incoming delete on users...", req)
         try {
             await query(`
-            DELETE FROM felhasznalok WHERE id = ${req.id}`)
-            return res.status(200).json({message: `User with id: ${req.id} was deleted succesfully`})
+            DELETE FROM felhasznalok WHERE id = ${id}`)
+            return res.status(200).json({message: `User with id: ${id} was deleted succesfully`})
         } catch (err) {
             console.error("Error deleting!", err.message);
         }
     },
 
-    changePicture: async function (req,res) {
+    changePicture: async function (req,res,id) {
         console.log("Incoming PP change...", req.body)
         try {
-            const {id, pPic} = req.body
+            const {pPic} = req.body
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
             user = rows[0];
@@ -51,10 +51,10 @@ const userController = {
         }
     },
 
-    updateFavourites: async function (req,res) {
+    updateFavourites: async function (req,res,id) {
         console.log("Adding favourite...", req.body)
         try {
-            const {id, adId} = req.body
+            const {adId} = req.body
 
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
@@ -71,18 +71,18 @@ const userController = {
         }
     },
 
-    newPassword: async function (req,res,userId) {
+    newPassword: async function (req,res,id) {
         console.log("Updating password...", req.body)
         try {
             const {newpassword} = req.body
             const rows = await dbFunctions.execQueryWithReturn(
-                `SELECT * FROM felhasznalok WHERE id = ${userId}`) || [];
+                `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
             user = rows[0];
             
             const hashedPassword = await bcrypt.hash(newpassword, 10)
             await query(`
             UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${user.pPic}', jelszo= '${hashedPassword}',
-            telefonszam= '${user.telefonszam}', kedvencek= '${user.kedvencek}', role= '${user.role}' WHERE id=${userId}`)
+            telefonszam= '${user.telefonszam}', kedvencek= '${user.kedvencek}', role= '${user.role}' WHERE id=${id}`)
             res.status(200).json({message: "Password changed successfully"})
         } catch (err) {
             console.error("Error updating password...", err.message)
