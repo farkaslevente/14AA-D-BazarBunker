@@ -14,6 +14,7 @@ export const NewAdPage = () => {
     const [description, setDescription] = useState('');
     const [authToken, setAuthToken] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedSettlement, setSelectedSettlement] = useState('');
 
     const categoryOptions = [
         { value: 'Egyetem', label: 'Egyetem' },
@@ -60,6 +61,10 @@ export const NewAdPage = () => {
         setSelectedCountyId(selectedOption.id); // Set selected county ID
     };
 
+    const handleSettlementChange = (selectedOption) => {
+        setSelectedSettlement(selectedOption);
+    };
+
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value);
     };
@@ -83,8 +88,10 @@ export const NewAdPage = () => {
                 category: selectedCategory,
                 price: event.target.price.value,
                 countyId: selectedCounty.id,
-                ownerId: localStorage.getItem('userId')
+                ownerId: localStorage.getItem('userId'),
+                settlement: selectedSettlement.value
             }, { headers });
+            //miamanó
 
             console.log('Ad posted successfully!');
         } catch (error) {
@@ -126,6 +133,8 @@ export const NewAdPage = () => {
                         />
                         <label htmlFor="settlement">Hirdetés pontos helye:</label>
                         <Select
+                            value={selectedSettlement}
+                            onChange={handleSettlementChange}
                             options={settlementOptions}
                             isDisabled={settlementDisabled}
                             placeholder="Válasszon települést..."
@@ -165,6 +174,7 @@ export const NewAdPage = () => {
                                     background: 'white'
                                 }),
                             }}
+                            required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
                         <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off'/>
