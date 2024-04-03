@@ -197,6 +197,14 @@ router.post('/subscribe', [verifyToken], async function(req,res) {
     } catch (err) {
         console.error(err.message)
     }
+});
+
+router.post('/newpassword', [verifyToken], async function (req,res) {
+    try {
+        await userController.newPassword(req,res,req.user)
+    } catch (err) {
+        console.error(err.message)
+    }
 })
 
 
