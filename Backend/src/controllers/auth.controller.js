@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const authController = {
     register: async function (req, res) {
         console.log('Register incoming...', req.body)
-        const { name, email, location, password } = req.body;
+        const { name, email, location, password, phone } = req.body;
 
         if (name, email, location, password, phone) {
             try {
