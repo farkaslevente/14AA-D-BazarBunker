@@ -139,7 +139,7 @@ export const NewAdPage = () => {
                 <form className='newadform' onSubmit={handleSubmit}>
                     <div className="data1">
                         <label htmlFor="title">Hirdetés megnevezése:</label>
-                        <input type="text" name='title' placeholder='pl: Asztal' required />
+                        <input type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{textAlign: 'center'}}/>
                         <label htmlFor="county">Hirdetés megye:</label>
                         <Select
                             value={selectedCounty}
@@ -208,7 +208,7 @@ export const NewAdPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' />
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={4} style={{textAlign: 'center'}}/>
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
@@ -219,6 +219,8 @@ export const NewAdPage = () => {
                             value={description}
                             onChange={handleDescriptionChange}
                             required
+                            placeholder='Rövid leírás: (maximum 250 karakter)'
+                            maxLength={250}
                         ></textarea>
 
                         <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
@@ -232,10 +234,7 @@ export const NewAdPage = () => {
                             multiple
                             max={6}
                         />
-                        {message && <div className="">
-                            {{ message }}
-                        </div>}
-                        <button type='submit' id='formButton'>Hirdetés közzététele</button>
+                        <button type='submit' id='formButton' style={{margin: 'auto', height: 'fit-content'}}>Hirdetés közzététele</button>
                     </div>
                 </form>
             </div>
