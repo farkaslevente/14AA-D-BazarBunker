@@ -231,6 +231,7 @@ export const NewAdPage = () => {
                             on
                             multiple
                             max={6}
+                            required
                         />
                         <button type='submit' id='formButton' style={{margin: 'auto', height: 'fit-content'}}>Hirdetés közzététele</button>
                     </div>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Card } from '../Components/Card/Card'
-import './CSS/AllAdsPage.css'
-import adservice from '../Services/adservice'
+import React, { useEffect, useState } from 'react';
+import { Card } from '../Components/Card/Card';
+import './CSS/AllAdsPage.css';
+import adservice from '../Services/adservice';
+import axios from 'axios';
 
 export const AllAdsPage = () => {
     const [ads, setAds] = useState([]);
@@ -19,11 +20,11 @@ export const AllAdsPage = () => {
 
         fetchData();
 
-        // Fetch images and set thumbnail images
+        // Fetch images and set thumbnail images using Axios
         const fetchImages = async () => {
             try {
-                const imageFiles = await fetch(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
-                const imageFileNames = await imageFiles.json();
+                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+                const imageFileNames = response.data;
 
                 // Filter image files and set thumbnail images
                 const thumbnails = {};
@@ -42,45 +43,11 @@ export const AllAdsPage = () => {
         fetchImages();
     }, []);
 
-
     return (
         <div className='alladspage'>
             <div className="alladspage-title">
                 <h1>Hirdetések</h1>
             </div>
-            {/* <div className="alladspage-filterbar">
-                <div className="filtercounty">
-                    <label htmlFor="county">Vármegye:</label>
-                    <select name="county" id="county">
-                        <option value="">No filter</option>
-                        <option value="">Pest</option>
-                        <option value="">Nógrád</option>
-                        <option value="">Nigatown</option>
-                        <option value="">Anyád</option>
-                    </select>
-                </div>
-                <div className="filtercategory">
-                    <label htmlFor="category">Kategória:</label>
-                    <select name="category" id="category">
-                        <option value="">No filter</option>
-                        <option value="">minden</option>
-                        <option value="">egyetem</option>
-                        <option value="">kozepsuli</option>
-                        <option value="">altalanos</option>
-                    </select>
-                </div>
-                <div className="filterprice">
-                    <label htmlFor="price">Ár:</label>
-                    <select name="price" id="price">
-                        <option value="">No filter</option>
-                        <option value="">ascending</option>
-                        <option value="">decending</option>
-                    </select>
-                </div>
-                <div className="apply">
-                    <button>Apply filters</button>
-                </div>
-            </div> */}
             <div className="alladspage-content">
                 <div className="cards">
                     {ads.map(ad => (
@@ -89,5 +56,5 @@ export const AllAdsPage = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
