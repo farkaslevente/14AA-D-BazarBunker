@@ -5,6 +5,7 @@ import adservice from '../Services/adservice'
 
 export const AllAdsPage = () => {
     const [ads, setAds] = useState([]);
+    const [thumbnailImages, setThumbnailImages] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,8 +16,32 @@ export const AllAdsPage = () => {
                 console.log(error);
             }
         };
+
         fetchData();
+
+        // Fetch images and set thumbnail images
+        const fetchImages = async () => {
+            try {
+                const imageFiles = await fetch('http://10.0.22.22:9000/pictures/upload');
+                const imageFileNames = await imageFiles.json();
+
+                // Filter image files and set thumbnail images
+                const thumbnails = {};
+                imageFileNames.forEach(fileName => {
+                    const [userId, adId, index] = fileName.split('_');
+                    if (thumbnails[adId] === undefined || parseInt(index) === 0) {
+                        thumbnails[adId] = fileName;
+                    }
+                });
+                setThumbnailImages(thumbnails);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        };
+
+        fetchImages();
     }, []);
+
 
     return (
         <div className='alladspage'>
@@ -59,7 +84,7 @@ export const AllAdsPage = () => {
             <div className="alladspage-content">
                 <div className="cards">
                     {ads.map(ad => (
-                        <Card key={ad.id} ad={ad}/>
+                        <Card key={ad.id} ad={ad} thumbnail={thumbnailImages[ad.id]} />
                     ))}
                 </div>
             </div>

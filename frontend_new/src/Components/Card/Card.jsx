@@ -1,13 +1,14 @@
-import React from 'react'
-import './Card.css'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import './Card.css';
+import { useNavigate } from 'react-router-dom';
 
-export const Card = ({ ad }) => {
-    const navigate = useNavigate()
+export const Card = ({ ad, thumbnail }) => {
+    const navigate = useNavigate();
+
     return (
         <div className='card-container'>
             <div className="card-content">
-                <img src='https://picsum.photos/300/200' alt='Card Image' />
+                <img className='cardImg' src={thumbnail ? `http://10.0.22.22:9000/uploads/${thumbnail}` : 'https://picsum.photos/300/200'} alt='Card Image' />
                 <div className="card-data">
                     <div className="card-info">
                         <h3 className='card-title'><i>{ad.nev}</i></h3>
@@ -24,5 +25,5 @@ export const Card = ({ ad }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
