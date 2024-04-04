@@ -1,3 +1,7 @@
 04.04.
 -addetailsPage for each ad
 -carousel for addetails
+
+04.05.
+-filter ads
+-edit ads

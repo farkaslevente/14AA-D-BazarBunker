@@ -33,10 +33,8 @@ function App() {
 
           <Route path='/adatregisztracio' element={<DataRegisterPage />} />
 
-          <Route path='/hirdetesek' element={<AllAdsPage />}>
-            <Route path=':hirdetesId' element={<AdDetailsPage />} />
-          </Route>
-          <Route path='/hirdetes' element={<AdDetailsPage />} />
+          <Route path='/hirdetesek' element={<AllAdsPage />}/>
+          <Route path='/hirdetes/:id' element={<AdDetailsPage />} />
 
           <Route path='/ujhirdetes' element={<NewAdPage />} />
           <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
@@ -46,7 +44,7 @@ function App() {
         </Routes>
 
         <Footer />
-      </UserStoreProvider> {/* Close UserStoreProvider */}
+      </UserStoreProvider>
     </BrowserRouter>
   );
 }

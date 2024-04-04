@@ -1,34 +1,28 @@
 .carousel {
-    height: fit-content;
-    width: 50rem;
-    margin: auto;
+  height: fit-content;
+  width: 50rem;
+  margin: auto;
 }
 
 .carousel-img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  border-radius: 20px;
 }
 
 .react-responsive-carousel .control-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); 
-  }
-  
-  .react-responsive-carousel .control-arrow.prev {
-    left: 20px;
-  }
-  
-  .react-responsive-carousel .control-arrow.next {
-    right: 20px;
-  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .control-dots {
-    border: 1px solid black;
-    border-radius: 10px;
-    background: gray;
-  }
-  
+.react-responsive-carousel .control-arrow.prev {
+  left: 20px;
+}
+
+.react-responsive-carousel .control-arrow.next {
+  right: 20px;
+}

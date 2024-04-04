@@ -1,53 +1,79 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import MyCarousel from '../Components/AdDetailsCarousel/AdDetailsCarousel';
+import AdDetailsCarousel from '../Components/AdDetailsCarousel/AdDetailsCarousel';
 import './CSS/AdDetailsPage.css';
-import adservice from '../Services/adservice'; // Import your ad service
+import { useParams } from 'react-router-dom';
+import adservice from '../Services/adservice';
+import axios from 'axios';
 
 export const AdDetailsPage = () => {
-    const { id } = useParams(); // Retrieve ad ID from URL parameters
-    const [ad, setAd] = useState(null); // State to hold ad details
+    const { id } = useParams();
+    const adId = parseInt(id);
+    const [ad, setAd] = useState(null);
+    const [imageUrls, setImageUrls] = useState([]);
 
     useEffect(() => {
-        // Fetch ad details when the component mounts
         const fetchAdDetails = async () => {
             try {
-                const adDetails = await adservice.getAdById(id); // Replace with your ad service function
-                setAd(adDetails);
+                const adsData = await adservice.getAllAds();
+                const selectedAd = adsData.find(ad => ad.id === adId);
+                setAd(selectedAd);
             } catch (error) {
                 console.error('Error fetching ad details:', error);
             }
         };
 
+        const fetchImages = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+                const filteredImages = response.data.filter(fileName => {
+                    const [userId, fetchedAdId, _] = fileName.split('_');
+                    return parseInt(fetchedAdId) === adId;
+                }).map(fileName => `${process.env.REACT_APP_LOCAL}/uploads/${fileName}`);
+                setImageUrls(filteredImages);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        };
+
         fetchAdDetails();
-
-        // Cleanup function to clear ad details when component unmounts
-        return () => setAd(null);
-    }, [id]);
-
-    if (!ad) {
-        return <div>Loading...</div>; // Render loading indicator while fetching ad details
-    }
+        fetchImages();
+    }, [adId]);
 
     return (
         <div className='addetailspage'>
             <h1>Hirdetés részletek</h1>
             <div className="addetails">
                 <div className="carousel">
-                    <MyCarousel />
+                    <AdDetailsCarousel imageUrls={imageUrls} />
                 </div>
                 <div className="addetails-data">
-                    <label htmlFor="">{ad.nev}</label><br />
-                    <label htmlFor="">{ad.ar}</label><br />
-                    <label htmlFor="">Location</label><br />
-                    <label htmlFor="">Advertiser</label><br />
-                    <label htmlFor="">Phone Number</label><br />
-                    <label htmlFor="">Date added</label><br />
-                    <label htmlFor="">Description</label><br />
-                    <label htmlFor="favourite" style={{ marginRight: '10px'}}>Kedvenc</label>
-                    <input type="checkbox" name="favourite" id="favourote" />
+                    <label htmlFor="title">Title:</label>
+                    <p id="title">{ad ? ad.nev : ''}</p>
+
+                    <label htmlFor="price">Price:</label>
+                    <p id="price">{ad ? ad.ar : ''} Ft</p>
+
+                    <label htmlFor="location">Location:</label>
+                    <p id="location">{ad ? ad.telepules : ''}</p>
+
+                    <label htmlFor="advertiser">Advertiser:</label>
+                    <p id="advertiser">{ad ? ad.tulaj : ''}</p>
+
+                    <label htmlFor="phone">Phone Number:</label>
+                    <p id="phone">{ad ? ad.phone : ''}</p>
+
+                    <label htmlFor="date">Date added:</label>
+                    <p id="date">{ad ? ad.datum : ''}</p>
+
+                    <label htmlFor="description">Description:</label>
+                    <p id="description">{ad ? ad.leiras : ''}</p>
+
+                    <label htmlFor="favorite" style={{ marginRight: '10px'}}>Kedvenc</label>
+                    <input type="checkbox" name="favorite" id="favorite" />
                 </div>
             </div>
         </div>
     );
 };
+
+export default AdDetailsPage;
