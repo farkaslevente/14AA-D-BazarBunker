@@ -6,5 +6,6 @@ module.exports = {
         HOST303:  process.env.HOST303,
         LOCAL: process.env.LOCAL,
         LOCAL303: process.env.LOCAL303,
+        LOCAL202: process.env.LOCAL202,
     }
 }

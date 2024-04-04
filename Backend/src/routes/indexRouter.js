@@ -154,7 +154,7 @@ router.post("/ads", [verifyToken], async function(req,res) {
     res.json(await dbFunctions.postAds(req,res,req.user.id))
 });
 
-router.post('/pictures/upload', [verifyToken], upload.array('file', 6), (req,res) => {
+router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
     res.json(req.file)
 });
 

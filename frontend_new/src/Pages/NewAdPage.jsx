@@ -87,10 +87,8 @@ export const NewAdPage = () => {
             const headers = {
                 'Authorization': `Bearer ${authToken}`
             };
-
             
-            
-            await axios.post(`${process.env.REACT_APP_HOST303}/ads`, {
+            await axios.post(`${process.env.REACT_APP_LOCAL202}/ads`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,
@@ -103,20 +101,20 @@ export const NewAdPage = () => {
             const ads = await adservice.getAllAds();
             const adIds = ads.map(ad => ad.id);
             const maxId = Math.max(...adIds);
-            const ADID = maxId + 1;
+            const ADID = maxId;
 
             const formData = new FormData();
             images.forEach((file, index) => {
                 formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
             });
 
-            const response = await axios.post(`${process.env.REACT_APP_HOST303}/pictures/upload`, formData, { headers: {
+            const response = await axios.post(`${process.env.REACT_APP_LOCAL202}/pictures/upload`, formData, { headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${authToken}`
             } });
 
             //console.log('Ad posted successfully!');
-            console.log('Images uploaded', response.data);
+            //console.log('Images uploaded', response.data);
         } catch (error) {
             console.error('Error posting ad:', error);
         }

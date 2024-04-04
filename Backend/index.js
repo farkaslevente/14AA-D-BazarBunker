@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session')
 const cors = require('cors')
 
 const PORT = 9000;
-const HOST = hosts.LOCAL303 || "localhost";
+const HOST = hosts.LOCAL202 || "localhost";
 
 
 const app = express()
