@@ -88,6 +88,19 @@ const userController = {
             console.error("Error updating password...", err.message)
             res.status(500).json({error: "Internal server error!"})
         }
+    },
+
+    support: async function (req,res,id) {
+        console.log("Incoming question...", req.body)
+        try {
+            const {title, question} = req.body
+            await query(`
+            INSERT INTO support (id, cim, kerdes, felhasznaloId) VALUES (null, '${title}', '${question}', '${id}')`)
+            res.status(200).json({message: "We've received your question and will answer as soon as possible."})
+        } catch (err) {
+            console.error("Error contacting support...", err.message)
+            res.status(500).json({error: "Internal server error!"})
+        }
     }
 }
 

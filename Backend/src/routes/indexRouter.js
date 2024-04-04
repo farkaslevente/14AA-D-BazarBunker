@@ -216,6 +216,14 @@ router.post('/newpassword', [verifyToken], async function (req,res) {
     }
 })
 
+router.post('/support', [verifyToken], async function (req,res) {
+    try {
+        await userController.support(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 
 module.exports = {
     router
