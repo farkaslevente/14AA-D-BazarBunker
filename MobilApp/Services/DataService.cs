@@ -13,6 +13,7 @@ using MobilApp_Szakdolgozat.ViewModels;
 using System.Net.Http.Headers;
 using FFImageLoading.Args;
 using MySqlX.XDevAPI;
+using System.Xml.Linq;
 //using Android.App;
 
 
@@ -38,7 +39,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url303 = "http://10.0.33.12:9000";
         static string url103 = "http://10.0.13.5:9000";
         //Itthon 9090-es porton megy a szerver
-        static string urlHome = "http://192.168.0.165:9000";
+        static string urlHome = "http://192.168.0.165:9090";
         static string url103local = "http://10.0.13.6:9090";
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
@@ -214,18 +215,17 @@ namespace MobilApp_Szakdolgozat.Services
             }
             else
             {
-                //var a = JsonConvert.DeserializeObject<T>(result);
+                
                 string[] fullJWT = result.Split(':');
                 var fullResult = fullJWT[1].Trim('"');
                 string[] trimmedJWT = fullResult.Split('"');
-                var trimmedResult = trimmedJWT[0]; //<-- ez kell tokenhez                
+                var trimmedResult = trimmedJWT[0];                
                 string[] payload = trimmedResult.Split('.');
                 var finalPayload = payload[1];
 
                 var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(trimmedResult));
                 string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
-                string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-                //this following line contains problems for favorites, to be fixed tomorrow
+                string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");                
                 string[] finalResult = ResultwithoutMustachetwo[0].Split(",");
 
                 string userImage = null;
@@ -248,7 +248,7 @@ namespace MobilApp_Szakdolgozat.Services
                 if (userImage != null)
                 {
                     await SecureStorage.SetAsync("userImage", userImage);
-                }
+                }                
                 await SecureStorage.SetAsync("userId", finalResult[0].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userName", finalResult[1].Split(':')[1].Trim('"'));
                 await SecureStorage.SetAsync("userEmail", finalResult[2].Split(':')[1].Trim('"'));
@@ -381,6 +381,62 @@ namespace MobilApp_Szakdolgozat.Services
         public class TokenResponse
         {
             public string Token { get; set; }
+        }
+
+        public static async Task postSupport(string title, string question)
+        {            
+            string jsonData = JsonConvert.SerializeObject(new
+            {               
+               title = title,
+               question= question
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            using (var client = new HttpClient())
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri(url);
+                var uri = "/support";
+                HttpResponseMessage response = await client.PostAsync(uri , content);
+                string result = await response.Content.ReadAsStringAsync();
+                return;
+            }
+        }
+
+        public static async Task postSub()
+        {            
+            using (var client = new HttpClient())
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri(url);
+                var uri = "/subscribe";
+                HttpResponseMessage response = await client.GetAsync(uri);
+                string result = await response.Content.ReadAsStringAsync();
+                return;
+            }
+        }
+
+        public static async Task postNewPwd(string newPwd)
+        {
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                password = newPwd,
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            using (var client = new HttpClient())
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri(url);
+                var uri = "/newpassword";
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+                string result = await response.Content.ReadAsStringAsync();
+                return;
+            }
         }
 
     }

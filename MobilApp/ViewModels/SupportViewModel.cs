@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobilApp_Szakdolgozat.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,23 +8,29 @@ using System.Windows.Input;
 
 namespace MobilApp_Szakdolgozat.ViewModels
 {
-    class SupportViewModel
+    class SupportViewModel: BindableObject
     {
-        public string questionType { get; set; }
+        public string questionTitle { get; set; }
         public string questionContent { get; set; }
         public ICommand subscribeCommand { get; set; }
-        public ICommand questionCommand { get; set; }
+        public ICommand supportCommand { get; set; }
 
         public SupportViewModel()
         {
             subscribeCommand = new Command(async () =>
             {
-
+                await DataService.postSub();
+                await Shell.Current.DisplayAlert("", "Köszönjük a programunk iránti érdeklődését", "Renben");                
+                OnPropertyChanged(questionTitle);
             });
 
-            questionCommand = new Command(async () =>
+            supportCommand = new Command(async () =>
             {
-
+                await DataService.postSupport(questionTitle, questionContent);
+                await Shell.Current.DisplayAlert("Köszönjük visszajelzését!", "Amint feldolgoztuk levelét felvesszük önnel a kapcsolatot", "Renben");
+                questionTitle = "";
+                questionContent = "";
+                OnPropertyChanged(questionTitle);
             });
 
         }
