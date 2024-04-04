@@ -20,8 +20,6 @@ export const NewAdPage = () => {
     const [selectedSettlement, setSelectedSettlement] = useState('');
     const [images, setImages] = useState([]);
 
-    const [message, setMessage] = useState(null);
-
     const categoryOptions = [
         { value: 'Egyetem', label: 'Egyetem' },
         { value: 'Középiskola', label: 'Középiskola' },
@@ -93,7 +91,7 @@ export const NewAdPage = () => {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            await axios.post(`${process.env.REACT_APP_LOCAL202}/ads`, {
+            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,
@@ -113,7 +111,7 @@ export const NewAdPage = () => {
                 formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
             });
 
-            const response = await axios.post(`${process.env.REACT_APP_LOCAL202}/pictures/upload`, formData, {
+            await axios.post(`${process.env.REACT_APP_LOCAL}/pictures/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${authToken}`

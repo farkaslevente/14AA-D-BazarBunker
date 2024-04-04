@@ -1,5 +1,3 @@
 04.04.
--image posting
--image getting and showing for each ad
 -addetailsPage for each ad
 -carousel for addetails

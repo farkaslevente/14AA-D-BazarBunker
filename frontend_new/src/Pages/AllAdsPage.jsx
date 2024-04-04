@@ -22,7 +22,7 @@ export const AllAdsPage = () => {
         // Fetch images and set thumbnail images
         const fetchImages = async () => {
             try {
-                const imageFiles = await fetch('http://10.0.22.22:9000/pictures/upload');
+                const imageFiles = await fetch(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
                 const imageFileNames = await imageFiles.json();
 
                 // Filter image files and set thumbnail images
