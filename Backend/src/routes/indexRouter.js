@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
       cb(null, file.originalname)
     }
   })
-const upload = multer({storage: storage})
+const upload = multer({storage: storage}).array('file', 6)
 
         //▄▄▄        ▄• ▄▌▄▄▄▄▄▄▄▄ ..▄▄ · 
         //▀▄ █·▪     █▪██▌•██  ▀▄.▀·▐█ ▀. 
@@ -171,8 +171,13 @@ router.delete('/ads/:id', [verifyToken], async function(req,res) {
     }
 })
 
-router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
-    res.json(req.file)
+router.post('/pictures/upload', [verifyToken], (req,res) => {
+    upload(req,res, function (err) {
+        if (err instanceof multer.MulterError) return res.status(500).json({error: err.message})
+        else if (err) return res.status(500).json({error: "Unknown error"})
+
+    res.status(200).json({message: "Upload was successfull"})
+    });
 });
 
 router.get("/pictures/upload", async (req,res) => {
