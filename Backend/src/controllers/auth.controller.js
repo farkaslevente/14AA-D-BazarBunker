@@ -65,6 +65,7 @@ const authController = {
                     email: user.email,
                     location: user.hely,
                     pPic: user.pPic,
+                    role: user.role,
                     favourites: user.kedvencek,
                     phone: user.telefonszam
                 }
