@@ -15,6 +15,7 @@ export const NewAdPage = () => {
     const [authToken, setAuthToken] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSettlement, setSelectedSettlement] = useState('');
+    const [images, setImages] = useState([]);
 
     const categoryOptions = [
         { value: 'Egyetem', label: 'Egyetem' },
@@ -73,6 +74,11 @@ export const NewAdPage = () => {
         setSelectedCategory(selectedOption.value);
     };
 
+    const handleImageChange = (event) => {
+        const files = Array.from(event.target.files);
+        setImages(files);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -82,13 +88,9 @@ export const NewAdPage = () => {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            const ads = await adservice.getAllAds();
-            const adIds = ads.map(ad => ad.id);
-            const maxId = Math.max(...adIds);
-            const ADID = maxId + 1;
-            console.log('AdId:', ADID);
-
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
+            
+            
+            await axios.post(`${process.env.REACT_APP_HOST303}/ads`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,
@@ -97,8 +99,24 @@ export const NewAdPage = () => {
                 ownerId: localStorage.getItem('userId'),
                 settlement: selectedSettlement.value,
             }, { headers });
+            
+            const ads = await adservice.getAllAds();
+            const adIds = ads.map(ad => ad.id);
+            const maxId = Math.max(...adIds);
+            const ADID = maxId + 1;
 
-            console.log('Ad posted successfully!');
+            const formData = new FormData();
+            images.forEach((file, index) => {
+                formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
+            });
+
+            const response = await axios.post(`${process.env.REACT_APP_HOST303}/pictures/upload`, formData, { headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${authToken}`
+            } });
+
+            //console.log('Ad posted successfully!');
+            console.log('Images uploaded', response.data);
         } catch (error) {
             console.error('Error posting ad:', error);
         }
@@ -182,7 +200,7 @@ export const NewAdPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off'/>
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' />
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
@@ -196,13 +214,15 @@ export const NewAdPage = () => {
                         ></textarea>
 
                         <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
-                        <input 
-                            type="file" 
-                            name='images' 
-                            id='images' 
+                        <input
+                            type="file"
+                            name='file'
+                            id='images'
                             accept='.png, .jpg, .jpeg' // Specify allowed file types
-                            multiple 
-                            max={6} 
+                            onChange={handleImageChange}
+                            on
+                            multiple
+                            max={6}
                         />
                         {/* filenév: userID_adId_index */}
                         <button type='submit' id='formButton'>Hirdetés közzététele</button>
