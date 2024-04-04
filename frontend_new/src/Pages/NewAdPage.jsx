@@ -3,8 +3,11 @@ import axios from 'axios';
 import './CSS/NewAdPage.css';
 import Select from 'react-select';
 import adservice from './../Services/adservice';
+import { useNavigate } from 'react-router-dom';
 
 export const NewAdPage = () => {
+    const navigate = useNavigate();
+
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
     const [selectedCountyId, setSelectedCountyId] = useState('');
@@ -16,6 +19,8 @@ export const NewAdPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSettlement, setSelectedSettlement] = useState('');
     const [images, setImages] = useState([]);
+
+    const [message, setMessage] = useState(null);
 
     const categoryOptions = [
         { value: 'Egyetem', label: 'Egyetem' },
@@ -87,7 +92,7 @@ export const NewAdPage = () => {
             const headers = {
                 'Authorization': `Bearer ${authToken}`
             };
-            
+
             await axios.post(`${process.env.REACT_APP_LOCAL202}/ads`, {
                 name: event.target.title.value,
                 description,
@@ -97,7 +102,7 @@ export const NewAdPage = () => {
                 ownerId: localStorage.getItem('userId'),
                 settlement: selectedSettlement.value,
             }, { headers });
-            
+
             const ads = await adservice.getAllAds();
             const adIds = ads.map(ad => ad.id);
             const maxId = Math.max(...adIds);
@@ -108,15 +113,20 @@ export const NewAdPage = () => {
                 formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
             });
 
-            const response = await axios.post(`${process.env.REACT_APP_LOCAL202}/pictures/upload`, formData, { headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${authToken}`
-            } });
+            const response = await axios.post(`${process.env.REACT_APP_LOCAL202}/pictures/upload`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
 
             //console.log('Ad posted successfully!');
             //console.log('Images uploaded', response.data);
+            alert("Sikeres közlés!");
+            navigate('/hirdetesek');
         } catch (error) {
-            console.error('Error posting ad:', error);
+            //console.error('Error posting ad:', error);
+            //setMessage("Sikertelen közzététel!")
         }
     };
 
@@ -222,7 +232,9 @@ export const NewAdPage = () => {
                             multiple
                             max={6}
                         />
-                        {/* filenév: userID_adId_index */}
+                        {message && <div className="">
+                            {{ message }}
+                        </div>}
                         <button type='submit' id='formButton'>Hirdetés közzététele</button>
                     </div>
                 </form>
