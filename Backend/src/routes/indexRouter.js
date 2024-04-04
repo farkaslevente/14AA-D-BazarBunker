@@ -163,6 +163,14 @@ router.post("/ads/:id", [verifyToken], async function(req,res) {
     }
 })
 
+router.delete('/ads/:id', [verifyToken], async function(req,res) {
+    try {
+        res.json(await adController.deleteAd(req,res,req.user.id,req.params.id))
+    } catch (err) {
+        console.error("Error deleting ads", err.message)
+    }
+})
+
 router.post('/pictures/upload', [verifyToken], upload.single('file'), (req,res) => {
     res.json(req.file)
 });
