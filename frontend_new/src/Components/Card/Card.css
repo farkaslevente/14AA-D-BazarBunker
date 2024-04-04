@@ -1,6 +1,5 @@
 .card-container {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
     height: fit-content;
     box-shadow: 0 px 10px 8px #999;
     display: flex;
@@ -8,13 +7,15 @@
     margin: 0.5ren;
     padding: 10px;
     border: 1px solid gray;
-    border-radius: 1rem;
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
 .card-content {
     display: flex;
     flex-direction: row;
+    width: fit-content;
+    height: fit-content;
 }
 
 .card-data {
