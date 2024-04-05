@@ -1,6 +1,11 @@
+const query = require('../database/db')
 const { dbFunctions } = require('../database/dbFunc')
 const { verifyToken, accessToken, refreshToken } = require('../middlewares/jwtMiddleware')
 const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
+const { emailController } = require('../controllers/email.controller')
+const jwt = require('jsonwebtoken')
+const { secret } = require('../config/auth.config')
 
 const authController = {
     register: async function (req, res) {
@@ -87,26 +92,38 @@ const authController = {
             console.error("Error logging in!", err.message);
         }
     },
-    signout: async function (req, res) {
-        try {
-            const cookies = req.cookies
-            if (!cookies?.jwt) return res.status(204).json({message: "No content"});
-            const refreshToken = cookies.jwt;
-
-            res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-            res.status(204).json({message: "You've been signed out!"});
-
-
-            
-          } catch (err) {
-            console.error("Error logging in!", err.message);
-          }
-    },
 
     acceptToken: async function (req,res) {
         console.log("Incoming tokenverification...", req.body)
             return verifyToken(req, res)
     },
+
+    resetPassword: async function (req, res) {
+        console.log("Password reset incoming...")
+        const {email} = req.body
+
+        let resetToken = crypto.randomBytes(4).toString('hex').toUpperCase()
+        emailController.sendResetPassword(req,res,email,resetToken)
+
+        resetToken = bcrypt.hash(resetToken, 10)
+        let token = refreshToken({resetToken})
+
+        await query(`
+        INSERT INTO tokenek (data, date, id, tulajEmail) VALUES ('${token}', '${Date.now()}', null, '${email}')`)
+    },
+
+    authorizeReset: async function (req,res) {
+        console.log("Authorizing reset...")
+        const {token, email} = req.body
+
+        const rows = await dbFunctions.execQueryWithReturn(`
+        SELECT * from tokenek WHERE tulajEmail = '${email}'`)
+        const dbToken = rows[rows.length - 1]
+        const compareToken = jwt.verify(dbToken, secret)
+        
+    }
+
+
 }
 
 module.exports = {

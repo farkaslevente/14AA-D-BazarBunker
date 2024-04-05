@@ -86,7 +86,7 @@ router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     }
 });
 
-router.get("/users/:id", [verifyToken], async function(req,res) {
+router.get("/users/:id", async function(req,res) {
     try {
         res.json(await dbFunctions.getUserById(req,res))
     } catch (err) {
@@ -224,6 +224,22 @@ router.post('/newpassword', [verifyToken], async function (req,res) {
 router.post('/support', [verifyToken], async function (req,res) {
     try {
         await userController.support(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/resetpassword', async function (req, res) {
+    try {
+        await authController.resetPassword(req, res)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/authorizereset', async function (req,res) {
+    try {
+        await authController.authorizeReset(req,res)
     } catch (err) {
         console.error(err.message)
     }

@@ -3,6 +3,7 @@ config();
 module.exports = {
     hosts: {
         HOST202: process.env.HOST202,
-        HOST303:  process.env.HOST303
+        HOST303:  process.env.HOST303,
+        HOST103: process.env.HOST103
     }
 }
