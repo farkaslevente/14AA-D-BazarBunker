@@ -70,7 +70,9 @@ export const AdDetailsPage = () => {
                     <p id="advertiser">{advertiser ? advertiser.name : ''}</p>
 
                     <label htmlFor="phone">Hirdető telefonszáma:</label>
-                    <p id="phone">{advertiser ? advertiser.phone : ''}</p>
+                    <i>
+                        <p id="phone">{advertiser ? advertiser.phone : ''}</p>
+                    </i>
 
                     <label htmlFor="date">Hirdetés létrehozva:</label>
                     <p id="date">{formattedDate}</p>
