@@ -11,12 +11,12 @@ export const RegisterPage = () => {
     const [password, setPassword] = useState('');
 
     const [phone, setPhone] = useState('');
-    const [settlement, setSettlement] = useState('');
+    const [location, setLocation] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const resp = await userservice.registerUser({ name: name, email: email, password: password, settlement: settlement, phone: phone });
+            const resp = await userservice.registerUser({ name: name, email: email, password: password, location: location, phone: phone });
             console.log(resp.data);
             if (resp.message = 'Successful registration') {
                 navigate('/bejelentkezes');
@@ -52,9 +52,9 @@ export const RegisterPage = () => {
                             <input type='password' required className='form-input' id='password' placeholder='Jelszó'
                                 value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' />
 
-                            <label htmlFor='settlement' className='form-label'>Település:</label>
-                            <input type='settlement' required className='form-input' id='settlement' placeholder='Visegrád'
-                                value={settlement} onChange={(e) => setSettlement(e.target.value)} autoComplete='off' />
+                            <label htmlFor='location' className='form-label'>Település:</label>
+                            <input type='location' required className='form-input' id='location' placeholder='Visegrád'
+                                value={location} onChange={(e) => setLocation(e.target.value)} autoComplete='off' />
 
                             <label htmlFor='phone' className='form-label'>Telefonszám:</label>
                             <input type='tel' required className='form-input' id='phone' placeholder='06309418328'
