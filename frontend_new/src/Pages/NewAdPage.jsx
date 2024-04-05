@@ -21,12 +21,13 @@ export const NewAdPage = () => {
     const [images, setImages] = useState([]);
 
     const categoryOptions = [
-        { value: 'Egyetem', label: 'Egyetem' },
-        { value: 'Középiskola', label: 'Középiskola' },
-        { value: 'Általános iskola', label: 'Általános iskola' },
-        { value: 'Könyv', label: 'Könyv' },
-        { value: 'Írószer', label: 'Írószer' },
-        { value: 'Bútor', label: 'Bútor' }
+        { value: 'Egyetemistáknak', label: 'Egyetemistáknak' },
+        { value: 'Középiskolásoknak', label: 'Középiskolásoknak' },
+        { value: 'Általános iskolásoknak', label: 'Általános iskolásoknak' },
+        { value: 'Kötelező olvasmány', label: 'Kötelező olvasmány' },
+        { value: 'Kellékek', label: 'Kellékek' },
+        { value: 'Írószerek', label: 'Írószerek' },
+        { value: 'Kiegészítők', label: 'Kiegészítők'}
     ];
 
     useEffect(() => {
@@ -36,8 +37,8 @@ export const NewAdPage = () => {
             .then(([countiesData, settlementsData]) => {
                 const formattedCounties = countiesData.map(county => ({
                     label: county.nev,
-                    value: county.nev, // Assuming county ID is used
-                    id: county.id // Store the county ID
+                    value: county.nev,
+                    id: county.id
                 }));
                 setCounties(formattedCounties);
 
@@ -62,7 +63,7 @@ export const NewAdPage = () => {
         })));
 
         setSettlementDisabled(false);
-        setSelectedCountyId(selectedOption.id); // Set selected county ID
+        setSelectedCountyId(selectedOption.id);
     };
 
     const handleSettlementChange = (selectedOption) => {
@@ -226,7 +227,7 @@ export const NewAdPage = () => {
                             type="file"
                             name='file'
                             id='images'
-                            accept='.png, .jpg, .jpeg' // Specify allowed file types
+                            accept='.png, .jpg, .jpeg'
                             onChange={handleImageChange}
                             on
                             multiple
