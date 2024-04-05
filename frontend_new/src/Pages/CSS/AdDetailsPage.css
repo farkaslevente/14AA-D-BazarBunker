@@ -20,3 +20,8 @@
     padding: 20px;
     flex-direction: column;
 }
+
+.carousel {
+    max-height: 600px;
+    border-radius: 20px;
+}

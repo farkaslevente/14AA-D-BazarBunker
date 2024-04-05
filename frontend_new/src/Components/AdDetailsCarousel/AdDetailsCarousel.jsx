@@ -14,7 +14,7 @@ const AdDetailsCarousel = ({ imageUrls }) => {
         autoPlay={false}
       >
         {imageUrls.map((imageUrl, index) => (
-          <div key={index}>
+          <div key={index} className="carousel-img">
             <img
               loading="lazy"
               alt={`Image ${index}`}

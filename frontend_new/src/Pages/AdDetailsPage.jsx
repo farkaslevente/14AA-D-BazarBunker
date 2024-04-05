@@ -44,31 +44,34 @@ export const AdDetailsPage = () => {
             <h1>Hirdetés részletek</h1>
             <div className="addetails">
                 <div className="carousel">
-                    <AdDetailsCarousel imageUrls={imageUrls} />
+                    <AdDetailsCarousel imageUrls={imageUrls} className='carousel' />
                 </div>
                 <div className="addetails-data">
-                    <label htmlFor="title">Title:</label>
-                    <p id="title">{ad ? ad.nev : ''}</p>
+                    <strong>
+                        <i>
+                            <h4 id="title" style={{ textDecoration: 'underline'}}>{ad ? ad.nev : ''}</h4>
+                        </i>
+                    </strong>
 
-                    <label htmlFor="price">Price:</label>
+                    <label htmlFor="price">Ár:</label>
                     <p id="price">{ad ? ad.ar : ''} Ft</p>
 
-                    <label htmlFor="location">Location:</label>
+                    <label htmlFor="location">Település:</label>
                     <p id="location">{ad ? ad.telepules : ''}</p>
 
-                    <label htmlFor="advertiser">Advertiser:</label>
+                    <label htmlFor="advertiser">Hirdető neve:</label>
                     <p id="advertiser">{ad ? ad.tulaj : ''}</p>
 
-                    <label htmlFor="phone">Phone Number:</label>
+                    <label htmlFor="phone">Hirdető telefonszáma:</label>
                     <p id="phone">{ad ? ad.phone : ''}</p>
 
-                    <label htmlFor="date">Date added:</label>
+                    <label htmlFor="date">Hirdetés létrehozva:</label>
                     <p id="date">{ad ? ad.datum : ''}</p>
 
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description">Leírás:</label>
                     <p id="description">{ad ? ad.leiras : ''}</p>
 
-                    <label htmlFor="favorite" style={{ marginRight: '10px'}}>Kedvenc</label>
+                    <label htmlFor="favorite" style={{ marginRight: '10px' }}>Hozzáadás a kedvencekhez: </label>
                     <input type="checkbox" name="favorite" id="favorite" />
                 </div>
             </div>
