@@ -1,4 +1,4 @@
-﻿using ExCSS;
+﻿using CommunityToolkit.Maui.Views;
 using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using MobilApp_Szakdolgozat.Views;
@@ -21,7 +21,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public AdsModel selectedAd { get; set; }   
 
         public ICommand detailsCommand { get; set; }
-        public ICommand favCommand { get; set; }
+        public ICommand editCommand { get; set; }
+        public ICommand deleteCommand { get; set; }        
         public MyAdsViewModel()
         {
             uploadFileNames = new ObservableCollection<string>();
@@ -34,7 +35,46 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
                 selectedAd = null;
                 OnPropertyChanged(nameof(selectedAd));
-            });           
+            });
+            deleteCommand = new Command(async (adId) =>
+            {
+                if (adId is int)
+                {
+                    int idInt = (int)adId;
+                    bool confirm = await Shell.Current.DisplayAlert("Figyelem!", "Biztosan törölni", "Igen", "Vissza");
+                    if (confirm)
+                    {
+                        await DataService.deleteAd(idInt);                        
+                        await Shell.Current.GoToAsync(nameof(MyAdsPage));
+                        await Shell.Current.DisplayAlert("", "Hirdetését töröltük!", "Vissza");
+                    }
+                }
+            });
+            editCommand = new Command(async (adId) =>
+            {
+
+                if (adId is int)
+                {
+                    int idInt = (int)adId;
+
+                    foreach (var ad in advertisements)
+                    {
+                        if (ad.id == idInt)
+                        {
+                            //selectedAd = ad;
+                            //await Shell.Current.GoToAsync(nameof(AdDetailsPage),
+                            //new Dictionary<string, object> { { "selectedAd", selectedAd } });
+                            //selectedAd = null;
+                            //OnPropertyChanged(nameof(selectedAd));
+                            Shell.Current.ShowPopup(new PopUpAdEditorPage());
+                        }
+                    }
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("",":(", "k");
+                }
+            });
         }
 
         private async void getImages()

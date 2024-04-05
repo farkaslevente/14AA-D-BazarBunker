@@ -6,7 +6,7 @@
              x:Class="MobilApp_Szakdolgozat.Views.AdDetailsPage"
              Title="">
     <ScrollView>
-        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="2*,40,30,40,30,150,20,40,20">
+        <Grid ColumnDefinitions="*,16*,*" RowDefinitions="120,40,30,40,30,150,20,40,20">
             <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="*,20" ColumnDefinitions="*"
                   Margin="0,0,0,0">
                 <CarouselView ItemsSource="{Binding advertisement.adImages}" 

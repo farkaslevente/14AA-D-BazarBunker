@@ -81,12 +81,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getAllAds();
             getCounties();
             getCategories();
-            //searchTitle = null;
-            //searchCounty = null;
-            //searchSettlement = null;
-            //searchCategory = null;
-            //searchMinPrice = 0;
-            //searchMaxPrice = 0;            
+            searchTitle = null;
+            searchCounty = null;
+            searchSettlement = null;
+            searchCategory = null;
+            searchMinPrice = 0;
+            searchMaxPrice = 0;            
             SettlementEnabled = false;
             CountySelectionChangeCommand = new Command(async () =>
             {

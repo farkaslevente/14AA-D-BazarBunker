@@ -5,7 +5,8 @@
              x:Class="MobilApp_Szakdolgozat.Views.MyAdsPage"
              Title="MyAdsPage"
              Shell.NavBarIsVisible="False"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             x:Name="CPMyAds">
     <!--<ContentPage.BindingContext>
         <vm:MyAdsViewModel/>
     </ContentPage.BindingContext>-->
@@ -56,12 +57,16 @@
                                 <Border Grid.Column="3" StrokeShape="RoundRectangle 5">
                                     <ImageButton Grid.Column="3" 
                                         Source="edit.svg"
-                                        BackgroundColor="Green"/>
+                                        BackgroundColor="Green"
+                                        Command="{Binding Source={x:Reference Name=CPMyAds}, Path=BindingContext.editCommand}"
+                                        CommandParameter="{Binding id}"/>
                                 </Border>
                                 <Border Grid.Column="3" Grid.Row="2" StrokeShape="RoundRectangle 5">
                                 <ImageButton 
                                         BackgroundColor="Red"
                                         Source="delete.svg"
+                                        Command="{Binding Source={x:Reference Name=CPMyAds}, Path=BindingContext.deleteCommand}"
+                                        CommandParameter="{Binding id}"
                                         />
                                 </Border>
                             </Grid>

@@ -44,7 +44,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = url102local;
+        public static string url = url103;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
         {
@@ -100,6 +100,21 @@ namespace MobilApp_Szakdolgozat.Services
                 var result = await client.GetStringAsync(uri);
 
                 return JsonConvert.DeserializeObject<List<AdsModel>>(result);
+            }
+        }
+
+        public static async Task deleteAd(int adId)
+        {
+            using (var client = new HttpClient())
+            {
+                string token = await SecureStorage.GetAsync("userToken");
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri(url);
+                var uri = $"/ads/{adId}";
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                return;
             }
         }
 
@@ -330,6 +345,36 @@ namespace MobilApp_Szakdolgozat.Services
         public static async Task<string> newAdvertisementUpload(string name, string description, string category, int price, int countyId, string settlement, int ownerId)
         {
             string jsonData = JsonConvert.SerializeObject(new {
+                name = name,
+                description = description,
+                category = category,
+                price = price,
+                countyId = countyId,
+                settlement = settlement,
+                ownerId = ownerId
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/ads", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            if ((int)response.StatusCode == 401)
+            {
+                return "error";
+            }
+            else
+            {
+                await SecureStorage.SetAsync("uploaded", true.ToString());
+                return null;
+            }
+        }
+        public static async Task<string> UpdateAdvertisementUpload(string name, string description, string category, int price, int countyId, string settlement, int ownerId)
+        {
+            string jsonData = JsonConvert.SerializeObject(new
+            {
                 name = name,
                 description = description,
                 category = category,
