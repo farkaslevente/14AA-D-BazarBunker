@@ -18,6 +18,7 @@ import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 import { PasswordResetPage } from './Pages/PasswordResetPage';
 import { ProfilePicSelect } from './Pages/ProfilePicSelect';
+import { SupportPage } from './Pages/SupportPage';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
           <Route path='/profil' element={<ProfilePage />} />
           <Route path='/profilkepek' element={<ProfilePicSelect />} />
+
+          <Route path='/support' element={<SupportPage/>} />
 
         </Routes>
 
