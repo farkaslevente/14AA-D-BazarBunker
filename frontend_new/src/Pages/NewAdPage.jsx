@@ -91,7 +91,7 @@ export const NewAdPage = () => {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
+            await axios.post(`${process.env.REACT_APP_HOST103}/ads`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,
@@ -111,7 +111,7 @@ export const NewAdPage = () => {
                 formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
             });
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/pictures/upload`, formData, {
+            await axios.post(`${process.env.REACT_APP_HOST103}/pictures/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${authToken}`
@@ -206,7 +206,7 @@ export const NewAdPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={4} style={{textAlign: 'center'}}/>
+                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={10} style={{textAlign: 'center'}}/>
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea

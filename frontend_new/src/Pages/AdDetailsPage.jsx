@@ -10,6 +10,8 @@ export const AdDetailsPage = () => {
     const adId = parseInt(id);
     const [ad, setAd] = useState(null);
     const [imageUrls, setImageUrls] = useState([]);
+    const [advertiser, setAdvertiser] = useState(null);
+    const [formattedDate, setFormattedDate] = useState('');
 
     useEffect(() => {
         const fetchAdDetails = async () => {
@@ -17,6 +19,15 @@ export const AdDetailsPage = () => {
                 const adsData = await adservice.getAllAds();
                 const selectedAd = adsData.find(ad => ad.id === adId);
                 setAd(selectedAd);
+                // Fetch advertiser details if the ad has an advertiser ID
+                if (selectedAd.tulajId) {
+                    const response = await axios.get(`${process.env.REACT_APP_HOST103}/users/${selectedAd.tulajId}`);
+                    setAdvertiser(response.data);
+                }
+                // Format the date
+                const date = new Date(selectedAd.datum);
+                const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                setFormattedDate(formattedDate);
             } catch (error) {
                 console.error('Error fetching ad details:', error);
             }
@@ -24,11 +35,11 @@ export const AdDetailsPage = () => {
 
         const fetchImages = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+                const response = await axios.get(`${process.env.REACT_APP_HOST103}/pictures/upload`);
                 const filteredImages = response.data.filter(fileName => {
                     const [userId, fetchedAdId, _] = fileName.split('_');
                     return parseInt(fetchedAdId) === adId;
-                }).map(fileName => `${process.env.REACT_APP_LOCAL}/uploads/${fileName}`);
+                }).map(fileName => `${process.env.REACT_APP_HOST103}/uploads/${fileName}`);
                 setImageUrls(filteredImages);
             } catch (error) {
                 console.error('Error fetching images:', error);
@@ -47,11 +58,7 @@ export const AdDetailsPage = () => {
                     <AdDetailsCarousel imageUrls={imageUrls} className='carousel' />
                 </div>
                 <div className="addetails-data">
-                    <strong>
-                        <i>
-                            <h4 id="title" style={{ textDecoration: 'underline'}}>{ad ? ad.nev : ''}</h4>
-                        </i>
-                    </strong>
+                    <h4 id="title" style={{ textDecoration: 'underline' }}>Megnevezés: <strong><i>{ad ? ad.nev : ''}</i></strong></h4>
 
                     <label htmlFor="price">Ár:</label>
                     <p id="price">{ad ? ad.ar : ''} Ft</p>
@@ -60,13 +67,13 @@ export const AdDetailsPage = () => {
                     <p id="location">{ad ? ad.telepules : ''}</p>
 
                     <label htmlFor="advertiser">Hirdető neve:</label>
-                    <p id="advertiser">{ad ? ad.tulaj : ''}</p>
+                    <p id="advertiser">{advertiser ? advertiser.name : ''}</p>
 
                     <label htmlFor="phone">Hirdető telefonszáma:</label>
-                    <p id="phone">{ad ? ad.phone : ''}</p>
+                    <p id="phone">{advertiser ? advertiser.phone : ''}</p>
 
                     <label htmlFor="date">Hirdetés létrehozva:</label>
-                    <p id="date">{ad ? ad.datum : ''}</p>
+                    <p id="date">{formattedDate}</p>
 
                     <label htmlFor="description">Leírás:</label>
                     <p id="description">{ad ? ad.leiras : ''}</p>
