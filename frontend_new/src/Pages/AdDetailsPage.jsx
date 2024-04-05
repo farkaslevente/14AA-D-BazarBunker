@@ -21,7 +21,7 @@ export const AdDetailsPage = () => {
                 setAd(selectedAd);
                 // Fetch advertiser details if the ad has an advertiser ID
                 if (selectedAd.tulajId) {
-                    const response = await axios.get(`${process.env.REACT_APP_HOST103}/users/${selectedAd.tulajId}`);
+                    const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${selectedAd.tulajId}`);
                     setAdvertiser(response.data);
                 }
                 // Format the date
@@ -35,11 +35,11 @@ export const AdDetailsPage = () => {
 
         const fetchImages = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_HOST103}/pictures/upload`);
+                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
                 const filteredImages = response.data.filter(fileName => {
                     const [userId, fetchedAdId, _] = fileName.split('_');
                     return parseInt(fetchedAdId) === adId;
-                }).map(fileName => `${process.env.REACT_APP_HOST103}/uploads/${fileName}`);
+                }).map(fileName => `${process.env.REACT_APP_LOCAL}/uploads/${fileName}`);
                 setImageUrls(filteredImages);
             } catch (error) {
                 console.error('Error fetching images:', error);
