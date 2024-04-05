@@ -20,11 +20,13 @@ export const AllAdsPage = () => {
 
         fetchData();
 
+        // Fetch images and set thumbnail images using Axios
         const fetchImages = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
                 const imageFileNames = response.data;
-                
+
+                // Filter image files and set thumbnail images
                 const thumbnails = {};
                 imageFileNames.forEach(fileName => {
                     const [userId, adId, index] = fileName.split('_');
