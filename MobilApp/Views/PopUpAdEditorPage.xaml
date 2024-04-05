@@ -4,9 +4,6 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.PopUpAdEditorPage">
-    <toolkit:Popup.BindingContext>
-        <vm:NewAdViewModel/>
-    </toolkit:Popup.BindingContext>
     <VerticalStackLayout>
         <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
             <Grid Grid.Row="0" Grid.Column="1"

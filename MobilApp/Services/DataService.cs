@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using FFImageLoading.Args;
 using MySqlX.XDevAPI;
 using System.Xml.Linq;
+using System.Collections.ObjectModel;
 //using Android.App;
 
 
@@ -22,6 +23,7 @@ namespace MobilApp_Szakdolgozat.Services
 {
     public class DataService
     {
+        public static ObservableCollection<AdsModel> advertisements { get; set; } = new ObservableCollection<AdsModel>();
         public struct T
         {
             string token;
@@ -44,7 +46,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = url103;
+        public static string url = urlHome;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
         {
@@ -352,7 +354,7 @@ namespace MobilApp_Szakdolgozat.Services
                 countyId = countyId,
                 settlement = settlement,
                 ownerId = ownerId
-            });
+            });           
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
             string token = await SecureStorage.GetAsync("userToken");
@@ -401,9 +403,50 @@ namespace MobilApp_Szakdolgozat.Services
                 return null;
             }
         }
-
-        public static async Task<string> imageUpload(int userId, int adId, int imgId) 
+        private static async Task getAllAds()
         {
+            advertisements.Clear();
+            IEnumerable<AdsModel> list = await getAds();
+            list.ToList().ForEach(p => advertisements.Add(p));
+        }
+        public static async Task<string> imageUpload(int userId, int imgId) 
+        {
+            string Dummyname = "dummy";
+            string Dummydescription = "dummy";
+            string Dummycategory = "dummy";
+            int Dummyprice = 1;
+            int DummycountyId = 3;
+            string Dummysettlement = "dummy";
+            int DummyownerId = 3;
+            string dummyJsonData = JsonConvert.SerializeObject(new
+            {
+                name = Dummyname,
+                description = Dummydescription,
+                category = Dummycategory,
+                price = Dummyprice,
+                countyId = DummycountyId,
+                settlement = Dummysettlement,
+                ownerId = DummyownerId
+            });
+            StringContent dummyContent = new StringContent(dummyJsonData, Encoding.UTF8, "application/json");
+            HttpClient dummyClient = new HttpClient();
+            string dummyToken = await SecureStorage.GetAsync("userToken");
+            dummyClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", dummyToken);
+            HttpResponseMessage dummyResponse = await dummyClient.PostAsync(url + "/ads", dummyContent);
+            string dummyResult = await dummyResponse.Content.ReadAsStringAsync();
+            await getAllAds();
+            int adId = 0;
+            for (int i = 0; i < advertisements.Count(); i++)
+            {
+                if (adId < advertisements[i].id)
+                {
+                    adId = advertisements[i].id;
+                }
+            }
+            await deleteAd(adId);
+            adId++;            
+
             var uploadFile = await MediaPicker.PickPhotoAsync();
 
             if (uploadFile == null) return "error";

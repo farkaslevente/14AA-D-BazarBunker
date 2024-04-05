@@ -5,10 +5,20 @@ namespace MobilApp_Szakdolgozat.Views;
 
 public partial class PopUpAdEditorPage : Popup
 {
-	public ICommand editCommand { get; set; }
+//	<toolkit:Popup.BindingContext>
+//        <vm:NewAdViewModel/>
+//    </toolkit:Popup.BindingContext>
 	public PopUpAdEditorPage()
 	{
-		InitializeComponent();		
+		startup();
+				
 
 	}
+
+    private async void startup()
+    {
+		this.BindingContext = new NewAdPage();
+		await Task.Delay(2000);
+        InitializeComponent();
+    }
 }

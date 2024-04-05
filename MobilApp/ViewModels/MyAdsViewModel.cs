@@ -25,6 +25,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ICommand deleteCommand { get; set; }        
         public MyAdsViewModel()
         {
+            SecureStorage.SetAsync("isedited", false.ToString());
             uploadFileNames = new ObservableCollection<string>();
             advertisements = new ObservableCollection<AdsModel>();            
             getImages();
@@ -61,11 +62,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     {
                         if (ad.id == idInt)
                         {
-                            //selectedAd = ad;
-                            //await Shell.Current.GoToAsync(nameof(AdDetailsPage),
-                            //new Dictionary<string, object> { { "selectedAd", selectedAd } });
-                            //selectedAd = null;
-                            //OnPropertyChanged(nameof(selectedAd));
+                            await SecureStorage.SetAsync("editedAdId", ad.id.ToString());
+                            await SecureStorage.SetAsync("editedAdName", ad.nev);
+                            await SecureStorage.SetAsync("editedAdCategory", ad.kategoria);
+                            await SecureStorage.SetAsync("editedAdDescription", ad.leiras);
+                            await SecureStorage.SetAsync("editedAdOwnerId", ad.tulajId.ToString());
+                            await SecureStorage.SetAsync("editedAdCountyId", ad.varmegyeId.ToString());                            
+                            await SecureStorage.SetAsync("editedAdPrice", ad.ar.ToString());
+                            await SecureStorage.SetAsync("editedAdSettlement", ad.telepules);
+                            await SecureStorage.SetAsync("isedited", true.ToString());
                             Shell.Current.ShowPopup(new PopUpAdEditorPage());
                         }
                     }

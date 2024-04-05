@@ -18,14 +18,11 @@ namespace MobilApp_Szakdolgozat.Models
         public int ar { get; set; }
         public int varmegyeId { get; set; }
         public string telepules { get; set; }
-        public int tulajId { get; set; }
-        //nap ho napdatum év óra:perc:másodperc időzóna...
+        public int tulajId { get; set; }        
         public string datum { get; set; }
 
-        //post calculated
-        public bool isFav { get; set; }
-        public ObservableCollection<string> adImages { get; set; } = new ObservableCollection<string>();
-        public string ownerName { get; set; }
+        //post calculated        
+        public ObservableCollection<string> adImages { get; set; } = new ObservableCollection<string>();        
 
     }
 }

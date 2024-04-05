@@ -31,7 +31,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             get => _selectedCounty;
             set
             {
-                if (_selectedCounty != value)
+                if (_selectedCounty != null && value != null && _selectedCounty.id != value.id)
                 {
                     _selectedCounty = value;
                     adCountyId = value.id;
@@ -69,26 +69,16 @@ namespace MobilApp_Szakdolgozat.ViewModels
             advertisements = new ObservableCollection<AdsModel>();
             getCategories();
             getCounties();
-            //adTitle = "";
-            //adDescription = "";
-            //adCategory = "";
-            //adPrice = 0;
-            //adCountyId = 0;
-            //adOwnerId = 0;
+            getEditInfo();         
             SettlementEnabled = false;            
             CountySelectionChangeCommand = new Command(async () =>
             {
                 if (selectedCounty == null) return;
                 SettlementEnabled = true;
-            });
-
-            CountySelectionChangeCommand = new Command(async () =>
-            {
-                if (selectedCounty == null) return;                
-            });
+            });           
 
             uploadCommand = new Command(async () =>
-            {
+            {                
                 adOwnerId = Int32.Parse(await SecureStorage.GetAsync("userId"));
                 adCategory = selectedCategory;
                 if (adTitle != null)
@@ -162,30 +152,46 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 await getAllAds();
                 int userId = int.Parse(await SecureStorage.GetAsync("userId"));
-                int adId = 0;
-                for (int i = 0; i < advertisements.Count(); i++)
-                {
-                    if (adId < advertisements[i].id)
-                    {
-                        adId = advertisements[i].id;
-                    }
-                }
-                adId++;
+             
                 List<string> imageList = new List<string>();
-                await DataService.imageUpload(userId, adId, imageId);
+                await DataService.imageUpload(userId, imageId);
                 imageId = int.Parse(await SecureStorage.GetAsync("imgId"))+1;
 
             });
         }
 
+        private async void getEditInfo()
+        {
+            int editId = Int32.Parse(await SecureStorage.GetAsync("editedAdId"));
+            string editName = await SecureStorage.GetAsync("editedAdName");
+            string editCategory = await SecureStorage.GetAsync("editedAdCategory");
+            string editDesc = await SecureStorage.GetAsync("editedAdDescription");
+            int editOwnerId = Int32.Parse(await SecureStorage.GetAsync("editedAdOwnerId"));
+            int editCountyId = Int32.Parse(await SecureStorage.GetAsync("editedAdCountyId"));
+            int editPrice = Int32.Parse(await SecureStorage.GetAsync("editedAdPrice"));
+            string editSettlement = await SecureStorage.GetAsync("editedAdSettlement");
+            string isEdited = await SecureStorage.GetAsync("isedited");
+            if (isEdited == true.ToString())
+            {
+                adTitle = editName;
+                adDescription = editDesc;
+                selectedCategory = editCategory;
+                adPrice = editPrice;
+                adOwnerId = editOwnerId;                
+                    
+                                               
+            }
+        }
 
-
-        
-         
         private async void getSettlements()
         {
+            string editSettlement = await SecureStorage.GetAsync("editedAdSettlement");
             IEnumerable<SettlementModel> settlementList = await DataService.getSettlements();
             settlementList.ToList().ForEach(settlement => {
+                if ( settlement.nev == editSettlement)
+                {
+                    selectedSettlement = settlement;
+                }
                 if (settlement.varmegye == selectedCounty.nev)
                 {
                     settlements.Add(settlement);
@@ -196,8 +202,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getCounties()
         {
+            int editCountyId = Int32.Parse(await SecureStorage.GetAsync("editedAdCountyId"));
             IEnumerable<CountyModel> countyList = await DataService.getCounties();
-            countyList.ToList().ForEach(county => counties.Add(county));
+            countyList.ToList().ForEach(county => {
+                if (county.id == editCountyId)
+                {
+                    selectedCounty = county;
+                }
+                counties.Add(county);
+            });
         }
 
         private void getCategories()
