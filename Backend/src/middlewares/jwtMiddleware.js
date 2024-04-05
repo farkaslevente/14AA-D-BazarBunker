@@ -29,11 +29,6 @@ verifyToken = (req, res, next) => {
           });
 }
 
-      
-    
-  
-    
-
  function accessToken (payload) {
     const token = jwt.sign(
         payload,
@@ -42,4 +37,12 @@ verifyToken = (req, res, next) => {
     return token;
  } 
 
-module.exports = {verifyToken, accessToken}
+ function refreshToken (payload) {
+  const token = jwt.sign(
+    payload,
+    secret,
+    {expiresIn: '1m'})
+    return token
+ }
+
+module.exports = {verifyToken, accessToken, refreshToken}

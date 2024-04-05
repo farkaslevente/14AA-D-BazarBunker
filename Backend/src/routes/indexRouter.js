@@ -1,4 +1,4 @@
-const  express = require("express");
+const  express = require("express")
 const {dbFunctions} = require('../database/dbFunc')
 const { authController } = require('../controllers/auth.controller')
 const { userController } = require('../controllers/user.controller')
@@ -6,6 +6,7 @@ const { isAdmin } = require('../controllers/role.controller')
 const { verifyToken } = require("../middlewares/jwtMiddleware");
 const { emailController } = require('../controllers/email.controller')
 const { uploadController } = require('../controllers/upload.controller')
+const { adController } = require('../controllers/ad.controller')
 const router = express.Router();
 
 
@@ -24,7 +25,7 @@ const storage = multer.diskStorage({
       cb(null, file.originalname)
     }
   })
-const upload = multer({storage: storage}).array('file', 6);
+const upload = multer({storage: storage}).array('file', 6)
 
         //▄▄▄        ▄• ▄▌▄▄▄▄▄▄▄▄ ..▄▄ · 
         //▀▄ █·▪     █▪██▌•██  ▀▄.▀·▐█ ▀. 
@@ -144,30 +145,39 @@ router.post("/login", async function (req, res) {
 
 router.get("/ads", async function(_req, res) {
     try {
-        res.json(await dbFunctions.getAds());
+        res.json(await adController.getAds());
     } catch (err) {
         console.error("Error while getting ads!", err.message);
     }
 });
 
 router.post("/ads", [verifyToken], async function(req,res) {
-    res.json(await dbFunctions.postAds(req,res,req.user.id))
+    res.json(await adController.postAds(req,res,req.user.id))
 });
 
-router.post('/pictures/upload', [verifyToken], (req,res) => {
-    upload(req, res, function (err) {
-      if (err instanceof multer.MulterError) {
-        // A Multer error occurred when uploading
-        return res.status(500).json({ error: err.message });
-      } else if (err) {
-        // An unknown error occurred when uploading
-        return res.status(500).json({ error: "An unknown error occurred" });
-      }
+router.post("/ads/:id", [verifyToken], async function(req,res) {
+    try {
+        res.json(await adController.editAd(req,res,req.user.id,req.params.id))
+    } catch (err) {
+        console.error("Error getting user by id!", err.message)
+    }
+})
 
-      // Everything went fine, files are uploaded successfully
-      res.status(200).json({ message: "Files uploaded successfully" });
+router.delete('/ads/:id', [verifyToken], async function(req,res) {
+    try {
+        res.json(await adController.deleteAd(req,res,req.user.id,req.params.id))
+    } catch (err) {
+        console.error("Error deleting ads", err.message)
+    }
+})
+
+router.post('/pictures/upload', [verifyToken], (req,res) => {
+    upload(req,res, function (err) {
+        if (err instanceof multer.MulterError) return res.status(500).json({error: err.message})
+        else if (err) return res.status(500).json({error: "Unknown error"})
+
+    res.status(200).json({message: "Upload was successfull"})
     });
-    //res.json(req.file)
 });
 
 router.get("/pictures/upload", async (req,res) => {
@@ -206,6 +216,30 @@ router.get('/subscribe', [verifyToken], async function(req,res) {
 router.post('/newpassword', [verifyToken], async function (req,res) {
     try {
         await userController.newPassword(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/support', [verifyToken], async function (req,res) {
+    try {
+        await userController.support(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/resetpassword', async function (req, res) {
+    try {
+        await authController.resetPassword(req, res)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.post('/authorizereset', async function (req,res) {
+    try {
+        await authController.authorizeReset(req,res)
     } catch (err) {
         console.error(err.message)
     }

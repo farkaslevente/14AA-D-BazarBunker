@@ -29,6 +29,9 @@ const userController = {
         try {
             await query(`
             DELETE FROM felhasznalok WHERE id = ${id}`)
+            await query(`
+            DELETE from hirdetesek WHERE tulajId = ${id}`)
+            // delete from upload
             return res.status(200).json({message: `User with id: ${id} was deleted succesfully`})
         } catch (err) {
             console.error("Error deleting!", err.message);
@@ -86,6 +89,19 @@ const userController = {
             res.status(200).json({message: "Password changed successfully"})
         } catch (err) {
             console.error("Error updating password...", err.message)
+            res.status(500).json({error: "Internal server error!"})
+        }
+    },
+
+    support: async function (req,res,id) {
+        console.log("Incoming question...", req.body)
+        try {
+            const {title, question} = req.body
+            await query(`
+            INSERT INTO support (id, cim, kerdes, felhasznaloId) VALUES (null, '${title}', '${question}', '${id}')`)
+            res.status(200).json({message: "We've received your question and will answer as soon as possible."})
+        } catch (err) {
+            console.error("Error contacting support...", err.message)
             res.status(500).json({error: "Internal server error!"})
         }
     }

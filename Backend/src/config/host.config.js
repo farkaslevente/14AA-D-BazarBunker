@@ -4,8 +4,6 @@ module.exports = {
     hosts: {
         HOST202: process.env.HOST202,
         HOST303:  process.env.HOST303,
-        LOCAL: process.env.LOCAL,
-        LOCAL303: process.env.LOCAL303,
-        LOCAL202: process.env.LOCAL202,
+        HOST103: process.env.HOST103
     }
 }
