@@ -22,6 +22,8 @@ namespace MobilApp_Szakdolgozat.Models
         public string datum { get; set; }
 
         //post calculated        
+        public bool isFav { get; set; }
+        public bool isFavInvers { get; set; }
         public ObservableCollection<string> adImages { get; set; } = new ObservableCollection<string>();        
 
     }

@@ -166,15 +166,9 @@ namespace MobilApp_Szakdolgozat.Services
         }
         public static async Task<string[]> getFavorites()
         {
-            string result = await SecureStorage.GetAsync("userToken");
-            string[] payload = result.Split('.');
-            var finalPayload = payload[1];
-
-            var Result = JWTTokenService.DecodeJwt(JWTTokenService.ConvertJwtStringToJwtSecurityToken(result));
-            string[] ResultwithoutMustacheOne = Result[0].ToString().Split("{");
-            string[] ResultwithoutMustachetwo = ResultwithoutMustacheOne[1].Split("}");
-            string[] finalResult = ResultwithoutMustachetwo[0].Split(",");           
-            string storedFavoritesList = await SecureStorage.GetAsync("userFavorites");
+            int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+            ProfileModel localU = await getProfileById(uId);         
+            string storedFavoritesList = localU.favs;
             string[] storedFavorites = storedFavoritesList.Split("+");
             return storedFavorites;
 
@@ -314,7 +308,7 @@ namespace MobilApp_Szakdolgozat.Services
                 email = userEmail,
                 location = userLocation,
                 pPic = userPic,
-                favorites = userFavorites,
+                favourites = userFavorites,
                 phone = userMobile
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -343,6 +337,31 @@ namespace MobilApp_Szakdolgozat.Services
                 return null;
             }
         }
+
+        public static async Task<string> adProfileFav(int adId)
+        {
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                adId = adId,               
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/addfavourite", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            if ((int)response.StatusCode == 401)
+            {
+                return "error";
+            }
+            else
+            {              
+                return null;
+            }
+        }
+
 
         public static async Task<string> newAdvertisementUpload(string name, string description, string category, int price, int countyId, string settlement, int ownerId)
         {

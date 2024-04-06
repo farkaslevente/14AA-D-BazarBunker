@@ -101,13 +101,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 {
                     selectedCategory = MainPage.mainCategory;
                 }
-                if (searchCategory == null)
-                {
-                    searchCategory = selectedCategory;
-                }                
+                //if (searchCategory == null)
+                //{
+                //    searchCategory = selectedCategory;
+                //}                
 
                 List<AdsModel> filteredList = new List<AdsModel>();
-                if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 0)
+                if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 10000000)
                 {
                     filteredList = allAds.ToList();
                 }
@@ -123,7 +123,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                (selectedSettlement == null || listing.telepules.Equals(selectedSettlement.nev, StringComparison.OrdinalIgnoreCase)) &&
                                ( listing.ar >= searchMinPrice) &&
                                (listing.ar <= searchMaxPrice)).ToList();
-
+                MainPage.mainCategory = null;
                 filteredAds = new ObservableCollection<AdsModel>(filteredList);
                 await Shell.Current.GoToAsync(nameof(AdsPage),
                     new Dictionary<string, object> { { "filteredAds", filteredAds } });                

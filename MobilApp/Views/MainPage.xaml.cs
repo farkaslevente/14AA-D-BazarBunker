@@ -3,68 +3,69 @@ using MobilApp_Szakdolgozat.ViewModels;
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class MainPage : ContentPage
-{    
-    public static string mainCategory { get; set; }
-	public MainPage()
+{
+    private SearchViewModel searchViewModel;
+    private static string _mainCategory;
+    public static string mainCategory
+    {
+        get => _mainCategory;
+        set
+        {
+            if (_mainCategory != value)
+            {
+                _mainCategory = value;
+            }
+        }
+    }
+    public MainPage()
 	{
-        ShellViewModel shellViewModel = new ShellViewModel();        
+        ShellViewModel shellViewModel = new ShellViewModel();
+        searchViewModel = new SearchViewModel();
         shellViewModel.VisibilityLP();        
-        InitializeComponent();
-        //categories.Add("Általános iskolásoknak");
-        //categories.Add("Középiskolásoknak");
-        //categories.Add("Egyetemistáknak");
-        //categories.Add("Kötelezõ olvasmány");
-        //categories.Add("Kellékek");
-        //categories.Add("Írószerek");
-        //categories.Add("Kiegészítõk");
+        InitializeComponent();        
 
 
     }
 
     private void BTNUni_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Egyetemistáknak";
-        BTNUni.Command = searchViewModel.searchCommand;
+        BTNUni.Command = searchViewModel.searchCommand;        
     }
 
     private void BTNMiddleSch_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Középiskolásoknak";
         BTNMiddleSch.Command = searchViewModel.searchCommand;
     }
 
     private void BTNPrimarySch_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Általános iskolásoknak";
         BTNPrimarySch.Command = searchViewModel.searchCommand;
     }
 
     private void BTNBooks_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Kötelezõ olvasmány";
         BTNBooks.Command = searchViewModel.searchCommand;
     }
 
     private void BTNStationeries_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Írószerek";
         BTNStationeries.Command = searchViewModel.searchCommand;
     }
 
     private void BTNTools_Clicked(object sender, EventArgs e)
-    {
-        SearchViewModel searchViewModel = new SearchViewModel();
+    {        
         mainCategory = "Kellékek";
         BTNTools.Command = searchViewModel.searchCommand;
     }
 
     private async void BTNSearch_Clicked(object sender, EventArgs e)
     {
+        mainCategory = null;
         await Shell.Current.GoToAsync(nameof(SearchPage));
     }    
 

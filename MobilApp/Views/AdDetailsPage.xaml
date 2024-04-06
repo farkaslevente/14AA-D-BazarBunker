@@ -37,15 +37,19 @@
                    Grid.Row="1"
                    Text="{Binding advertisement.nev}"
                    FontSize="25"/>
-            <ImageButton Command="{Binding adToFavoritesCommand}" Grid.Row="1" Grid.Column="1"
+            <ImageButton x:Name="BTNadToFavs" Command="{Binding adToFavoritesCommand}" Grid.Row="1" Grid.Column="1"
                         Source="favorite.svg"
                         Margin="300,0,0,10"
-                        IsVisible="{Binding favoriteVisibility}"/>
+                        IsVisible="{Binding advertisement.isFav}"
+                        IsEnabled="{Binding advertisement.isFav}"
+                         Clicked="BTNadToFavs_Clicked"/>
 
-            <ImageButton Command="{Binding removeFromFavoritesCommand}" Grid.Row="1" Grid.Column="1"
+            <ImageButton x:Name="BTNremoveFromFavs" Command="{Binding removeFromFavoritesCommand}" Grid.Row="1" Grid.Column="1"
                          Margin="300,0,0,10"
                         Source="unfavorit.svg"                               
-                        IsVisible="{Binding inversFavoriteVisibility}"/>
+                        IsVisible="{Binding advertisement.isFavInvers}"
+                        IsEnabled="{Binding advertisement.isFavInvers}"
+                        Clicked="BTNremoveFromFavs_Clicked"/>
 
             <Label Grid.Column="1"
                    Grid.Row="2"
@@ -85,7 +89,7 @@
                     x:Name="contact"
                     Background="White">
                 <Grid RowDefinitions="60,*,*,*,*,60">
-                    <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" FontSize="20" Margin="30,0,0,0"/>
+                    <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" FontSize="20" Margin="0,0,0,0" HorizontalTextAlignment="Center"/>
                     <Label Text="{Binding adOwner.name, StringFormat='Hirdető neve: {0}'}" Grid.Row="1" FontSize="15" Margin="10,0,0,0"/>
                     <Label Text="{Binding adOwner.location, StringFormat='Település: {0}'}" Grid.Row="2" FontSize="15" Margin="10,0,0,0"/>
                     <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail elérhetősége: &#10;{0}'}" Grid.Row="3" FontSize="15" Margin="10,0,0,0"/>
