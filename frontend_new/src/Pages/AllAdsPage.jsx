@@ -92,6 +92,17 @@ export const AllAdsPage = () => {
         }));
     };
 
+    const resetFilters = () => {
+        setFilters({
+            name: '',
+            category: '',
+            minPrice: '',
+            maxPrice: '',
+            countyId: '',
+        });
+        setFilteredAds(ads);
+    };
+
     return (
         <div className='alladspage'>
             <div className="alladspage-title">
@@ -118,6 +129,7 @@ export const AllAdsPage = () => {
                     ))}
                 </select>
                 <button onClick={applyFilters}>Apply Filters</button>
+                <button onClick={resetFilters}>Reset Filters</button>
             </div>
             <div className="alladspage-content">
                 <div className="cards">
