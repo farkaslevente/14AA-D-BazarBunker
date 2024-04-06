@@ -1,11 +1,10 @@
 const query = require('../database/db')
 const { dbFunctions } = require('../database/dbFunc')
-const { verifyToken, accessToken, refreshToken } = require('../middlewares/jwtMiddleware')
+const { verifyToken, accessToken, refreshToken, compareToken } = require('../middlewares/jwtMiddleware')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const { emailController } = require('../controllers/email.controller')
-const jwt = require('jsonwebtoken')
-const { secret } = require('../config/auth.config')
+
 
 const authController = {
     register: async function (req, res) {
@@ -105,8 +104,8 @@ const authController = {
         let resetToken = crypto.randomBytes(4).toString('hex').toUpperCase()
         emailController.sendResetPassword(req,res,email,resetToken)
 
-        resetToken = bcrypt.hash(resetToken, 10)
-        let token = refreshToken({resetToken})
+        let dbToken =  await bcrypt.hash(resetToken, 10)
+        let token = refreshToken({token: dbToken})
 
         await query(`
         INSERT INTO tokenek (data, date, id, tulajEmail) VALUES ('${token}', '${Date.now()}', null, '${email}')`)
@@ -119,7 +118,8 @@ const authController = {
         const rows = await dbFunctions.execQueryWithReturn(`
         SELECT * from tokenek WHERE tulajEmail = '${email}'`)
         const dbToken = rows[rows.length - 1]
-        const compareToken = jwt.verify(dbToken, secret)
+        
+        compareToken(res, token, dbToken.data)
         
     }
 
