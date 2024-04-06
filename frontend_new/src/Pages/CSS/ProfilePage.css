@@ -1,13 +1,12 @@
 .profilepage {
     width: 100%;
-    min-height: 100vh;
     background: #fce3fe;
     padding: 50px;
     padding-right: 50px;
 }
 
 .profile {
-    max-width: 90%;
+    max-width: 60%;
     margin: 0 auto;
     padding: 30px;
     border: 2px solid gray;
@@ -51,7 +50,15 @@
 }
 
 .profile-details ul li label {
-    margin-right: 10px;
+    margin-right: 20px;
+}
+
+.profile-details ul li p {
+    margin: 0;
+}
+
+.profile-details ul li  input {
+    width: 300px;
 }
 
 button {
@@ -61,7 +68,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    max-width: 200px;
+    max-width: fit-content;
 }
 
 button + button {

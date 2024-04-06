@@ -47,7 +47,7 @@ export const Navbar = () => {
                             <img className='userPPic' src={localStorage.getItem('userPPic')} alt="Profilkep" />
                         </div>
                         <div>
-                            <Link onClick={handleLogout} style={{ color: 'gray', marginLeft: '10px' }}>
+                            <Link onClick={handleLogout} style={{ color: 'gray', marginLeft: '10px' }} to='/'>
                                 Kijelentkezés
                             </Link>
                         </div>
