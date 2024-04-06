@@ -42,12 +42,12 @@ export const Navbar = () => {
             {isLoggedIn && (
                 <div className='loggedInUser'>
                     <div className="loggedIn">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div className='loggedIndata' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '10px', marginLeft: '10px'}}>
                             <h5>Bejelentkezve:<strong><Link style={{ color: 'black' }} to='/profil'>{user.name}</Link></strong></h5>
                             <img className='userPPic' src={localStorage.getItem('userPPic')} alt="Profilkep" />
                         </div>
                         <div>
-                            <Link onClick={handleLogout} style={{ color: 'gray' }}>
+                            <Link onClick={handleLogout} style={{ color: 'gray', marginLeft: '10px' }}>
                                 Kijelentkezés
                             </Link>
                         </div>

@@ -22,7 +22,7 @@ export const AllAdsPage = () => {
             try {
                 const adsData = await adservice.getAllAds();
                 setAds(adsData);
-                setFilteredAds(adsData); // Set default filtered ads to all ads
+                setFilteredAds(adsData);
             } catch (error) {
                 console.log(error);
             }
@@ -46,7 +46,6 @@ export const AllAdsPage = () => {
                 const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
                 const imageFileNames = response.data;
 
-                // Filter image files and set thumbnail images
                 const thumbnails = {};
                 imageFileNames.forEach(fileName => {
                     const [userId, adId, index] = fileName.split('_');
@@ -66,22 +65,18 @@ export const AllAdsPage = () => {
     const applyFilters = () => {
         let filtered = [...ads];
 
-        // Filter by name
         if (filters.name) {
             filtered = filtered.filter(ad => ad.nev.toLowerCase().includes(filters.name.toLowerCase()));
         }
 
-        // Filter by category
         if (filters.category) {
             filtered = filtered.filter(ad => ad.kategoria === filters.category);
         }
 
-        // Filter by price range
         if (filters.minPrice && filters.maxPrice) {
             filtered = filtered.filter(ad => ad.ar >= parseFloat(filters.minPrice) && ad.ar <= parseFloat(filters.maxPrice));
         }
 
-        // Filter by county
         if (filters.countyId) {
             filtered = filtered.filter(ad => ad.varmegyeId === parseInt(filters.countyId));
         }

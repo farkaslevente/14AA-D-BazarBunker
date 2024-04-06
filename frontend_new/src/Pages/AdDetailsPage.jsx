@@ -13,12 +13,6 @@ export const AdDetailsPage = () => {
     const [advertiser, setAdvertiser] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
     
-    // const [visible, setvisible] = useState('');
-    // const isLoggedIn = localStorage.getItem('isLoggedIn');
-    // ;
-    // if (isLoggedIn === "true") {
-    //     setvisible(true)
-    // }
 
     useEffect(() => {
         const fetchAdDetails = async () => {
@@ -26,12 +20,10 @@ export const AdDetailsPage = () => {
                 const adsData = await adservice.getAllAds();
                 const selectedAd = adsData.find(ad => ad.id === adId);
                 setAd(selectedAd);
-                // Fetch advertiser details if the ad has an advertiser ID
                 if (selectedAd.tulajId) {
                     const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${selectedAd.tulajId}`);
                     setAdvertiser(response.data);
                 }
-                // Format the date
                 const date = new Date(selectedAd.datum);
                 const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
                 setFormattedDate(formattedDate);

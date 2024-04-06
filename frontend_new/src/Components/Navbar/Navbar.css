@@ -1,8 +1,8 @@
 .navbar {
     display: flex;
-    justify-content: space-between; /* Changed to space-between for better alignment */
-    align-items: center; /* Center align items vertically */
-    padding: 10px 20px; /* Updated padding */
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 20px;
     box-shadow: 0 1px 3px -2px black;
     background: #f0f0f0;
 }
@@ -35,7 +35,7 @@
 .nav-login {
     display: flex;
     align-items: center;
-    gap: 20px; /* Reduced the gap */
+    gap: 20px;
 }
 
 .nav-login button {
@@ -65,12 +65,12 @@
 .loggedInUser {
     display: flex;
     align-items: center;
-    gap: 10px; /* Adjusted the gap */
+    gap: 10px;
 }
 
 .userPPic {
     border: 1px solid black;
     border-radius: 50%;
-    height: 40px; /* Updated height */
-    width: 40px; /* Updated width */
+    height: 40px;
+    width: 40px;
 }
