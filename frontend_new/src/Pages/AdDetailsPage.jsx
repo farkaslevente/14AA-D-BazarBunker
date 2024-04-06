@@ -12,6 +12,13 @@ export const AdDetailsPage = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [advertiser, setAdvertiser] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
+    
+    // const [visible, setvisible] = useState('');
+    // const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // ;
+    // if (isLoggedIn === "true") {
+    //     setvisible(true)
+    // }
 
     useEffect(() => {
         const fetchAdDetails = async () => {
