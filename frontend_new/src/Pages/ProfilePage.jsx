@@ -145,7 +145,7 @@ export const ProfilePage = () => {
                                     <button onClick={handleEdit}>Adatok szerkesztése</button>
                                 </>
                             )}
-                            {!editMode && <button onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
+                            {!editMode && <button style={{background: 'cyan', color: 'black', border: '1px solid black'}} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
                             {!editMode && <button style={{background: 'red', color: 'black', border: '1px solid black'}} onClick={handleDelete}>Felhasználó törlése</button>}
                         </div>
                     </div>
