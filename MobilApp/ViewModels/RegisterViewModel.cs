@@ -52,22 +52,24 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public RegisterModel regModel { get; set; }
         public string regName { get; set; }
         public string regEmail { get; set; }
+        public string resetEmail { get; set; }
         public string regPassword { get; set; }
         public string regConfirmPwd { get; set; }
         public string regLocation { get; set; }
         public string regMobileNumber { get; set; }
         public string error { get; set; }          
 
-            private RegisterModel _errorMessage;
+        private RegisterModel _errorMessage;
 
-            public RegisterModel errorMessage
-            {
-                get { return _errorMessage; }
-                set { _errorMessage = value; OnPropertyChanged(); }
-            }
+        public RegisterModel errorMessage
+        {
+            get { return _errorMessage; }
+            set { _errorMessage = value; OnPropertyChanged(); }
+        }
 
 
-            public ICommand registerCommand { get; set; }
+        public ICommand registerCommand { get; set; }
+        public ICommand resetPwdCommand { get; set; }
 
             public RegisterViewModel()
             {
@@ -82,7 +84,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 if (selectedCounty == null) return;
                 SettlementEnabled = true;
             });
-
+            resetPwdCommand = new Command(async () =>
+            {
+                await DataService.resetPwd(resetEmail);
+                await Shell.Current.DisplayAlert("Ellenőrizze postaládáját", "A jelszó visszaállításhoz szükséges információkat elküldtük a megadott emailcímre", "Rendben");
+                await Shell.Current.GoToAsync(nameof(LoginPage));
+            });
 
             registerCommand = new Command(async () => {    
                     if(regName != null)

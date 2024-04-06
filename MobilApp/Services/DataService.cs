@@ -171,11 +171,6 @@ namespace MobilApp_Szakdolgozat.Services
             string storedFavoritesList = localU.favs;
             string[] storedFavorites = storedFavoritesList.Split("+");
             return storedFavorites;
-
-
-
-
-
         }
         public static async Task<RegisterModel> register(RegisterModel user)
         {
@@ -212,6 +207,21 @@ namespace MobilApp_Szakdolgozat.Services
             return errorRegister;
         }
 
+        public static async Task resetPwd(string email)
+        {
+            
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                email = email
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/resetpassword", content);
+            string result = await response.Content.ReadAsStringAsync();
+        }
         public static async Task<string> login(string email, string password)
         {
             string jsonData = JsonConvert.SerializeObject(new { email = email, password = password });
@@ -274,7 +284,22 @@ namespace MobilApp_Szakdolgozat.Services
             }
         }
 
-        public static async Task<string> profilePictureUpdate(int id, string picUrl)
+        public static async Task newPassword(string newPwd)
+        {
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                newpassword = newPwd
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("userToken");
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url + "/newpassword", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+        }
+            public static async Task<string> profilePictureUpdate(int id, string picUrl)
         {
             string jsonData = JsonConvert.SerializeObject(new {
                 id = id,

@@ -65,7 +65,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 {
                     if (!userFavorites.Contains(favs[i].ToString()))
                     {
-                        userFavorites += favs[i].ToString();
+                        userFavorites += $"{favs[i]}+";                        
                         await SecureStorage.SetAsync("userFavorites", userFavorites);
                     }
                 }                    
