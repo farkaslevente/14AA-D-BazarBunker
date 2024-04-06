@@ -4,4 +4,10 @@
 
 04.05.
 -filter ads
+
+04.07.
+-ProfileCard
+-ProfilePictureSelect
+-Ownads
 -edit ads
+-delete ads

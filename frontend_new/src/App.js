@@ -5,6 +5,7 @@ import { UserStoreProvider } from './Stores/userStore';
 //Components
 import { Footer } from './Components/Footer/Footer';
 import { Navbar } from './Components/Navbar/Navbar';
+import { ProfileCard } from './Components/ProfileCard/ProfileCard';
 
 //Pages
 import { WelcomePage } from './Pages/WelcomePage';
@@ -43,6 +44,9 @@ function App() {
           <Route path='/profilkepek' element={<ProfilePicSelect />} />
 
           <Route path='/support' element={<SupportPage/>} />
+
+          {/* Test routes */}
+          <Route path='/profilecard' element={<ProfileCard/>} />
 
         </Routes>
 
