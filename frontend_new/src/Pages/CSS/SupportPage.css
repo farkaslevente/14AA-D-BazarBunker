@@ -1,0 +1,24 @@
+.support-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .support-container {
+      padding: 10px;
+    }
+  }
+  
+  .faq-section,
+  .contact-section {
+    margin-bottom: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    .faq-section,
+    .contact-section {
+      margin-bottom: 20px;
+    }
+  }
+  

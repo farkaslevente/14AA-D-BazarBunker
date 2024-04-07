@@ -84,25 +84,30 @@ button + button {
     margin-left: 20px;
 }
 
-/* Media query for smaller screens */
 @media (max-width: 768px) {
     .profile {
-        max-width: 100%; /* Reduce max-width on smaller screens */
+        max-width: 100%; 
     }
 
     .profile-image {
-        width: 150px; /* Reduce image size on smaller screens */
+        width: 150px;
         height: 150px;
-        margin-bottom: 10px; /* Reduce margin bottom */
-    }
-
-    .profile-details ul li input {
-        width: 100%; /* Make input fields full width on smaller screens */
+        margin-bottom: 10px;
     }
 
     .profile-image-button {
-        width: fit-content; /* Set width to fit content */
-        max-height: 40px; /* Reduce button height on smaller screens */
-        margin: 0 auto; /* Center the button horizontally */
+        width: fit-content;
+        max-height: 40px;
+        margin: 0 auto;
+    }
+
+    .profile-details ul li {
+        flex-direction: column;
+    }
+
+    .profile-details ul li input {
+        width: 100%;
+        margin-top: 5px;
     }
 }
+
