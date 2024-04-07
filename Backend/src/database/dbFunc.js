@@ -20,6 +20,7 @@ const dbFunctions = {
             email: res[0].email,
             location: res[0].hely,
             pPic: res[0].pPic,
+            favourites: res[0].kedvencek,
             phone: res[0].telefonszam
         }
         return payload
