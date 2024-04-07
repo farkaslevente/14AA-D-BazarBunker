@@ -24,11 +24,11 @@ export const ProfilePicSelect = () => {
     }, []);
 
     return (
-        <div className="profile-pic-select">
+        <div className="profilepic-select">
             <h1 className="text-center">Select Profile Picture</h1>
             <div className="picture-options">
                 {pictures.map((picture, index) => (
-                    <ProfilePicCard key={index} picture={picture} />
+                    <ProfilePicCard key={index} url={picture.url} />
                 ))}
             </div>
         </div>

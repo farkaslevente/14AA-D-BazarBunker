@@ -2,12 +2,13 @@
     width: 100px;
     height: 100px;
     margin: 10px;
-}
-
-.profile-pic-card img {
+    cursor: pointer;
+  }
+  
+  .profile-pic-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border: 1px solid lightgray;
     border-radius: 50%;
-}
+  }
