@@ -120,6 +120,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 {
                     advertisement.isFav = false;
                     advertisement.isFavInvers = true;
+                    break;
                 }
                 else
                 {

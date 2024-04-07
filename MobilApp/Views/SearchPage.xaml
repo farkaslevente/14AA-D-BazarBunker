@@ -11,7 +11,7 @@
     <Grid RowDefinitions="*,40,40" ColumnDefinitions="*,16*,*">
     <VerticalStackLayout Grid.Row="0" Grid.Column="1">
         <Image Source="smalllogo" MaximumHeightRequest="100" Margin="0,-30,0,10"/>
-            <Grid RowDefinitions="*,*,*,*,*" 
+            <Grid RowDefinitions="*,*,20,*,*,*" 
                   ColumnDefinitions="*,*">
                 <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="0">
                     <Entry FontSize="18" Placeholder="Kulcsszó" Margin="5,0,5,0"     
@@ -24,18 +24,20 @@
                                      SelectedItem="{Binding selectedCategory}"/>
                 </Frame>
                 <!--kell kategória, meg ár slider, folyt köv hamarosan-->
-                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="0" Grid.Row="2">
+                <Label Grid.Row="2" Grid.Column="0" Text="Minimum ár:" Margin="10,0,0,0"/>
+                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="0" Grid.Row="3">
                     <Entry FontSize="18" Placeholder="Minimum ár" Margin="5,0,5,0"
                      Text="{Binding searchMinPrice}"
                            Keyboard="Numeric"/>
                 </Frame>
 
-                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="1" Grid.Row="2">
+                <Label Grid.Row="2" Grid.Column="1" Text="Maximum ár:" Margin="10,0,0,0"/>
+                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="1" Grid.Row="3">
                     <Entry FontSize="18" Placeholder="Maximum ár" Margin="5,0,5,0"
                      Text="{Binding searchMaxPrice}"
                            Keyboard="Numeric"/>
                 </Frame>
-                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="3">
+                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="4">
                     <Picker                     
                         Title="Válasszon Vármegyét:"
                         ItemsSource="{Binding counties}"                
@@ -44,7 +46,7 @@
                     </Picker>
                 </Frame>
 
-                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="4" IsVisible="{Binding SettlementEnabled}">
+                <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.ColumnSpan="2" Grid.Row="5" IsVisible="{Binding SettlementEnabled}">
                     <Picker 
                             Grid.Row="4"
                             Grid.ColumnSpan="2"

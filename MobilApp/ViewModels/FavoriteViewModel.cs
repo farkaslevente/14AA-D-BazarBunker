@@ -26,7 +26,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             int userId = int.Parse(await SecureStorage.GetAsync("userId"));
             string userEmail = await SecureStorage.GetAsync("userEmail");
             favIds = await DataService.getFavorites();
-            favIds = favIds.Take(favIds.Count()).ToArray();
+            favIds = favIds.Take(favIds.Count()-1).ToArray();
             uploadFileNames = new ObservableCollection<string>();
             favoriteAds = new ObservableCollection<AdsModel>();
             await getAllUploads();
