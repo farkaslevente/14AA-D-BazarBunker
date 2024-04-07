@@ -20,7 +20,6 @@ export const AllAdsPage = () => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        // Check user's login status and user's ID
         const loggedIn = localStorage.getItem('isLoggedIn');
         setIsLoggedIn(loggedIn === 'true');
         const storedUserId = localStorage.getItem('userId');

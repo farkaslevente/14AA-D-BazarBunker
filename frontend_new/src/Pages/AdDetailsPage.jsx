@@ -12,7 +12,7 @@ export const AdDetailsPage = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [advertiser, setAdvertiser] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
     useEffect(() => {
         const fetchAdDetails = async () => {
@@ -79,7 +79,6 @@ export const AdDetailsPage = () => {
                     <label htmlFor="description">Leírás:</label>
                     <p id="description">{ad ? ad.leiras : ''}</p>
 
-                    {/* Conditional rendering for favorites */}
                     {isLoggedIn && (
                         <>
                             <label htmlFor="favorite" style={{ marginRight: '10px' }}>Hozzáadás a kedvencekhez: </label>
