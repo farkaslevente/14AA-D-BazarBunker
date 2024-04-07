@@ -50,6 +50,7 @@ export const ProfilePicSelect = () => {
             };
             await axios.post(`${process.env.REACT_APP_LOCAL}/pictures`, { pPic: selectedPicture }, { headers });
             console.log('Profile picture change confirmed');
+
             // Update localStorage with the selected picture URL
             localStorage.setItem('userPPic', selectedPicture);
             closeModal(); // Close the modal after successful change
@@ -59,8 +60,8 @@ export const ProfilePicSelect = () => {
             if (profilePicLink) {
                 profilePicLink.setAttribute('href', selectedPicture);
             }
-            window.location.reload();
             navigate("/profil");
+            window.location.reload();
         } catch (error) {
             console.error('Error confirming picture change:', error);
         }
@@ -74,12 +75,26 @@ export const ProfilePicSelect = () => {
                     <ProfilePicCard key={index} url={picture.url} onClick={() => openModal(picture.url)} /> 
                 ))}
             </div>
-            <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Confirm Profile Picture Change">
-                <h2>Confirm Profile Picture Change</h2>
-                {selectedPicture && <img src={selectedPicture} alt="Selected Profile Pic" />}
+            <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Erősítse meg a változtatást!" 
+                style={{
+                    overlay: {
+                        zIndex: 1000,
+                    },
+                    content: {
+                        width: 'fit-content',
+                        height: 'fit-content',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        border: '2px solid red',
+                        borderRadius: '20px',
+                    },
+                }}>
+                <h2>Erősítse meg a profilkép változtatást!</h2>
+                {selectedPicture && <img src={selectedPicture} alt="Selected Profile Pic" style={{width: '20%', height: '20%'}}/>}
                 <div className="modal-buttons">
-                    <button onClick={closeModal}>Cancel</button>
-                    <button onClick={confirmChange}>Confirm</button>
+                    <button onClick={confirmChange}>Mentés</button>
+                    <button onClick={closeModal} style={{background: 'red', border: '1px solid black'}}>Mégse</button>
                 </div>
             </Modal>
         </div>
