@@ -16,8 +16,16 @@ export const AllAdsPage = () => {
         countyId: '',
     });
     const [counties, setCounties] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
+        // Check user's login status and user's ID
+        const loggedIn = localStorage.getItem('isLoggedIn');
+        setIsLoggedIn(loggedIn === 'true');
+        const storedUserId = localStorage.getItem('userId');
+        setUserId(storedUserId);
+
         const fetchData = async () => {
             try {
                 const adsData = await adservice.getAllAds();
@@ -48,7 +56,7 @@ export const AllAdsPage = () => {
 
                 const thumbnails = {};
                 imageFileNames.forEach(fileName => {
-                    const [userId, adId, index] = fileName.split('_');
+                    const [fetchedUserId, adId, index] = fileName.split('_');
                     if (thumbnails[adId] === undefined || parseInt(index) === 0) {
                         thumbnails[adId] = fileName;
                     }
@@ -61,6 +69,10 @@ export const AllAdsPage = () => {
 
         fetchImages();
     }, []);
+
+    useEffect(() => {
+        applyFilters();
+    }, [filters, ads]);
 
     const applyFilters = () => {
         let filtered = [...ads];
@@ -79,6 +91,10 @@ export const AllAdsPage = () => {
 
         if (filters.countyId) {
             filtered = filtered.filter(ad => ad.varmegyeId === parseInt(filters.countyId));
+        }
+
+        if (isLoggedIn && userId) {
+            filtered = filtered.filter(ad => ad.tulajId !== parseInt(userId));
         }
 
         setFilteredAds(filtered);
