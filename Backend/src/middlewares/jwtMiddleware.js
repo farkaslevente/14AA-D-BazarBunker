@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const { secret } = require('../config/auth.config')
+const { secret } = require('../config/auth.config');
+const bcrypt = require('bcryptjs')
 
 verifyToken = (req, res, next) => {
 
@@ -41,8 +42,33 @@ verifyToken = (req, res, next) => {
   const token = jwt.sign(
     payload,
     secret,
-    {expiresIn: '1m'})
-    return token
+    {expiresIn: '5m'});
+    return token;
  }
 
-module.exports = {verifyToken, accessToken, refreshToken}
+function compareToken (res, inputToken, dbToken) {
+  jwt.verify(dbToken,
+    secret,
+    (err, decoded) => {
+      if (err) {
+        if (err.name === 'TokenExpiredError') {
+          return res.status(401).send({ message: "Token expired" });
+        } else {
+          return res.status(401).send({ message: "Unauthorized" });
+        }
+      }
+
+      decoded = jwt.verify(dbToken, secret)
+      let hashedToken = decoded.token
+      let tokenMatch =  bcrypt.compareSync(inputToken, hashedToken)
+
+      if (tokenMatch) {
+        return res.status(200).send({message: "Token checks out"})
+      } else {
+        return res.status(401).send({message: "Token does not match with the one in database"})
+      }
+      
+    });
+ } 
+
+module.exports = {verifyToken, accessToken, refreshToken, compareToken}

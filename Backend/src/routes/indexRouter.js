@@ -96,7 +96,7 @@ router.get("/users/:id", async function(req,res) {
 
 router.put("/users/patch", [verifyToken], async function(req, res) {
     try {
-        res.json(await userController.patchUsers(req.body, res));
+        res.json(await userController.patchUsers(req.body, res, req.user.id));
     } catch (err) {
         console.error("Error updating!", err.message);
     }

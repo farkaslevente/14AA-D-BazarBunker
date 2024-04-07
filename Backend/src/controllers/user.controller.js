@@ -4,10 +4,10 @@ const bcrypt = require('bcryptjs')
 
 
 const userController = {
-    patchUsers: async function (req, res) {
+    patchUsers: async function (req, res, id) {
         console.log("Patching incoming...", req);
         try {
-            const {id, name, email, location, pPic, phone} = req;
+            const {name, email, location, pPic, phone} = req;
 
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = '${id}'`) || [];
@@ -62,7 +62,7 @@ const userController = {
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
             user = rows[0];
-            const newFavourites = user.kedvencek + "," + adId
+            const newFavourites = user.kedvencek + " + " + adId
 
             await query(`
             UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${user.pPic}', jelszo= '${user.jelszo}',
