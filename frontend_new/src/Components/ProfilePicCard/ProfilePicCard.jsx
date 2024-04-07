@@ -1,9 +1,9 @@
 import React from 'react';
 import './ProfilePicCard.css';
 
-const ProfilePicCard = ({ url }) => {
+const ProfilePicCard = ({ url, onClick }) => {
   return (
-    <div className="profile-pic-card">
+    <div className="profile-pic-card" onClick={onClick}> 
       <img src={url} alt="Profile Pic" />
     </div>
   );

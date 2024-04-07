@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './CSS/ProfilePage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import './CSS/ProfilePage.css';
 
 export const ProfilePage = () => {
     const navigate = useNavigate();
@@ -99,6 +99,7 @@ export const ProfilePage = () => {
                 </div>
                 <div className="profile-content">
                     <img src={user.pPic} alt="Profile Image" className="profile-image" />
+                    <button onClick={() => navigate('/profilkepek')} className="profile-image-button">Válassz másik képet</button>
                     <div className="profile-details">
                         <ul>
                             <li>
@@ -177,3 +178,5 @@ export const ProfilePage = () => {
         </div>
     );
 };
+
+export default ProfilePage;

@@ -2,7 +2,6 @@
     width: 100%;
     background: #fce3fe;
     padding: 50px;
-    padding-right: 50px;
 }
 
 .profile {
@@ -21,8 +20,8 @@
 
 .profile-content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center items horizontally */
 }
 
 .profile-image {
@@ -33,9 +32,19 @@
     margin-bottom: 20px;
 }
 
+.profile-image-button {
+    padding: 5px 10px; /* Smaller padding */
+    background: blue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    max-height: 50px;
+}
+
 .profile-details {
-    flex: 1;
-    margin-left: 20px;
+    margin-top: 20px; /* Add margin to separate details from image and button */
 }
 
 .profile-details ul {
@@ -57,7 +66,7 @@
     margin: 0;
 }
 
-.profile-details ul li  input {
+.profile-details ul li input {
     width: 300px;
 }
 
@@ -75,12 +84,25 @@ button + button {
     margin-left: 20px;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .profile {
+        max-width: 100%; /* Reduce max-width on smaller screens */
+    }
 
-textarea {
-    width: 100%;
-    height: 100px;
-}
+    .profile-image {
+        width: 150px; /* Reduce image size on smaller screens */
+        height: 150px;
+        margin-bottom: 10px; /* Reduce margin bottom */
+    }
 
-.description {
-    margin-top: 20px;
+    .profile-details ul li input {
+        width: 100%; /* Make input fields full width on smaller screens */
+    }
+
+    .profile-image-button {
+        width: fit-content; /* Set width to fit content */
+        max-height: 40px; /* Reduce button height on smaller screens */
+        margin: 0 auto; /* Center the button horizontally */
+    }
 }
