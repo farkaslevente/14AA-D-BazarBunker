@@ -57,6 +57,9 @@
 		<MauiImage Update="Resources\Images\edit.svg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>
+		<MauiImage Update="Resources\Images\editvisibility.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiImage>
 		<MauiImage Update="Resources\Images\favorite.svg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiImage>

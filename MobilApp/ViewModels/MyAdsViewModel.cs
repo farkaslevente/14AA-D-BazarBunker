@@ -18,13 +18,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ObservableCollection<PictureCatalogModel> pics { get; set; }
         public ObservableCollection<string> uploadFileNames { get; set; }
         public ObservableCollection<ProfileModel> profiles{ get; set; }
-        public AdsModel selectedAd { get; set; }   
+        public AdsModel selectedAd { get; set; }       
 
         public ICommand detailsCommand { get; set; }
-        public ICommand editCommand { get; set; }
+        public ICommand editCommand { get; set; }        
         public ICommand deleteCommand { get; set; }        
         public MyAdsViewModel()
-        {
+        {            
             SecureStorage.SetAsync("isedited", false.ToString());
             uploadFileNames = new ObservableCollection<string>();
             advertisements = new ObservableCollection<AdsModel>();            
@@ -79,7 +79,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 {
                     await Shell.Current.DisplayAlert("",":(", "k");
                 }
-            });
+            });            
         }
 
         private async void getImages()

@@ -31,7 +31,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             get => _selectedCounty;
             set
             {
-                if (_selectedCounty != null && value != null && _selectedCounty.id != value.id)
+                if (_selectedCounty != value && value.nev != null)
                 {
                     _selectedCounty = value;
                     adCountyId = value.id;
@@ -69,7 +69,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
             advertisements = new ObservableCollection<AdsModel>();
             getCategories();
             getCounties();
-            getEditInfo();         
+            getEditInfo();
+            selectedCounty = null;
             SettlementEnabled = false;            
             CountySelectionChangeCommand = new Command(async () =>
             {

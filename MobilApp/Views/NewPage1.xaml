@@ -4,9 +4,6 @@
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.NewPage1"
              Title="TesztPage">
-    <ContentPage.BindingContext>
-        <vm:ShellViewModel/>
-    </ContentPage.BindingContext>
     <Grid RowDefinitions="auto,40">
         <VerticalStackLayout Grid.Row="0">
             <Image Source="logo"

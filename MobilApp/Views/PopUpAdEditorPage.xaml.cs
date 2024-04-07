@@ -18,7 +18,7 @@ public partial class PopUpAdEditorPage : Popup
     private async void startup()
     {
 		this.BindingContext = new NewAdPage();
-		await Task.Delay(2000);
+		await Task.Delay(10000);
         InitializeComponent();
     }
 }

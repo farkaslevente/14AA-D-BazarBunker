@@ -3,10 +3,10 @@ using MobilApp_Szakdolgozat.ViewModels;
 namespace MobilApp_Szakdolgozat.Views;
 
 public partial class MyAdsPage : ContentPage
-{
+{    
 	public MyAdsPage()
 	{
-        startTimer();
+        startTimer();        
     }
 
     private async Task startTimer()
@@ -53,5 +53,5 @@ public partial class MyAdsPage : ContentPage
     private async void BTNFav_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(FavPage));
-    }
+    }   
 }

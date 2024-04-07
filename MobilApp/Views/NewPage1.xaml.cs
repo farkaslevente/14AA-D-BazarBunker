@@ -5,8 +5,17 @@ public partial class NewPage1 : ContentPage
 {
 	public NewPage1()
 	{
-		InitializeComponent();
-	}
+        startup();
+
+
+    }
+
+    private async void startup()
+    {
+        this.BindingContext = new ShellViewModel();
+        await Task.Delay(3000);
+        InitializeComponent();
+    }
 
     private async void LoginBTN_Clicked(object sender, EventArgs e)
     {        
