@@ -5,7 +5,7 @@ import { UserStoreProvider } from './Stores/userStore';
 //Components
 import { Footer } from './Components/Footer/Footer';
 import { Navbar } from './Components/Navbar/Navbar';
-import { ProfileCard } from './Components/ProfileCard/ProfileCard';
+import ProfilePicCard from './Components/ProfilePicCard/ProfilePicCard';
 
 //Pages
 import { WelcomePage } from './Pages/WelcomePage';
@@ -18,8 +18,8 @@ import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 import { PasswordResetPage } from './Pages/PasswordResetPage';
-import { ProfilePicSelect } from './Pages/ProfilePicSelect';
 import { SupportPage } from './Pages/SupportPage';
+import { ProfilePicSelect } from './Pages/ProfilePicSelect';
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
           <Route path='/support' element={<SupportPage/>} />
 
           {/* Test routes */}
-          <Route path='/profilecard' element={<ProfileCard/>} />
+          <Route path='/profilecard' element={<ProfilePicCard/>} />
 
         </Routes>
 
