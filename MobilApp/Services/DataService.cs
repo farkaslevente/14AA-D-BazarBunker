@@ -46,8 +46,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = url202;
-
+        public static string url = urlHome;
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
         {
             using (var client = new HttpClient())
@@ -169,7 +168,7 @@ namespace MobilApp_Szakdolgozat.Services
         {
             int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
             ProfileModel localU = await getProfileById(uId);         
-            string storedFavoritesList = localU.favs;
+            string storedFavoritesList = localU.favourites;
             string[] storedFavorites = storedFavoritesList.Split("+");
             return storedFavorites;
         }

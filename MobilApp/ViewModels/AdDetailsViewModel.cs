@@ -50,7 +50,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public AdDetailsViewModel()
         {                                              
             adToFavoritesCommand = new Command(async () => {
-                if (localUser.favs == "0-")
+                if (localUser.favourites == "0-")
                 {
                     await Shell.Current.DisplayAlert("Hiba", "Kérjük jelentkezzen be a hirdetések mentéséhez", "Vissza");
                 }
@@ -89,9 +89,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
             });
 
             removeFromFavoritesCommand = new Command(async () => {
-                if (localUser.favs == "0-")
+                if (localUser.favourites == "0-")
                 {
                     await Shell.Current.DisplayAlert("Hiba", "Kérjük jelentkezzen be a hirdetések mentéséhez", "Vissza");
+                    advertisement.isFav = true;
+                    advertisement.isFavInvers = false;
                 }
                 else
                 {
@@ -129,29 +131,49 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private void startFavs()
         {            
-            string[] favs = localUser.favs.Split('+');
-            for (int i = 0; i < favs.Count()-1; i++)
+            string[] favs = localUser.favourites.Split('+');
+            if (favs.Count() == 1)
             {
-                if (favs[i] == advertisement.id.ToString())
+                for (int i = 0; i < favs.Count(); i++)
                 {
-                    advertisement.isFav = false;
-                    advertisement.isFavInvers = true;
-                    break;
+                    if (favs[i] == advertisement.id.ToString())
+                    {
+                        advertisement.isFav = false;
+                        advertisement.isFavInvers = true;
+                        break;
+                    }
+                    else
+                    {
+                        advertisement.isFav = true;
+                        advertisement.isFavInvers = false;
+                    }
                 }
-                else
+            }
+            else
+            {
+                for (int i = 0; i < favs.Count() - 1; i++)
                 {
-                    advertisement.isFav = true;
-                    advertisement.isFavInvers = false;
+                    if (favs[i] == advertisement.id.ToString())
+                    {
+                        advertisement.isFav = false;
+                        advertisement.isFavInvers = true;
+                        break;
+                    }
+                    else
+                    {
+                        advertisement.isFav = true;
+                        advertisement.isFavInvers = false;
+                    }
                 }
-            }                           
+            }            
         }
 
         private async void getUserInfo()
         {            
             adOwner = await DataService.getProfileById(advertisement.tulajId);
-            if (adOwner.favs.IsNullOrEmpty())
+            if (adOwner.favourites.IsNullOrEmpty())
             {
-                adOwner.favs = "0+";
+                adOwner.favourites = "0+";
             }
         }
 
@@ -168,19 +190,26 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getLocalUserInfo()
         {
-            int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-            localUser = await DataService.getProfileById(uId);
-            if (localUser.favs.IsNullOrEmpty())
+            string LoggedIn = SecureStorage.GetAsync("userId").Result;
+            if (LoggedIn != null)
             {
-                localUser.favs = "0-";
+                int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                await SecureStorage.SetAsync("userFavorites", localUser.favourites);
+                favorites = localUser.favourites;
+                startFavs();
             }
             else
             {
-                await SecureStorage.SetAsync("userFavorites", localUser.favs);
-                favorites = localUser.favs;
+                localUser = new ProfileModel();
+                localUser.id = 0;
+                localUser.name = "dummy";
+                localUser.email = "dummy";
+                localUser.phone = "06701234567";
+                localUser.location = "Győr";
+                localUser.pPic = "https://www.svgrepo.com/show/420360/avatar-batman-comics.svg";
+                localUser.favourites = "0-";
                 startFavs();
-
-            }
+            }            
         }
     }
 

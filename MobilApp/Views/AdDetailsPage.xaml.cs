@@ -28,17 +28,17 @@ public partial class AdDetailsPage : ContentPage
 
     private void BTNremoveFromFavs_Clicked(object sender, EventArgs e)
     {
-        BTNremoveFromFavs.IsEnabled = false;
-        BTNremoveFromFavs.IsVisible= false;
-        BTNadToFavs.IsEnabled = true;
-        BTNadToFavs.IsVisible = true;
+        //BTNremoveFromFavs.IsEnabled = false;
+        //BTNremoveFromFavs.IsVisible= false;
+        //BTNadToFavs.IsEnabled = true;
+        //BTNadToFavs.IsVisible = true;
     }
 
     private void BTNadToFavs_Clicked(object sender, EventArgs e)
     {
-        BTNremoveFromFavs.IsEnabled = true;
-        BTNremoveFromFavs.IsVisible = true;
-        BTNadToFavs.IsEnabled = false;
-        BTNadToFavs.IsVisible = false;
+        //BTNremoveFromFavs.IsEnabled = true;
+        //BTNremoveFromFavs.IsVisible = true;
+        //BTNadToFavs.IsEnabled = false;
+        //BTNadToFavs.IsVisible = false;
     }
 }
