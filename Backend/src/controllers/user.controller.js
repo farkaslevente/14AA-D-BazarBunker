@@ -96,12 +96,12 @@ const userController = {
     newPassword: async function (req,res,id) {
         console.log("Updating password...", req.body)
         try {
-            const {newpassword} = req.body
+            const {password} = req.body
             const rows = await dbFunctions.execQueryWithReturn(
                 `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
             user = rows[0];
             
-            const hashedPassword = await bcrypt.hash(newpassword, 10)
+            const hashedPassword = await bcrypt.hash(password, 10)
             await query(`
             UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${user.pPic}', jelszo= '${hashedPassword}',
             telefonszam= '${user.telefonszam}', kedvencek= '${user.kedvencek}', role= '${user.role}' WHERE id=${id}`)

@@ -24,7 +24,9 @@ verifyToken = (req, res, next) => {
             }
 
             decoded = jwt.verify(token, secret)
+            console.log(decoded)
             req.user = decoded.payload
+            console.log(req.user)
             next()
             
           });
@@ -74,7 +76,7 @@ function compareToken (res, inputToken, dbToken, user) {
           favourites: user.kedvencek,
           phone: user.telefonszam
       }
-        let token = accessToken(payload)
+        let token = accessToken({payload})
         return res.status(200).send(token) 
       } else {
         return res.status(401).send({message: "Token does not match with the one in database"})

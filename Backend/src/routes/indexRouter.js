@@ -223,6 +223,7 @@ router.get('/subscribe', [verifyToken], async function(req,res) {
 
 router.post('/newpassword', [verifyToken], async function (req,res) {
     try {
+        console.log(req.user)
         await userController.newPassword(req,res,req.user.id)
     } catch (err) {
         console.error(err.message)
