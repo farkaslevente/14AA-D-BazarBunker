@@ -14,7 +14,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 {
     public class RegisterViewModel : BindableObject
     {
-        public ObservableCollection<CountyModel> counties { get; set; }        
+        public ObservableCollection<CountyModel> counties { get; set; }
         private CountyModel _selectedCounty;
         public CountyModel selectedCounty
         {
@@ -48,15 +48,18 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         public bool SettlementEnabled { get; set; }
         public ICommand CountySelectionChangeCommand { get; set; }
-        
+
         public RegisterModel regModel { get; set; }
         public string regName { get; set; }
         public string regEmail { get; set; }
         public string resetEmail { get; set; }
+        public string resetCode { get; set; }
         public string regPassword { get; set; }
         public string regConfirmPwd { get; set; }
         public string regLocation { get; set; }
         public string regMobileNumber { get; set; }
+        public bool resetVis { get; set; }
+        public string resetPwd { get; set; }
         public string error { get; set; }          
 
         private RegisterModel _errorMessage;
@@ -70,8 +73,10 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         public ICommand registerCommand { get; set; }
         public ICommand resetPwdCommand { get; set; }
+        public ICommand resetPwdCodeCommand { get; set; }
+        public ICommand resetPwdFinalCommand { get; set; }
 
-            public RegisterViewModel()
+        public RegisterViewModel()
             {
             counties = new ObservableCollection<CountyModel>();
             settlements = new ObservableCollection<SettlementModel>();
@@ -79,6 +84,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             getContractors();
             getCounties();        
             SettlementEnabled = false;
+            resetVis = false;
             CountySelectionChangeCommand = new Command(async () =>
             {
                 if (selectedCounty == null) return;
@@ -88,6 +94,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
             {
                 await DataService.resetPwd(resetEmail);
                 await Shell.Current.DisplayAlert("Ellenőrizze postaládáját", "A jelszó visszaállításhoz szükséges információkat elküldtük a megadott emailcímre", "Rendben");
+                await Shell.Current.GoToAsync(nameof(ResetPwdCodePage));
+            });
+            resetPwdCodeCommand = new Command(async () =>
+            {
+                await DataService.resetPwdCode(resetCode);
+                await Shell.Current.GoToAsync(nameof(ResetPwdFinalStagePage));
+
+            });
+            resetPwdFinalCommand = new Command(async () =>
+            {
+                await DataService.resetPwdFinal(resetPwd);
                 await Shell.Current.GoToAsync(nameof(LoginPage));
             });
 

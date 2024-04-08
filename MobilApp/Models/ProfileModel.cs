@@ -12,8 +12,7 @@ namespace MobilApp_Szakdolgozat.Models
         public string name { get; set; }
         public string email { get; set; }
         public string location { get; set; }
-        public string pPic { get; set; }        
-        public string jelszo { get; set;}
+        public string pPic { get; set; }                
         public string favs { get; set; }
         public string phone { get; set; }
     }

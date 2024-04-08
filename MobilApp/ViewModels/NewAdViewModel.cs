@@ -1,10 +1,12 @@
 ﻿using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using MobilApp_Szakdolgozat.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -105,6 +107,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                                                     selectedSettlement.nev,
                                                     adOwnerId
                                                     );
+                                            await SecureStorage.SetAsync("isedited", false.ToString());
                                             if (await SecureStorage.GetAsync("uploaded") == true.ToString())
                                             {
                                                 await Shell.Current.GoToAsync(nameof(MyAdsPage));
@@ -163,25 +166,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getEditInfo()
         {
-            int editId = Int32.Parse(await SecureStorage.GetAsync("editedAdId"));
-            string editName = await SecureStorage.GetAsync("editedAdName");
-            string editCategory = await SecureStorage.GetAsync("editedAdCategory");
-            string editDesc = await SecureStorage.GetAsync("editedAdDescription");
-            int editOwnerId = Int32.Parse(await SecureStorage.GetAsync("editedAdOwnerId"));
-            int editCountyId = Int32.Parse(await SecureStorage.GetAsync("editedAdCountyId"));
-            int editPrice = Int32.Parse(await SecureStorage.GetAsync("editedAdPrice"));
-            string editSettlement = await SecureStorage.GetAsync("editedAdSettlement");
             string isEdited = await SecureStorage.GetAsync("isedited");
             if (isEdited == true.ToString())
             {
-                adTitle = editName;
-                adDescription = editDesc;
-                selectedCategory = editCategory;
-                adPrice = editPrice;
-                adOwnerId = editOwnerId;                
-                    
-                                               
-            }
+                AdsModel deserialized = JsonConvert.DeserializeObject<AdsModel>(await SecureStorage.GetAsync("jsonContent"));
+                adTitle = deserialized.nev;
+                adDescription = deserialized.leiras;
+                adPrice = deserialized.ar;
+                selectedCategory = deserialized.kategoria;
+                selectedCounty.id = deserialized.varmegyeId;
+                selectedSettlement.nev = deserialized.telepules;
+            }            
         }
 
         private async void getSettlements()
@@ -203,16 +198,24 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getCounties()
         {
-            int editCountyId = Int32.Parse(await SecureStorage.GetAsync("editedAdCountyId"));
+            counties.Clear();
             IEnumerable<CountyModel> countyList = await DataService.getCounties();
-            countyList.ToList().ForEach(county => {
-                if (county.id == editCountyId)
-                {
-                    selectedCounty = county;
-                }
+            countyList.ToList().ForEach(county => {               
                 counties.Add(county);
             });
         }
+        //private async void getEditCounty()
+        //{
+        //    int editCountyId = Int32.Parse(await SecureStorage.GetAsync("editedAdCountyId"));
+        //    IEnumerable<CountyModel> countyList = await DataService.getCounties();
+        //    countyList.ToList().ForEach(county => {
+        //        if (county.id == editCountyId)
+        //        {
+        //            selectedCounty = county;
+        //        }
+        //        counties.Add(county);
+        //    });
+        //}
 
         private void getCategories()
         {

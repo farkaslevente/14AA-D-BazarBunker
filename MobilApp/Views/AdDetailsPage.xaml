@@ -89,6 +89,7 @@
                     x:Name="contact"
                     Background="White">
                 <Grid RowDefinitions="60,*,*,*,*,60">
+                    <Image Source="{Binding adOwner.pPic}" Grid.Row="0" HorizontalOptions="End"/>
                     <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" FontSize="20" Margin="0,0,0,0" HorizontalTextAlignment="Center"/>
                     <Label Text="{Binding adOwner.name, StringFormat='Hirdető neve: {0}'}" Grid.Row="1" FontSize="15" Margin="10,0,0,0"/>
                     <Label Text="{Binding adOwner.location, StringFormat='Település: {0}'}" Grid.Row="2" FontSize="15" Margin="10,0,0,0"/>

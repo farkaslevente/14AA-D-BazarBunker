@@ -45,8 +45,7 @@
                     <Frame Margin="10,10,0,10" CornerRadius="10" Padding="6" Grid.Column="1">
                         <Picker                           
                       ItemsSource="{Binding settlements}"
-                      ItemDisplayBinding="{Binding nev}"
-                      IsEnabled="{Binding SettlementEnabled}"                              
+                      ItemDisplayBinding="{Binding nev}"                                                    
                       Title="Válasszon települést:"
                       SelectedItem="{Binding selectedSettlement}"/>
                     </Frame>
@@ -56,11 +55,6 @@
                 <Frame Margin="0,10,0,10" CornerRadius="10" Grid.Row="3">
                     <Editor Text="{Binding adDescription}" Placeholder="Hirdetés leírása:"/>
                 </Frame>
-                <Label Text="{Binding adError}"
-               FontSize="Body"
-               TextColor="Red"
-               Grid.Row="4"
-               HorizontalOptions="CenterAndExpand"/>
                 <Button Grid.Row="5" Command="{Binding uploadCommand}" Text="Hirdetés frissítése"/>
             </Grid>
         </Grid>

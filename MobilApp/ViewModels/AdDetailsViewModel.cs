@@ -1,4 +1,5 @@
-﻿using MobilApp_Szakdolgozat.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using System;
 using System.Collections.Generic;
@@ -48,66 +49,81 @@ namespace MobilApp_Szakdolgozat.ViewModels
         }
         public AdDetailsViewModel()
         {                                              
-            adToFavoritesCommand = new Command(async () => {               
-               int userId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-               string userName = await SecureStorage.GetAsync("userName");
-               string userEmail = await SecureStorage.GetAsync("userEmail");
-               string userLocation = await SecureStorage.GetAsync("userLocation");
-               int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));
-               string userFavorites = await SecureStorage.GetAsync("userFavorites");
-               string userPhone = await SecureStorage.GetAsync("userPhone");
-               string userImage = await SecureStorage.GetAsync("userImage");
-                StringBuilder favoritesBuilder = new StringBuilder(favorites);
-                favoritesBuilder.Append($"{advertisement.id}+");
-                favorites = favoritesBuilder.ToString();
-                string[] favs = favorites.Split("+");
-                for (int i = 0; i < favs.Length-1; i++)
+            adToFavoritesCommand = new Command(async () => {
+                if (localUser.favs == "0-")
                 {
-                    if (!userFavorites.Contains(favs[i].ToString()))
-                    {
-                        userFavorites += $"{favs[i]}+";                        
-                        await SecureStorage.SetAsync("userFavorites", userFavorites);
-                    }
-                }                    
-                                
-                await DataService.profileUpdate(userId,userName,userEmail,userLocation,userImage, userRole,userFavorites, userPhone);
-                await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést hozzáadtuk kedvenceihez", "Rendben");
-                favoriteVisibility = true;
-                inversFavoriteVisibility = !favoriteVisibility;
-                OnPropertyChanged(favoriteVisibility.ToString());
-                advertisement.isFav = true;
-                advertisement.isFavInvers = false;
-                getUserInfo();
-            });
-
-            removeFromFavoritesCommand = new Command(async () => {
-                int userId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-                string userName = await SecureStorage.GetAsync("userName");
-                string userEmail = await SecureStorage.GetAsync("userEmail");
-                string userLocation = await SecureStorage.GetAsync("userLocation");
-                int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));
-                string userFavorites = await SecureStorage.GetAsync("userFavorites");
-                string userPhone = await SecureStorage.GetAsync("userPhone");
-                string userImage = await SecureStorage.GetAsync("userImage");
-                favorites = favorites.Replace($"{advertisement.id}+", "");
-                string[] favs = favorites.Split("+"); 
-                if (favs.Count() == 0)
-                {
-                    userFavorites = "100000+";
+                    await Shell.Current.DisplayAlert("Hiba", "Kérjük jelentkezzen be a hirdetések mentéséhez", "Vissza");
                 }
                 else
                 {
-                    userFavorites = favorites.ToString();
-                }                
-                await SecureStorage.SetAsync("userFavorites", userFavorites.ToString());
-                await DataService.profileUpdate(userId, userName, userEmail, userLocation, userImage, userRole, userFavorites, userPhone);
-                await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést kivettük kedvencei közül", "Rendben");
-                favoriteVisibility = false;
-                inversFavoriteVisibility = !favoriteVisibility;
-                OnPropertyChanged(favoriteVisibility.ToString());
-                advertisement.isFav = false;
-                advertisement.isFavInvers = true;
-                getUserInfo();
+                    int userId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                    string userName = await SecureStorage.GetAsync("userName");
+                    string userEmail = await SecureStorage.GetAsync("userEmail");
+                    string userLocation = await SecureStorage.GetAsync("userLocation");
+                    int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));
+                    string userFavorites = await SecureStorage.GetAsync("userFavorites");
+                    string userPhone = await SecureStorage.GetAsync("userPhone");
+                    string userImage = await SecureStorage.GetAsync("userImage");
+                    StringBuilder favoritesBuilder = new StringBuilder(favorites);
+                    favoritesBuilder.Append($"{advertisement.id}+");
+                    favorites = favoritesBuilder.ToString();
+                    string[] favs = favorites.Split("+");
+                    for (int i = 0; i < favs.Length - 1; i++)
+                    {
+                        if (!userFavorites.Contains(favs[i].ToString()))
+                        {
+                            userFavorites += $"{favs[i]}+";
+                            await SecureStorage.SetAsync("userFavorites", userFavorites);
+                        }
+                    }
+
+                    await DataService.profileUpdate(userId, userName, userEmail, userLocation, userImage, userRole, userFavorites, userPhone);
+                    await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést hozzáadtuk kedvenceihez", "Rendben");
+                    favoriteVisibility = true;
+                    inversFavoriteVisibility = !favoriteVisibility;
+                    OnPropertyChanged(favoriteVisibility.ToString());
+                    advertisement.isFav = true;
+                    advertisement.isFavInvers = false;
+                    getUserInfo();
+                }
+            });
+
+            removeFromFavoritesCommand = new Command(async () => {
+                if (localUser.favs == "0-")
+                {
+                    await Shell.Current.DisplayAlert("Hiba", "Kérjük jelentkezzen be a hirdetések mentéséhez", "Vissza");
+                }
+                else
+                {
+                    int userId = Int32.Parse(await SecureStorage.GetAsync("userId"));
+                    string userName = await SecureStorage.GetAsync("userName");
+                    string userEmail = await SecureStorage.GetAsync("userEmail");
+                    string userLocation = await SecureStorage.GetAsync("userLocation");
+                    int userRole = Int32.Parse(await SecureStorage.GetAsync("userRole"));
+                    string userFavorites = await SecureStorage.GetAsync("userFavorites");
+                    string userPhone = await SecureStorage.GetAsync("userPhone");
+                    string userImage = await SecureStorage.GetAsync("userImage");
+                    favorites = favorites.Replace($"{advertisement.id}+", "");
+                    string[] favs = favorites.Split("+");
+                    if (favs.Count() == 0)
+                    {
+                        userFavorites = "100000+";
+                    }
+                    else
+                    {
+                        userFavorites = favorites.ToString();
+                    }
+                    await SecureStorage.SetAsync("userFavorites", userFavorites.ToString());
+                    await DataService.profileUpdate(userId, userName, userEmail, userLocation, userImage, userRole, userFavorites, userPhone);
+                    await Shell.Current.DisplayAlert("Siker!", "A kiválasztott hirdetést kivettük kedvencei közül", "Rendben");
+                    favoriteVisibility = false;
+                    inversFavoriteVisibility = !favoriteVisibility;
+                    OnPropertyChanged(favoriteVisibility.ToString());
+                    advertisement.isFav = false;
+                    advertisement.isFavInvers = true;
+                    getUserInfo();
+                }
+                
             });            
         }
 
@@ -132,7 +148,11 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async void getUserInfo()
         {            
-            adOwner = await DataService.getProfileById(advertisement.tulajId);            
+            adOwner = await DataService.getProfileById(advertisement.tulajId);
+            if (adOwner.favs.IsNullOrEmpty())
+            {
+                adOwner.favs = "0+";
+            }
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -150,9 +170,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
             localUser = await DataService.getProfileById(uId);
-            await SecureStorage.SetAsync("userFavorites", localUser.favs);
-            favorites = localUser.favs;
-            startFavs();
+            if (localUser.favs.IsNullOrEmpty())
+            {
+                localUser.favs = "0-";
+            }
+            else
+            {
+                await SecureStorage.SetAsync("userFavorites", localUser.favs);
+                favorites = localUser.favs;
+                startFavs();
+
+            }
         }
     }
 

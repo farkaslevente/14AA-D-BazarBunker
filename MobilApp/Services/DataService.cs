@@ -46,7 +46,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = urlHome;
+        public static string url = url202;
 
         public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
         {
@@ -123,7 +123,8 @@ namespace MobilApp_Szakdolgozat.Services
         public static async Task<IEnumerable<CountyModel>> getCounties()
         {
             using (var client = new HttpClient())
-            {
+            {                
+                string uToken = await SecureStorage.GetAsync("userToken");
                 string token = await SecureStorage.GetAsync("userToken");
                 client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
@@ -209,19 +210,46 @@ namespace MobilApp_Szakdolgozat.Services
 
         public static async Task resetPwd(string email)
         {
-            
+            await SecureStorage.SetAsync("resetMail", email);
             string jsonData = JsonConvert.SerializeObject(new
             {
                 email = email
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpClient client = new HttpClient();
-            string token = await SecureStorage.GetAsync("userToken");
-            client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", token);
+            HttpClient client = new HttpClient();            
             HttpResponseMessage response = await client.PostAsync(url + "/resetpassword", content);
             string result = await response.Content.ReadAsStringAsync();
         }
+
+        public static async Task resetPwdCode(string code)
+        {
+            string resetMail = await SecureStorage.GetAsync("resetMail");
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                token = code,
+                email = resetMail
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();            
+            HttpResponseMessage response = await client.PostAsync(url + "/authorizereset", content);
+            string result = await response.Content.ReadAsStringAsync();
+            await SecureStorage.SetAsync("resetToken", result);
+        }
+        public static async Task resetPwdFinal(string newPassword)
+        {
+            string resetToken = await SecureStorage.GetAsync("resetToken");
+            string jsonData = JsonConvert.SerializeObject(new
+            {                
+                password = newPassword
+            });
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpClient client = new HttpClient();            
+            client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", resetToken);
+            HttpResponseMessage response = await client.PostAsync(url + "/newpassword", content);
+            string result = await response.Content.ReadAsStringAsync();            
+        }
+
         public static async Task<string> login(string email, string password)
         {
             string jsonData = JsonConvert.SerializeObject(new { email = email, password = password });

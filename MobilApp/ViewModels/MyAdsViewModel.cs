@@ -2,6 +2,7 @@
 using MobilApp_Szakdolgozat.Models;
 using MobilApp_Szakdolgozat.Services;
 using MobilApp_Szakdolgozat.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -62,15 +63,17 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     {
                         if (ad.id == idInt)
                         {
-                            await SecureStorage.SetAsync("editedAdId", ad.id.ToString());
-                            await SecureStorage.SetAsync("editedAdName", ad.nev);
-                            await SecureStorage.SetAsync("editedAdCategory", ad.kategoria);
-                            await SecureStorage.SetAsync("editedAdDescription", ad.leiras);
-                            await SecureStorage.SetAsync("editedAdOwnerId", ad.tulajId.ToString());
-                            await SecureStorage.SetAsync("editedAdCountyId", ad.varmegyeId.ToString());                            
-                            await SecureStorage.SetAsync("editedAdPrice", ad.ar.ToString());
-                            await SecureStorage.SetAsync("editedAdSettlement", ad.telepules);
+                            //await SecureStorage.SetAsync("editedAdId", ad.id.ToString());
+                            //await SecureStorage.SetAsync("editedAdName", ad.nev);
+                            //await SecureStorage.SetAsync("editedAdCategory", ad.kategoria);
+                            //await SecureStorage.SetAsync("editedAdDescription", ad.leiras);
+                            //await SecureStorage.SetAsync("editedAdOwnerId", ad.tulajId.ToString());
+                            //await SecureStorage.SetAsync("editedAdCountyId", ad.varmegyeId.ToString());                            
+                            //await SecureStorage.SetAsync("editedAdPrice", ad.ar.ToString());
+                            //await SecureStorage.SetAsync("editedAdSettlement", ad.telepules);
                             await SecureStorage.SetAsync("isedited", true.ToString());
+                            string jsonContent = JsonConvert.SerializeObject(ad);
+                            await SecureStorage.SetAsync("jsonContent", jsonContent);
                             Shell.Current.ShowPopup(new PopUpAdEditorPage());
                         }
                     }
