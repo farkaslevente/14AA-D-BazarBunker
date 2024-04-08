@@ -8,14 +8,19 @@ export const Navbar = () => {
     const [menu, setMenu] = useState("hirdetes");
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const [user, setUser] = useState([]);
 
     useEffect(() => {
         const authUser = JSON.parse(localStorage.getItem('authUser'));
         const loggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+        const role = JSON.parse(localStorage.getItem('userRole'));
         if (authUser) {
             setUser(authUser);
+        }
+        if (role === 1) {
+            setIsAdmin(true);
         }
         setIsLoggedIn(loggedIn);
     }, [isLoggedIn]);
@@ -50,6 +55,9 @@ export const Navbar = () => {
                             <Link onClick={handleLogout} style={{ color: 'gray', marginLeft: '10px' }} to='/'>
                                 Kijelentkezés
                             </Link>
+                            {isAdmin && <Link to='/adminpage' style={{ color: 'gray', marginLeft: '10px' }}>
+                                Adminpage
+                            </Link>}
                         </div>
                     </div>
                 </div>

@@ -55,10 +55,11 @@ export const RegisterPage = () => {
                             <label htmlFor='location' className='form-label'>Település:</label>
                             <input type='location' required className='form-input' id='location' placeholder='Visegrád'
                                 value={location} onChange={(e) => setLocation(e.target.value)} autoComplete='off' />
+                                {/* change this to  a react-select */}
 
                             <label htmlFor='phone' className='form-label'>Telefonszám:</label>
                             <input type='tel' required className='form-input' id='phone' placeholder='06309418328'
-                                value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' />
+                                value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' maxLength={11}/>
 
                             {/* <label htmlFor='email' className='form-label'>Vármegye:</label>
                                 <input type='email' required className='form-input' id='email' placeholder='email@email.com'

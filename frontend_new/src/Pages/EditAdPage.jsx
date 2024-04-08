@@ -3,9 +3,9 @@ import axios from 'axios';
 import Select from 'react-select';
 import adservice from './../Services/adservice';
 import { useNavigate } from 'react-router-dom';
-import './CSS/NewAdPage.css';
+import './CSS/EditAdPage.css'
 
-export const NewAdPage = () => {
+export const EditAdPage = () => {
     const navigate = useNavigate();
 
     const [counties, setCounties] = useState([]);
@@ -18,7 +18,6 @@ export const NewAdPage = () => {
     const [authToken, setAuthToken] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSettlement, setSelectedSettlement] = useState('');
-    const [images, setImages] = useState([]);
 
     const categoryOptions = [
         { value: 'Egyetemistáknak', label: 'Egyetemistáknak' },
@@ -78,11 +77,6 @@ export const NewAdPage = () => {
         setSelectedCategory(selectedOption.value);
     };
 
-    const handleImageChange = (event) => {
-        const files = Array.from(event.target.files);
-        setImages(files);
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -107,18 +101,6 @@ export const NewAdPage = () => {
             const maxId = Math.max(...adIds);
             const ADID = maxId;
 
-            const formData = new FormData();
-            images.forEach((file, index) => {
-                formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
-            });
-
-            await axios.post(`${process.env.REACT_APP_LOCAL}/pictures/upload`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${authToken}`
-                }
-            });
-
             //console.log('Ad posted successfully!');
             //console.log('Images uploaded', response.data);
             alert("Sikeres közlés!");
@@ -132,7 +114,7 @@ export const NewAdPage = () => {
     return (
         <div className='newadpage'>
             <div className="newadpage-title">
-                <h1>Új hirdetés</h1>
+                <h1>Hirdetés szerkestése</h1>
             </div>
             <div className="newadpage-content">
                 <form className='newadform' onSubmit={handleSubmit}>
@@ -221,24 +203,13 @@ export const NewAdPage = () => {
                             placeholder='Rövid leírás: (maximum 250 karakter)'
                             maxLength={250}
                         ></textarea>
-
-                        <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
-                        <input
-                            type="file"
-                            name='file'
-                            id='images'
-                            accept='.png, .jpg, .jpeg'
-                            onChange={handleImageChange}
-                            on
-                            multiple
-                            max={6}
-                            required
-                        />
-                        <button type='submit' id='formButton' style={{margin: 'auto', height: 'fit-content'}}>Hirdetés közzététele</button>
+                        <div className="buttons">
+                            <button type='submit' id='formButton' style={{margin: '10px', height: 'fit-content'}}>Változtatások mentése</button>
+                            <button style={{margin: '10px', background: 'red', color: 'black', border: '1px solid black', height: 'fit-content'}}>Mégse</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     );
-};
-
+}
