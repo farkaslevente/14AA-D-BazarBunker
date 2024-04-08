@@ -24,7 +24,9 @@ verifyToken = (req, res, next) => {
             }
 
             decoded = jwt.verify(token, secret)
+            console.log(decoded)
             req.user = decoded.payload
+            console.log(req.user)
             next()
             
           });
@@ -46,7 +48,8 @@ verifyToken = (req, res, next) => {
     return token;
  }
 
-function compareToken (res, inputToken, dbToken) {
+function compareToken (res, inputToken, dbToken, user) {
+  console.log(user)
   jwt.verify(dbToken,
     secret,
     (err, decoded) => {
@@ -63,7 +66,18 @@ function compareToken (res, inputToken, dbToken) {
       let tokenMatch =  bcrypt.compareSync(inputToken, hashedToken)
 
       if (tokenMatch) {
-        return res.status(200).send({message: "Token checks out"})
+        const payload = {
+          id: user.id,
+          name: user.nev,
+          email: user.email,
+          location: user.hely,
+          pPic: user.pPic,
+          role: user.role,
+          favourites: user.kedvencek,
+          phone: user.telefonszam
+      }
+        let token = accessToken({payload})
+        return res.status(200).send(token) 
       } else {
         return res.status(401).send({message: "Token does not match with the one in database"})
       }

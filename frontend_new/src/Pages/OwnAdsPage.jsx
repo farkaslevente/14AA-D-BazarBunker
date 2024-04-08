@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import adservice from './../Services/adservice';
 import Modal from 'react-modal';
 import './CSS/OwnAdsPage.css';
@@ -27,16 +27,14 @@ export const OwnAdsPage = () => {
 
     const handleDeleteConfirmation = async () => {
         try {
-            // Perform deletion using Axios
             await axios.delete(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
                     'Content-Type': 'application/json'
                 }
             });
-            // If deletion is successful, update userAds to remove the deleted ad
             setUserAds(prevAds => prevAds.filter(ad => ad.id !== selectedAdId));
-            setShowDeleteConfirmation(false); // Close modal after deletion
+            setShowDeleteConfirmation(false);
         } catch (error) {
             console.error('Error deleting ad:', error.message);
         }

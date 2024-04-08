@@ -42,7 +42,7 @@ function App() {
 
           <Route path='/ujhirdetes' element={<NewAdPage />} />
           <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
-          <Route path='/szerkesztes' element={<EditAdPage/>} />
+          <Route path='/szerkesztes/:id' element={<EditAdPage/>} />
 
           <Route path='/profil' element={<ProfilePage />} />
           <Route path='/profilkepek' element={<ProfilePicSelect />} />
