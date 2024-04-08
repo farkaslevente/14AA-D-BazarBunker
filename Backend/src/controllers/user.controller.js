@@ -74,6 +74,25 @@ const userController = {
         }
     },
 
+    removeFavourites: async function (req,res,id) {
+        console.log("Removing favourite...", req.body)
+        try {
+            const { adId } = req.body
+            const rows = await dbFunctions.execQueryWithReturn(
+                `SELECT * FROM felhasznalok WHERE id = ${id}`) || [];
+            user = rows[0];
+            const newFavourites = (user.kedvencek + "").replace((adId + " + "), '')
+            
+            await query(`
+            UPDATE felhasznalok SET nev= '${user.nev}', email= '${user.email}', hely= '${user.hely}', pPic= '${user.pPic}', jelszo= '${user.jelszo}',
+            telefonszam= '${user.telefonszam}', kedvencek= '${newFavourites}', role= '${user.role}' WHERE id=${id}`)
+            res.status(200).json({message: "Ad removed from saved"})
+            } catch (err) {
+                console.error("Error updating favourites...", err.message)
+                res.status(500).json({error: "Internal server error!"})
+            } 
+    },
+
     newPassword: async function (req,res,id) {
         console.log("Updating password...", req.body)
         try {

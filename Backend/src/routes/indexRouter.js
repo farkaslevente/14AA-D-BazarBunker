@@ -205,6 +205,14 @@ router.post('/addfavourite', [verifyToken], async function(req,res) {
     }
 });
 
+router.post('/removefavourite', [verifyToken], async function(req,res) {
+    try {
+        await userController.removeFavourites(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 router.get('/subscribe', [verifyToken], async function(req,res) {
     try {
         await emailController.subscribe(req,res,req.user.email)

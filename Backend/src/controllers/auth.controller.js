@@ -119,7 +119,12 @@ const authController = {
         SELECT * from tokenek WHERE tulajEmail = '${email}'`)
         const dbToken = rows[rows.length - 1]
         
-        compareToken(res, token, dbToken.data)
+        const user = await dbFunctions.execQueryWithReturn(
+            `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+
+            console.log(user[0])
+
+        compareToken(res, token, dbToken.data, user[0])
         
     }
 
