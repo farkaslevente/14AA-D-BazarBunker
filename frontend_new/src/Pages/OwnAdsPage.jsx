@@ -4,7 +4,6 @@ import adservice from './../Services/adservice';
 import Modal from 'react-modal';
 import Select from 'react-select';
 import './CSS/OwnAdsPage.css';
-import { useNavigate } from 'react-router-dom';
 
 export const OwnAdsPage = () => {
     const userId = localStorage.getItem('userId');
@@ -14,8 +13,7 @@ export const OwnAdsPage = () => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editedAd, setEditedAd] = useState(null);
-
-    const navigate = useNavigate();
+    // const [adPictures, setAdPictures] = useState([]);
 
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
@@ -90,13 +88,13 @@ export const OwnAdsPage = () => {
     const handleCountyChange = (selectedOption) => {
         setSelectedCounty(selectedOption);
 
-        
+
         const filteredSettlements = settlements.filter(settlement => settlement.varmegye === selectedOption.value);
         setSettlementOptions(filteredSettlements.map(settlement => ({
             label: settlement.nev,
             value: settlement.nev
         })));
-        
+
         setSettlementDisabled(false);
         setSelectedCountyId(selectedOption.id);
     };
@@ -115,16 +113,15 @@ export const OwnAdsPage = () => {
 
     const handleSubmit = async () => {
         try {
-            // Ensure that selectedCountyId has the correct ID of the county
             const selectedCountyObject = counties.find(county => county.value === selectedCounty.value);
             const countyId = selectedCountyObject ? selectedCountyObject.id : '';
-    
+
             await axios.post(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
                 name: editedAd.nev,
                 description: editedAd.leiras,
                 category: selectedCategory.value,
                 price: editedAd.ar,
-                countyId: countyId, // Use the correct county ID
+                countyId: countyId,
                 settlement: selectedSettlement.value
             }, {
                 headers: {
@@ -132,41 +129,36 @@ export const OwnAdsPage = () => {
                     'Content-Type': 'application/json'
                 }
             });
-    
-            // Handle success
+
         } catch (error) {
             console.error('Error posting ads!', error.message);
-            // Handle error
         }
     };
-    
+
 
     const handleEdit = async (adId) => {
+
         try {
-            try {
-                setSelectedAdId(adId);
-                // Find the ad details by its ID in the stored array of user ads
-                const adDetails = userAds.find(ad => ad.id === adId);
+            setSelectedAdId(adId);
+            const adDetails = userAds.find(ad => ad.id === adId);
 
-                // Find the corresponding county object based on the ad's county ID
-                const countyId = adDetails.varmegyeId;
-                const countyObject = counties.find(county => county.id === countyId);
+            const countyId = adDetails.varmegyeId;
+            const countyObject = counties.find(county => county.id === countyId);
 
-                // Set the countyObject as the default value for the county Select
-                setSelectedCounty(countyObject);
+            setSelectedCounty(countyObject);
 
-                // Find the corresponding settlement object based on the ad's settlement name
-                const settlementObject = settlementOptions.find(settlement => settlement.value === adDetails.telepules);
-                setSelectedSettlement(settlementObject);
+            const settlementObject = settlementOptions.find(settlement => settlement.value === adDetails.telepules);
+            setSelectedSettlement(settlementObject);
 
-                const adCategory = categoryOptions.find(option => option.value === adDetails.kategoria);
-                setSelectedCategory(adCategory);
+            const adCategory = categoryOptions.find(option => option.value === adDetails.kategoria);
+            setSelectedCategory(adCategory);
 
-                setEditedAd(adDetails);
-                setShowEditModal(true);
-            } catch (error) {
-                console.error('Error fetching ad details:', error.message);
-            }
+            // const adPicturesResponse = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+            // const adPicturesFiltered = adPicturesResponse.data.filter(filename => filename.includes(`${userId}_${adId}`));
+            // setAdPictures(adPicturesFiltered);
+
+            setEditedAd(adDetails);
+            setShowEditModal(true);
         } catch (error) {
             console.error('Error fetching ad details:', error.message);
         }
@@ -359,6 +351,11 @@ export const OwnAdsPage = () => {
                         <p>A feltöltött képek szerkesztése jelenleg nem lehetséges!</p>
                     </div>
                 </form>
+                {/* <div className="pics">
+                    {adPictures.map((picture, index) => (
+                        <img key={index} src={adPictures} alt={`Ad Picture ${index}`} />
+                    ))}
+                </div> */}
             </Modal>
         </div>
     );

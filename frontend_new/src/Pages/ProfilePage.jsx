@@ -105,7 +105,7 @@ export const ProfilePage = () => {
                             <li>
                                 <label htmlFor="name">Felhasználónév:</label>
                                 {editMode ? (
-                                    <input type="text" id="name" name="name" value={editedUser.name} onChange={handleInputChange} />
+                                    <input type="text" id="name" name="name" value={editedUser.name} onChange={handleInputChange} required/>
                                 ) : (
                                     <p style={{fontStyle: 'italic'}}>{user.name}</p>
                                 )}
@@ -113,7 +113,7 @@ export const ProfilePage = () => {
                             <li>
                                 <label htmlFor="email">Email cím:</label>
                                 {editMode ? (
-                                    <input type="email" id="email" name="email" value={editedUser.email} onChange={handleInputChange} />
+                                    <input type="email" id="email" name="email" value={editedUser.email} onChange={handleInputChange} required/>
                                 ) : (
                                     <p style={{fontStyle: 'italic'}}>{user.email}</p>
                                 )}
@@ -121,7 +121,7 @@ export const ProfilePage = () => {
                             <li>
                                 <label htmlFor="location">Hely:</label>
                                 {editMode ? (
-                                    <input type="text" id="location" name="location" value={editedUser.location} onChange={handleInputChange} />
+                                    <input type="text" id="location" name="location" value={editedUser.location} onChange={handleInputChange} required/>
                                 ) : (
                                     <p style={{fontStyle: 'italic'}}>{user.location}</p>
                                 )}
@@ -129,7 +129,7 @@ export const ProfilePage = () => {
                             <li>
                                 <label htmlFor="phone">Telefonszám:</label>
                                 {editMode ? (
-                                    <input type="tel" id="phone" name="phone" value={editedUser.phone} onChange={handleInputChange} />
+                                    <input type="tel" id="phone" name="phone" value={editedUser.phone} onChange={handleInputChange} maxLength={11} minLength={11} required/>
                                 ) : (
                                     <p style={{fontStyle: 'italic'}}>{user.phone}</p>
                                 )}

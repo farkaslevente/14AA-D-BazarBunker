@@ -21,6 +21,7 @@ const AdDetailsCarousel = ({ imageUrls }) => {
                 alt={`Image ${index}`}
                 src={imageUrl}
                 className="carousel-img"
+                // style={{height: '500px', width: '800px', minHeight: '300px', maxHeight: '500px', minWidth: '500px', maxWidth: '800px'}}
               />
             </div>
           ))}
