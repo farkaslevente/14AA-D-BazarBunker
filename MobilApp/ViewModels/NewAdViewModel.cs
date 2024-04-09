@@ -69,12 +69,12 @@ namespace MobilApp_Szakdolgozat.ViewModels
             settlements = new ObservableCollection<SettlementModel>();
             categories = new ObservableCollection<string>();
             advertisements = new ObservableCollection<AdsModel>();
-            adTitle = "";
-            adDescription = "";
-            adPrice = 0;
-            selectedCategory = "";
-            selectedCounty.id = 0;
-            selectedSettlement.nev = "";
+            //adTitle = "";
+            //adDescription = "";
+            //adPrice = 0;
+            //selectedCategory = "";
+            //selectedCounty.id = 0;
+            //selectedSettlement.nev = "";
             getCategories();
             getCounties();
             getEditInfo();

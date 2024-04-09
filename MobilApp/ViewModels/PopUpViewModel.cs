@@ -69,7 +69,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             adPrice = deserialized.ar;
             selectedCategory = deserialized.kategoria;
             getCategories();
-            getCounties();
+            getCounties(deserialized.varmegyeId);
             SettlementEnabled = false;
             CountySelectionChangeCommand = new Command(async () =>
             {
@@ -163,15 +163,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
             });
         }
 
-        private async void getCounties()
+        private async void getCounties(int adCountyIdTemp)
         {
             counties.Clear();
             IEnumerable<CountyModel> countyList = await DataService.getCounties();
             countyList.ToList().ForEach(county => {
-                //if (county.id == adCountyIdTemp)
-                //{
-                //    selectedCounty = county;
-                //}
+                if (county.id == adCountyIdTemp)
+                {
+                    selectedCounty = county;
+                }
                 counties.Add(county);
             });
             

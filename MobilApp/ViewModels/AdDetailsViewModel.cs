@@ -184,8 +184,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             
             advertisement = query["selectedAd"] as AdsModel;
             OnPropertyChanged(nameof(advertisement));
-            getOwnerInfo();
-            //getLocalUserInfo();
+            getOwnerInfo();            
             
 
         }

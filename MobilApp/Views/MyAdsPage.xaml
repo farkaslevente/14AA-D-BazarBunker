@@ -55,7 +55,8 @@
                                    Grid.Column="2"
                                    FontSize="13"/>
                                 <Border Grid.Column="3" StrokeShape="RoundRectangle 5">
-                                    <ImageButton                                         
+                                    <ImageButton
+                                        x:Name="BTNedit"
                                         Grid.Column="3" 
                                         Source="edit.svg"
                                         BackgroundColor="LightGreen"
@@ -64,7 +65,8 @@
                                         />
                                 </Border>
                                 <Border Grid.Column="3" Grid.Row="2" StrokeShape="RoundRectangle 5">
-                                    <ImageButton                                                
+                                    <ImageButton 
+                                        x:Name="BTNdelete"
                                         BackgroundColor="Red"
                                         Source="delete.svg"
                                         Command="{Binding Source={x:Reference Name=CPMyAds}, Path=BindingContext.deleteCommand}"
@@ -82,6 +84,7 @@
                 Text="Új hirdetés" 
                 Clicked="BTNNewAd_Clicked"
                 MaximumWidthRequest="200"/>
+            <!--<ImageButton x:Name="BTNEditVis" Source="editvisibility.svg" Grid.Column="2" Grid.Row="1" Clicked="BTNEditVis_Clicked"/>-->
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="3"
               ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">

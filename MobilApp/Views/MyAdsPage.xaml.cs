@@ -53,5 +53,10 @@ public partial class MyAdsPage : ContentPage
     private async void BTNFav_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(FavPage));
-    }   
+    }
+
+    private void BTNEditVis_Clicked(object sender, EventArgs e)
+    {
+        
+    }
 }
