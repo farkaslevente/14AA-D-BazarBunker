@@ -84,7 +84,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     OnPropertyChanged(favoriteVisibility.ToString());
                     advertisement.isFav = true;
                     advertisement.isFavInvers = false;
-                    getUserInfo();
+                    getOwnerInfo();
                 }
             });
 
@@ -123,7 +123,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     OnPropertyChanged(favoriteVisibility.ToString());
                     advertisement.isFav = false;
                     advertisement.isFavInvers = true;
-                    getUserInfo();
+                    getOwnerInfo();
                 }
                 
             });            
@@ -168,13 +168,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
             }            
         }
 
-        private async void getUserInfo()
-        {            
-            adOwner = await DataService.getProfileById(advertisement.tulajId);
-            if (adOwner.favourites.IsNullOrEmpty())
-            {
-                adOwner.favourites = "0+";
-            }
+        private async void getOwnerInfo()
+        {
+            adOwner = await DataService.getProfileById(advertisement.tulajId);                       
+                if (adOwner.favourites.IsNullOrEmpty() || adOwner.favourites == "0")
+                {
+                    adOwner.favourites = "0+";
+                }
+            
+            getLocalUserInfo();
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -182,8 +184,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
             
             advertisement = query["selectedAd"] as AdsModel;
             OnPropertyChanged(nameof(advertisement));
-            getUserInfo();
-            getLocalUserInfo();
+            getOwnerInfo();
+            //getLocalUserInfo();
             
 
         }
@@ -194,8 +196,13 @@ namespace MobilApp_Szakdolgozat.ViewModels
             if (LoggedIn != null)
             {
                 int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
-                await SecureStorage.SetAsync("userFavorites", localUser.favourites);
+                localUser = await DataService.getProfileById(uId);                
+                if (localUser.favourites.IsNullOrEmpty() || localUser.favourites == "0")
+                {
+                    localUser.favourites = "0+";
+                }
                 favorites = localUser.favourites;
+                await SecureStorage.SetAsync("userFavorites", localUser.favourites);
                 startFavs();
             }
             else
