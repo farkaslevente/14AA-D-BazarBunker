@@ -4,9 +4,11 @@ import adservice from './../Services/adservice';
 import Modal from 'react-modal';
 import Select from 'react-select';
 import './CSS/OwnAdsPage.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const OwnAdsPage = () => {
     const userId = localStorage.getItem('userId');
+    const navigate = useNavigate();
     const [userAds, setUserAds] = useState([]);
     const [error, setError] = useState(null);
     const [selectedAdId, setSelectedAdId] = useState(null);
@@ -164,8 +166,6 @@ export const OwnAdsPage = () => {
         }
     };
 
-
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -185,7 +185,7 @@ export const OwnAdsPage = () => {
                     <tbody>
                         {userAds.map(ad => (
                             <tr key={ad.id}>
-                                <td>{ad.nev}</td>
+                                <td><Link to={`/hirdetes/${ad.id}`} style={{color: 'black'}}>{ad.nev}</Link></td>
                                 <td>{new Date(ad.datum).toLocaleDateString()}</td>
                                 <td>
                                     <button onClick={() => handleEdit(ad.id)}>Szerkesztés</button>

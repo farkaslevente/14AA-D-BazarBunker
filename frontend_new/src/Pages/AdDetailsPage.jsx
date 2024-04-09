@@ -7,6 +7,7 @@ import axios from 'axios';
 
 export const AdDetailsPage = () => {
     const { id } = useParams();
+    const userId = localStorage.getItem('userId');
     const adId = parseInt(id);
     const [ad, setAd] = useState(null);
     const [imageUrls, setImageUrls] = useState([]);
@@ -112,7 +113,7 @@ export const AdDetailsPage = () => {
                     <label htmlFor="description">Leírás:</label>
                     <p id="description">{ad ? ad.leiras : ''}</p>
 
-                    {isLoggedIn && (
+                    {isLoggedIn && ad && advertiser && advertiser.id !== userId && (
                         <>
                             <label htmlFor="favorite" style={{ marginRight: '10px' }}>Hozzáadás a kedvencekhez: </label>
                             <input type="checkbox" name="favorite" id="favorite" checked={isFavorite} onChange={handleFavoriteToggle} />
