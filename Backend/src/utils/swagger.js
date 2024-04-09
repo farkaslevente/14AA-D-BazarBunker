@@ -1,6 +1,12 @@
 const swaggerJsdoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
-const { router } = require('../routes/indexRouter')
+
+
+//    .▄▄ · ▄▄▌ ▐ ▄▌ ▄▄▄·  ▄▄ •  ▄▄ • ▄▄▄ .▄▄▄  
+//    ▐█ ▀. ██· █▌▐█▐█ ▀█ ▐█ ▀ ▪▐█ ▀ ▪▀▄.▀·▀▄ █·
+//    ▄▀▀▀█▄██▪▐█▐▐▌▄█▀▀█ ▄█ ▀█▄▄█ ▀█▄▐▀▀▪▄▐▀▀▄ 
+//    ▐█▄▪▐█▐█▌██▐█▌▐█ ▪▐▌▐█▄▪▐█▐█▄▪▐█▐█▄▄▌▐█•█▌
+//    ▀▀▀▀  ▀▀▀▀ ▀▪ ▀  ▀ ·▀▀▀▀ ·▀▀▀▀  ▀▀▀ .▀  ▀
+
 
 const options = {
     definition: {
@@ -13,8 +19,9 @@ const options = {
             url: 'http://localhost:9000'
         }]
     },
-    apis: ["../routes/indexRouter.js"]
+    apis: ['./src/routes*.js']
 }
 
 const swaggerSpec = swaggerJsdoc(options)
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+module.exports = swaggerSpec;
