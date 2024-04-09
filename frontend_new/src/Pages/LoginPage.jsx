@@ -34,6 +34,7 @@ export const LoginPage = () => {
                 localStorage.setItem('userPhone', userPhone);
                 localStorage.setItem('userPPic', userPPic);
                 localStorage.setItem('userRole', userRole);
+                localStorage.setItem('userEmail', authEmail);
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
             }
             if (resp.data) {
@@ -52,10 +53,10 @@ export const LoginPage = () => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="login-fields">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={email} onChange={(e) => setEmail(e.target.value)} />
 
                         <label htmlFor="password">Jelszó</label>
-                        <input type="password" id='password' autoComplete='off' required placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input className='rounded' type="password" id='password' autoComplete='off' required placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     {error && <div className="errors">{error}</div>}
                     <div>

@@ -13,12 +13,14 @@ import { AllAdsPage } from './Pages/AllAdsPage';
 import { NewAdPage } from './Pages/NewAdPage';
 import { AdDetailsPage } from './Pages/AdDetailsPage';
 import { RegisterPage } from './Pages/RegisterPage';
-import { DataRegisterPage } from './Pages/DataRegisterPage';
 import { ProfilePage } from './Pages/ProfilePage';
 import { OwnAdsPage } from './Pages/OwnAdsPage';
 import { PasswordResetPage } from './Pages/PasswordResetPage';
 import { SupportPage } from './Pages/SupportPage';
 import { ProfilePicSelect } from './Pages/ProfilePicSelect';
+import { ResetPasswordLogin } from './Pages/ResetPasswordLogin';
+import { NewPasswordPage } from './Pages/NewPasswordPage';
+
 import { ADMINPAGE } from './Pages/ADMINPAGE';
 
 function App() {
@@ -32,9 +34,10 @@ function App() {
           <Route path='/' element={<WelcomePage/>} />
           <Route path='/bejelentkezes' element={<LoginPage />} />
           <Route path='/regisztracio' element={<RegisterPage />} />
-          <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
 
-          <Route path='/adatregisztracio' element={<DataRegisterPage />} />
+          <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
+          <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin/>} />
+          <Route path='/ujjelszo' element={<NewPasswordPage/>} />
 
           <Route path='/hirdetesek' element={<AllAdsPage />}/>
           <Route path='/hirdetes/:id' element={<AdDetailsPage />} />

@@ -121,7 +121,7 @@ export const NewAdPage = () => {
 
             //console.log('Ad posted successfully!');
             //console.log('Images uploaded', response.data);
-            alert("Sikeres közlés!");
+            alert("Sikeres közlés! Saját hirdetéseit megtekintheti a profilján!");
             navigate('/hirdetesek');
         } catch (error) {
             //console.error('Error posting ad:', error);
@@ -138,7 +138,7 @@ export const NewAdPage = () => {
                 <form className='newadform' onSubmit={handleSubmit}>
                     <div className="data1">
                         <label htmlFor="title">Hirdetés megnevezése:</label>
-                        <input type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{textAlign: 'center'}}/>
+                        <input className='rounded' type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{textAlign: 'center', border: '1px solid gray'}}/>
                         <label htmlFor="county">Hirdetés vármegye:</label>
                         <Select
                             value={selectedCounty}
@@ -207,10 +207,11 @@ export const NewAdPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={10} style={{textAlign: 'center'}}/>
+                        <input className='rounded' type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={10} style={{textAlign: 'center', border: '1px solid gray'}}/>
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
+                            className='rounded'
                             name="description"
                             id="description"
                             rows="4"
@@ -232,6 +233,7 @@ export const NewAdPage = () => {
                             on
                             multiple
                             max={6}
+                            style={{border: '1px solid gray'}}
                             required
                         />
                         <button type='submit' id='formButton' style={{margin: 'auto', height: 'fit-content'}}>Hirdetés közzététele</button>

@@ -31,6 +31,11 @@ export const RegisterPage = () => {
         }
     };
 
+    const handleLocationChange = (e) => {
+        const capitalizedValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase();
+        setLocation(capitalizedValue);
+    };
+
     return (
         <div className="">
             <div className='registerpage'>
@@ -41,7 +46,7 @@ export const RegisterPage = () => {
 
                             <label htmlFor='name' className='form-label'>Felhasználónév:</label>
                             <input type='text' required className='form-input' id='name' placeholder='Felhasználónév (5-25 karakter)'
-                                value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' minLength={5} maxLength={25}/>
+                                value={name} onChange={(e) => setName(e.target.value)} autoComplete='off' minLength={5} maxLength={25} />
 
                             <label htmlFor='email' className='form-label'>Email:</label>
                             <input type='email' required className='form-input' id='email' placeholder='email@email.com'
@@ -49,22 +54,22 @@ export const RegisterPage = () => {
 
                             <label htmlFor='password' className='form-label'>Jelszó:</label>
                             <input type='password' required className='form-input' id='password' placeholder='Jelszó (8-25 karakter)'
-                                value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' minLength={8} maxLength={25}/>
+                                value={password} onChange={(e) => setPassword(e.target.value)} autoComplete='off' minLength={8} maxLength={25} />
 
                             <label htmlFor='location' className='form-label'>Település:</label>
-                            <input type='location' required className='form-input' id='location' placeholder='Visegrád'
-                                value={location} onChange={(e) => setLocation(e.target.value)} autoComplete='off' />
+                            <input type='text' required className='form-input toupper' id='location' placeholder='Visegrád'
+                                value={location} onChange={handleLocationChange} autoComplete='off'/>
 
                             <label htmlFor='phone' className='form-label'>Telefonszám:</label>
                             <input type='tel' required className='form-input' id='phone' placeholder='06309418328'
-                                value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' minLength={11} maxLength={11}/>
+                                value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' minLength={11} maxLength={11} />
 
                             {/* <label htmlFor='email' className='form-label'>Vármegye:</label>
                                 <input type='email' required className='form-input' id='email' placeholder='email@email.com'
                                     value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off'/> */}
                         </div>
                         <div className="">
-                            <button type='submit' className='btn rounded' style={{border: '1px solid black'}}>Regisztráció</button>
+                            <button type='submit' className='btn rounded' style={{ border: '1px solid black' }}>Regisztráció</button>
                         </div>
                         <div className="">
                             <p className="register-signup">Már van fiókja? <a style={{ textDecoration: 'none' }} href='/bejelentkezes'>Jelentkezzen be!</a></p>
