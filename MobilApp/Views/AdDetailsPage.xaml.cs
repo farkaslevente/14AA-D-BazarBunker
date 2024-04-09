@@ -29,7 +29,7 @@ public partial class AdDetailsPage : ContentPage
         await contact.TranslateTo(0, 300, 500);
     }
 
-    private async void BTNremoveFromFavs_Clicked(object sender, EventArgs e)
+    private void BTNremoveFromFavs_Clicked(object sender, EventArgs e)
     {
         if (!userName.IsNullOrEmpty())
         {
@@ -40,7 +40,7 @@ public partial class AdDetailsPage : ContentPage
         }
     }
 
-    private async void BTNadToFavs_Clicked(object sender, EventArgs e)
+    private void BTNadToFavs_Clicked(object sender, EventArgs e)
     {
         if (!userName.IsNullOrEmpty())
         {

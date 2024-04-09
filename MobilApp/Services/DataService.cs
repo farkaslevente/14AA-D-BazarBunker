@@ -122,11 +122,7 @@ namespace MobilApp_Szakdolgozat.Services
         public static async Task<IEnumerable<CountyModel>> getCounties()
         {
             using (var client = new HttpClient())
-            {                
-                string uToken = await SecureStorage.GetAsync("userToken");
-                string token = await SecureStorage.GetAsync("userToken");
-                client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
+            {                                                
                 client.BaseAddress = new Uri(url);
                 var uri = "/counties";
                 var result = await client.GetStringAsync(uri);
@@ -139,9 +135,9 @@ namespace MobilApp_Szakdolgozat.Services
         {
             using (var client = new HttpClient())
             {
-                string token = await SecureStorage.GetAsync("userToken");
-                client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
+                //string token = await SecureStorage.GetAsync("userToken");
+                //client.DefaultRequestHeaders.Authorization =
+                //new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
                 var uri = "/settlements";
                 var result = await client.GetStringAsync(uri);

@@ -74,7 +74,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                             await SecureStorage.SetAsync("isedited", true.ToString());
                             string jsonContent = JsonConvert.SerializeObject(ad);
                             await SecureStorage.SetAsync("jsonContent", jsonContent);
-                            Shell.Current.ShowPopup(new PopUpAdEditorPage());
+                            Shell.Current.ShowPopup(new PopUpAdEditorPage(ad));
                         }
                     }
                 }
