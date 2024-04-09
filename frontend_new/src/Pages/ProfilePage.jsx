@@ -68,8 +68,12 @@ export const ProfilePage = () => {
             };
             await axios.put(`${process.env.REACT_APP_LOCAL}/users/patch`, editedUser, { headers });
             setUser(editedUser);
+            localStorage.setItem('userName', editedUser.name);
+            localStorage.setItem('userLocation', editedUser.location);
+            localStorage.setItem('userPhone', editedUser.phone);
             setEditMode(false);
             alert('User data saved successfully!');
+            window.location.reload();
         } catch (error) {
             console.error('Error saving user data:', error);
             alert('Failed to save user data. Please try again.');
@@ -128,11 +132,7 @@ export const ProfilePage = () => {
                             </li>
                             <li>
                                 <label htmlFor="email">Email cím:</label>
-                                {editMode ? (
-                                    <input type="email" id="email" name="email" value={editedUser.email} onChange={handleInputChange} required />
-                                ) : (
-                                    <p style={{ fontStyle: 'italic' }}>{user.email}</p>
-                                )}
+                                <p style={{ fontStyle: 'italic' }}>{user.email}</p>
                             </li>
                             <li>
                                 <label htmlFor="location">Hely:</label>
@@ -193,13 +193,13 @@ export const ProfilePage = () => {
                 ) : (
                     <ul>
                         {favoriteAds.map((adId, index) => (
-                            <li key={index} style={{marginBottom: '10px'}}>
-                                <Link onClick={() => handleFavoriteClick(adId)} style={{color: 'gray', cursor: 'pointer', fontSize: '20px'}}>Hirdetés/{index === favoriteAds.length - 1 ? adId : `${adId}`}</Link>
+                            <li key={index} style={{ marginBottom: '10px' }}>
+                                <Link onClick={() => handleFavoriteClick(adId)} style={{ color: 'gray', cursor: 'pointer', fontSize: '20px' }}>Hirdetés/{index === favoriteAds.length - 1 ? adId : `${adId}`}</Link>
                             </li>
                         ))}
                     </ul>
                 )}
-                <div style={{textAlign: 'center'}}><button onClick={handleFavoriteModalClose} style={{background: 'red', border: '1px solid black', margin: 'auto', marginTop: '20px', width: '100px'}}>Bezárás</button></div>
+                <div style={{ textAlign: 'center' }}><button onClick={handleFavoriteModalClose} style={{ background: 'red', border: '1px solid black', margin: 'auto', marginTop: '20px', width: '100px' }}>Bezárás</button></div>
             </Modal>
             {/* Delete modal */}
             <Modal
@@ -220,7 +220,7 @@ export const ProfilePage = () => {
                     },
                 }}
             >
-                <h2>Biztosan törölni szeretné a felhasználót?</h2>
+                <h2>Biztosan törölni szeretné a saját felhasználóját??</h2>
                 <p>Ha igen, akkor hirdetéseit is törölni fogjuk!</p>
                 <button onClick={confirmDelete} style={{ background: 'red' }}>Igen</button>
                 <button onClick={cancelDelete} style={{ background: 'blue' }}>Mégse</button>

@@ -52,7 +52,7 @@ export const Navbar = () => {
                 <div className='loggedInUser'>
                     <div className="loggedIn">
                         <div className='loggedIndata' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '10px', marginLeft: '10px'}}>
-                            <h5>Bejelentkezve:<strong><Link style={{ color: 'black' }} to='/profil'>{user.name}</Link></strong></h5>
+                            <h5>Bejelentkezve:<strong><Link style={{ color: 'black' }} to='/profil'>{localStorage.getItem('userName')}</Link></strong></h5>
                             <img className='userPPic' src={localStorage.getItem('userPPic')} alt="Profilkep" />
                         </div>
                         <div>
