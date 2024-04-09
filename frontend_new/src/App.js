@@ -19,7 +19,6 @@ import { OwnAdsPage } from './Pages/OwnAdsPage';
 import { PasswordResetPage } from './Pages/PasswordResetPage';
 import { SupportPage } from './Pages/SupportPage';
 import { ProfilePicSelect } from './Pages/ProfilePicSelect';
-import { EditAdPage } from './Pages/EditAdPage';
 import { ADMINPAGE } from './Pages/ADMINPAGE';
 
 function App() {
@@ -42,7 +41,6 @@ function App() {
 
           <Route path='/ujhirdetes' element={<NewAdPage />} />
           <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
-          <Route path='/szerkesztes/:id' element={<EditAdPage/>} />
 
           <Route path='/profil' element={<ProfilePage />} />
           <Route path='/profilkepek' element={<ProfilePicSelect />} />
