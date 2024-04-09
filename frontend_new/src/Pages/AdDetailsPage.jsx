@@ -12,7 +12,12 @@ export const AdDetailsPage = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [advertiser, setAdvertiser] = useState(null);
     const [formattedDate, setFormattedDate] = useState('');
+    const [isFavorite, setIsFavorite] = useState(false);
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const authToken = localStorage.getItem('authToken');
+    const headers = {
+        'Authorization': `Bearer ${authToken}`
+    };
 
     useEffect(() => {
         const fetchAdDetails = async () => {
@@ -45,9 +50,37 @@ export const AdDetailsPage = () => {
             }
         };
 
+        const fetchUserData = async () => {
+            try {
+                const userId = localStorage.getItem('userId');
+                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${userId}`, { headers });
+                const userFavorites = response.data.favourites.split(' + ').filter(id => id !== '').map(id => parseInt(id));
+                setIsFavorite(userFavorites.includes(adId));
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
         fetchAdDetails();
         fetchImages();
+        fetchUserData();
     }, [adId]);
+
+    const handleFavoriteToggle = async () => {
+        try {
+            if (isFavorite) {
+                // Remove from favorites
+                await axios.post(`${process.env.REACT_APP_LOCAL}/removefavourite`, { adId }, { headers });
+            } else {
+                // Add to favorites
+                await axios.post(`${process.env.REACT_APP_LOCAL}/addfavourite`, { adId }, { headers });
+            }
+            // Toggle favorite status
+            setIsFavorite(!isFavorite);
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
+        }
+    };
 
     return (
         <div className='addetailspage'>
@@ -82,7 +115,7 @@ export const AdDetailsPage = () => {
                     {isLoggedIn && (
                         <>
                             <label htmlFor="favorite" style={{ marginRight: '10px' }}>Hozzáadás a kedvencekhez: </label>
-                            <input type="checkbox" name="favorite" id="favorite" />
+                            <input type="checkbox" name="favorite" id="favorite" checked={isFavorite} onChange={handleFavoriteToggle} />
                         </>
                     )}
                 </div>

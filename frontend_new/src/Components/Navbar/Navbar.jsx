@@ -3,6 +3,7 @@ import './Navbar.css'
 import logo from '../Assets/bunker.png'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
     const [menu, setMenu] = useState("hirdetes");
@@ -11,6 +12,8 @@ export const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     const [user, setUser] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const authUser = JSON.parse(localStorage.getItem('authUser'));
@@ -26,8 +29,9 @@ export const Navbar = () => {
     }, [isLoggedIn]);
 
     function handleLogout() {
-        localStorage.clear()
+        localStorage.clear();
         localStorage.setItem('isLoggedIn', false);
+        navigate('/');
         window.location.reload();
     }
 

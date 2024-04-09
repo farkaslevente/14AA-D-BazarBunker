@@ -25,7 +25,6 @@ export const LoginPage = () => {
             const userPhone = decoded.payload.phone;
             const userPPic = decoded.payload.pPic;
             const userRole = decoded.payload.role;
-            const userFavourites = decoded.payload.favourites;
             if (authEmail !== '') {
                 localStorage.setItem('isLoggedIn', true);
                 localStorage.setItem('authToken', token);
@@ -34,7 +33,6 @@ export const LoginPage = () => {
                 localStorage.setItem('userLocation', userLocation);
                 localStorage.setItem('userPhone', userPhone);
                 localStorage.setItem('userPPic', userPPic);
-                localStorage.setItem('userFavourites', userFavourites);
                 localStorage.setItem('userRole', userRole);
                 localStorage.setItem('authUser', JSON.stringify(decoded.payload));
             }

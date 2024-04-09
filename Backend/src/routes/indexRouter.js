@@ -8,7 +8,11 @@ const { emailController } = require('../controllers/email.controller')
 const { uploadController } = require('../controllers/upload.controller')
 const { adController } = require('../controllers/ad.controller')
 const router = express.Router();
+const spec = require('../utils/swagger')
+const swaggerUi = require('swagger-ui-express');
 
+router.use('/api-docs', swaggerUi.serve);
+router.get('/api-docs', swaggerUi.setup(spec)); 
 
     //• ▌ ▄ ·. ▄• ▄▌▄▄▌  ▄▄▄▄▄▄▄▄ .▄▄▄  
     //·██ ▐███▪█▪██▌██•  •██  ▀▄.▀·▀▄ █·
@@ -26,6 +30,19 @@ const storage = multer.diskStorage({
     }
   })
 const upload = multer({storage: storage}).array('file', 6)
+
+/**
+ * @swagger
+ * paths:
+ * /settlements:
+ *   get:
+ *     summary: Things working
+ *     description: Things workin big time
+ *     responses:
+ *       200:
+ *         description: Whings torking
+ */
+
 
         //▄▄▄        ▄• ▄▌▄▄▄▄▄▄▄▄ ..▄▄ · 
         //▀▄ █·▪     █▪██▌•██  ▀▄.▀·▐█ ▀. 
@@ -253,6 +270,8 @@ router.post('/authorizereset', async function (req,res) {
         console.error(err.message)
     }
 })
+
+
 
 
 module.exports = {
