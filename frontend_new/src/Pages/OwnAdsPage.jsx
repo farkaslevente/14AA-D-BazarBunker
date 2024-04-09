@@ -115,27 +115,28 @@ export const OwnAdsPage = () => {
 
     const handleSubmit = async () => {
         try {
-            const requestBody = {
+            // Ensure that selectedCountyId has the correct ID of the county
+            const selectedCountyObject = counties.find(county => county.value === selectedCounty.value);
+            const countyId = selectedCountyObject ? selectedCountyObject.id : '';
+    
+            await axios.post(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
                 name: editedAd.nev,
                 description: editedAd.leiras,
-                category: selectedCategory.value, // Assuming selectedCategory contains the selected option object
+                category: selectedCategory.value,
                 price: editedAd.ar,
-                countyId: selectedCountyId,
-                settlement: selectedSettlement.value, // Assuming selectedSettlement contains the selected option object
-            };
-            console.log(requestBody);
-    
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, requestBody, {
+                countyId: countyId, // Use the correct county ID
+                settlement: selectedSettlement.value
+            }, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
                     'Content-Type': 'application/json'
                 }
             });
     
-            // Optionally, you can handle success actions here, such as showing a success message or redirecting the user
+            // Handle success
         } catch (error) {
-            console.error('Error submitting form:', error.message);
-            // Optionally, you can handle error actions here, such as showing an error message to the user
+            console.error('Error posting ads!', error.message);
+            // Handle error
         }
     };
     
@@ -266,7 +267,7 @@ export const OwnAdsPage = () => {
                 }}
             >
                 <h1>Szerkesztés</h1>
-                <form className='newadform' onSubmit={handleSubmit}>
+                <form className='editadform' onSubmit={handleSubmit}>
                     <div className="data1">
                         <label htmlFor="title">Hirdetés megnevezése:</label>
                         <input type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{ textAlign: 'center' }} value={editedAd ? editedAd.nev : ''} onChange={(e) => setEditedAd({ ...editedAd, nev: e.target.value })} />
@@ -354,7 +355,8 @@ export const OwnAdsPage = () => {
                             placeholder='Rövid leírás: (maximum 250 karakter)'
                             maxLength={250}
                         ></textarea>
-                        <button type='submit' id='formButton' style={{ margin: 'auto', height: 'fit-content' }}>Mentés</button>
+                        <button type='submit' id='formButton' style={{ margin: 'auto', height: 'fit-content', marginTop: '10px' }}>Mentés</button>
+                        <p>A feltöltött képek szerkesztése jelenleg nem lehetséges!</p>
                     </div>
                 </form>
             </Modal>
