@@ -17,7 +17,7 @@ export const NewPasswordPage = () => {
         try {
             const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/newpassword`, { password: password }, { headers });
                 alert("Jelszó megváltoztatva!");
-                navigate("/");
+                navigate("/profil");
         } catch (error) {
             console.error(error);
         }

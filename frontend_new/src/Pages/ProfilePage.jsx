@@ -151,6 +151,9 @@ export const ProfilePage = () => {
                                 )}
                             </li>
                         </ul>
+                        <div className="">
+                            {editMode && <button onClick={() => (handleSave, navigate('/ujjelszo'))}>Jelszó megváltoztatása</button>}
+                        </div>
                         <div className="editbutton">
                             {editMode ? (
                                 <>
