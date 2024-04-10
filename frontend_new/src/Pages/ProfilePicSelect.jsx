@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProfilePicCard from '../Components/ProfilePicCard/ProfilePicCard';
-import Modal from 'react-modal'; // Import React_Modal from react-modal
+import Modal from 'react-modal';
 import './CSS/ProfilePicSelect.css';
 import { useNavigate } from 'react-router-dom';
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+Modal.setAppElement('#root');
 
 export const ProfilePicSelect = () => {
     const [pictures, setPictures] = useState([]);
@@ -69,7 +69,7 @@ export const ProfilePicSelect = () => {
 
     return (
         <div className="profilepic-select">
-            <h1 className="text-center">Select Profile Picture</h1>
+            <h1 className="text-center">Válasszon profilképet!</h1>
             <div className="picture-options">
                 {pictures.map((picture, index) => (
                     <ProfilePicCard key={index} url={picture.url} onClick={() => openModal(picture.url)} /> 

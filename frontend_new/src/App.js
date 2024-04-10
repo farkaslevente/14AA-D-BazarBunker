@@ -22,6 +22,7 @@ import { ResetPasswordLogin } from './Pages/ResetPasswordLogin';
 import { NewPasswordPage } from './Pages/NewPasswordPage';
 
 import { ADMINPAGE } from './Pages/ADMINPAGE';
+import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
   return (
@@ -30,26 +31,28 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path='/adminpage' element={<ADMINPAGE/>} />
-          <Route path='/' element={<WelcomePage/>} />
+          <Route path='/' element={<WelcomePage />} />
           <Route path='/bejelentkezes' element={<LoginPage />} />
           <Route path='/regisztracio' element={<RegisterPage />} />
 
           <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
-          <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin/>} />
-          <Route path='/ujjelszo' element={<NewPasswordPage/>} />
+          <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin />} />
+          <Route path='/ujjelszo' element={<NewPasswordPage />} />
 
-          <Route path='/hirdetesek' element={<AllAdsPage />}/>
+          <Route path='/hirdetesek' element={<AllAdsPage />} />
           <Route path='/hirdetes/:id' element={<AdDetailsPage />} />
 
-          <Route path='/ujhirdetes' element={<NewAdPage />} />
-          <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path='/ujhirdetes' element={<NewAdPage />} />
+            <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
 
-          <Route path='/profil' element={<ProfilePage />} />
-          <Route path='/profilkepek' element={<ProfilePicSelect />} />
+            <Route path='/profil' element={<ProfilePage />} />
+            <Route path='/profilkepek' element={<ProfilePicSelect />} />
 
-          <Route path='/support' element={<SupportPage/>} />
+            <Route path='/support' element={<SupportPage />} />
 
+            <Route path='/adminpage' element={<ADMINPAGE />} />
+          </Route>
         </Routes>
 
         <Footer />

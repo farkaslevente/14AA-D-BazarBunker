@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import './CSS/ProfilePage.css';
 
@@ -197,14 +197,13 @@ export const ProfilePage = () => {
                     <ul>
                         {favoriteAds.map((adId, index) => (
                             <li key={index} style={{ marginBottom: '10px' }}>
-                                <Link onClick={() => handleFavoriteClick(adId)} style={{ color: 'gray', cursor: 'pointer', fontSize: '20px' }}>Hirdetés/{index === favoriteAds.length - 1 ? adId : `${adId}`}</Link>
+                                <a onClick={() => handleFavoriteClick(adId)} style={{ color: 'gray', cursor: 'pointer', fontSize: '20px' }}>hirdetes/{index === favoriteAds.length - 1 ? adId : `${adId}`}</a>
                             </li>
                         ))}
                     </ul>
                 )}
                 <div style={{ textAlign: 'center' }}><button onClick={handleFavoriteModalClose} style={{ background: 'red', border: '1px solid black', margin: 'auto', marginTop: '20px', width: '100px' }}>Bezárás</button></div>
             </Modal>
-            {/* Delete modal */}
             <Modal
                 isOpen={isDeleteModalOpen}
                 onRequestClose={cancelDelete}
