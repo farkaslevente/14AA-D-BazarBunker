@@ -60,9 +60,9 @@
 .addetailsbutton {
     max-height: 80px;
     width: 200px;
-    background: pink;
-    color: black;
-    border: 1px solid gray;
+    background: #6D71D6;
+    color: white;
+    border: 1px solid black;
     cursor: pointer;
 }
 

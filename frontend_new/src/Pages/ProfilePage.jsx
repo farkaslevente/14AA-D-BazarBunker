@@ -119,7 +119,7 @@ export const ProfilePage = () => {
                 </div>
                 <div className="profile-content">
                     <img src={user.pPic} alt="Profile Image" className="profile-image" />
-                    {!editMode && <button onClick={() => navigate('/profilkepek')} className="profile-image-button">Válassz másik képet</button>}
+                    {!editMode && <button onClick={() => navigate('/profilkepek')} className="profile-image-button" style={{background: '#B27AFA', border: '1px solid black', color: 'black',}}>Válassz másik képet</button>}
                     <div className="profile-details">
                         <ul>
                             <li>
@@ -152,27 +152,27 @@ export const ProfilePage = () => {
                             </li>
                         </ul>
                         <div style={{textAlign: 'center'}}>
-                            {editMode && <button onClick={() => (handleSave, navigate('/ujjelszo'))} style={{marginBottom: '20px', background: 'purple', border: '1px solid black'}}>Jelszó megváltoztatása</button>}
+                            {editMode && <button onClick={() => (handleSave, navigate('/ujjelszo'))} style={{marginBottom: '20px', background: '#B27AFA', color: 'white', border: '1px solid black'}}>Jelszó megváltoztatása</button>}
                         </div>
                         <div className="editbutton">
                             {editMode ? (
                                 <>
                                     <div style={{textAlign: 'center'}}>
-                                        <button onClick={handleSave} style={{marginRight: '5px'}}>Mentés</button>
-                                        <button onClick={handleCancel} style={{background: 'red', color: 'black', border: '1px solid black', marginLeft: '5px'}}>Mégse</button>
+                                        <button onClick={handleSave} style={{background: '#B9EDBF', border: '1px solid black', color: 'black', marginRight: '5px'}}>Mentés</button>
+                                        <button onClick={handleCancel} style={{background: '#F78181', color: 'black', border: '1px solid black', marginLeft: '5px'}}>Mégse</button>
                                     </div>
                                 </>
                             ) : (
                                 <>
                                     <div className="button-group1">
-                                        <button onClick={handleEdit} style={{marginRight: '5px'}}>Adatok szerkesztése</button>
-                                        {!editMode && <button style={{ background: 'cyan', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
+                                        <button onClick={handleEdit} style={{background: '#81F795', border: '1px solid black', color: 'black', marginRight: '5px'}}>Adatok szerkesztése</button>
+                                        {!editMode && <button style={{ background: '#6FC0E8', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
                                     </div>
                                 </>
                             )}
                             <div className="button-group2" style={{marginTop: '20px'}}>
-                                {!editMode && <button style={{ background: 'green', color: 'black', border: '1px solid black', marginRight: '5px' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
-                                {!editMode && <button style={{ background: 'red', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={handleDelete}>Felhasználó törlése</button>}
+                                {!editMode && <button style={{ background: '#DE7AC5', color: 'black', border: '1px solid black', marginRight: '5px' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
+                                {!editMode && <button style={{ background: '#F78181', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={handleDelete}>Felhasználó törlése</button>}
                             </div>
                         </div>
                     </div>

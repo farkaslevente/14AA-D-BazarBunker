@@ -183,13 +183,13 @@ export const OwnAdsPage = () => {
                                 <td><Link to={`/hirdetes/${ad.id}`} style={{color: 'black'}}>{ad.nev}</Link></td>
                                 <td>{new Date(ad.datum).toLocaleDateString()}</td>
                                 <td>
-                                    <button onClick={() => handleEdit(ad.id)}>Szerkesztés</button>
+                                    <button onClick={() => handleEdit(ad.id)} style={{background: '#B9EDBF', border: '1px solid black', color: 'black'}}>Szerkesztés</button>
                                     <button
                                         onClick={() => {
                                             setSelectedAdId(ad.id);
                                             setShowDeleteConfirmation(true);
                                         }}
-                                        style={{ background: 'red', border: '1px solid black', color: 'black' }}
+                                        style={{ background: '#F78181', border: '1px solid black', color: 'black' }}
                                     >
                                         Törlés
                                     </button>

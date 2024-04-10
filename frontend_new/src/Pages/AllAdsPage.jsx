@@ -163,7 +163,7 @@ export const AllAdsPage = () => {
                 </div>
                 <div className="buttons">
                     {/* <button onClick={applyFilters}>Apply Filters</button> */}
-                    <button onClick={resetFilters}>Szűrők visszaállítása</button>
+                    <button onClick={resetFilters} style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Szűrők visszaállítása</button>
                 </div>
             </div>
             <div className="alladspage-content">
