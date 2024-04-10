@@ -65,7 +65,7 @@ export const ResetPasswordLogin = () => {
                         <label htmlFor="email">Email</label>
                         <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={localStorage.getItem('tempEmail')} onChange={(e) => setEmail(e.target.value)} disabled />
                         <label htmlFor="token">Kód:</label>
-                        <input className='rounded' type="text" id='token' name='token' autoComplete='off' placeholder='8 karakteres kód' value={token} onChange={(e) => setToken(e.target.value)} />
+                        <input className='rounded' type="text" id='token' name='token' autoComplete='off' required placeholder='8 karakteres kód' value={token} onChange={(e) => setToken(e.target.value)} />
                         {error && <p style={{ fontWeight: 'bold', color: 'red' }}>{error}</p>}
                         <p><strong>Az imént küldött kód 5 percig érvényes!</strong></p>
                         <ol start={4}>

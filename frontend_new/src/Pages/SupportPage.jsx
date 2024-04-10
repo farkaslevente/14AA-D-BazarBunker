@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const SupportPage = () => {
     const [title, setTitle] = useState('');
-    const [message, setMessage] = useState('');
+    const [question, setQuestion] = useState('');
 
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +21,7 @@ export const SupportPage = () => {
             'Authorization': `Bearer ${authToken}`
         };
         try {
-            await axios.post(`${process.env.REACT_APP_LOCAL}/support`, { title: title, message: message }, { headers });
+            await axios.post(`${process.env.REACT_APP_LOCAL}/support`, { title: title, question: question }, { headers });
             setSuccessMessage("Kérdését megkaptuk, nemsokára felkeressük Önt!");
             setErrorMessage("");
             setSuccessStatus(true);
@@ -41,11 +41,11 @@ export const SupportPage = () => {
                 <h5>Tegye fel kérdését, és munkatársunk felveszi Önnel a kapcsolatot!</h5>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="support-fields">
-                        <label htmlFor="title">Tárgy:</label>
+                        <label htmlFor="title" style={{marginBottom: '10px'}}>Tárgy:</label>
                         <input className='rounded' type="text" id='title' autoComplete='off' required placeholder='Mivel kapcsolatban van kérdése?' value={title} onChange={(e) => setTitle(e.target.value)} />
 
-                        <label htmlFor="question">Kifejtés:</label>
-                        <input maxLength={200} className='rounded' type="text" id='question' autoComplete='off' required placeholder='Kérjük fejtse ki problémáját!' value={message} onChange={(e) => setMessage(e.target.value)} />
+                        <label htmlFor="question" style={{marginBottom: '10px'}}>Kifejtés:</label>
+                        <input maxLength={200} className='rounded' type="text" id='question' autoComplete='off' required placeholder='Kérjük fejtse ki problémáját!' value={question} onChange={(e) => setQuestion(e.target.value)} />
                     </div>
                     <div className="messages" style={{marginTop: '10px', textAlign: 'center'}}>
                         {successMessage && <p style={{color: 'green'}}>{successMessage}</p>}
