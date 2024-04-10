@@ -12,6 +12,7 @@ export const WelcomePage = () => {
           <p>Legyen szó színes ceruza készletről, kötelező olvasmányokról, tankönyvekről, akár íróasztalról is, itt könnyedén megtalálhatod!</p>
         </div>
         <div className="support-link">
+          <p>HÍRLEVÉL</p>
           <p><strong>Problémába ütközött? <a href='/support'>Tudjon meg többet!</a></strong></p>
         </div>
       </div>
