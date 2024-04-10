@@ -73,7 +73,7 @@ export const ResetPasswordLogin = () => {
                             <li>Bejelentkezés után változtassa meg a jelszavát!</li>
                         </ol>
                     </div>
-                    <div>
+                    <div style={{textAlign: 'center'}}>
                         {backButton && <button className='rounded' onClick={() => navigate('/elfelejtettjelszo')}>Vissza</button>}
                         <button className='rounded' type='submit'>Bejelentkezés</button>
                     </div>

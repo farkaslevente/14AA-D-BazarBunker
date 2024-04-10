@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 export const NewPasswordPage = () => {
     const [password, setPassword] = useState('');
 
+    const [nextPage, setNextPage] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -15,9 +18,9 @@ export const NewPasswordPage = () => {
             'Authorization': `Bearer ${authToken}`
         };
         try {
-            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/newpassword`, { password: password }, { headers });
-                alert("Jelszó megváltoztatva!");
-                navigate("/profil");
+            await axios.post(`${process.env.REACT_APP_LOCAL}/newpassword`, { password: password }, { headers });
+            setSuccessMessage("Jelszó megváltoztatva!");
+            setNextPage(true);
         } catch (error) {
             console.error(error);
         }
@@ -30,10 +33,14 @@ export const NewPasswordPage = () => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="newpassword-fields">
                         <label htmlFor="newpassword">Új jelszó</label>
-                        <input className='rounded' type="password" id='newpassword' autoComplete='off' required placeholder='Új jelszó' minLength={8} maxLength={25} value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input className='rounded' type="password" id='newpassword' autoComplete='off' required placeholder='Új jelszó (8-25 karakter)' minLength={8} maxLength={25} value={password} onChange={(e) => setPassword(e.target.value)} />
+                        {successMessage && <div style={{textAlign: 'center'}}>
+                            <p style={{color: 'green'}}>{successMessage}</p>
+                        </div>}
                     </div>
-                    <div>
-                        <button className='rounded' type='submit'>Új jelszó mentése</button>
+                    <div style={{textAlign: 'center'}}>
+                        {!nextPage && <button className='rounded' type='submit'>Új jelszó mentése</button>}
+                        {nextPage && <button onClick={() => navigate('/profil')}>Tovább a profilra</button>}
                     </div>
                 </form>
             </div>
