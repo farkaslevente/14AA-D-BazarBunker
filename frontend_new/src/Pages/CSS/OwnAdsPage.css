@@ -1,9 +1,10 @@
 .ownadspage {
     display: flex;
     flex-direction: column;
-    margin: 10px;
-    padding: 5px;
+    padding: 50px;
     align-items: center;
+    background-color: rgb(250, 230, 200);
+    min-height: 60vh;
 }
 
 .ownadspage-title {
@@ -21,6 +22,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
+    border: 2px solid gray;
 }
 
 th, td {
@@ -31,7 +33,11 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: lightgray;
+}
+
+td {
+    background-color: rgb(225, 225, 255);
 }
 
 button {

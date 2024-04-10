@@ -1,11 +1,17 @@
 .profilepic-select {
     padding: 20px;
+    background-color: rgb(250, 230, 200);
+    min-height: 50vh;
+    text-align: center;
 }
 
 .picture-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
 }
 
 @media (max-width: 768px) {

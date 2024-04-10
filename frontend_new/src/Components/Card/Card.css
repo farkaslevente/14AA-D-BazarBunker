@@ -1,13 +1,14 @@
 .card-container {
-    width: 80%;
+    width: 75%;
     height: fit-content;
     display: flex;
     flex-direction: row;
     margin: 0.5rem;
     padding: 10px;
-    border: 1px solid gray;
+    border: 2px solid gray;
     border-radius: 10px;
     margin-bottom: 20px;
+    background-color: rgb(225, 225, 255);
 }
 
 .card-content {

@@ -1,6 +1,7 @@
 .carousel-container {
   max-height: 600px;
   overflow: hidden;
+  background-color: rgb(225, 225, 255);
 }
 
 .carousel {

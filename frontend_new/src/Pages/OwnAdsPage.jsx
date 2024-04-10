@@ -173,7 +173,7 @@ export const OwnAdsPage = () => {
                     <thead>
                         <tr>
                             <th>Megnevezés</th>
-                            <th>Hozzáadva</th>
+                            <th>Létrehozva</th>
                             <th>Lehetőségek</th>
                         </tr>
                     </thead>

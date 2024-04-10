@@ -69,7 +69,7 @@ export const ProfilePicSelect = () => {
 
     return (
         <div className="profilepic-select">
-            <h1 className="text-center">Válasszon profilképet!</h1>
+            <h1 className="text-center">Válasszon másik profilképet!</h1>
             <div className="picture-options">
                 {pictures.map((picture, index) => (
                     <ProfilePicCard key={index} url={picture.url} onClick={() => openModal(picture.url)} /> 

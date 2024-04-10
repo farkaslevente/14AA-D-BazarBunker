@@ -1,7 +1,7 @@
 .loginpage {
     width: 100%;
     min-height: 100vh;
-    background: #fce3fe;
+    background-color: rgb(250, 230, 200);
     padding-top: 50px;
     padding-bottom: 50px;
     display: flex;
@@ -13,7 +13,8 @@
     width: 580px;
     background: white;
     padding: 40px 60px;
-    border: 1px solid gray;
+    border: 2px solid gray;
+    background-color: rgb(225, 225, 255);
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -38,7 +39,7 @@
     height: 50px;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid gray;
     border-radius: 5px;
     font-size: 16px;
 }

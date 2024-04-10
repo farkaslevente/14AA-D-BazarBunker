@@ -1,6 +1,6 @@
 .profilepage {
     width: 100%;
-    background: #fce3fe;
+    background-color: rgb(250, 230, 200);
     padding: 50px;
 }
 
@@ -11,6 +11,7 @@
     border: 2px solid gray;
     border-radius: 10px;
     background: white;
+    background-color: rgb(225, 225, 255);
 }
 
 .profile-header {

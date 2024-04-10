@@ -1,13 +1,14 @@
 .newadpage {
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
-    max-width: 1200px;
-    padding: 10px;
+    max-width: 100%px;
+    padding: 50px;
     align-items: center;
+    background-color: rgb(250, 230, 200);
 }
 
 .newadpage-title {
+    margin-top: 50px;
     font-size: 20px;
     font-weight: 600;
     display: flex;
@@ -22,6 +23,7 @@
 
 .newadform {
     width: 100%;
+    background-color: rgb(225, 225, 255);
 }
 
 .data1 {
@@ -30,7 +32,7 @@
     flex-direction: column;
     padding: 20px;
     justify-content: center;
-    border: 1px solid gray;
+    border: 2px solid gray;
     border-radius: 10px;
     width: 100%;
 }
@@ -38,6 +40,7 @@
 .data1 select {
     height: 40px;
     margin-bottom: 10px;
+    border: 2px solid gray;
     border-radius: 10px;
     text-align: center;
 }
@@ -47,7 +50,7 @@
     margin-bottom: 10px;
     width: calc(100% - 20px);
     padding: 10px;
-    border: 1px solid gray;
+    border: 2px solid gray;
     border-radius: 10px;
     box-sizing: border-box;
 }
