@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const AdDetailsCarousel = ({ imageUrls }) => {
   return (
     <div className="carousel-container">
-      <div className="carousel">
+      <div className="carousel" style={{padding: '10px'}}>
         <Carousel
           showThumbs={false}
           showStatus={false}

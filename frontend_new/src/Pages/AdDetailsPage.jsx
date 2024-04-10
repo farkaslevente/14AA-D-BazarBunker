@@ -70,13 +70,10 @@ export const AdDetailsPage = () => {
     const handleFavoriteToggle = async () => {
         try {
             if (isFavorite) {
-                // Remove from favorites
                 await axios.post(`${process.env.REACT_APP_LOCAL}/removefavourite`, { adId }, { headers });
             } else {
-                // Add to favorites
                 await axios.post(`${process.env.REACT_APP_LOCAL}/addfavourite`, { adId }, { headers });
             }
-            // Toggle favorite status
             setIsFavorite(!isFavorite);
         } catch (error) {
             console.error('Error toggling favorite:', error);

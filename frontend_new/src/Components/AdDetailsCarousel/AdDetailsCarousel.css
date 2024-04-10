@@ -4,10 +4,10 @@
 }
 
 .carousel {
-  height: 800px;
-  width: 50rem;
-  margin: auto;
-  overflow: scroll;
+  max-width: 900px;
+  max-height: fit-content;
+  margin: 20px;
+  overflow: hidden;
 }
 
 .carousel-slide {
@@ -17,10 +17,10 @@
 }
 
 .carousel-img {
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  height: auto;
   max-height: 100%;
-  height: 800px;
   border-radius: 20px;
 }
 
