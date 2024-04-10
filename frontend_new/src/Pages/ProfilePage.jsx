@@ -119,7 +119,7 @@ export const ProfilePage = () => {
                 </div>
                 <div className="profile-content">
                     <img src={user.pPic} alt="Profile Image" className="profile-image" />
-                    <button onClick={() => navigate('/profilkepek')} className="profile-image-button">Válassz másik képet</button>
+                    {!editMode && <button onClick={() => navigate('/profilkepek')} className="profile-image-button">Válassz másik képet</button>}
                     <div className="profile-details">
                         <ul>
                             <li>
@@ -151,23 +151,29 @@ export const ProfilePage = () => {
                                 )}
                             </li>
                         </ul>
-                        <div className="">
-                            {editMode && <button onClick={() => (handleSave, navigate('/ujjelszo'))}>Jelszó megváltoztatása</button>}
+                        <div style={{textAlign: 'center'}}>
+                            {editMode && <button onClick={() => (handleSave, navigate('/ujjelszo'))} style={{marginBottom: '20px', background: 'purple', border: '1px solid black'}}>Jelszó megváltoztatása</button>}
                         </div>
                         <div className="editbutton">
                             {editMode ? (
                                 <>
-                                    <button onClick={handleSave}>Mentés</button>
-                                    <button onClick={handleCancel}>Mégse</button>
+                                    <div style={{textAlign: 'center'}}>
+                                        <button onClick={handleSave} style={{marginRight: '5px'}}>Mentés</button>
+                                        <button onClick={handleCancel} style={{background: 'red', color: 'black', border: '1px solid black', marginLeft: '5px'}}>Mégse</button>
+                                    </div>
                                 </>
                             ) : (
                                 <>
-                                    <button onClick={handleEdit}>Adatok szerkesztése</button>
+                                    <div className="button-group1">
+                                        <button onClick={handleEdit}>Adatok szerkesztése</button>
+                                        {!editMode && <button style={{ background: 'cyan', color: 'black', border: '1px solid black' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
+                                    </div>
                                 </>
                             )}
-                            {!editMode && <button style={{ background: 'cyan', color: 'black', border: '1px solid black' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
-                            {!editMode && <button style={{ background: 'green', color: 'black', border: '1px solid black' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
-                            {!editMode && <button style={{ background: 'red', color: 'black', border: '1px solid black' }} onClick={handleDelete}>Felhasználó törlése</button>}
+                            <div className="button-group2" style={{marginTop: '20px'}}>
+                                {!editMode && <button style={{ background: 'green', color: 'black', border: '1px solid black' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
+                                {!editMode && <button style={{ background: 'red', color: 'black', border: '1px solid black' }} onClick={handleDelete}>Felhasználó törlése</button>}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -223,9 +229,11 @@ export const ProfilePage = () => {
                 }}
             >
                 <h2>Biztosan törölni szeretné a saját felhasználóját??</h2>
-                <p>Ha igen, akkor hirdetéseit is törölni fogjuk!</p>
-                <button onClick={confirmDelete} style={{ background: 'red' }}>Igen</button>
-                <button onClick={cancelDelete} style={{ background: 'blue' }}>Mégse</button>
+                <p>Ezzel hirdetéseit is törölni fogjuk!</p>
+                <div style={{textAlign: 'center'}}>
+                    <button onClick={confirmDelete} style={{ background: 'red', border: '1px solid black', color: 'black' }}>Igen</button>
+                    <button onClick={cancelDelete} style={{ background: 'blue' }}>Mégse</button>
+                </div>
             </Modal>
         </div>
     );
