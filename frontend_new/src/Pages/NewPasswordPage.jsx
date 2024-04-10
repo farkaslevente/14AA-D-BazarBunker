@@ -39,8 +39,8 @@ export const NewPasswordPage = () => {
                         </div>}
                     </div>
                     <div style={{textAlign: 'center'}}>
-                        {!nextPage && <button className='rounded' type='submit'>Új jelszó mentése</button>}
-                        {nextPage && <button onClick={() => navigate('/profil')}>Tovább a profilra</button>}
+                        {!nextPage && <button className='rounded' type='submit' style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Új jelszó mentése</button>}
+                        {nextPage && <button onClick={() => navigate('/profil')} style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Tovább a profilra</button>}
                     </div>
                 </form>
             </div>

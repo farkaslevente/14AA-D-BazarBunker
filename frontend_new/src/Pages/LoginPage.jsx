@@ -59,7 +59,7 @@ export const LoginPage = () => {
                     </div>
                     {error && <div className="errors" style={{marginBottom: '10px'}}>{error}</div>}
                     <div style={{textAlign: 'center'}}>
-                        <button className='rounded' type='submit'>Bejelentkezés</button>
+                        <button className='rounded' type='submit' style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Bejelentkezés</button>
                         <p className="login-signup">Még nincs fiókja? <a href='/regisztracio'>Hozzon létre egyet!</a></p>
                         <p className="login-signup"><a href='/elfelejtettjelszo'>Elfelejtett jelszó?</a></p>
                     </div>

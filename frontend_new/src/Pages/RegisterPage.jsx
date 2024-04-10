@@ -65,7 +65,7 @@ export const RegisterPage = () => {
                                 value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' minLength={11} maxLength={11} />
                         </div>
                         <div style={{textAlign: 'center'}}>
-                            <button type='submit' className='btn rounded' style={{ border: '1px solid black' }}>Regisztráció</button>
+                            <button type='submit' className='btn rounded' style={{ background: '#B27AFA', border: '1px solid black', color: 'black'}}>Regisztráció</button>
                         </div>
                         <div style={{textAlign: 'center'}}>
                             <p className="register-signup">Már van fiókja? <a style={{ textDecoration: 'none' }} href='/bejelentkezes'>Jelentkezzen be!</a></p>

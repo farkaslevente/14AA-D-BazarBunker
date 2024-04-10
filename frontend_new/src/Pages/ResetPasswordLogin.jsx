@@ -75,7 +75,7 @@ export const ResetPasswordLogin = () => {
                     </div>
                     <div style={{textAlign: 'center'}}>
                         {backButton && <button className='rounded' onClick={() => navigate('/elfelejtettjelszo')}>Vissza</button>}
-                        <button className='rounded' type='submit'>Bejelentkezés</button>
+                        <button className='rounded' type='submit' style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Bejelentkezés</button>
                     </div>
                 </form>
             </div>

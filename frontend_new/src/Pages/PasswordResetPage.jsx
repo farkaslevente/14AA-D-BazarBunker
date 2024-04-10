@@ -46,8 +46,8 @@ export const PasswordResetPage = () => {
                         <p style={{ color: 'green' }}>{message}</p>
                     </div>}
                     <div style={{textAlign: 'center'}}>
-                        {!nexPage && <button className='rounded' type='submit'>Jelszó visszaállítása</button>}
-                        {nexPage && <button onClick={() => navigate('/elfelejtettjelszobejelentkezes')}>Tovább</button>}
+                        {!nexPage && <button className='rounded' type='submit' style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Jelszó visszaállítása</button>}
+                        {nexPage && <button onClick={() => navigate('/elfelejtettjelszobejelentkezes')} style={{background: '#B27AFA', border: '1px solid black', color: 'black'}}>Tovább</button>}
                     </div>
                 </form>
             </div>
