@@ -1,16 +1,39 @@
 .welcomepage {
     text-align: center;
-    justify-content: center;
-    margin: 150px;
-    /* background-clip: url('../../../public/Images/hatter.mp4'); */
-}
-
-.title {
-    text-align: center;
-    font-size: 40px;
-}
-
-.description {
-    text-align: center;
-    font-size: larger;
-}
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .support-link {
+    margin-top: 30px;
+  }
+  
+  .support-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  
+    .description {
+      font-size: 1rem;
+    }
+  }
+  
