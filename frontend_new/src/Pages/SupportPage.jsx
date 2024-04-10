@@ -43,7 +43,7 @@ export const SupportPage = () => {
                         <input className='rounded' type="text" id='title' autoComplete='off' required placeholder='Mivel kapcsolatban van kérdése?' value={title} onChange={(e) => setTitle(e.target.value)} />
 
                         <label htmlFor="question">Kifejtés:</label>
-                        <textarea rows={6} cols={10} maxLength={200} className='rounded' type="text" id='question' autoComplete='off' required placeholder='Kérjük fejtse ki problémáját!' value={message} onChange={(e) => setMessage(e.target.value)} />
+                        <input maxLength={200} className='rounded' type="text" id='question' autoComplete='off' required placeholder='Kérjük fejtse ki problémáját!' value={message} onChange={(e) => setMessage(e.target.value)} />
                     </div>
                     <div className="messages" style={{marginTop: '10px', textAlign: 'center'}}>
                         {successMessage && <p style={{color: 'green'}}>{successMessage}</p>}
