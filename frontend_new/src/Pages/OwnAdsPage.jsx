@@ -15,7 +15,6 @@ export const OwnAdsPage = () => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editedAd, setEditedAd] = useState(null);
-    // const [adPictures, setAdPictures] = useState([]);
 
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
@@ -155,10 +154,6 @@ export const OwnAdsPage = () => {
             const adCategory = categoryOptions.find(option => option.value === adDetails.kategoria);
             setSelectedCategory(adCategory);
 
-            // const adPicturesResponse = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
-            // const adPicturesFiltered = adPicturesResponse.data.filter(filename => filename.includes(`${userId}_${adId}`));
-            // setAdPictures(adPicturesFiltered);
-
             setEditedAd(adDetails);
             setShowEditModal(true);
         } catch (error) {
@@ -262,7 +257,7 @@ export const OwnAdsPage = () => {
                 <form className='editadform' onSubmit={handleSubmit}>
                     <div className="data1">
                         <label htmlFor="title">Hirdetés megnevezése:</label>
-                        <input type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{ textAlign: 'center' }} value={editedAd ? editedAd.nev : ''} onChange={(e) => setEditedAd({ ...editedAd, nev: e.target.value })} />
+                        <input className='rounded' type="text" name='title' placeholder='pl: Ceruza (maximum 25 karakter)' required maxLength={25} style={{ textAlign: 'center', border: '1px solid gray', marginBottom: '20px' }} value={editedAd ? editedAd.nev : ''} onChange={(e) => setEditedAd({ ...editedAd, nev: e.target.value })} />
                         <label htmlFor="county">Hirdetés vármegye:</label>
                         <Select
                             defaultValue={selectedCounty}
@@ -275,7 +270,8 @@ export const OwnAdsPage = () => {
                                     ...provided,
                                     border: '1px solid gray',
                                     borderRadius: '10px',
-                                    background: 'white'
+                                    background: 'white',
+                                    marginBottom: '20px'
                                 }),
                                 menu: (provided) => ({
                                     ...provided,
@@ -298,7 +294,8 @@ export const OwnAdsPage = () => {
                                     ...provided,
                                     border: '1px solid gray',
                                     borderRadius: '10px',
-                                    background: 'white'
+                                    background: 'white',
+                                    marginBottom: '20px'
                                 }),
                                 menu: (provided) => ({
                                     ...provided,
@@ -321,7 +318,8 @@ export const OwnAdsPage = () => {
                                     ...provided,
                                     border: '1px solid gray',
                                     borderRadius: '10px',
-                                    background: 'white'
+                                    background: 'white',
+                                    marginBottom: '20px'
                                 }),
                                 menu: (provided) => ({
                                     ...provided,
@@ -333,10 +331,12 @@ export const OwnAdsPage = () => {
                             required
                         />
                         <label htmlFor="price">{'Ár (Ft):'}</label>
-                        <input type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={10} style={{ textAlign: 'center' }} value={editedAd ? editedAd.ar : ''} onChange={(e) => setEditedAd({ ...editedAd, ar: e.target.value })} />
+                        <input className='rounded' type="text" name='price' placeholder='pl: 2000' required autoComplete='off' maxLength={10} style={{ textAlign: 'center', border: '1px solid gray', marginBottom: '20px' }} value={editedAd ? editedAd.ar : ''} onChange={(e) => setEditedAd({ ...editedAd, ar: e.target.value })} />
 
                         <label htmlFor="description">Leírás:</label>
                         <textarea
+                            className='rounded'
+                            style={{marginBottom: '20px'}}
                             name="description"
                             id="description"
                             rows="4"
@@ -347,15 +347,10 @@ export const OwnAdsPage = () => {
                             placeholder='Rövid leírás: (maximum 250 karakter)'
                             maxLength={250}
                         ></textarea>
-                        <button type='submit' id='formButton' style={{ margin: 'auto', height: 'fit-content', marginTop: '10px' }}>Mentés</button>
+                        <button type='submit' id='formButton' style={{ margin: 'auto', height: 'fit-content', marginTop: '10px', marginBottom: '20px' }}>Mentés</button>
                         <p>A feltöltött képek szerkesztése jelenleg nem lehetséges!</p>
                     </div>
                 </form>
-                {/* <div className="pics">
-                    {adPictures.map((picture, index) => (
-                        <img key={index} src={adPictures} alt={`Ad Picture ${index}`} />
-                    ))}
-                </div> */}
             </Modal>
         </div>
     );

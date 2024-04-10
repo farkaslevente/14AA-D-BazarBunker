@@ -165,14 +165,14 @@ export const ProfilePage = () => {
                             ) : (
                                 <>
                                     <div className="button-group1">
-                                        <button onClick={handleEdit}>Adatok szerkesztése</button>
-                                        {!editMode && <button style={{ background: 'cyan', color: 'black', border: '1px solid black' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
+                                        <button onClick={handleEdit} style={{marginRight: '5px'}}>Adatok szerkesztése</button>
+                                        {!editMode && <button style={{ background: 'cyan', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={() => navigate('/sajathirdetesek')}>Saját hirdetések</button>}
                                     </div>
                                 </>
                             )}
                             <div className="button-group2" style={{marginTop: '20px'}}>
-                                {!editMode && <button style={{ background: 'green', color: 'black', border: '1px solid black' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
-                                {!editMode && <button style={{ background: 'red', color: 'black', border: '1px solid black' }} onClick={handleDelete}>Felhasználó törlése</button>}
+                                {!editMode && <button style={{ background: 'green', color: 'black', border: '1px solid black', marginRight: '5px' }} onClick={handleFavoriteModalOpen}>Kedvencek</button>}
+                                {!editMode && <button style={{ background: 'red', color: 'black', border: '1px solid black', marginLeft: '5px' }} onClick={handleDelete}>Felhasználó törlése</button>}
                             </div>
                         </div>
                     </div>
@@ -231,8 +231,8 @@ export const ProfilePage = () => {
                 <h2>Biztosan törölni szeretné a saját felhasználóját??</h2>
                 <p>Ezzel hirdetéseit is törölni fogjuk!</p>
                 <div style={{textAlign: 'center'}}>
-                    <button onClick={confirmDelete} style={{ background: 'red', border: '1px solid black', color: 'black' }}>Igen</button>
-                    <button onClick={cancelDelete} style={{ background: 'blue' }}>Mégse</button>
+                    <button onClick={confirmDelete} style={{ background: 'red', border: '1px solid black', color: 'black', marginRight: '5px' }}>Igen</button>
+                    <button onClick={cancelDelete} style={{ background: 'blue', marginLeft: '5px' }}>Mégse</button>
                 </div>
             </Modal>
         </div>
