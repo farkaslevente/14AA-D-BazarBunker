@@ -35,7 +35,9 @@ export const SupportPage = () => {
     return (
         <div className='supportpage'>
             <div className="support-container">
-                <h1>Support</h1>
+                <div style={{textAlign: 'center'}}>
+                    <h1>Support</h1>
+                </div>
                 <h5>Tegye fel kérdését, és munkatársunk felveszi Önnel a kapcsolatot!</h5>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="support-fields">
@@ -49,7 +51,7 @@ export const SupportPage = () => {
                         {successMessage && <p style={{color: 'green'}}>{successMessage}</p>}
                         {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
                     </div>
-                    <div>
+                    <div style={{textAlign: 'center'}}>
                         {!successStatus && <button className='rounded' type='submit'>Küldés</button>}
                         {successStatus && <button className='rounded' onClick={() => navigate('/')}>Tovább a főoldalra</button>}
                     </div>
