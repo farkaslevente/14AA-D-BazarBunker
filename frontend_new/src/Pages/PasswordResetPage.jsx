@@ -7,13 +7,15 @@ export const PasswordResetPage = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
+    const [successStatus, setSuccessStatus] = useState(false);
+
     const [nexPage, setNextPage] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/resetpassword`, {email: email});
+            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/resetpassword`, { email: email });
             if (resp.status === 200) {
                 setMessage("Email elküldve!");
                 setNextPage(true);
@@ -32,7 +34,7 @@ export const PasswordResetPage = () => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="passwordreset-fields">
                         <label htmlFor="email">Email</label>
-                        <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={email} onChange={(e) => setEmail(e.target.value)} />
                         <p><strong>Fontos, hogy az Ön által regisztrált email címet írja be!</strong></p>
                         <ol>
                             <li>Írja be email címét.</li>
@@ -40,14 +42,14 @@ export const PasswordResetPage = () => {
                             <li>Nyomjon a "Tovább gombra!"</li>
                         </ol>
                     </div>
-                    <div>
-                        <button className='rounded' type='submit'>Jelszó visszaállítása</button>
+                    {message && <div style={{ textAlign: 'center' }}>
+                        <p style={{ color: 'green' }}>{message}</p>
+                    </div>}
+                    <div style={{textAlign: 'center'}}>
+                        {!nexPage && <button className='rounded' type='submit'>Jelszó visszaállítása</button>}
+                        {nexPage && <button onClick={() => navigate('/elfelejtettjelszobejelentkezes')}>Tovább</button>}
                     </div>
                 </form>
-                {message && <div className="">
-                    <p>{message}</p>
-                </div>}
-                {nexPage && <button onClick={() => navigate('/elfelejtettjelszobejelentkezes')}>Tovább</button>}
             </div>
         </div>
     )
