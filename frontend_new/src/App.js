@@ -37,12 +37,13 @@ function App() {
 
           <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
           <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin />} />
-          <Route path='/ujjelszo' element={<NewPasswordPage />} />
 
           <Route path='/hirdetesek' element={<AllAdsPage />} />
           <Route path='/hirdetes/:id' element={<AdDetailsPage />} />
 
           <Route element={<PrivateRoutes />}>
+            <Route path='/ujjelszo' element={<NewPasswordPage />} />
+
             <Route path='/ujhirdetes' element={<NewAdPage />} />
             <Route path='/sajathirdetesek' element={<OwnAdsPage />} />
 

@@ -57,7 +57,7 @@ export const LoginPage = () => {
                         <label htmlFor="password">Jelszó</label>
                         <input className='rounded' type="password" id='password' autoComplete='off' required placeholder='Jelszó' value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    {error && <div className="errors">{error}</div>}
+                    {error && <div className="errors" style={{marginBottom: '10px'}}>{error}</div>}
                     <div style={{textAlign: 'center'}}>
                         <button className='rounded' type='submit'>Bejelentkezés</button>
                         <p className="login-signup">Még nincs fiókja? <a href='/regisztracio'>Hozzon létre egyet!</a></p>

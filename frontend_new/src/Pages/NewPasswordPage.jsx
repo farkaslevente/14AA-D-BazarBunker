@@ -32,7 +32,7 @@ export const NewPasswordPage = () => {
                 <h1>Új jelszó megadása</h1>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="newpassword-fields">
-                        <label htmlFor="newpassword">Új jelszó</label>
+                        <label htmlFor="newpassword" style={{marginBottom: '10px'}}>Új jelszó</label>
                         <input className='rounded' type="password" id='newpassword' autoComplete='off' required placeholder='Új jelszó (8-25 karakter)' minLength={8} maxLength={25} value={password} onChange={(e) => setPassword(e.target.value)} />
                         {successMessage && <div style={{textAlign: 'center'}}>
                             <p style={{color: 'green'}}>{successMessage}</p>

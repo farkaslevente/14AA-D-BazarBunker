@@ -63,10 +63,6 @@ export const RegisterPage = () => {
                             <label htmlFor='phone' className='form-label'>Telefonszám:</label>
                             <input type='tel' required className='form-input rounded' id='phone' placeholder='06309418328'
                                 value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete='off' minLength={11} maxLength={11} />
-
-                            {/* <label htmlFor='email' className='form-label'>Vármegye:</label>
-                                <input type='email' required className='form-input' id='email' placeholder='email@email.com'
-                                    value={email} onChange={(e) => setEmail(e.target.value)} autoComplete='off'/> */}
                         </div>
                         <div style={{textAlign: 'center'}}>
                             <button type='submit' className='btn rounded' style={{ border: '1px solid black' }}>Regisztráció</button>
