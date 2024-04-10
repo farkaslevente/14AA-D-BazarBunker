@@ -13,9 +13,8 @@ export const Card = ({ ad, thumbnail }) => {
                 </div>
                 <div className="card-details">
                     <div className="card-data">
-                        <h3 className='card-title'><i>{ad.nev}</i></h3>
-                        <h3 className='card-title' id='category'><i>Kategória: {ad.kategoria}</i></h3>
-                        {/* <label htmlFor="category">{ad.kategoria}</label> */}
+                        <h5 style={{marginBottom: '10px', textDecoration: 'underline'}} className='card-title'><i>{ad.nev}</i></h5>
+                        <h5 style={{marginBottom: '10px'}} className='card-title' id='category'><i>Kategória: {ad.kategoria}</i></h5>
                         <label htmlFor="added"><b>{ad.ar}</b> -Ft</label>
                     </div>
                     <div className="card-description">

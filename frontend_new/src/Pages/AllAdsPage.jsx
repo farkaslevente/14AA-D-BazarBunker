@@ -11,7 +11,7 @@ export const AllAdsPage = () => {
     const [filters, setFilters] = useState({
         name: '',
         category: '',
-        minPrice: '',
+        minPrice: '0',
         maxPrice: '',
         countyId: '',
     });
@@ -111,7 +111,7 @@ export const AllAdsPage = () => {
         setFilters({
             name: '',
             category: '',
-            minPrice: '',
+            minPrice: '0',
             maxPrice: '',
             countyId: '',
         });
@@ -127,21 +127,21 @@ export const AllAdsPage = () => {
                 <h4>Szűrők</h4>
                 <div className="search">
                     <label htmlFor="name">Keresés: </label>
-                    <input type="text" name="name" placeholder="Keresés" value={filters.name} onChange={handleFilterChange} />
+                    <input className='rounded' style={{border: '1px solid gray'}} type="text" name="name" placeholder="Keresés" value={filters.name} onChange={handleFilterChange} />
                 </div>
                 <div className="minmax-price">
                     <div className="min-price">
-                        <label htmlFor="minPrice">Min. Ár: </label>
-                        <input type="number" name="minPrice" placeholder="Min. Ár" value={filters.minPrice} onChange={handleFilterChange} />
+                        <label htmlFor="minPrice">Min. Ár: (adja meg mindkét értéket)</label>
+                        <input className='rounded' style={{border: '1px solid gray'}} type="number" name="minPrice" placeholder="Min. Ár" value={filters.minPrice} onChange={handleFilterChange} />
                     </div>
                     <div className="max-price">
                         <label htmlFor="minPrice">Max. Ár: </label>
-                        <input type="number" name="maxPrice" placeholder="Max. Ár" value={filters.maxPrice} onChange={handleFilterChange} />
+                        <input className='rounded' style={{border: '1px solid gray'}} type="number" name="maxPrice" placeholder="Max. Ár" value={filters.maxPrice} onChange={handleFilterChange} />
                     </div>
                 </div>
                 <div className="category-select">
                     <label htmlFor="category">Kategória: </label>
-                    <select name="category" value={filters.category} onChange={handleFilterChange}>
+                    <select className='rounded' style={{border: '1px solid gray'}} name="category" value={filters.category} onChange={handleFilterChange}>
                         <option value="">Minden kategória</option>
                         <option value="Egyetemistáknak">Egyetemistáknak</option>
                         <option value="Középiskolásoknak">Középiskolásoknak</option>
@@ -154,7 +154,7 @@ export const AllAdsPage = () => {
                 </div>
                 <div className="county-select">
                     <label htmlFor="countyId">Vármegye: </label>
-                    <select name="countyId" value={filters.countyId} onChange={handleFilterChange}>
+                    <select className='rounded' style={{border: '1px solid gray'}} name="countyId" value={filters.countyId} onChange={handleFilterChange}>
                         <option value="">Összes vármegye</option>
                         {counties.map(county => (
                             <option key={county.id} value={county.id}>{county.nev}</option>
@@ -162,8 +162,8 @@ export const AllAdsPage = () => {
                     </select>
                 </div>
                 <div className="buttons">
-                    <button onClick={applyFilters}>Apply Filters</button>
-                    <button onClick={resetFilters}>Reset Filters</button>
+                    {/* <button onClick={applyFilters}>Apply Filters</button> */}
+                    <button onClick={resetFilters}>Szűrők visszaállítása</button>
                 </div>
             </div>
             <div className="alladspage-content">
