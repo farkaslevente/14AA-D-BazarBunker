@@ -5,7 +5,7 @@
     box-shadow: 0 px 10px 8px #999;
     display: flex;
     flex-direction: row;
-    margin: 0.5ren;
+    margin: 0.5rem;
     padding: 10px;
     border: 1px solid gray;
     border-radius: 10px;
@@ -15,8 +15,17 @@
 .card-content {
     display: flex;
     flex-direction: row;
-    width: fit-content;
+    width: 100%; /* Adjusted */
     height: fit-content;
+}
+
+.card-thumbnail {
+    width: 300px; /* Adjusted */
+}
+
+.card-details {
+    flex: 1; /* Adjusted */
+    padding-left: 20px; /* Adjusted */
 }
 
 .card-data {
@@ -60,6 +69,26 @@
     border: 1px black solid;
     border-radius: 10px;
     object-fit: cover;
-    width: 300px;
+    width: 100%; /* Adjusted */
     height: 200px;
+}
+
+/* Media Query for mobile devices */
+@media screen and (max-width: 768px) {
+    .card-content {
+        flex-direction: column;
+    }
+
+    .card-thumbnail {
+        width: 100%; /* Adjusted */
+    }
+
+    .card-details {
+        padding-left: 0; /* Adjusted */
+    }
+
+    .addetailsbutton {
+        width: 100%;
+        max-width: 300px;
+    }
 }

@@ -124,27 +124,47 @@ export const AllAdsPage = () => {
                 <h1>Hirdetések</h1>
             </div>
             <div className="filters">
-                <input type="text" name="name" placeholder="Search by name" value={filters.name} onChange={handleFilterChange} />
-                <select name="category" value={filters.category} onChange={handleFilterChange}>
-                    <option value="">Select category</option>
-                    <option value="Egyetemistáknak">Egyetemistáknak</option>
-                    <option value="Középiskolásoknak">Középiskolásoknak</option>
-                    <option value="Általános iskolásoknak">Általános iskolásoknak</option>
-                    <option value="Kötelező olvasmány">Kötelező olvasmány</option>
-                    <option value="Kellékek">Kellékek</option>
-                    <option value="Írószerek">Írószerek</option>
-                    <option value="Kiegészítők">Kiegészítők</option>
-                </select>
-                <input type="number" name="minPrice" placeholder="Min price" value={filters.minPrice} onChange={handleFilterChange} />
-                <input type="number" name="maxPrice" placeholder="Max price" value={filters.maxPrice} onChange={handleFilterChange} />
-                <select name="countyId" value={filters.countyId} onChange={handleFilterChange}>
-                    <option value="">Select county</option>
-                    {counties.map(county => (
-                        <option key={county.id} value={county.id}>{county.nev}</option>
-                    ))}
-                </select>
-                <button onClick={applyFilters}>Apply Filters</button>
-                <button onClick={resetFilters}>Reset Filters</button>
+                <h4>Szűrők</h4>
+                <div className="search">
+                    <label htmlFor="name">Keresés: </label>
+                    <input type="text" name="name" placeholder="Keresés" value={filters.name} onChange={handleFilterChange} />
+                </div>
+                <div className="minmax-price">
+                    <div className="min-price">
+                        <label htmlFor="minPrice">Min. Ár: </label>
+                        <input type="number" name="minPrice" placeholder="Min. Ár" value={filters.minPrice} onChange={handleFilterChange} />
+                    </div>
+                    <div className="max-price">
+                        <label htmlFor="minPrice">Max. Ár: </label>
+                        <input type="number" name="maxPrice" placeholder="Max. Ár" value={filters.maxPrice} onChange={handleFilterChange} />
+                    </div>
+                </div>
+                <div className="category-select">
+                    <label htmlFor="category">Kategória: </label>
+                    <select name="category" value={filters.category} onChange={handleFilterChange}>
+                        <option value="">Minden kategória</option>
+                        <option value="Egyetemistáknak">Egyetemistáknak</option>
+                        <option value="Középiskolásoknak">Középiskolásoknak</option>
+                        <option value="Általános iskolásoknak">Általános iskolásoknak</option>
+                        <option value="Kötelező olvasmány">Kötelező olvasmány</option>
+                        <option value="Kellékek">Kellékek</option>
+                        <option value="Írószerek">Írószerek</option>
+                        <option value="Kiegészítők">Kiegészítők</option>
+                    </select>
+                </div>
+                <div className="county-select">
+                    <label htmlFor="countyId">Vármegye: </label>
+                    <select name="countyId" value={filters.countyId} onChange={handleFilterChange}>
+                        <option value="">Összes vármegye</option>
+                        {counties.map(county => (
+                            <option key={county.id} value={county.id}>{county.nev}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="buttons">
+                    <button onClick={applyFilters}>Apply Filters</button>
+                    <button onClick={resetFilters}>Reset Filters</button>
+                </div>
             </div>
             <div className="alladspage-content">
                 <div className="cards">

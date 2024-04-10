@@ -1,9 +1,8 @@
 .alladspage {
     display: flex;
     flex-direction: column;
-    margin: 50px;
-    height: 100%;
-    width: 100%;
+    margin: 50px auto;
+    max-width: 1200px;
     padding: 10px;
     align-items: center;
 }
@@ -13,29 +12,73 @@
     font-weight: 600;
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filters {
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filters h4 {
+    margin-bottom: 10px;
+}
+
+.search,
+.minmax-price,
+.category-select,
+.county-select {
+    margin-bottom: 10px;
+}
+
+.search label,
+.minmax-price label,
+.category-select label,
+.county-select label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search input,
+.minmax-price input {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.buttons button {
+    margin-left: 10px;
 }
 
 .alladspage-content {
-    text-align: center;
     display: flex;
-    padding: auto;
     justify-content: center;
-    align-items: center;
-}
-
-.alladspage-filterbar {
-    justify-content: center;
-    display: flex;
-    gap: 15rem;
-    padding: 10px;
-    margin: 10px;
 }
 
 .cards {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin: auto;
-    align-self: center;
-    align-content: center;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .search,
+    .minmax-price,
+    .category-select,
+    .county-select {
+        width: calc(50% - 20px);
+    }
 }
