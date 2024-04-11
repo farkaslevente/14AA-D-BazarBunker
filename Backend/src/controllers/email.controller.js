@@ -37,7 +37,7 @@ let emailController = {
       from: process.env.EMAIL,
       to: email,
       subject: "Hírlevél feliratkozás",
-      text: "Sikeresen feliratkozott a hírnevünkre!"
+      text: "Sikeresen feliratkozott a hírlevelünkre!"
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -54,8 +54,9 @@ let emailController = {
     var mailOptions = {
       from: process.env.EMAIL,
       to: email,
-      subject: "Reset password",
-      text: `Your token for resetting the password: ${token}`
+      subject: "Jelszó-visszaállítás",
+      text: `Kód a jelszó visszaállításához: ${token}`,
+      html: ({path: 'src/views/email.html'})
     };
     
     transporter.sendMail(mailOptions, function(error, info){
