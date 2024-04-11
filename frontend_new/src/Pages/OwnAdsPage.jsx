@@ -344,8 +344,8 @@ export const OwnAdsPage = () => {
                             value={editedAd ? editedAd.leiras : ''}
                             onChange={(e) => setEditedAd({ ...editedAd, leiras: e.target.value })}
                             required
-                            placeholder='Rövid leírás: (maximum 250 karakter)'
-                            maxLength={250}
+                            placeholder='Rövid leírás: (maximum 400 karakter)'
+                            maxLength={400}
                         ></textarea>
                         <button type='submit' id='formButton' style={{ margin: 'auto', height: 'fit-content', marginTop: '10px', marginBottom: '20px' }}>Mentés</button>
                         <p>A feltöltött képek szerkesztése jelenleg nem lehetséges!</p>

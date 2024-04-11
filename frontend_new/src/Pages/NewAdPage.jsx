@@ -219,8 +219,8 @@ export const NewAdPage = () => {
                             value={description}
                             onChange={handleDescriptionChange}
                             required
-                            placeholder='Rövid leírás: (maximum 250 karakter)'
-                            maxLength={250}
+                            placeholder='Rövid leírás: (maximum 400 karakter)'
+                            maxLength={400}
                         ></textarea>
 
                         <label htmlFor="image">{'Töltsön fel képeket! (minimum 1 - maximum 6)'}</label>
