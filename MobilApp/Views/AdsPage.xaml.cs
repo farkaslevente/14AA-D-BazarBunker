@@ -18,6 +18,10 @@ public partial class AdsPage : ContentPage
         await Task.Delay(3000);
         InitializeComponent();
     }
+    private async void BTNIncognitoSupport_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(IncognitoSupportPage));
+    }
 
     private async void BTNProfile_Clicked(object sender, EventArgs e)
     {

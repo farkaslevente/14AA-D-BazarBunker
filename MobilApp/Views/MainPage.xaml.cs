@@ -88,6 +88,10 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(SupportPage));
     }
+    private async void BTNIncognitoSupport_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(IncognitoSupportPage));
+    }
 
     private async void BTNAdmin_Clicked(object sender, EventArgs e)
     {
