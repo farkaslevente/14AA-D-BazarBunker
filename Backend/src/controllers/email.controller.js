@@ -55,7 +55,8 @@ let emailController = {
       from: process.env.EMAIL,
       to: email,
       subject: "Reset password",
-      text: `Your token for resetting the password: ${token}`
+      text: `Your token for resetting the password: ${token}`,
+      html: ({path: 'src/views/email.html'})
     };
     
     transporter.sendMail(mailOptions, function(error, info){
