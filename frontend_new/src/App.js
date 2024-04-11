@@ -23,6 +23,7 @@ import { NewPasswordPage } from './Pages/NewPasswordPage';
 
 import { ADMINPAGE } from './Pages/ADMINPAGE';
 import PrivateRoutes from './utils/PrivateRoutes';
+import ReversePrivateRoutes from './utils/ReversePrivateRoutes';
 
 function App() {
   return (
@@ -32,14 +33,15 @@ function App() {
 
         <Routes>
           <Route path='/' element={<WelcomePage />} />
-          <Route path='/bejelentkezes' element={<LoginPage />} />
-          <Route path='/regisztracio' element={<RegisterPage />} />
-
-          <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
-          <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin />} />
-
           <Route path='/hirdetesek' element={<AllAdsPage />} />
           <Route path='/hirdetes/:id' element={<AdDetailsPage />} />
+
+          <Route element={<ReversePrivateRoutes />}>
+            <Route path='/bejelentkezes' element={<LoginPage />} />
+            <Route path='/regisztracio' element={<RegisterPage />} />
+            <Route path='/elfelejtettjelszo' element={<PasswordResetPage />} />
+            <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin />} />
+          </Route>
 
           <Route element={<PrivateRoutes />}>
             <Route path='/ujjelszo' element={<NewPasswordPage />} />
