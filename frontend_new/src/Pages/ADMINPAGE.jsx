@@ -51,6 +51,7 @@ export const ADMINPAGE = () => {
                 <th>Role</th>
                 <th>Favourites</th>
                 <th>Phone</th>
+                <th>OPTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -63,6 +64,10 @@ export const ADMINPAGE = () => {
                   <td>{user.role}</td>
                   <td>{user.kedvencek}</td>
                   <td>{user.telefonszam}</td>
+                  <td style={{width: '300px'}}>
+                    <button>Szerkesztés</button>
+                    <button style={{background: 'red', color: 'black', border: '1px solid black'}}>Törlés</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -82,6 +87,7 @@ export const ADMINPAGE = () => {
                 <th>Settlements</th>
                 <th>ownerId</th>
                 <th>Date</th>
+                <th>OPTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -96,6 +102,10 @@ export const ADMINPAGE = () => {
                   <td>{ad.telepules}</td>
                   <td>{ad.tulajId}</td>
                   <td>{ad.datum}</td>
+                  <td style={{width: '300px'}}>
+                    <button>Szerkesztés</button>
+                    <button style={{background: 'red', color: 'black', border: '1px solid black'}}>Törlés</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -110,6 +120,7 @@ export const ADMINPAGE = () => {
                   <th>Title</th>
                   <th>Description</th>
                   <th>ownerId</th>
+                  <th>OPTIONS</th>
                 </tr>
               </thead>
               <tbody>
@@ -119,6 +130,9 @@ export const ADMINPAGE = () => {
                     <td>{supp.cim}</td>
                     <td>{supp.kerdes}</td>
                     <td>{supp.felhasznaloId}</td>
+                    <td style={{width: '300px'}}>
+                    <button style={{background: 'red', color: 'black', border: '1px solid black'}}>Törlés</button>
+                  </td>
                   </tr>
                 ))}
               </tbody>
@@ -133,6 +147,7 @@ export const ADMINPAGE = () => {
                 <th>Token</th>
                 <th>ownerEmail</th>
                 <th>Date</th>
+                <th>OPTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -142,6 +157,9 @@ export const ADMINPAGE = () => {
                   <td>{token.data.substring(0, 50) + " ..."}</td>
                   <td>{token.tulajEmail}</td>
                   <td>{token.date}</td>
+                  <td style={{width: '300px'}}>
+                    <button style={{background: 'red', color: 'black', border: '1px solid black'}}>Törlés</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
