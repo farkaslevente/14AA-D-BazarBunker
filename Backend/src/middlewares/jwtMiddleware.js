@@ -24,9 +24,7 @@ verifyToken = (req, res, next) => {
             }
 
             decoded = jwt.verify(token, secret)
-            console.log(decoded)
             req.user = decoded.payload
-            console.log(req.user)
             next()
             
           });
