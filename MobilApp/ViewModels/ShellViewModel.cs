@@ -73,13 +73,16 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 LoggedInVisible = true;
                 LoggedInAdmin = false;
                 if (LoggedIn == 1.ToString())
-                    LoggedInAdmin = true;                
-                
+                    LoggedInAdmin = true;
+                OnPropertyChanged(LoggedInVisible.ToString());
+                OnPropertyChanged(LoginVisible.ToString());
             }
             else
             {
                 LoginVisible = true;
                 LoggedInVisible = false;
+                OnPropertyChanged(LoggedInVisible.ToString());
+                OnPropertyChanged(LoginVisible.ToString());
             }
         }
     }

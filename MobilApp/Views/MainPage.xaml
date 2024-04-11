@@ -64,9 +64,9 @@
             <ImageButton Source="support.svg" Clicked="BTNIncognitoSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoginVisible}"/>
             <ImageButton x:Name="BTNMyAds" Source="ads.svg" Clicked="BTNMyAds_Clicked" Grid.Column="1" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
-            <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
             <ImageButton Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
-            <ImageButton x:Name="BTNFav" Source="favorites.svg" Clicked="BTNFav_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNFav" Source="favorites.svg" Clicked="BTNFav_Clicked" Grid.Column="3" IsVisible="{Binding LoggedInVisible}"/>
         </Grid>
 
         <Rectangle Grid.ColumnSpan="7" BackgroundColor="Gray"/>

@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.AdsPage"
              Title="AdsPage">
+
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
     <CollectionView ItemsSource="{Binding filteredAds}" Grid.Row="0" Grid.Column="1"
                     SelectionMode="Single"
@@ -60,11 +61,11 @@
     </CollectionView>
         <Grid Grid.Row="1" Grid.ColumnSpan="3"
        ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">
-            <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}"/>
-            <ImageButton Source="support.svg" Clicked="BTNIncognitoSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoginVisible}"/>
-            <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton Source="support.svg" Clicked="BTNIncognitoSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoginVisible}" IsEnabled="{Binding LoginVisible}"/>
+            <ImageButton x:Name="BTNLogin" Source="profile.svg" Clicked="BTNLogin_Clicked" Grid.Column="0" IsVisible="{Binding LoginVisible}" IsEnabled="{Binding LoginVisible}"/>
+            <ImageButton x:Name="BTNProfile" Source="profile.svg" Clicked="BTNProfile_Clicked" Grid.Column="0" IsVisible="{Binding LoggedInVisible}" IsEnabled="{Binding LoggedInVisible}"/>
             <ImageButton x:Name="BTNMainPage" Source="home.svg" Clicked="BTNMainPage_Clicked" Grid.Column="2"/>
-            <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}"/>
+            <ImageButton x:Name="BTNSupport" Source="support.svg" Clicked="BTNSupport_Clicked" Grid.Column="4" IsVisible="{Binding LoggedInVisible}" IsEnabled="{Binding LoggedInVisible}"/>
         </Grid>
     </Grid>
 </ContentPage>
