@@ -63,7 +63,7 @@ export const ResetPasswordLogin = () => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="passwordresetlogin-fields">
                         <label htmlFor="email">Email</label>
-                        <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={localStorage.getItem('tempEmail')} onChange={(e) => setEmail(e.target.value)} disabled />
+                        <input className='rounded' type="email" id='email' autoComplete='off' required placeholder='Az Ön email címe' value={localStorage.getItem('tempEmail')} onChange={(e) => setEmail(e.target.value)} />
                         <label htmlFor="token">Kód:</label>
                         <input className='rounded' type="text" id='token' name='token' autoComplete='off' required placeholder='8 karakteres kód' value={token} onChange={(e) => setToken(e.target.value)} />
                         {error && <p style={{ fontWeight: 'bold', color: 'red' }}>{error}</p>}

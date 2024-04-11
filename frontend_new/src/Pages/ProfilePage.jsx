@@ -92,13 +92,14 @@ export const ProfilePage = () => {
                 'Content-Type': 'application/json',
             };
             await axios.delete(`${process.env.REACT_APP_LOCAL}/users/delete`, { headers });
-            alert('User deleted successfully!');
+            alert('Felhasználó törölve!');
             localStorage.clear();
             localStorage.setItem('isLoggedIn', false);
             navigate('/');
+            window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
-            alert('Failed to delete user. Please try again.');
+            alert('Törlés sikertelen!');
         }
         setIsDeleteModalOpen(false);
     };
