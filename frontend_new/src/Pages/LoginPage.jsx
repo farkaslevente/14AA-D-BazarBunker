@@ -3,6 +3,7 @@ import './CSS/LoginPage.css';
 import { useNavigate } from 'react-router-dom';
 import userservice from '../Services/userservice';
 import { jwtDecode } from "jwt-decode";
+import vectorLogo from '../Components/Assets/vectorlogo.svg';
 
 export const LoginPage = () => {
     const navigate = useNavigate();
@@ -49,6 +50,7 @@ export const LoginPage = () => {
         <div className='loginpage'>
             <div className="login-container">
                 <h1>Bejelentkezés</h1>
+                <div style={{textAlign: 'center'}}><img src={vectorLogo} alt="" style={{width: '150px', height: '100px', textAlign: 'center'}}/></div>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className="login-fields">
                         <label htmlFor="email">Email</label>
