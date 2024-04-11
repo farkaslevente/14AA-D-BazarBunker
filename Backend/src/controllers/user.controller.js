@@ -123,7 +123,25 @@ const userController = {
             console.error("Error contacting support...", err.message)
             res.status(500).json({error: "Internal server error!"})
         }
-    }
+    },
+
+    editUsers: async function (req, res) {
+        console.log("Editing user incoming...", req);
+        try {
+            const {id, name, email, location, pPic, phone, role, favourites} = req.body;
+
+            const rows = await dbFunctions.execQueryWithReturn(
+                `SELECT * FROM felhasznalok WHERE id = '${id}'`) || [];
+            const hashed = rows[0].jelszo
+
+            await query(`UPDATE felhasznalok SET nev= '${name}', email= '${email}', hely= '${location}', pPic= '${pPic}', jelszo= '${hashed}',
+            telefonszam= '${phone}', kedvencek= '${favourites}', role= '${role}' WHERE id=${id}`);
+            
+            res.status(200).json({message: "User edited succesfully!"})
+        } catch (err) {
+            console.error("Error posting!", err.message);
+        }
+    },
 }
 
 module.exports = {

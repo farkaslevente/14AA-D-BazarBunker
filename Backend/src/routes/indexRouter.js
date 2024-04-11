@@ -127,6 +127,14 @@ router.delete("/users/delete", [verifyToken], async function(req, res) {
     }
 }),
 
+router.put("/users/edit", [verifyToken], async function(req, res) {
+    try {
+        res.json(await userController.editUsers(req, res));
+    } catch (err) {
+        console.error("Error updating!", err.message);
+    }
+}),
+
 router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getTokens());
