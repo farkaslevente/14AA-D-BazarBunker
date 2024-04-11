@@ -127,7 +127,7 @@ router.delete("/users/delete", [verifyToken], async function(req, res) {
     }
 }),
 
-router.put("/users/edit", [verifyToken], async function(req, res) {
+router.put("/users/edit", [verifyToken], [isAdmin], async function(req, res) {
     try {
         res.json(await userController.editUsers(req, res));
     } catch (err) {
