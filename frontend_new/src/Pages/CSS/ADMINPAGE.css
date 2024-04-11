@@ -6,6 +6,7 @@ h1 {
 table {
     max-width: 95%;
     margin: auto;
+    margin-bottom: 50px;
 }
 
 .tab-bar {

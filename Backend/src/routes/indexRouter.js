@@ -255,6 +255,22 @@ router.post('/support', [verifyToken], async function (req,res) {
     }
 })
 
+router.get('/support', [verifyToken], [isAdmin], async function (req,res) {
+    try {
+        res.json(await dbFunctions.getSupport(req,res))
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+router.delete('/support', [verifyToken], [isAdmin], async function (req,res) {
+    try {
+        res.json(await dbFunctions.deleteSupport(req,res))
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 router.post('/resetpassword', async function (req, res) {
     try {
         await authController.resetPassword(req, res)
@@ -269,7 +285,7 @@ router.post('/authorizereset', async function (req,res) {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
 
 
