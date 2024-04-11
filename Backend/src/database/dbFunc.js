@@ -21,7 +21,8 @@ const dbFunctions = {
             location: res[0].hely,
             pPic: res[0].pPic,
             favourites: res[0].kedvencek,
-            phone: res[0].telefonszam
+            phone: res[0].telefonszam,
+            role: res[0].role
         }
         return payload
     },

@@ -22,6 +22,8 @@ import { ResetPasswordLogin } from './Pages/ResetPasswordLogin';
 import { NewPasswordPage } from './Pages/NewPasswordPage';
 
 import { ADMINPAGE } from './Pages/ADMINPAGE';
+
+//Route protection
 import PrivateRoutes from './utils/PrivateRoutes';
 import ReversePrivateRoutes from './utils/ReversePrivateRoutes';
 
@@ -32,10 +34,12 @@ function App() {
         <Navbar />
 
         <Routes>
+          {/* Can access any time */}
           <Route path='/' element={<WelcomePage />} />
           <Route path='/hirdetesek' element={<AllAdsPage />} />
           <Route path='/hirdetes/:id' element={<AdDetailsPage />} />
 
+          {/* Can't access once logged in */}
           <Route element={<ReversePrivateRoutes />}>
             <Route path='/bejelentkezes' element={<LoginPage />} />
             <Route path='/regisztracio' element={<RegisterPage />} />
@@ -43,6 +47,7 @@ function App() {
             <Route path='/elfelejtettjelszobejelentkezes' element={<ResetPasswordLogin />} />
           </Route>
 
+          {/*Can't access once logged out*/}
           <Route element={<PrivateRoutes />}>
             <Route path='/ujjelszo' element={<NewPasswordPage />} />
 
