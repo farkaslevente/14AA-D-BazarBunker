@@ -135,6 +135,14 @@ router.put("/users/edit", [verifyToken], [isAdmin], async function(req, res) {
     }
 }),
 
+router.post("/users/remove", [verifyToken], [isAdmin], async function(req, res) {
+    try {
+        res.json(await userController.removeUser(req, res));
+    } catch (err) {
+        console.error("Error updating!", err.message);
+    }
+}),
+
 router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getTokens());

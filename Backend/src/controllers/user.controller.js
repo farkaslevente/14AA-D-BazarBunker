@@ -142,6 +142,21 @@ const userController = {
             console.error("Error posting!", err.message);
         }
     },
+
+    removeUser: async function (req, res) {
+        console.log("Incoming delete on users...", req)
+        try {
+            const { id } = req.body;
+            await query(`
+            DELETE FROM felhasznalok WHERE id = ${id}`)
+            await query(`
+            DELETE from hirdetesek WHERE tulajId = ${id}`)
+            // delete from upload
+            return res.status(200).json({message: `User with id: ${id} was deleted succesfully`})
+        } catch (err) {
+            console.error("Error deleting!", err.message);
+        }
+    },
 }
 
 module.exports = {
