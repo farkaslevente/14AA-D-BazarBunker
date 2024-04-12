@@ -143,10 +143,9 @@ const userController = {
         }
     },
 
-    removeUsers: async function (req, res) {
+    removeUsers: async function (req, res, id) {
         console.log("Incoming delete on users...", req)
         try {
-            const { id } = req.body;
             await query(`
             DELETE FROM felhasznalok WHERE id = ${id}`)
             await query(`

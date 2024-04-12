@@ -116,9 +116,9 @@ router.put("/users/edit", [verifyToken], [isAdmin], async function(req, res) {
     }
 }),
 
-router.delete("/users/remove", [verifyToken], [isAdmin], async function(req, res) {
+router.delete("/users/remove/:id", [verifyToken], [isAdmin], async function(req, res) {
     try {
-        res.json(await userController.removeUsers(req, res));
+        res.json(await userController.removeUsers(req, res, req.params.id));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
@@ -239,9 +239,17 @@ router.post("/ads/post", [verifyToken], async function(req,res) {
     res.json(await adController.postAds(req,res,req.user.id))
 });
 
-router.post("/ads/:id", [verifyToken], async function(req,res) {
+router.put("/ads/:id", [verifyToken], async function(req,res) {
     try {
         res.json(await adController.editAds(req,res,req.user.id,req.params.id))
+    } catch (err) {
+        console.error("Error getting user by id!", err.message)
+    }
+})
+
+router.put("/ads/edit/:id", [verifyToken], [isAdmin], async function(req,res) {
+    try {
+        res.json(await adController.modifyAd(req,res,req.params.id))
     } catch (err) {
         console.error("Error getting user by id!", err.message)
     }

@@ -81,7 +81,21 @@ const adController = {
     } catch (err) {
         console.error("Error deleting!", err.message);
     }
-}
+    },
+
+    modifyAd: async function (req,res,id) {
+        try {
+            const {name, description, category, price, countyId, settlement, userId} = req.body
+                const d = new Date()
+                await query(`UPDATE hirdetesek SET nev = '${name}', leiras = '${description}', kategoria = '${category}', ar = '${price}', varmegyeId = '${countyId}',
+                telepules = '${settlement}', tulajId = '${userId}', datum = '${d}' WHERE id = '${id}'`)
+                res.status(200).json({message: "Ad successfully updated!"})
+            }
+         catch (err) {
+            console.error("Error posting ads!", err.message);
+            res.status(500).json({error: "Internal server error!"})
+        }
+    },
 }
 
 module.exports = {
