@@ -166,7 +166,6 @@ router.post('/users/authorizereset', async function (req,res) {
 
 router.post('/users/newpassword', [verifyToken], async function (req,res) {
     try {
-        console.log(req.user)
         await userController.newPassword(req,res,req.user.id)
     } catch (err) {
         console.error(err.message)
