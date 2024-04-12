@@ -5,11 +5,9 @@ const { hosts } = require('./src/config/host.config')
 const { cookie_keys } = require('./src/config/auth.config')
 const cookieSession = require('cookie-session')
 const cors = require('cors')
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./src/utils/swagger');
 
 const PORT = 9000;
-const HOST = hosts.HOST202 || "localhost";
+const HOST = hosts.HOST103 || "localhost";
 
 
 const app = express()

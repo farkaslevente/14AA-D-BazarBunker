@@ -63,13 +63,12 @@ const dbFunctions = {
             }
         },
 
-    deleteToken: async function (req, res) {
+    deleteToken: async function (req, res, id) {
         console.log("Delete incoming...")
-        console.log(req)
         try {
             await query(`
-            DELETE FROM tokenek WHERE id = ${req.id}`)
-            return res.status(200).json({message: `Token id:${req.id} was deleted succesfully`})
+            DELETE FROM tokenek WHERE id = ${id}`)
+            return res.status(200).json({message: `Token id:${id} was deleted succesfully`})
         } catch (err) {
             console.error("Error deleting!", err.message);
             res.status(500).json({error: "Internal server error!"})
@@ -82,29 +81,6 @@ const dbFunctions = {
             res = await query(`
             SELECT * FROM tokenek`)
             return res
-        } catch (err) {
-            console.error("Error getting!", err.message);
-            res.status(500).json({error: "Internal server error!"})
-        }
-    },
-
-    getSupport: async function (res) {
-        try {
-            res = await query(`
-            SELECT * FROM support`)
-            return res
-        } catch (err) {
-            console.error("Error getting!", err.message);
-            res.status(500).json({error: "Internal server error!"})
-        }
-    },
-
-    deleteSupport: async function (req,res) {
-        try {
-            const {id} = req.body;
-            await query(`
-            DELETE FROM support WHERE id = '${id}'`)
-            return res.status(200).json({message: `Support id:${id} was deleted succesfully`})
         } catch (err) {
             console.error("Error getting!", err.message);
             res.status(500).json({error: "Internal server error!"})
