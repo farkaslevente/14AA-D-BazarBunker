@@ -137,7 +137,7 @@ router.put("/users/edit", [verifyToken], [isAdmin], async function(req, res) {
 
 router.post("/users/remove", [verifyToken], [isAdmin], async function(req, res) {
     try {
-        res.json(await userController.removeUser(req, res));
+        res.json(await userController.removeUsers(req, res));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
@@ -190,7 +190,7 @@ router.post("/ads", [verifyToken], async function(req,res) {
 
 router.post("/ads/:id", [verifyToken], async function(req,res) {
     try {
-        res.json(await adController.editAd(req,res,req.user.id,req.params.id))
+        res.json(await adController.editAds(req,res,req.user.id,req.params.id))
     } catch (err) {
         console.error("Error getting user by id!", err.message)
     }
@@ -198,7 +198,7 @@ router.post("/ads/:id", [verifyToken], async function(req,res) {
 
 router.delete('/ads/:id', [verifyToken], async function(req,res) {
     try {
-        res.json(await adController.deleteAd(req,res,req.user.id,req.params.id))
+        res.json(await adController.deleteAds(req,res,req.user.id,req.params.id))
     } catch (err) {
         console.error("Error deleting ads", err.message)
     }

@@ -143,7 +143,7 @@ const userController = {
         }
     },
 
-    removeUser: async function (req, res) {
+    removeUsers: async function (req, res) {
         console.log("Incoming delete on users...", req)
         try {
             const { id } = req.body;

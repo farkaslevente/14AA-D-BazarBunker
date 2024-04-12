@@ -28,7 +28,7 @@ const authController = {
                     
                 }
                 else {
-                    return res.status(401).json({message: "User already exists!"})
+                    return res.status(403).json({message: "User already exists!"})
                 }
             } catch (err) {
                 console.log(err.message);
@@ -100,6 +100,13 @@ const authController = {
     resetPassword: async function (req, res) {
         console.log("Password reset incoming...")
         const {email} = req.body
+
+        const rows = await dbFunctions.execQueryWithReturn(
+            `SELECT * FROM felhasznalok WHERE email = '${email}'`) || [];
+        if (rows == [] || !rows || rows.length === 0) {
+            return res.status(404).json({error: "This email is not registered to an account"})
+        }
+            
 
         let resetToken = crypto.randomBytes(4).toString('hex').toUpperCase()
         emailController.sendResetPassword(req,res,email,resetToken)

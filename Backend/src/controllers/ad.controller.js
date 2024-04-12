@@ -26,7 +26,7 @@ const adController = {
         }
     },
 
-    editAd: async function (req,res,id,itemid) {
+    editAds: async function (req,res,id,itemid) {
         try {
             const {name, description, category, price, countyId, settlement} = req.body
             const d = new Date()
@@ -39,7 +39,7 @@ const adController = {
         }
     },
 
-    deleteAd: async function (req, res, userId, id) {
+    deleteAds: async function (req, res, userId, id) {
         console.log("Incoming delete on ads...")
         try {
             const rows = await dbFunctions.execQueryWithReturn(`
