@@ -255,6 +255,14 @@ router.delete('/ads/:id', [verifyToken], async function(req,res) {
     }
 })
 
+router.delete('/ads/remove', [verifyToken], [isAdmin], async function (req,res) {
+    try {
+        res.json(await adController.removeAds(req,res))
+    } catch (err) {
+        console.error("Error deleting", err.message)
+    }
+})
+
 //        ▄▄▄·▪   ▄▄· ▄▄▄▄▄▄• ▄▌▄▄▄  ▄▄▄ ..▄▄ · 
 //        ▐█ ▄███ ▐█ ▌▪•██  █▪██▌▀▄ █·▀▄.▀·▐█ ▀. 
 //        ██▀·▐█·██ ▄▄ ▐█.▪█▌▐█▌▐▀▀▄ ▐▀▀▪▄▄▀▀▀█▄
