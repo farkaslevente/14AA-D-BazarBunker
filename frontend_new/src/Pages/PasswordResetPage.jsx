@@ -15,7 +15,7 @@ export const PasswordResetPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/resetpassword`, { email: email });
+            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/users/resetpassword`, { email: email });
             if (resp.status === 200) {
                 setMessage("Email elküldve!");
                 setNextPage(true);

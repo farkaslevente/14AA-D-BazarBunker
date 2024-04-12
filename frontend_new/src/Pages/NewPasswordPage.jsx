@@ -18,7 +18,7 @@ export const NewPasswordPage = () => {
             'Authorization': `Bearer ${authToken}`
         };
         try {
-            await axios.post(`${process.env.REACT_APP_LOCAL}/newpassword`, { password: password }, { headers });
+            await axios.post(`${process.env.REACT_APP_LOCAL}/users/newpassword`, { password: password }, { headers });
             setSuccessMessage("Jelszó megváltoztatva!");
             setNextPage(true);
         } catch (error) {

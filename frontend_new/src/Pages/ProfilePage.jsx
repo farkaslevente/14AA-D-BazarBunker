@@ -66,13 +66,13 @@ export const ProfilePage = () => {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
             };
-            await axios.put(`${process.env.REACT_APP_LOCAL}/users/patch`, editedUser, { headers });
+            await axios.put(`${process.env.REACT_APP_LOCAL}/users/put`, editedUser, { headers });
             setUser(editedUser);
             localStorage.setItem('userName', editedUser.name);
             localStorage.setItem('userLocation', editedUser.location);
             localStorage.setItem('userPhone', editedUser.phone);
             setEditMode(false);
-            alert('User data saved successfully!');
+            alert('Adatok sikeresen megváltoztatva!');
             window.location.reload();
         } catch (error) {
             console.error('Error saving user data:', error);

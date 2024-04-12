@@ -92,7 +92,7 @@ export const NewAdPage = () => {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads`, {
+            await axios.post(`${process.env.REACT_APP_LOCAL}/ads/post`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,

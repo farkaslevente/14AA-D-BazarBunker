@@ -131,7 +131,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.post(`${process.env.REACT_APP_LOCAL}/users/remove`, { headers });
+      await axios.delete(`${process.env.REACT_APP_LOCAL}/users/remove/${selectedUserItem.id}`, { headers });
       closeDeleteUserModal();
       alert("Sikeres törlés!")
       window.location.reload();
@@ -161,6 +161,7 @@ export const ADMINPAGE = () => {
         price: parseFloat(document.getElementById('adPrice').value),
         countyId: parseInt(document.getElementById('adCountyId').value),
         settlement: document.getElementById('adSettlement').value,
+        userId: document.getElementById('adOwnerId').value
       };
 
       const headers = {
@@ -168,7 +169,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.post(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdItem.id}`, editedAd, { headers });
+      await axios.put(`${process.env.REACT_APP_LOCAL}/ads/edit/${selectedAdItem.id}`, editedAd, { headers });
       closeEditAdModal();
       alert("Hirdetés sikeresen megváltoztatva!");
       window.location.reload();
@@ -194,7 +195,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdItem.id}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_LOCAL}/ads/remove/${selectedAdItem.id}`, { headers });
       closeDeleteAdModal();
       alert("Hirdetés törölve!")
       window.location.reload();
@@ -225,7 +226,7 @@ export const ADMINPAGE = () => {
         id: selectedSupportItem.id
       }
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/support`, body, { headers });
+      await axios.delete(`${process.env.REACT_APP_LOCAL}/support/${selectedSupportItem.id}`, { headers });
       closeDeleteSupportModal();
       alert("Support kérdés törölve!");
       window.location.reload();
@@ -253,7 +254,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/tokens/delete`, { headers });
+      await axios.delete(`${process.env.REACT_APP_LOCAL}/tokens/${selectedTokenItem.id}`, { headers });
       closeDeleteTokenModal();
       alert("Sikeres token törlés!");
       window.location.reload();

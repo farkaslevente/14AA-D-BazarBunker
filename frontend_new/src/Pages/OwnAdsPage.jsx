@@ -117,7 +117,7 @@ export const OwnAdsPage = () => {
             const selectedCountyObject = counties.find(county => county.value === selectedCounty.value);
             const countyId = selectedCountyObject ? selectedCountyObject.id : '';
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
+            await axios.put(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
                 name: editedAd.nev,
                 description: editedAd.leiras,
                 category: selectedCategory.value,

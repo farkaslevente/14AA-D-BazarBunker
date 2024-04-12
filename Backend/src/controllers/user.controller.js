@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 
 const userController = {
-    patchUsers: async function (req, res, id) {
+    putUsers: async function (req, res, id) {
         console.log("Patching incoming...", req);
         try {
             const {name, email, location, pPic, phone} = req;
@@ -118,7 +118,7 @@ const userController = {
             const {title, question} = req.body
             await query(`
             INSERT INTO support (id, cim, kerdes, felhasznaloId) VALUES (null, '${title}', '${question}', '${id}')`)
-            res.status(200).json({message: "We've received your question and will answer as soon as possible."})
+            res.status(200).json({message: "Kérdését megkaptuk, amint időnk engedi válaszolunk."})
         } catch (err) {
             console.error("Error contacting support...", err.message)
             res.status(500).json({error: "Internal server error!"})
@@ -126,7 +126,7 @@ const userController = {
     },
 
     editUsers: async function (req, res) {
-        console.log("Editing user incoming...", req);
+        console.log("Editing user incoming...", req.body);
         try {
             const {id, name, email, location, pPic, phone, role, favourites} = req.body;
 
@@ -143,10 +143,9 @@ const userController = {
         }
     },
 
-    removeUser: async function (req, res) {
+    removeUsers: async function (req, res, id) {
         console.log("Incoming delete on users...", req)
         try {
-            const { id } = req.body;
             await query(`
             DELETE FROM felhasznalok WHERE id = ${id}`)
             await query(`

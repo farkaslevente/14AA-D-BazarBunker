@@ -13,24 +13,7 @@ var transporter = nodemailer.createTransport({
 
 
 let emailController = {
-  sendMail: async function (req,res) {
-    const {email, subject} = req.body;
-    var mailOptions = {
-      from: process.env.EMAIL,
-      to: email,
-      subject: subject,
-      html: ({path: 'src/views/email.html'})
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.status(200).json({message: "Email sent"})
-      }
-    });
-  },
+
   subscribe: async function (req,res,email) {
 
     var mailOptions = {
@@ -55,8 +38,7 @@ let emailController = {
       from: process.env.EMAIL,
       to: email,
       subject: "Jelszó-visszaállítás",
-      text: `Kód a jelszó visszaállításához: ${token}`,
-      html: ({path: 'src/views/email.html'})
+      text: `Kód a jelszó visszaállításához: ${token}`
     };
     
     transporter.sendMail(mailOptions, function(error, info){

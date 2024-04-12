@@ -8,11 +8,7 @@ const { emailController } = require('../controllers/email.controller')
 const { uploadController } = require('../controllers/upload.controller')
 const { adController } = require('../controllers/ad.controller')
 const router = express.Router();
-const spec = require('../utils/swagger')
-const swaggerUi = require('swagger-ui-express');
-
-router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(spec)); 
+const { supportController } = require('../controllers/support.controller')
 
     //• ▌ ▄ ·. ▄• ▄▌▄▄▌  ▄▄▄▄▄▄▄▄ .▄▄▄  
     //·██ ▐███▪█▪██▌██•  •██  ▀▄.▀·▀▄ █·
@@ -30,19 +26,6 @@ const storage = multer.diskStorage({
     }
   })
 const upload = multer({storage: storage}).array('file', 6)
-
-/**
- * @swagger
- * paths:
- * /settlements:
- *   get:
- *     summary: Things working
- *     description: Things workin big time
- *     responses:
- *       200:
- *         description: Whings torking
- */
-
 
         //▄▄▄        ▄• ▄▌▄▄▄▄▄▄▄▄ ..▄▄ · 
         //▀▄ █·▪     █▪██▌•██  ▀▄.▀·▐█ ▀. 
@@ -68,14 +51,6 @@ router.get("/pictures", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.post("/pictures", [verifyToken], async function(req,res) {
-    try {
-        res.json(await userController.changePicture(req,res,req.user.id))
-    } catch {
-        console.error("Error while posting pictures!", err.message);
-    }
-});
-
 router.get("/settlements", async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getSettlements());
@@ -94,6 +69,12 @@ router.get("/counties",  async function(_req, res, next) {
     }
 });
 
+//            ▄• ▄▌.▄▄ · ▄▄▄ .▄▄▄  .▄▄ · 
+//            █▪██▌▐█ ▀. ▀▄.▀·▀▄ █·▐█ ▀. 
+//            █▌▐█▌▄▀▀▀█▄▐▀▀▪▄▐▀▀▄ ▄▀▀▀█▄
+//            ▐█▄█▌▐█▄▪▐█▐█▄▄▌▐█•█▌▐█▄▪▐█
+//            ▀▀▀  ▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀▀ 
+
 router.get("/users", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getUsers());
@@ -111,9 +92,9 @@ router.get("/users/:id", async function(req,res) {
     }
 })
 
-router.put("/users/patch", [verifyToken], async function(req, res) {
+router.put("/users/put", [verifyToken], async function(req, res) {
     try {
-        res.json(await userController.patchUsers(req.body, res, req.user.id));
+        res.json(await userController.putUsers(req.body, res, req.user.id));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
@@ -135,13 +116,77 @@ router.put("/users/edit", [verifyToken], [isAdmin], async function(req, res) {
     }
 }),
 
-router.post("/users/remove", [verifyToken], [isAdmin], async function(req, res) {
+router.delete("/users/remove/:id", [verifyToken], [isAdmin], async function(req, res) {
     try {
-        res.json(await userController.removeUser(req, res));
+        res.json(await userController.removeUsers(req, res, req.params.id));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
 }),
+
+router.post("/users/changepicture", [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.changePicture(req,res,req.user.id))
+    } catch {
+        console.error("Error while posting pictures!", err.message);
+    }
+});
+
+router.post('/users/addfavourite', [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.updateFavourites(req,res,req.user.id))
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+router.post('/users/removefavourite', [verifyToken], async function(req,res) {
+    try {
+        await userController.removeFavourites(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+router.post('/users/resetpassword', async function (req, res) {
+    try {
+        await authController.resetPassword(req, res)
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+router.post('/users/authorizereset', async function (req,res) {
+    try {
+        await authController.authorizeReset(req,res)
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+router.post('/users/newpassword', [verifyToken], async function (req,res) {
+    try {
+        console.log(req.user)
+        await userController.newPassword(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+router.post('/users/support', [verifyToken], async function (req,res) {
+    try {
+        await userController.support(req,res,req.user.id)
+    } catch (err) {
+        console.error(err.message)
+    }
+}),
+
+//                ▄▄▄▄▄      ▄ •▄ ▄▄▄ . ▐ ▄ .▄▄ · 
+//                •██  ▪     █▌▄▌▪▀▄.▀·•█▌▐█▐█ ▀. 
+//                ▐█.▪ ▄█▀▄ ▐▀▀▄·▐▀▀▪▄▐█▐▐▌▄▀▀▀█▄
+//                ▐█▌·▐█▌.▐▌▐█.█▌▐█▄▄▌██▐█▌▐█▄▪▐█
+//                ▀▀▀  ▀█▄▀▪·▀  ▀ ▀▀▀ ▀▀ █▪ ▀▀▀▀ 
+
 
 router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) {
     try {
@@ -150,11 +195,11 @@ router.get("/tokens", [verifyToken], [isAdmin], async function(_req, res, next) 
         console.error("Error while getting tokens!", err.message);
         next(err);
     }
-});
+}),
 
-router.delete("/tokens/delete", [verifyToken], [isAdmin], async function (res) {
+router.delete("/tokens/:id", [verifyToken], [isAdmin], async function (req,res) {
     try {
-        res.json(await dbFunctions.deleteToken(res))
+        res.json(await dbFunctions.deleteToken(req,res,req.params.id))
     } catch (err) {
         console.error("Error deleting tokens!", err.message);
     }
@@ -176,6 +221,12 @@ router.post("/login", async function (req, res) {
     }
 }),
 
+//            ▄▄▄· ·▄▄▄▄  .▄▄ · 
+//            ▐█ ▀█ ██▪ ██ ▐█ ▀. 
+//            ▄█▀▀█ ▐█· ▐█▌▄▀▀▀█▄
+//            ▐█ ▪▐▌██. ██ ▐█▄▪▐█
+//            ▀  ▀ ▀▀▀▀▀•  ▀▀▀▀ 
+
 router.get("/ads", async function(_req, res) {
     try {
         res.json(await adController.getAds());
@@ -184,13 +235,21 @@ router.get("/ads", async function(_req, res) {
     }
 });
 
-router.post("/ads", [verifyToken], async function(req,res) {
+router.post("/ads/post", [verifyToken], async function(req,res) {
     res.json(await adController.postAds(req,res,req.user.id))
 });
 
-router.post("/ads/:id", [verifyToken], async function(req,res) {
+router.put("/ads/:id", [verifyToken], async function(req,res) {
     try {
-        res.json(await adController.editAd(req,res,req.user.id,req.params.id))
+        res.json(await adController.editAds(req,res,req.user.id,req.params.id))
+    } catch (err) {
+        console.error("Error getting user by id!", err.message)
+    }
+})
+
+router.put("/ads/edit/:id", [verifyToken], [isAdmin], async function(req,res) {
+    try {
+        res.json(await adController.modifyAd(req,res,req.params.id))
     } catch (err) {
         console.error("Error getting user by id!", err.message)
     }
@@ -198,11 +257,25 @@ router.post("/ads/:id", [verifyToken], async function(req,res) {
 
 router.delete('/ads/:id', [verifyToken], async function(req,res) {
     try {
-        res.json(await adController.deleteAd(req,res,req.user.id,req.params.id))
+        res.json(await adController.deleteAds(req,res,req.user.id,req.params.id))
     } catch (err) {
         console.error("Error deleting ads", err.message)
     }
 })
+
+router.delete('/ads/remove/:id', [verifyToken], [isAdmin], async function (req,res) {
+    try {
+        res.json(await adController.removeAds(req,res,req.params.id))
+    } catch (err) {
+        console.error("Error deleting", err.message)
+    }
+})
+
+//        ▄▄▄·▪   ▄▄· ▄▄▄▄▄▄• ▄▌▄▄▄  ▄▄▄ ..▄▄ · 
+//        ▐█ ▄███ ▐█ ▌▪•██  █▪██▌▀▄ █·▀▄.▀·▐█ ▀. 
+//        ██▀·▐█·██ ▄▄ ▐█.▪█▌▐█▌▐▀▀▄ ▐▀▀▪▄▄▀▀▀█▄
+//        ▐█▪·•▐█▌▐███▌ ▐█▌·▐█▄█▌▐█•█▌▐█▄▄▌▐█▄▪▐█
+//        .▀   ▀▀▀·▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀  ▀▀▀▀ 
 
 router.post('/pictures/upload', [verifyToken], (req,res) => {
     upload(req,res, function (err) {
@@ -222,31 +295,13 @@ router.get("/pictures/upload", async (req,res) => {
     }
 });
 
-router.post('/sendmail', [verifyToken], async function(req,res) {
-    try {
-        await emailController.sendMail(req,res)
-    } catch (err) {
-        console.error(err.message)
-    }
-});
+//            ▄▄▄ .• ▌ ▄ ·.  ▄▄▄· ▪  ▄▄▌  
+//            ▀▄.▀··██ ▐███▪▐█ ▀█ ██ ██•  
+//            ▐▀▀▪▄▐█ ▌▐▌▐█·▄█▀▀█ ▐█·██▪  
+//            ▐█▄▄▌██ ██▌▐█▌▐█ ▪▐▌▐█▌▐█▌▐▌
+//            ▀▀▀ ▀▀  █▪▀▀▀ ▀  ▀ ▀▀▀.▀▀▀ 
 
-router.post('/addfavourite', [verifyToken], async function(req,res) {
-    try {
-        res.json(await userController.updateFavourites(req,res,req.user.id))
-    } catch (err) {
-        console.error(err.message)
-    }
-});
-
-router.post('/removefavourite', [verifyToken], async function(req,res) {
-    try {
-        await userController.removeFavourites(req,res,req.user.id)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-router.get('/subscribe', [verifyToken], async function(req,res) {
+router.get('/email/subscribe', [verifyToken], async function(req,res) {
     try {
         await emailController.subscribe(req,res,req.user.email)
     } catch (err) {
@@ -254,54 +309,27 @@ router.get('/subscribe', [verifyToken], async function(req,res) {
     }
 });
 
-router.post('/newpassword', [verifyToken], async function (req,res) {
-    try {
-        console.log(req.user)
-        await userController.newPassword(req,res,req.user.id)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-router.post('/support', [verifyToken], async function (req,res) {
-    try {
-        await userController.support(req,res,req.user.id)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
+//                .▄▄ · ▄• ▄▌ ▄▄▄· ▄▄▄·      ▄▄▄  ▄▄▄▄▄
+//                ▐█ ▀. █▪██▌▐█ ▄█▐█ ▄█▪     ▀▄ █·•██  
+//                ▄▀▀▀█▄█▌▐█▌ ██▀· ██▀· ▄█▀▄ ▐▀▀▄  ▐█.▪
+//                ▐█▄▪▐█▐█▄█▌▐█▪·•▐█▪·•▐█▌.▐▌▐█•█▌ ▐█▌·
+//                ▀▀▀▀  ▀▀▀ .▀   .▀    ▀█▄▀▪.▀  ▀ ▀▀▀ 
 
 router.get('/support', [verifyToken], [isAdmin], async function (req,res) {
     try {
-        res.json(await dbFunctions.getSupport(req,res))
+        res.json(await supportController.getSupport(req,res))
     } catch (err) {
         console.error(err.message)
     }
 })
 
-router.delete('/support', [verifyToken], [isAdmin], async function (req,res) {
+router.delete('/support/:id', [verifyToken], [isAdmin], async function (req,res) {
     try {
-        res.json(await dbFunctions.deleteSupport(req,res))
+        res.json(await supportController.deleteSupport(req,res,req.params.id))
     } catch (err) {
         console.error(err.message)
     }
 })
-
-router.post('/resetpassword', async function (req, res) {
-    try {
-        await authController.resetPassword(req, res)
-    } catch (err) {
-        console.error(err.message)
-    }
-})
-
-router.post('/authorizereset', async function (req,res) {
-    try {
-        await authController.authorizeReset(req,res)
-    } catch (err) {
-        console.error(err.message)
-    }
-});
 
 
 
