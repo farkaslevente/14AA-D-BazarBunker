@@ -90,11 +90,13 @@ export const ProfilePicSelect = () => {
                         borderRadius: '20px',
                     },
                 }}>
-                <h2>Erősítse meg a profilkép változtatást!</h2>
-                {selectedPicture && <img src={selectedPicture} alt="Selected Profile Pic" style={{width: '20%', height: '20%'}}/>}
-                <div className="modal-buttons">
-                    <button onClick={confirmChange}>Mentés</button>
-                    <button onClick={closeModal} style={{background: 'red', border: '1px solid black'}}>Mégse</button>
+                <div style={{textAlign: 'center'}}>
+                    <h2>Erősítse meg a profilkép változtatást!</h2>
+                    {selectedPicture && <img src={selectedPicture} alt="Selected Profile Pic" style={{width: '20%', height: '20%'}}/>}
+                    <div className="modal-buttons">
+                        <button onClick={confirmChange}>Mentés</button>
+                        <button onClick={closeModal} style={{background: 'red', border: '1px solid black'}}>Mégse</button>
+                    </div>
                 </div>
             </Modal>
         </div>

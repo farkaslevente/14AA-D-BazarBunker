@@ -21,7 +21,7 @@ export const ResetPasswordLogin = () => {
             if (resp.status === 200) {
                 localStorage.clear();
 
-                const token = resp.data;
+                const token = resp.data.token;
                 const decoded = jwtDecode(token);
                 const authEmail = decoded.payload.email;
                 const userId = decoded.payload.id;

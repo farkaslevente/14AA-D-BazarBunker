@@ -119,7 +119,7 @@ export const ProfilePage = () => {
                     <h1>Profil</h1>
                 </div>
                 <div className="profile-content">
-                    <img src={user.pPic} alt="Profile Image" className="profile-image" />
+                    <img src={user.pPic} alt="Profile Image" className="profile-image" style={{background: 'white'}}/>
                     {!editMode && <button onClick={() => navigate('/profilkepek')} className="profile-image-button" style={{background: '#B27AFA', border: '1px solid black', color: 'black',}}>Válassz másik képet</button>}
                     <div className="profile-details">
                         <ul>
