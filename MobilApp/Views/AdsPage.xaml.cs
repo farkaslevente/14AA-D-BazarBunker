@@ -19,18 +19,20 @@ public partial class AdsPage : ContentPage
     {
         this.BindingContext = new AdsViewModel();
         await Task.Delay(3000);
-        string LoggedIn = SecureStorage.GetAsync("userEmail").Result;
+        string LoggedIn = SecureStorage.GetAsync("userEmail").Result;        
+        InitializeComponent();
         if (LoggedIn != null)
         {
-            LoginVisible = false;
-            LoggedInVisible = true;            
+
+            BTNSupport.IsEnabled = true;
+            BTNSupport.IsVisible = true;
         }
         else
         {
-            LoginVisible = true;
-            LoggedInVisible = false;            
+
+            BTNSupport.IsEnabled = false;
+            BTNSupport.IsVisible = false;
         }
-        InitializeComponent();
     }
     private async void BTNIncognitoSupport_Clicked(object sender, EventArgs e)
     {

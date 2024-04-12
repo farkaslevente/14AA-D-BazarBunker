@@ -46,18 +46,7 @@ namespace MobilApp_Szakdolgozat.Services
         static string url102local = "http://10.0.12.16:9000";
         static string url202local = "http://10.0.22.5:9090";
         static string url302local = "http://10.0.33.20:9090";
-        public static string url = urlHome;
-        public static async Task<IEnumerable<ProfileModel>> getAllProfiles(int userId)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(url);
-                var uri = "/users";
-                var result = await client.GetStringAsync(uri);
-
-                return JsonConvert.DeserializeObject<List<ProfileModel>>(result);
-            }
-        }
+        public static string url = url103;
 
         public static async Task<ProfileModel> getProfileById(int userId)
         {
@@ -134,10 +123,7 @@ namespace MobilApp_Szakdolgozat.Services
         public static async Task<IEnumerable<SettlementModel>> getSettlements()
         {
             using (var client = new HttpClient())
-            {
-                //string token = await SecureStorage.GetAsync("userToken");
-                //client.DefaultRequestHeaders.Authorization =
-                //new AuthenticationHeaderValue("Bearer", token);
+            {          
                 client.BaseAddress = new Uri(url);
                 var uri = "/settlements";
                 var result = await client.GetStringAsync(uri);
@@ -212,7 +198,7 @@ namespace MobilApp_Szakdolgozat.Services
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();            
-            HttpResponseMessage response = await client.PostAsync(url + "/resetpassword", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/resetpassword", content);
             string result = await response.Content.ReadAsStringAsync();
         }
 
@@ -221,18 +207,22 @@ namespace MobilApp_Szakdolgozat.Services
             string resetMail = await SecureStorage.GetAsync("resetMail");
             string jsonData = JsonConvert.SerializeObject(new
             {
-                token = code,
+                token = code.ToUpper(),
                 email = resetMail
             });
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();            
-            HttpResponseMessage response = await client.PostAsync(url + "/authorizereset", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/authorizereset", content);
             string result = await response.Content.ReadAsStringAsync();
             await SecureStorage.SetAsync("resetToken", result);
         }
         public static async Task resetPwdFinal(string newPassword)
         {
             string resetToken = await SecureStorage.GetAsync("resetToken");
+            string[] fullJWT = resetToken.Split(':');
+            var fullResult = fullJWT[1].Trim('"');
+            string[] trimmedJWT = fullResult.Split('"');
+            var trimmedResult = trimmedJWT[0];
             string jsonData = JsonConvert.SerializeObject(new
             {                
                 password = newPassword
@@ -240,8 +230,8 @@ namespace MobilApp_Szakdolgozat.Services
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();            
             client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", resetToken);
-            HttpResponseMessage response = await client.PostAsync(url + "/newpassword", content);
+            new AuthenticationHeaderValue("Bearer", trimmedResult);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/newpassword", content);
             string result = await response.Content.ReadAsStringAsync();            
         }
 
@@ -318,7 +308,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/newpassword", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/newpassword", content);
             string result = await response.Content.ReadAsStringAsync();
 
         }
@@ -332,7 +322,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/pictures", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/changepicture", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)
@@ -364,7 +354,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PutAsync(url + "/users/patch", content);
+            HttpResponseMessage response = await client.PutAsync(url + "/users/put", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)
@@ -397,7 +387,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/addfavourite", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/users/addfavourite", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)
@@ -427,7 +417,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/ads", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/ads/post", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)
@@ -457,7 +447,7 @@ namespace MobilApp_Szakdolgozat.Services
             string token = await SecureStorage.GetAsync("userToken");
             client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await client.PostAsync(url + "/ads", content);
+            HttpResponseMessage response = await client.PostAsync(url + "/ads/post", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if ((int)response.StatusCode == 401)
@@ -552,7 +542,7 @@ namespace MobilApp_Szakdolgozat.Services
                 client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
-                var uri = "/support";
+                var uri = "/users/support";
                 HttpResponseMessage response = await client.PostAsync(uri , content);
                 string result = await response.Content.ReadAsStringAsync();
                 return;
@@ -567,7 +557,7 @@ namespace MobilApp_Szakdolgozat.Services
                 client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
-                var uri = "/subscribe";
+                var uri = "/users/subscribe";
                 HttpResponseMessage response = await client.GetAsync(uri);
                 string result = await response.Content.ReadAsStringAsync();
                 return;
@@ -587,7 +577,7 @@ namespace MobilApp_Szakdolgozat.Services
                 client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri(url);
-                var uri = "/newpassword";
+                var uri = "/users/newpassword";
                 HttpResponseMessage response = await client.PostAsync(uri, content);
                 string result = await response.Content.ReadAsStringAsync();
                 return;
