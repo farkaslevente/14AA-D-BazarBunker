@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/auth.config');
 const bcrypt = require('bcryptjs')
-const query = require('../database/db')
 
 
   function verifyToken (req, res, next) {
@@ -77,7 +76,7 @@ secret,
       phone: user.telefonszam
   }
     let token = accessToken({payload})
-    return res.status(200).send(token) 
+    return res.status(200).json({token: `${token}`}) 
   } else {
     return res.status(401).send({message: "Token does not match with the one in database"})
   }

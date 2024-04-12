@@ -51,14 +51,6 @@ router.get("/pictures", [verifyToken], async function(_req, res, next) {
     }
 });
 
-router.post("/pictures", [verifyToken], async function(req,res) {
-    try {
-        res.json(await userController.changePicture(req,res,req.user.id))
-    } catch {
-        console.error("Error while posting pictures!", err.message);
-    }
-});
-
 router.get("/settlements", async function(_req, res, next) {
     try {
         res.json(await dbFunctions.getSettlements());
@@ -100,9 +92,9 @@ router.get("/users/:id", async function(req,res) {
     }
 })
 
-router.put("/users/patch", [verifyToken], async function(req, res) {
+router.put("/users/put", [verifyToken], async function(req, res) {
     try {
-        res.json(await userController.patchUsers(req.body, res, req.user.id));
+        res.json(await userController.putUsers(req.body, res, req.user.id));
     } catch (err) {
         console.error("Error updating!", err.message);
     }
@@ -131,6 +123,14 @@ router.delete("/users/remove", [verifyToken], [isAdmin], async function(req, res
         console.error("Error updating!", err.message);
     }
 }),
+
+router.post("/users/changepicture", [verifyToken], async function(req,res) {
+    try {
+        res.json(await userController.changePicture(req,res,req.user.id))
+    } catch {
+        console.error("Error while posting pictures!", err.message);
+    }
+});
 
 router.post('/users/addfavourite', [verifyToken], async function(req,res) {
     try {
@@ -255,9 +255,9 @@ router.delete('/ads/:id', [verifyToken], async function(req,res) {
     }
 })
 
-router.delete('/ads/remove', [verifyToken], [isAdmin], async function (req,res) {
+router.delete('/ads/remove/:id', [verifyToken], [isAdmin], async function (req,res) {
     try {
-        res.json(await adController.removeAds(req,res))
+        res.json(await adController.removeAds(req,res,req.params.id))
     } catch (err) {
         console.error("Error deleting", err.message)
     }
@@ -292,14 +292,6 @@ router.get("/pictures/upload", async (req,res) => {
 //            ▐▀▀▪▄▐█ ▌▐▌▐█·▄█▀▀█ ▐█·██▪  
 //            ▐█▄▄▌██ ██▌▐█▌▐█ ▪▐▌▐█▌▐█▌▐▌
 //            ▀▀▀ ▀▀  █▪▀▀▀ ▀  ▀ ▀▀▀.▀▀▀ 
-
-router.post('/email/sendmail', [verifyToken], async function(req,res) {
-    try {
-        await emailController.sendMail(req,res)
-    } catch (err) {
-        console.error(err.message)
-    }
-});
 
 router.get('/email/subscribe', [verifyToken], async function(req,res) {
     try {

@@ -72,10 +72,9 @@ const adController = {
         }
     },
 
-    removeAds: async function (req,res) {
+    removeAds: async function (req,res,id) {
         console.log("Incoming remove on ads...")
         try {
-            const { id } = req.body
             await query(`
             DELETE FROM hirdetesek WHERE id = ${id}`)
             return res.status(200).json({message: `Ad with id: ${id} was deleted succesfully`})          
