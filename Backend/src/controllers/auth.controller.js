@@ -19,7 +19,7 @@ const authController = {
 
                     const hashedPassword = await bcrypt.hash(password, 10)
 
-                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo, role, kedvencek, telefonszam) VALUES
+                    dbFunctions.execQueryRegister(`INSERT INTO felhasznalok (id, nev, email, hely, pPic, jelszo, szerep, kedvencek, telefonszam) VALUES
                     (null, '${name}', '${email}', '${location}', "https://www.svgrepo.com/show/442075/avatar-default-symbolic.svg", '${hashedPassword}', 0, '0 +', '${phone}')`)
 
                     res.status(200).json({
@@ -69,14 +69,14 @@ const authController = {
                     email: user.email,
                     location: user.hely,
                     pPic: user.pPic,
-                    role: user.role,
+                    role: user.szerep,
                     favourites: user.kedvencek,
                     phone: user.telefonszam
                 }
                 const token = accessToken({payload})
 
                 const d = new Date()
-                dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, data, date) VALUES 
+                dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, token, datum) VALUES 
                 (null, '${token}', '${d}')`)
 
                 req.session.token = token;
@@ -115,7 +115,7 @@ const authController = {
         let token = refreshToken({token: dbToken})
 
         await query(`
-        INSERT INTO tokenek (data, date, id, tulajEmail) VALUES ('${token}', '${Date.now()}', null, '${email}')`)
+        INSERT INTO tokenek (token, datum, id, tulajEmail) VALUES ('${token}', '${Date.now()}', null, '${email}')`)
     },
 
     authorizeReset: async function (req,res) {
@@ -131,7 +131,7 @@ const authController = {
 
             console.log(user[0])
 
-        compareToken(res, token, dbToken.data, user[0])
+        compareToken(res, token, dbToken.token, user[0])
         
     }
 

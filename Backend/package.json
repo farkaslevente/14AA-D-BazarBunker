@@ -4,7 +4,6 @@
   "description": "The backend project of Bazarbunker",
   "main": "index.js",
   "scripts": {
-    "test": "test",
     "dev": "nodemon index.js"
   },
   "author": "markobence",
