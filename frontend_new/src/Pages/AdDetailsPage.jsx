@@ -70,9 +70,9 @@ export const AdDetailsPage = () => {
     const handleFavoriteToggle = async () => {
         try {
             if (isFavorite) {
-                await axios.post(`${process.env.REACT_APP_LOCAL}/removefavourite`, { adId }, { headers });
+                await axios.post(`${process.env.REACT_APP_LOCAL}/users/removefavourite`, { adId }, { headers });
             } else {
-                await axios.post(`${process.env.REACT_APP_LOCAL}/addfavourite`, { adId }, { headers });
+                await axios.post(`${process.env.REACT_APP_LOCAL}/users/addfavourite`, { adId }, { headers });
             }
             setIsFavorite(!isFavorite);
         } catch (error) {
