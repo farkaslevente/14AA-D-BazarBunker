@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              xmlns:models="clr-namespace:MobilApp_Szakdolgozat.Models"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Maui;assembly=FFImageLoading.Compat.Svg.Maui"
              x:Class="MobilApp_Szakdolgozat.Views.AdDetailsPage"
              Title="">
     <ScrollView>
@@ -88,14 +89,19 @@
                     HeightRequest="300"
                     x:Name="contact"
                     Background="White">
-                <Grid RowDefinitions="60,*,*,*,*,60">
-                    <Image Source="{Binding adOwner.pPic}" Grid.Row="0" HorizontalOptions="End"/>
-                    <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" FontSize="20" Margin="0,0,0,0" HorizontalTextAlignment="Center"/>
-                    <Label Text="{Binding adOwner.name, StringFormat='Hirdető neve: {0}'}" Grid.Row="1" FontSize="15" Margin="10,0,0,0"/>
-                    <Label Text="{Binding adOwner.location, StringFormat='Település: {0}'}" Grid.Row="2" FontSize="15" Margin="10,0,0,0"/>
-                    <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail elérhetősége: &#10;{0}'}" Grid.Row="3" FontSize="15" Margin="10,0,0,0"/>
-                    <Label Text="{Binding adOwner.phone, StringFormat='Hirdető telefonos elérhetősége: &#10;{0}'}" Grid.Row="4" FontSize="15" Margin="10,0,0,0"/>
-                    <Button Clicked="BTNanimationBack_Clicked" Grid.Row="5" Text="Vissza a hirdetéshez" HorizontalOptions="Center" Margin="10"/>
+                <Grid RowDefinitions="60,*,*,*,*,60" ColumnDefinitions="50,*,50">
+                    <svg:SvgCachedImage x:Name="IMGProfielPic"  
+                                        Source="{Binding adOwner.pPic}"
+                                        Aspect="AspectFill"
+                                        Grid.RowSpan="6" 
+                                        Grid.Column="2"
+                                        Opacity="0.6"/>
+                    <Label Text="A hirdetés feladójának elérési adatai:" Grid.Row="0" Grid.Column="1" FontSize="20" Margin="0,0,0,0" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding adOwner.name, StringFormat='Hirdető neve: {0}'}" Grid.Row="1"  Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0"/>
+                    <Label Text="{Binding adOwner.location, StringFormat='Település: {0}'}" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0"/>
+                    <Label Text="{Binding adOwner.email, StringFormat='Hirdető e-mail elérhetősége: &#10;{0}'}" Grid.Row="3" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0"/>
+                    <Label Text="{Binding adOwner.phone, StringFormat='Hirdető telefonos elérhetősége: &#10;{0}'}" Grid.Row="4" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0"/>
+                    <Button Clicked="BTNanimationBack_Clicked" Grid.Row="5" Grid.Column="1" Text="Vissza a hirdetéshez" HorizontalOptions="Center" Margin="10"/>
                 </Grid>
             </Border>
         </Grid>

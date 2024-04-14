@@ -23,15 +23,19 @@ public partial class AdsPage : ContentPage
         InitializeComponent();
         if (LoggedIn != null)
         {
-
             BTNSupport.IsEnabled = true;
             BTNSupport.IsVisible = true;
+            BTNProfile.IsEnabled = true;
+            BTNProfile.IsVisible = true;
+
         }
         else
         {
 
             BTNSupport.IsEnabled = false;
             BTNSupport.IsVisible = false;
+            BTNProfile.IsEnabled = false;
+            BTNProfile.IsVisible = false;
         }
     }
     private async void BTNIncognitoSupport_Clicked(object sender, EventArgs e)
