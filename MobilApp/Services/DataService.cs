@@ -15,7 +15,6 @@ using FFImageLoading.Args;
 using MySqlX.XDevAPI;
 using System.Xml.Linq;
 using System.Collections.ObjectModel;
-//using Android.App;
 
 
 
@@ -29,8 +28,9 @@ namespace MobilApp_Szakdolgozat.Services
             string token;
         }        
 
-        static string url202 = "http://10.0.22.14:9000";        
-        public static string url = url202;
+        static string url202 = "http://10.0.22.14:9000";
+        static string urlHome = "http://192.168.0.165:9000";
+        public static string url = urlHome;
 
         public static async Task<ProfileModel> getProfileById(int userId)
         {

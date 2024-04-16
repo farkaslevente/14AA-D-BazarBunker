@@ -40,11 +40,6 @@ public partial class MyAdsPage : ContentPage
         await Shell.Current.GoToAsync(nameof(SupportPage));
     }
 
-    private async void BTNAdmin_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(NewPage1));
-    }
-
     private async void BTNMainPage_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(MainPage));
