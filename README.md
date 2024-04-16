@@ -21,6 +21,7 @@ _A new and easier way for students to find their desired book_
  - You can reach the APIs at `localhost:9000`
  - To run front-end type `npm start`
  - You can reach the website through `localhost:3000`
+ - To start up the native mobile application you have to alter the url to your backend's IP address (in `DataService.cs` in the `Services` folder)
   
 ## Created by
 
