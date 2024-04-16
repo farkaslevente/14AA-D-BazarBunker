@@ -164,8 +164,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 int userId = int.Parse(await SecureStorage.GetAsync("userId"));
              
                 List<string> imageList = new List<string>();
-                await DataService.imageUpload(userId, imageId);
-                imageId = int.Parse(await SecureStorage.GetAsync("imgId"))+1;
+                string response = await DataService.imageUpload(userId, imageId);
+                if (response == "error")
+                {
+                    await Shell.Current.DisplayAlert("Hiba", "Kérjük válasszon egy fényképet", "Vissza");
+                }
+                else
+                {
+                    imageId = int.Parse(await SecureStorage.GetAsync("imgId")) + 1;
+                }                
 
             });
         }

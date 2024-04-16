@@ -65,14 +65,14 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     string userPhone = await SecureStorage.GetAsync("userPhone");
                     string userImage = await SecureStorage.GetAsync("userImage");
                     StringBuilder favoritesBuilder = new StringBuilder(favorites);
-                    favoritesBuilder.Append($"{advertisement.id}+");
+                    favoritesBuilder.Append($" {advertisement.id} +");
                     favorites = favoritesBuilder.ToString();
-                    string[] favs = favorites.Split("+");
-                    for (int i = 0; i < favs.Length - 1; i++)
+                    string[] favs = favorites.Split(" + ");
+                    for (int i = 0; i < favs.Length; i++)
                     {
                         if (!userFavorites.Contains(favs[i].ToString()))
                         {
-                            userFavorites += $"{favs[i]}+";
+                            userFavorites += $" {favs[i]}";
                             await SecureStorage.SetAsync("userFavorites", userFavorites);
                         }
                     }
@@ -105,8 +105,8 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     string userFavorites = await SecureStorage.GetAsync("userFavorites");
                     string userPhone = await SecureStorage.GetAsync("userPhone");
                     string userImage = await SecureStorage.GetAsync("userImage");
-                    favorites = favorites.Replace($"{advertisement.id}+", "");
-                    string[] favs = favorites.Split("+");
+                    favorites = favorites.Replace($" {advertisement.id} +", "");
+                    string[] favs = favorites.Split(" + ");
                     if (favs.Count() == 0)
                     {
                         userFavorites = "100000+";
@@ -131,7 +131,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private void startFavs()
         {            
-            string[] favs = localUser.favourites.Split('+');
+            string[] favs = localUser.favourites.Split(" + ");
             if (favs.Count() == 1)
             {
                 for (int i = 0; i < favs.Count(); i++)
@@ -183,10 +183,15 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             
             advertisement = query["selectedAd"] as AdsModel;
-            OnPropertyChanged(nameof(advertisement));
+            writeFavs(advertisement);
+            OnPropertyChanged(nameof(advertisement));            
             getOwnerInfo();            
             
 
+        }
+        public async void writeFavs(AdsModel advert)
+        {
+            await SecureStorage.SetAsync("advertId", advert.id.ToString());
         }
 
         private async void getLocalUserInfo()

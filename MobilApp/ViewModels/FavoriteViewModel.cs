@@ -26,7 +26,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             int userId = int.Parse(await SecureStorage.GetAsync("userId"));
             string userEmail = await SecureStorage.GetAsync("userEmail");
             favIds = await DataService.getFavorites();
-            favIds = favIds.Take(favIds.Count()-1).ToArray();
+            //favIds = favIds.Take(favIds.Count()).ToArray();
             uploadFileNames = new ObservableCollection<string>();
             favoriteAds = new ObservableCollection<AdsModel>();
             await getAllUploads();
@@ -62,19 +62,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 advertisement = null;
                 OnPropertyChanged(nameof(advertisement));
             });
-        }
-
-        
-       
-
-        private async void startupC()
-        {            
-            int userId = int.Parse(await SecureStorage.GetAsync("userId"));
-            string userEmail = await SecureStorage.GetAsync("userEmail");
-            favIds = await DataService.getFavorites();
-            favIds = favIds.Take(favIds.Count() - 1).ToArray();
-            await getFavs();
-        }
+        }                    
         private async Task getAllUploads()
         {
             uploadFileNames.Clear();

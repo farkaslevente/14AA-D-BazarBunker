@@ -37,16 +37,8 @@ namespace MobilApp_Szakdolgozat.Services
         // - token eltárolás
         // - post token, post kép id (<--egyben)
 
-        static string url202 = "http://10.0.22.14:9000";
-        static string url303 = "http://10.0.33.12:9000";
-        static string url103 = "http://10.0.13.5:9000";
-        //Itthon 9090-es porton megy a szerver
-        static string urlHome = "http://192.168.0.165:9090";
-        static string url103local = "http://10.0.13.6:9090";
-        static string url102local = "http://10.0.12.16:9000";
-        static string url202local = "http://10.0.22.5:9090";
-        static string url302local = "http://10.0.33.20:9090";
-        public static string url = urlHome;
+        static string url202 = "http://10.0.22.14:9000";        
+        public static string url = url202;
 
         public static async Task<ProfileModel> getProfileById(int userId)
         {
@@ -151,7 +143,14 @@ namespace MobilApp_Szakdolgozat.Services
             int uId = Int32.Parse(await SecureStorage.GetAsync("userId"));
             ProfileModel localU = await getProfileById(uId);         
             string storedFavoritesList = localU.favourites;
-            string[] storedFavorites = storedFavoritesList.Split("+");
+            string[] storedFavorites = storedFavoritesList.Split(" + ");
+            for (int i = 0; i < storedFavorites.Length; i++)
+            {
+                if (storedFavorites[i].Contains(" +"))
+                {
+                    storedFavorites[i] = storedFavorites[i].Replace(" +", "");
+                }
+            }           
             return storedFavorites;
         }
         public static async Task<RegisterModel> register(RegisterModel user)
@@ -346,6 +345,7 @@ namespace MobilApp_Szakdolgozat.Services
                 email = userEmail,
                 location = userLocation,
                 pPic = userPic,
+                role = userRole,
                 favourites = userFavorites,
                 phone = userMobile
             });
