@@ -62,15 +62,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     foreach (var ad in advertisements)
                     {
                         if (ad.id == idInt)
-                        {
-                            //await SecureStorage.SetAsync("editedAdId", ad.id.ToString());
-                            //await SecureStorage.SetAsync("editedAdName", ad.nev);
-                            //await SecureStorage.SetAsync("editedAdCategory", ad.kategoria);
-                            //await SecureStorage.SetAsync("editedAdDescription", ad.leiras);
-                            //await SecureStorage.SetAsync("editedAdOwnerId", ad.tulajId.ToString());
-                            //await SecureStorage.SetAsync("editedAdCountyId", ad.varmegyeId.ToString());                            
-                            //await SecureStorage.SetAsync("editedAdPrice", ad.ar.ToString());
-                            //await SecureStorage.SetAsync("editedAdSettlement", ad.telepules);
+                        {                            
                             await SecureStorage.SetAsync("isedited", true.ToString());
                             string jsonContent = JsonConvert.SerializeObject(ad);
                             await SecureStorage.SetAsync("jsonContent", jsonContent);
@@ -94,10 +86,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 for (int y = 0; y < advertisements.Count(); y++)
                 {
                     string[] nameWithoutFileType = uploadFileNames[i].Split('.');
-                    string[] nameParts = nameWithoutFileType[0].Split('_');
-                    //nameParts[0] = UserId
-                    //nameParts[1] = AdId
-                    //nameParts[2] = ImgId
+                    string[] nameParts = nameWithoutFileType[0].Split('_');                   
                     if (advertisements[y].id == Int32.Parse(nameParts[1]))
                     {
                         advertisements[y].adImages.Clear();
@@ -110,8 +99,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 
         private async Task getAllAds()
         {            
-            advertisements.Clear();
-            //int isLike = 0;
+            advertisements.Clear();            
             int UserId = Int32.Parse(await SecureStorage.GetAsync("userId"));
 
             IEnumerable<AdsModel> list = await DataService.getAds();            

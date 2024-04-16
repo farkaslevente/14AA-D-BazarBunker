@@ -7,9 +7,6 @@ namespace MobilApp_Szakdolgozat.Views;
 
 public partial class PopUpAdEditorPage : Popup
 {
-//	<toolkit:Popup.BindingContext>
-//        <vm:NewAdViewModel/>
-//    </toolkit:Popup.BindingContext>
 	public PopUpAdEditorPage(AdsModel ad)
 	{
 		startup(ad);
@@ -19,8 +16,7 @@ public partial class PopUpAdEditorPage : Popup
 
     private async void startup(AdsModel ad)
     {
-		this.BindingContext = new PopUpViewModel(ad);
-		//await Task.Delay(3000);
+		this.BindingContext = new PopUpViewModel(ad);		
         InitializeComponent();
     }
 }

@@ -65,8 +65,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             }
         }
         public ObservableCollection<CountyModel> counties { get; set; }
-
-        //public CountyModel selectedCounty { get; set; }
+        
         private CountyModel _selectedCounty;
         public CountyModel selectedCounty
         {
@@ -109,8 +108,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 }
             }
         }
-        public ObservableCollection<SettlementModel> settlements { get; set; }
-        //public SettlementModel selectedSettlement { get; set; }
+        public ObservableCollection<SettlementModel> settlements { get; set; }        
         private SettlementModel _selectedSettlement;
         public SettlementModel selectedSettlement
         {

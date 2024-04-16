@@ -41,10 +41,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 for (int y = 0; y < filteredAds.Count(); y++)
                 {
                     string[] nameWithoutFileType = uploadFileNames[i].Split('.');
-                    string[] nameParts = nameWithoutFileType[0].Split('_');
-                    //nameParts[0] = UserId
-                    //nameParts[1] = AdId
-                    //nameParts[2] = ImgId                    
+                    string[] nameParts = nameWithoutFileType[0].Split('_');                                 
                     if (filteredAds[y].id == Int32.Parse(nameParts[1]) && !filteredAds[y].adImages.Contains($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}"))
                     {
                         

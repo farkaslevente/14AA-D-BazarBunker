@@ -27,15 +27,7 @@ namespace MobilApp_Szakdolgozat.Services
         public struct T
         {
             string token;
-        }
-        //     /\             (_)    | |/ /   | | |
-        //    /  \    _ __ ___ _     | ' / ___| | |
-        //   / /\ \ | '_ ` _ \| |    |  < / _ \ | |
-        //  / ____ \| | | | | | |    | . \  __/ | |
-        // /_/    \_\_| |_| |_|_|    |_|\_\___|_|_|
-        // képváltáshoz:
-        // - token eltárolás
-        // - post token, post kép id (<--egyben)
+        }        
 
         static string url202 = "http://10.0.22.14:9000";        
         public static string url = url202;

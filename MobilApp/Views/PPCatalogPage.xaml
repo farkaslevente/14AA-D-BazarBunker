@@ -6,8 +6,6 @@
              x:Class="MobilApp_Szakdolgozat.Views.PPCatalogPage"
              Title=""
              Shell.NavBarIsVisible="False">
-    <!--CollectionView:
-    https://www.youtube.com/watch?v=gf6abNRAhuY-->
     <ContentPage.BindingContext>
         <viewmodels:PPCatalogViewModel/>
     </ContentPage.BindingContext>

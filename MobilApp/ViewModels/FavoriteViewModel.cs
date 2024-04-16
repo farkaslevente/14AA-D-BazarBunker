@@ -25,8 +25,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         {
             int userId = int.Parse(await SecureStorage.GetAsync("userId"));
             string userEmail = await SecureStorage.GetAsync("userEmail");
-            favIds = await DataService.getFavorites();
-            //favIds = favIds.Take(favIds.Count()).ToArray();
+            favIds = await DataService.getFavorites();            
             uploadFileNames = new ObservableCollection<string>();
             favoriteAds = new ObservableCollection<AdsModel>();
             await getAllUploads();
@@ -38,7 +37,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                     string[] nameWithoutFileType = uploadFileNames[i].Split('.');
                     string[] nameParts = nameWithoutFileType[0].Split('_');
                     //nameParts[0] = UserId
-                    //nameParts[1] = AdId
+                    //nameParts[1] = AdId      <- Which part is which
                     //nameParts[2] = ImgId                    
                     if (favoriteAds[y].id == Int32.Parse(nameParts[1]) && !favoriteAds[y].adImages.Contains($"{DataService.url}/uploads/{nameParts[0]}_{nameParts[1]}_{nameParts[2]}.{nameWithoutFileType[1]}"))
                     {
@@ -50,9 +49,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
             OnPropertyChanged(nameof(favoriteAds));
         }
         public FavoriteViewModel()
-        {
-            //favoriteAds = new ObservableCollection<AdsModel>();
-           // startupC();
+        {            
             adDetailsCommand = new Command(async () =>
             {
                 if (advertisement == null) return;                

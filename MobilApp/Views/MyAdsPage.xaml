@@ -7,9 +7,6 @@
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              x:Name="CPMyAds">
-    <!--<ContentPage.BindingContext>
-        <vm:MyAdsViewModel/>
-    </ContentPage.BindingContext>-->
     <Grid RowDefinitions="*,40" ColumnDefinitions="*,16*,*">
         <Grid RowDefinitions="*, 40,10" Grid.Column="1" Grid.RowSpan="1" ColumnDefinitions="*,16*,*">
         <CollectionView ItemsSource="{Binding advertisements}"
@@ -84,7 +81,6 @@
                 Text="Új hirdetés" 
                 Clicked="BTNNewAd_Clicked"
                 MaximumWidthRequest="200"/>
-            <!--<ImageButton x:Name="BTNEditVis" Source="editvisibility.svg" Grid.Column="2" Grid.Row="1" Clicked="BTNEditVis_Clicked"/>-->
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="3"
               ColumnDefinitions="*,*,*,*,*" Margin="0,0,0,10">

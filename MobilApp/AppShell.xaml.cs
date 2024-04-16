@@ -23,8 +23,7 @@ namespace MobilApp_Szakdolgozat
             Routing.RegisterRoute(nameof(PPCatalogPage), typeof(PPCatalogPage));
             Routing.RegisterRoute(nameof(AdsPage), typeof(AdsPage));
             Routing.RegisterRoute(nameof(AdDetailsPage), typeof(AdDetailsPage));                        
-            Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
-            Routing.RegisterRoute(nameof(NewPage1), typeof(NewPage1));
+            Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));            
             Routing.RegisterRoute(nameof(FavPage), typeof(FavPage));
             Routing.RegisterRoute(nameof(MyAdsPage), typeof(MyAdsPage));
             Routing.RegisterRoute(nameof(NewAdPage), typeof(NewAdPage));

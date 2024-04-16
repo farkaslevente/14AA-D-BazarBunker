@@ -8,19 +8,6 @@
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              >
-
-    <!--SVG catalouge:
-        https://www.svgrepo.com/-->
-    <!--
-    Video playback if needed:
-    <toolkit:MediaElement x:Name="mediaElement"
-              ShouldAutoPlay="True"                      
-              Source="embed://hatter.mp4"
-              VerticalOptions="FillAndExpand"
-              HorizontalOptions="FillAndExpand"
-              Aspect="AspectFill"
-              ShouldLoopPlayback="True"
-              ShouldShowPlaybackControls="False"/>-->
     <ContentPage.BindingContext>
         <vm:ShellViewModel/>
     </ContentPage.BindingContext>
@@ -99,6 +86,7 @@
                     Visual="Material.VisualMarker.MaterialZIndex 100"/>
 
         </Grid>
+        
         <!--types of schoolarships-->
         <!--For Primary school students-->
         <Grid ColumnDefinitions="2*,14*,2*" Grid.Row="5" Grid.ColumnSpan="7">

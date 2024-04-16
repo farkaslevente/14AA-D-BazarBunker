@@ -22,9 +22,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
 {
     public partial class SearchViewModel : BindableObject
     {
-        public ObservableCollection<CountyModel> counties { get; set; }
-        
-        //public CountyModel selectedCounty { get; set; }
+        public ObservableCollection<CountyModel> counties { get; set; }                
         private CountyModel _selectedCounty;
         public CountyModel selectedCounty
         {
@@ -63,6 +61,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
         public ObservableCollection<AdsModel> allAds { get; set; }
         public ObservableCollection<AdsModel> filteredAds { get; set; }
         public AdsModel advertisement { get; set; }
+        
         //Search params
         public string searchTitle { get; set; }
         public string searchCounty { get; set; }
@@ -100,11 +99,7 @@ namespace MobilApp_Szakdolgozat.ViewModels
                 if (!MainPage.mainCategory.IsNullOrEmpty())
                 {
                     selectedCategory = MainPage.mainCategory;
-                }
-                //if (searchCategory == null)
-                //{
-                //    searchCategory = selectedCategory;
-                //}                
+                }                       
 
                 List<AdsModel> filteredList = new List<AdsModel>();
                 if (string.IsNullOrEmpty(searchTitle) && string.IsNullOrEmpty(searchCategory)&& selectedCounty == null && selectedSettlement == null && searchMinPrice == 0 && searchMaxPrice == 10000000)

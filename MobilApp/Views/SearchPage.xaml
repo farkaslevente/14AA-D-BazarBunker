@@ -23,7 +23,6 @@
                                      ItemsSource="{Binding categories}" 
                                      SelectedItem="{Binding selectedCategory}"/>
                 </Frame>
-                <!--kell kategória, meg ár slider, folyt köv hamarosan-->
                 <Label Grid.Row="2" Grid.Column="0" Text="Minimum ár:" Margin="10,0,0,0"/>
                 <Frame CornerRadius="10" Padding="10,3,10,3" Margin="10" Grid.Column="0" Grid.Row="3">
                     <Entry FontSize="18" Placeholder="Minimum ár" Margin="5,0,5,0"

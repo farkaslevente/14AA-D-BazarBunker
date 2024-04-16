@@ -4,7 +4,6 @@
              xmlns:viewmodels="clr-namespace:MobilApp_Szakdolgozat.ViewModels"
              x:Class="MobilApp_Szakdolgozat.Views.RegisterPage"
              Title="">
-    <!--dropdown: https://www.youtube.com/watch?v=lzNdZMwVj-c-->
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="errorMessage">
             <Setter Property="TextColor" Value="Red"/>
