@@ -26,8 +26,16 @@ import { ADMINPAGE } from './Pages/ADMINPAGE';
 //Route protection
 import PrivateRoutes from './utils/PrivateRoutes';
 import ReversePrivateRoutes from './utils/ReversePrivateRoutes';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  useEffect(() => {
+
+    if (!localStorage.getItem('isLoggedIn')) {
+      localStorage.setItem('isLoggedIn', isLoggedIn.toString());
+    }
+  }, [isLoggedIn]);
   return (
     <BrowserRouter>
       <UserStoreProvider>

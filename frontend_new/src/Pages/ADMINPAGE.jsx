@@ -41,7 +41,7 @@ export const ADMINPAGE = () => {
 
   const checkUser = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_HOST202}/users/${userId}`);
       const userData = response.data;
       if (userData.role === 1) {
         // setUserIsAdmin(true);
@@ -56,19 +56,19 @@ export const ADMINPAGE = () => {
 
   const fetchData = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_LOCAL}/users`,
+      let response = await axios.get(`${process.env.REACT_APP_HOST202}/users`,
         { headers: { "Authorization": `Bearer ${authToken}` } })
       setUsers(response.data);
 
-      response = await axios.get(`${process.env.REACT_APP_LOCAL}/ads`,
+      response = await axios.get(`${process.env.REACT_APP_HOST202}/ads`,
         { headers: { "Authorization": `Bearer ${authToken}` } })
       setAds(response.data);
 
-      response = await axios.get(`${process.env.REACT_APP_LOCAL}/support`,
+      response = await axios.get(`${process.env.REACT_APP_HOST202}/support`,
         { headers: { "Authorization": `Bearer ${authToken}` } })
       setSupport(response.data);
 
-      response = await axios.get(`${process.env.REACT_APP_LOCAL}/tokens`,
+      response = await axios.get(`${process.env.REACT_APP_HOST202}/tokens`,
         { headers: { "Authorization": `Bearer ${authToken}` } })
       setTokens(response.data);
     } catch (error) {
@@ -105,7 +105,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.put(`${process.env.REACT_APP_LOCAL}/users/edit`, editedUser, { headers });
+      await axios.put(`${process.env.REACT_APP_HOST202}/users/edit`, editedUser, { headers });
       closeUserModal();
       alert("Sikeres adat változtatás!");
       window.location.reload();
@@ -131,7 +131,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/users/remove/${selectedUserItem.id}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_HOST202}/users/remove/${selectedUserItem.id}`, { headers });
       closeDeleteUserModal();
       alert("Sikeres törlés!")
       window.location.reload();
@@ -169,7 +169,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.put(`${process.env.REACT_APP_LOCAL}/ads/edit/${selectedAdItem.id}`, editedAd, { headers });
+      await axios.put(`${process.env.REACT_APP_HOST202}/ads/edit/${selectedAdItem.id}`, editedAd, { headers });
       closeEditAdModal();
       alert("Hirdetés sikeresen megváltoztatva!");
       window.location.reload();
@@ -195,7 +195,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/ads/remove/${selectedAdItem.id}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_HOST202}/ads/remove/${selectedAdItem.id}`, { headers });
       closeDeleteAdModal();
       alert("Hirdetés törölve!")
       window.location.reload();
@@ -226,7 +226,7 @@ export const ADMINPAGE = () => {
         id: selectedSupportItem.id
       }
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/support/${selectedSupportItem.id}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_HOST202}/support/${selectedSupportItem.id}`, { headers });
       closeDeleteSupportModal();
       alert("Support kérdés törölve!");
       window.location.reload();
@@ -254,7 +254,7 @@ export const ADMINPAGE = () => {
         'Content-Type': 'application/json',
       };
 
-      await axios.delete(`${process.env.REACT_APP_LOCAL}/tokens/${selectedTokenItem.id}`, { headers });
+      await axios.delete(`${process.env.REACT_APP_HOST202}/tokens/${selectedTokenItem.id}`, { headers });
       closeDeleteTokenModal();
       alert("Sikeres token törlés!");
       window.location.reload();
@@ -290,7 +290,7 @@ export const ADMINPAGE = () => {
                   <td>{user.email}</td>
                   <td>{user.hely}</td>
                   <td>{user.pPic}</td>
-                  <td>{user.role}</td>
+                  <td>{user.szerep}</td>
                   <td>{user.kedvencek}</td>
                   <td>{user.telefonszam}</td>
                   <td style={{ width: '300px' }}>
@@ -383,9 +383,9 @@ export const ADMINPAGE = () => {
               {tokens.map(token => (
                 <tr key={token.id}>
                   <td>{token.id}</td>
-                  <td>{token.data.substring(0, 50) + " ..."}</td>
+                  <td>{token.token.substring(0, 50) + " ..."}</td>
                   <td>{token.tulajEmail}</td>
-                  <td>{token.date}</td>
+                  <td>{token.datum}</td>
                   <td style={{ width: '300px' }}>
                     <button style={{ background: 'red', color: 'black', border: '1px solid black' }} onClick={() => openDeleteTokenModal(token)}>Törlés</button>
                   </td>
@@ -454,7 +454,7 @@ export const ADMINPAGE = () => {
               <label>Email:<br /><input id='email' type="email" defaultValue={selectedUserItem.email} /></label>
               <label>hely:<br /><input id='location' type="text" defaultValue={selectedUserItem.hely} /></label>
               <label>ProfileKép:<br /><input id='pPic' type="text" defaultValue={selectedUserItem.pPic} /></label>
-              <label>Role:<br /><input id='role' type="text" defaultValue={selectedUserItem.role} /></label>
+              <label>Role:<br /><input id='role' type="text" defaultValue={selectedUserItem.szerep} /></label>
               <label>Kedvencek:<br /><input id='favourites' type="text" defaultValue={selectedUserItem.kedvencek} /></label>
               <label>Telefonszám:<br /><input id='phone' type="tel" minLength={11} maxLength={11} defaultValue={selectedUserItem.telefonszam} /></label>
             </div>

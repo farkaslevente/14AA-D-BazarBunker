@@ -17,7 +17,7 @@ export const ProfilePage = () => {
         const fetchUserData = async () => {
             try {
                 const userId = localStorage.getItem('userId');
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${userId}`);
+                const response = await axios.get(`${process.env.REACT_APP_HOST202}/users/${userId}`);
                 setUser(response.data);
                 setEditedUser(response.data);
                 const favorites = response.data.favourites.split(' + ').filter(id => id !== '0');
@@ -66,11 +66,12 @@ export const ProfilePage = () => {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
             };
-            await axios.put(`${process.env.REACT_APP_LOCAL}/users/put`, editedUser, { headers });
+            await axios.put(`${process.env.REACT_APP_HOST202}/users/put`, editedUser, { headers });
             setUser(editedUser);
             localStorage.setItem('userName', editedUser.name);
             localStorage.setItem('userLocation', editedUser.location);
             localStorage.setItem('userPhone', editedUser.phone);
+            localStorage.setItem('userFavourites', editedUser.favourites)
             setEditMode(false);
             alert('Adatok sikeresen megváltoztatva!');
             window.location.reload();
@@ -91,7 +92,7 @@ export const ProfilePage = () => {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
             };
-            await axios.delete(`${process.env.REACT_APP_LOCAL}/users/delete`, { headers });
+            await axios.delete(`${process.env.REACT_APP_HOST202}/users/delete`, { headers });
             alert('Felhasználó törölve!');
             localStorage.clear();
             localStorage.setItem('isLoggedIn', false);

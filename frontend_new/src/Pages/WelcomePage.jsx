@@ -19,7 +19,7 @@ export const WelcomePage = () => {
         const headers = {
             'Authorization': `Bearer ${authToken}`
         };
-        await axios.get(`${process.env.REACT_APP_LOCAL}/email/subscribe`, { headers });
+        await axios.get(`${process.env.REACT_APP_HOST202}/email/subscribe`, { headers });
         alert("Sikeresen feliratkozott hírlevelünkre!");
         } catch (error) {
             //console.error(error);

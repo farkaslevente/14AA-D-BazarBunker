@@ -62,7 +62,7 @@ export const Navbar = () => {
                     <div className="loggedIn">
                         <div className='loggedIndata' style={{ display: 'flex', alignItems: 'center', gap: '10px', marginRight: '10px', marginLeft: '10px' }}>
                             <h5 style={{color: '#FF9843'}}>Bejelentkezve: <strong><Link to='/profil' style={{ color: "white", outline: 'black' }}>{localStorage.getItem('userName')}</Link></strong></h5>
-                            <img className='userPPic' src={localStorage.getItem('userPPic')} alt="Profilkep" style={{background: 'white'}}/>
+                            <Link to='/profil'><img className='userPPic' src={localStorage.getItem('userPPic')} alt="Profilkep" style={{background: 'white'}}/></Link>
                         </div>
                         <div>
                             <Link onClick={handleLogout} to='/' style={{ color: '#FFDD95', marginLeft: '10px' }}>Kijelentkezés</Link>

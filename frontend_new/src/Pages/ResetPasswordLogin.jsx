@@ -17,7 +17,7 @@ export const ResetPasswordLogin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const resp = await axios.post(`${process.env.REACT_APP_LOCAL}/users/authorizereset`, { email: localStorage.getItem('tempEmail'), token: token });
+            const resp = await axios.post(`${process.env.REACT_APP_HOST202}/users/authorizereset`, { email: localStorage.getItem('tempEmail'), token: token });
             if (resp.status === 200) {
                 localStorage.clear();
 

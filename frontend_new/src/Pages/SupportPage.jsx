@@ -21,7 +21,7 @@ export const SupportPage = () => {
             'Authorization': `Bearer ${authToken}`
         };
         try {
-            await axios.post(`${process.env.REACT_APP_LOCAL}/users/support`, { title: title, question: question }, { headers });
+            await axios.post(`${process.env.REACT_APP_HOST202}/users/support`, { title: title, question: question }, { headers });
             setSuccessMessage("Kérdését megkaptuk, nemsokára felkeressük Önt!");
             setErrorMessage("");
             setSuccessStatus(true);

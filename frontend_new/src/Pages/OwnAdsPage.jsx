@@ -73,7 +73,7 @@ export const OwnAdsPage = () => {
 
     const handleDeleteConfirmation = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
+            await axios.delete(`${process.env.REACT_APP_HOST202}/ads/${selectedAdId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
                     'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ export const OwnAdsPage = () => {
             const selectedCountyObject = counties.find(county => county.value === selectedCounty.value);
             const countyId = selectedCountyObject ? selectedCountyObject.id : '';
 
-            await axios.put(`${process.env.REACT_APP_LOCAL}/ads/${selectedAdId}`, {
+            await axios.put(`${process.env.REACT_APP_HOST202}/ads/${selectedAdId}`, {
                 name: editedAd.nev,
                 description: editedAd.leiras,
                 category: selectedCategory.value,

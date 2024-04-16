@@ -92,7 +92,7 @@ export const NewAdPage = () => {
                 'Authorization': `Bearer ${authToken}`
             };
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/ads/post`, {
+            await axios.post(`${process.env.REACT_APP_HOST202}/ads/post`, {
                 name: event.target.title.value,
                 description,
                 category: selectedCategory,
@@ -112,7 +112,7 @@ export const NewAdPage = () => {
                 formData.append(`file`, file, `${localStorage.getItem('userId')}_${ADID}_${index}.${file.name.split('.').pop()}`);
             });
 
-            await axios.post(`${process.env.REACT_APP_LOCAL}/pictures/upload`, formData, {
+            await axios.post(`${process.env.REACT_APP_HOST202}/pictures/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${authToken}`

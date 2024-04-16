@@ -27,7 +27,7 @@ export const AdDetailsPage = () => {
                 const selectedAd = adsData.find(ad => ad.id === adId);
                 setAd(selectedAd);
                 if (selectedAd.tulajId) {
-                    const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${selectedAd.tulajId}`);
+                    const response = await axios.get(`${process.env.REACT_APP_HOST202}/users/${selectedAd.tulajId}`);
                     setAdvertiser(response.data);
                 }
                 const date = new Date(selectedAd.datum);
@@ -40,11 +40,11 @@ export const AdDetailsPage = () => {
 
         const fetchImages = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+                const response = await axios.get(`${process.env.REACT_APP_HOST202}/pictures/upload`);
                 const filteredImages = response.data.filter(fileName => {
                     const [userId, fetchedAdId, _] = fileName.split('_');
                     return parseInt(fetchedAdId) === adId;
-                }).map(fileName => `${process.env.REACT_APP_LOCAL}/uploads/${fileName}`);
+                }).map(fileName => `${process.env.REACT_APP_HOST202}/uploads/${fileName}`);
                 setImageUrls(filteredImages);
             } catch (error) {
                 console.error('Error fetching images:', error);
@@ -54,7 +54,7 @@ export const AdDetailsPage = () => {
         const fetchUserData = async () => {
             try {
                 const userId = localStorage.getItem('userId');
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/users/${userId}`, { headers });
+                const response = await axios.get(`${process.env.REACT_APP_HOST202}/users/${userId}`, { headers });
                 const userFavorites = response.data.favourites.split(' + ').filter(id => id !== '').map(id => parseInt(id));
                 setIsFavorite(userFavorites.includes(adId));
             } catch (error) {
@@ -70,9 +70,9 @@ export const AdDetailsPage = () => {
     const handleFavoriteToggle = async () => {
         try {
             if (isFavorite) {
-                await axios.post(`${process.env.REACT_APP_LOCAL}/users/removefavourite`, { adId }, { headers });
+                await axios.post(`${process.env.REACT_APP_HOST202}/users/removefavourite`, { adId }, { headers });
             } else {
-                await axios.post(`${process.env.REACT_APP_LOCAL}/users/addfavourite`, { adId }, { headers });
+                await axios.post(`${process.env.REACT_APP_HOST202}/users/addfavourite`, { adId }, { headers });
             }
             setIsFavorite(!isFavorite);
         } catch (error) {

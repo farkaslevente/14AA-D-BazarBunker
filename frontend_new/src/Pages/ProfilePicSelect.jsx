@@ -22,7 +22,7 @@ export const ProfilePicSelect = () => {
                     'Authorization': `Bearer ${authToken}`,
                     'Content-Type': 'application/json',
                 };
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures`, { headers });
+                const response = await axios.get(`${process.env.REACT_APP_HOST202}/pictures`, { headers });
                 setPictures(response.data);
             } catch (error) {
                 console.error('Error fetching pictures:', error);
@@ -48,7 +48,7 @@ export const ProfilePicSelect = () => {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
             };
-            await axios.post(`${process.env.REACT_APP_LOCAL}/users/changepicture`, { pPic: selectedPicture }, { headers });
+            await axios.post(`${process.env.REACT_APP_HOST202}/users/changepicture`, { pPic: selectedPicture }, { headers });
             console.log('Profile picture change confirmed');
 
             // Update localStorage with the selected picture URL

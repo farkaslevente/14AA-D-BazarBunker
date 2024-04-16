@@ -50,7 +50,7 @@ export const AllAdsPage = () => {
 
         const fetchImages = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}/pictures/upload`);
+                const response = await axios.get(`${process.env.REACT_APP_HOST202}/pictures/upload`);
                 const imageFileNames = response.data;
 
                 const thumbnails = {};

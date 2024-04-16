@@ -9,7 +9,7 @@ export const Card = ({ ad, thumbnail }) => {
         <div className='card-container'>
             <div className="card-content">
                 <div className="card-thumbnail">
-                    <img className='cardImg' src={thumbnail ? `${process.env.REACT_APP_LOCAL}/uploads/${thumbnail}` : 'https://picsum.photos/300/200'} alt='Card Image' />
+                    <img className='cardImg' src={thumbnail ? `${process.env.REACT_APP_HOST202}/uploads/${thumbnail}` : 'https://picsum.photos/300/200'} alt='Card Image' />
                 </div>
                 <div className="card-details">
                     <div className="card-data">
