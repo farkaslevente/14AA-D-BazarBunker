@@ -1,0 +1,90 @@
+.alladspage {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    padding: 10px;
+    padding-top: 50px;
+    align-items: center;
+    background-color: rgb(250, 230, 200);
+}
+
+.alladspage-title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filters {
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(225, 225, 255);
+}
+
+.filters h4 {
+    margin-bottom: 10px;
+}
+
+.search,
+.minmax-price,
+.category-select,
+.county-select {
+    margin-bottom: 10px;
+}
+
+.search label,
+.minmax-price label,
+.category-select label,
+.county-select label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search input,
+.minmax-price input {
+    width: 100%;
+    border: 2px solid gray;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.buttons button {
+    margin-left: 10px;
+}
+
+.alladspage-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 75%;
+    min-width: 75%;
+}
+
+@media (min-width: 768px) {
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .search,
+    .minmax-price,
+    .category-select,
+    .county-select {
+        width: calc(50% - 20px);
+    }
+}

@@ -1,0 +1,40 @@
+.carousel-container {
+  max-height: 600px;
+  overflow: hidden;
+  background-color: rgb(225, 225, 255);
+}
+
+.carousel {
+  max-width: 900px;
+  max-height: fit-content;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: 20px;
+}
+
+.react-responsive-carousel .control-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.react-responsive-carousel .control-arrow.prev {
+  left: 20px;
+}
+
+.react-responsive-carousel .control-arrow.next {
+  right: 20px;
+}

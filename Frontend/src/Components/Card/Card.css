@@ -1,0 +1,93 @@
+.card-container {
+    min-width: 75%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(225, 225, 255);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+}
+
+.card-thumbnail {
+    width: 300px;
+    height: 200px;
+}
+
+
+.card-details {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.card-data {
+    padding: 10px;
+    margin: 10px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    max-height: fit-content;
+    padding: auto;
+}
+
+.addetailsbutton {
+    max-height: 80px;
+    width: 200px;
+    background: #6D71D6;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.cardImg {
+    border: 1px black solid;
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-content {
+        flex-direction: column;
+    }
+
+    .card-thumbnail {
+        width: 100%;
+    }
+
+    .card-details {
+        padding-left: 0;
+    }
+
+    .addetailsbutton {
+        width: 100%;
+        max-width: 300px;
+    }
+}

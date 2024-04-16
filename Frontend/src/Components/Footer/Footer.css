@@ -1,0 +1,11 @@
+.footer {
+    background: lightgreen;
+    text-align: center;
+    border-top: 3px solid black;
+    
+}
+
+.footer a {
+    text-decoration: none;
+    margin-bottom: 0;
+}

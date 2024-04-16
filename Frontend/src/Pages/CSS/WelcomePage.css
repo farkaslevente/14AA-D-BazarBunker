@@ -1,0 +1,42 @@
+.welcomepage {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(250, 230, 200);
+    min-height: 80vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  .title {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .support-link {
+    margin-top: 30px;
+  }
+  
+  .support-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  
+    .description {
+      font-size: 1rem;
+    }
+  }
+  

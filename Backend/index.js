@@ -4,12 +4,14 @@ const { router } = require('./src/routes/indexRouter')
 const { hosts } = require('./src/config/host.config')
 const { cookie_keys } = require('./src/config/auth.config')
 const cookieSession = require('cookie-session')
+const cors = require('cors')
 
-const PORT = 9090;
-const HOST = hosts.HOST302loc || "localhost";
+const PORT = 9000;
+const HOST = hosts.HOSTHOME || "localhost";
 
 
 const app = express()
+app.use(cors())
 app.use(express.static("src/views"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -29,7 +31,6 @@ app.listen(PORT, () => {
   console.log(`Server listening @ ${HOST}:${PORT}`);
 });
 
-app.set('view engine', 'html');
-
 app.use(router);
+app.use('/uploads', express.static('uploads'))
 module.exports = app;

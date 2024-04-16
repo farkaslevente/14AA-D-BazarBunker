@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+    margin: 10px;
+}
+
+table {
+    max-width: 95%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.tab-bar {
+    margin: 10px;
+    text-align: center;
+}
+
+.usereditmodal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.adeditmodal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
