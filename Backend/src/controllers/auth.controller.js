@@ -76,8 +76,8 @@ const authController = {
                 const token = accessToken({payload})
 
                 const d = new Date()
-                dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, token, datum) VALUES 
-                (null, '${token}', '${d}')`)
+                dbFunctions.execQueryRegister(`INSERT INTO tokenek (id, token, , tulajEmail) VALUES 
+                (null, '${token}', '${d}', '${user.email}')`)
 
                 req.session.token = token;
                 res.status(200).json({token})
