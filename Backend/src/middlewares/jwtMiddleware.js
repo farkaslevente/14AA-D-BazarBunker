@@ -71,7 +71,7 @@ secret,
       email: user.email,
       location: user.hely,
       pPic: user.pPic,
-      role: user.role,
+      role: user.szerep,
       favourites: user.kedvencek,
       phone: user.telefonszam
   }

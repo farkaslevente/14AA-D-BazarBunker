@@ -22,7 +22,7 @@ const dbFunctions = {
             pPic: res[0].pPic,
             favourites: res[0].kedvencek,
             phone: res[0].telefonszam,
-            role: res[0].role
+            role: res[0].szerep
         }
         return payload
     },
