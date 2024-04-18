@@ -27,9 +27,8 @@ namespace MobilApp_Szakdolgozat.Services
         {
             string token;
         }        
-
-        static string url202 = "http://10.0.22.14:9000";        
-        public static string url = url202;
+             
+        public static string url = "http://10.0.22.5:9000";
 
         public static async Task<ProfileModel> getProfileById(int userId)
         {
