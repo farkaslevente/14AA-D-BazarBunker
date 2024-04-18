@@ -17,11 +17,11 @@ _A new and easier way for students to find their desired book_
 ## How to start the project
 
  - Clone repo and install all dependencies with `npm i`
- - To run back-end type `npm run dev`
+ - To run back-end set your back-end's IP address as the `HOST` variable in the .env file, then type `npm run dev` into the terminal
  - You can reach the APIs at `localhost:9000`
  - To run front-end type `npm start`
  - You can reach the website through `localhost:3000`
- - To start up the native mobile application you have to alter the url variable to your backend's IP address (in `DataService.cs` in the `Services` folder)
+ - To start up the native mobile application you have to alter the url variable to your back-end's IP address (in `DataService.cs` in the `Services` folder)
  - After this change you can start the application through Visual Studio 2022 either on a virtual mobile or on a physical device
   
 ## Created by
